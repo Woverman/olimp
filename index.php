@@ -24,8 +24,8 @@ $banner = new Banner($rpage);
     <title><?=$page->title;?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="stylesheet" type="text/css" href="/css/null.css">
-    <link rel="stylesheet" type="text/css" href="/css/<? echo(SKIN); ?>/struct.css">
-    <link rel="stylesheet" type="text/css" href="/css/<? echo(SKIN); ?>/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/struct.css">
+    <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/main.css">
     <link rel="stylesheet" type="text/css" href="/css/sunny/jquery-ui-1.8.7.custom.css">
     <script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
