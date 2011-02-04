@@ -1,37 +1,5 @@
 img{border:0;}
 
-/* Structure */
-body{
-    min-width:1024px;
-}
-
-
-#header_block{background:url(../i/header_bg1.png);height:126px;position:absolute;top:0;width:100%;z-index:3;min-width:800px;}
-#logo_block{background:url(../i/header_bg2.png);height:126px;}
-
-#center_panel{background:black;margin-top:156px;position:relative;}
-
-#banner_block{float:left;height:100px;position:absolute;top:0px;width:60%;overflow: hidden;}
-
-#wrapper{margin:0 20%;width:60%;}
-
-#news_block{float:left;margin-top:100px;width:100%;}
-#news_inner{border: 1px solid #ADC7BB;padding: 10px;}
-
-#notices_block{float:left;width:100%;}
-
-#left_panel{float:left;width:20%;position: absolute;top:156px;left:0px;}
-
-#right_panel{float:right;position:absolute;width:20%;top:156px;right: 0px;margin: auto;padding:auto;}
-
-#flags_wrapper{background-color: #D8E9EE;float: right;height: 104px;margin-right: 6px;margin-top: -119px;padding: 8px 0px 0px 8px;width: 40px;}
-
-#menu_panel,#menu_panel_double{background:url(../i/menu_back.png) repeat-x 0px -29px;height:30px;position:absolute;top:126px;width:100%;z-index:2;white-space:nowrap;overflow: hidden;}
-#menu_panel ul,#menu_panel_double ul{width: 200%}
-#menu_panel li,#menu_panel_double li{display:inline;float:left;height:30px;margin-top: 7px;background: url(../i/menudelimiter.png) no-repeat right top;}
-#menu_panel_double{background:url(../i/menu_back.png) repeat-x 0px -29px;position:fixed;top:-25px;z-index:1;}
-#menu_panel_double:hover{top:0px;}
-
 /* Logo */
 #logo_img {left: 24px; position: absolute; top: 13px;}
 
