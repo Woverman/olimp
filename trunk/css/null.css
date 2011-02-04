@@ -1,0 +1,51 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+ margin: 0; // все границы
+ padding: 0; // отступы
+ border: 0; // и рамки устанавливаются в 0
+ outline: 0; // обводка элементов идёт туда же
+ font-size: 100%; // шрифт нормальный
+ vertical-align: baseline; // всё выравнивается однообразно
+ background: transparent; // фона нет, никакого
+}
+body {
+ line-height: 1; // межстрочный интервал одинаков
+}
+ol, ul {
+ list-style: none; // никаких маркеров у списков нет
+}
+blockquote, q {
+ quotes: none; // и кавычек в цитатах нет
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+ content: '';
+ content: none;
+}
+
+/* все элементы в фокусе (на которые перешли, например, Tab'ом)
+имеют единый вид */
+:focus {
+ outline: 0;
+}
+
+/* не забывайте обозначить удаления и вставки */
+ins {
+ text-decoration: none;
+}
+del {
+ text-decoration: line-through;
+}
+
+/* а таблицам вручную придётся прописывать 'cellspacing="0"' в HTML */
+table {
+ border-collapse: collapse;
+ border-spacing: 0;
+}

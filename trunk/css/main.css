@@ -1,0 +1,82 @@
+img{border:0;}
+
+/* Structure */
+body{
+    min-width:1024px;
+}
+
+
+#header_block{background:url(../i/header_bg1.png);height:126px;position:absolute;top:0;width:100%;z-index:3;min-width:800px;}
+#logo_block{background:url(../i/header_bg2.png);height:126px;}
+
+#center_panel{background:black;margin-top:156px;position:relative;}
+
+#banner_block{float:left;height:100px;position:absolute;top:0px;width:60%;overflow: hidden;}
+
+#wrapper{margin:0 20%;width:60%;}
+
+#news_block{float:left;margin-top:100px;width:100%;}
+#news_inner{border: 1px solid #ADC7BB;padding: 10px;}
+
+#notices_block{float:left;width:100%;}
+
+#left_panel{float:left;width:20%;position: absolute;top:156px;left:0px;}
+
+#right_panel{float:right;position:absolute;width:20%;top:156px;right: 0px;margin: auto;padding:auto;}
+
+#flags_wrapper{background-color: #D8E9EE;float: right;height: 104px;margin-right: 6px;margin-top: -119px;padding: 8px 0px 0px 8px;width: 40px;}
+
+#menu_panel,#menu_panel_double{background:url(../i/menu_back.png) repeat-x 0px -29px;height:30px;position:absolute;top:126px;width:100%;z-index:2;white-space:nowrap;overflow: hidden;}
+#menu_panel ul,#menu_panel_double ul{width: 200%}
+#menu_panel li,#menu_panel_double li{display:inline;float:left;height:30px;margin-top: 7px;background: url(../i/menudelimiter.png) no-repeat right top;}
+#menu_panel_double{background:url(../i/menu_back.png) repeat-x 0px -29px;position:fixed;top:-25px;z-index:1;}
+#menu_panel_double:hover{top:0px;}
+
+/* Logo */
+#logo_img {left: 24px; position: absolute; top: 13px;}
+
+/* Menu */
+ul.hmenu{margin-left: -40px;}
+
+.hmenu a{color:#0099CC;font:bold 14px Verdana,Arial,Helvetica,sans-serif;padding:8px 30px 5px 30px;text-decoration:none;}
+.hmenu a:hover,.hmenu a.cur{background:url(../i/menu_back.png) repeat-x 0px -25px;color:#006C91;}
+/* banners block */
+#banner_block{text-align: center;}
+/* text */
+p{margin-bottom:10px;}
+
+p:first-letter{
+	float:left;
+	font-size:2.5em;
+	font-weight:bolder;
+	margin-bottom:-.25em;
+	padding-right:2px;
+	text-transform:uppercase;
+    color:#333333;
+}
+/* vidgets */
+.vidget {border:1px solid #66CCFF; text-align: center; padding:10px;position: relative;margin: 5px;overflow: hidden;}
+.vidget span {
+    display:block;
+    background-image: url(../i/under.png);
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    margin: 0 auto 5px auto; 
+    padding:5px;
+    font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: #509693;
+}
+
+/* погодний інформер */
+.gmtbl{border: 0;}
+.gmtdttl{font-size: 110%; font-weight: bold; color: #033833; text-align:center;  background-color: #18b8f9;display: none;}
+.gmtdtext{font-size: 100%; font-weight: normal; color: #065d70;}text-align:center;}
+.tddiv { text-align: left !important;}
+div#cntdiv{ position:absolute; display:block;}
+div#infselectlist{ background-color: #ffffff; border: 1px solid #7c7c7c; width:100%; height:100%; position:relative; top:1; left:0; right:0; visibility:hidden; cursor:pointer;}
+div#hiddentl{ position:relative; top:1; left:0; right:0; visibility:hidden;}
