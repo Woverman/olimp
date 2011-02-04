@@ -7,7 +7,7 @@ img{border:0;}
 ul.hmenu{margin-left: -40px;}
 
 .hmenu a{color:#0099CC;font:bold 14px Verdana,Arial,Helvetica,sans-serif;padding:8px 30px 5px 30px;text-decoration:none;}
-.hmenu a:hover,.hmenu a.cur{background:url(../i/menu_back.png) repeat-x 0px -25px;color:#006C91;}
+.hmenu a:hover,.hmenu a.cur{background:url(../../i/menu_back.png) repeat-x 0px -25px;color:#006C91;}
 /* banners block */
 #banner_block{text-align: center;}
 /* text */

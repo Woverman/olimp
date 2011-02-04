@@ -12,13 +12,13 @@ $dbhost[0] = "178.74.197.11";
 $dbname[0] = "olimpdb";
 
 // Server
-$dbname[1] = "olimpdb";
-$dbuser[1] = "olimp";
-$dbpass[1] = "asdzxc21";
+$dbname[1] = "olimpbiz_maindb";
+$dbuser[1] = "olimpbiz_user";
+$dbpass[1] = "gSDJgYJd";
 $dbhost[1] = "localhost";
 
-
-
+// configuration
+define('SKIN', "default");
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); //.'/tool');
 define('ROOT_FOLDER', '');
 // Email and Name for Problem List Mailer
