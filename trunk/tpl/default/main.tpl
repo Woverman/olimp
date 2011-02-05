@@ -28,20 +28,20 @@
                         <?=$res[0]['cast'].' '.$res[0]['valuta']?>
                     </td>
                     <td>
-                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img"><br />
-                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
-                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
-                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                        <a href="/object/<?=$res[1]['id']?>"><img src="<?=$res[1]['img']?>" class="notice_img"><br />
+                        <?=$res[1]['adr_gor'].' '.$res[1]['adr_vul']?></a><br />
+                        <?=$res[1]['kk'].'-на квартира '.$res[1]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[1]['cast'].' '.$res[1]['valuta']?>
                         <div class="notice_delimiter"></div>
-                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img"><br />
-                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
-                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
-                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                        <a href="/object/<?=$res[2]['id']?>"><img src="<?=$res[2]['img']?>" class="notice_img"><br />
+                        <?=$res[2]['adr_gor'].' '.$res[2]['adr_vul']?></a><br />
+                        <?=$res[2]['kk'].'-на квартира '.$res[2]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[2]['cast'].' '.$res[2]['valuta']?>
                         <div class="notice_delimiter"></div>
-                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img"><br />
-                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
-                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
-                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                        <a href="/object/<?=$res[3]['id']?>"><img src="<?=$res[3]['img']?>" class="notice_img"><br />
+                        <?=$res[3]['adr_gor'].' '.$res[3]['adr_vul']?></a><br />
+                        <?=$res[3]['kk'].'-на квартира '.$res[3]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[3]['cast'].' '.$res[3]['valuta']?>
                         <div class="notice_delimiter"></div>
                     </td>
                     </tr>
