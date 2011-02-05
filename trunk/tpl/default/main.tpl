@@ -1,27 +1,52 @@
 <div id="center_panel">
     <div id="wrapper">
-    <?  ?>
         <div id="news_block">
-            <div id="news_inner">
-            <p>
-                Кнопка «Пользователи» нажимаем появляется «блок 3 Пользователи» в котором мы даем права этому супервайзеру на блок «Пользователи» добавить,  редактировать, удалить, выбираем из списка логины с которыми он имеет право работать (если он имеет право создавать то созданный им логин автоматически попадает в список разрешённых для работы логинов только этому супервайзеру,) может назначать ХТЗ или нет? Раздел Пн-ВС с-до? И раздел доступ, только в случае если он имеет право на раздел доступ IP менять он не может.
-Кнопка «Работа с Адресами» тоже принципе.
-Кнопка «Работа с информацией и подсказками» тоже.
-Кнопка «Добавить» добавляет супервайзера создаем логин генерируем пароль, назначаем блоки доступа нажимаем «ОК»(блоки появляются в этом разделе слева и путем нажатия на блоки мы редактируем более конкретно права для каждого выбранного блока).
-Кнопка «удалить» удаляет выбранного супервайзера
-</p>
+            <div id="news_inner" class="ui-corner-all">
+            <div id="news_title" class="ui-corner-all">Останні новини</div>
+            <?
+                $sql = "Select * from new_news where published=1 order by dateadd desc limit 3";
+                $res = $DB->request($sql,ARRAY_A);
+                foreach($res as $item){
+                    include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/elem_news.tpl');
+                }
+            ?>
             </div>
         </div>
         <div id="notices_block">
-            <div id="notices_inner">
-                <pre>
+            <div id="notices_inner" class="ui-corner-all" style="white-space: pre">
                 <?
-                print_r($_REQUEST);
-                //print_r($_SESSION);
-                //print_r($_SERVER);
-                //print_r($page);
+                    $sql = "select * from m_bildings where in_main=1 order by rand() limit 4";
+                    $res = $DB->request($sql,ARRAY_A);
+                    //print_r($res[0]);     
                 ?>
-                </pre>
+                <table>
+                    <tr>
+                    <td>
+                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img_big"><br />
+                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
+                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                    </td>
+                    <td>
+                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img"><br />
+                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
+                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                        <div class="notice_delimiter"></div>
+                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img"><br />
+                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
+                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                        <div class="notice_delimiter"></div>
+                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img"><br />
+                        <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
+                        <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
+                        <?=$res[0]['cast'].' '.$res[0]['valuta']?>
+                        <div class="notice_delimiter"></div>
+                    </td>
+                    </tr>
+                </table>
+                
             </div>
         </div>
         <div id="banner_block"><? $banner->showCurrentBanner(); ?></div>
