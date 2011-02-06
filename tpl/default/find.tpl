@@ -17,7 +17,7 @@
 			  a = new Array();
 			  a = values.split("|");
 			  var arr = eval("(" + a[1] + ")");
-			  var listBox = $("#"+a[0]).empty().append("<option value=0>Не важливо</option>");
+			  var listBox = $("#"+a[0]).empty().append("<option value=0>--Не важливо--</option>");
 			  for (var key in arr) {
        		  	id = arr[key][0];
        		  	text = arr[key][1];
@@ -28,7 +28,7 @@
   </script>
   <p>Тип нерухомості:</p>
   <select onchange="showdiv(this.selectedIndex)" id="typener" name="tn">
-	<option value="0">Не важливо</option>
+	<option value="0">--Не важливо--</option>
   <option value="1">Будинки</option>
   <option value="2">Квартири</option>
   <option value="3">Ділянки</option>
@@ -37,7 +37,7 @@
   <div style="display: none;" id="finddiv1">
     <p>Тип будинку:</p>
     <select name="dom_domtype">
-  	  <option value="0">Не важливо</option>
+  	  <option value="0">--Не важливо--</option>
       <option value="1">будинок</option>
       <option value="2">частина будинку</option>
       <option value="3">дача</option>
@@ -46,7 +46,7 @@
   <div style="display: none;" id="finddiv2">
     <p>Тип квартири:</p>
     <select name="kk">
-      <option value="0">Не важливо</option>
+      <option value="0">--Не важливо--</option>
       <option value="-1">частина квартири</option>
       <option value="1">1-кімнатна</option>
       <option value="2">2-кімнатна</option>
@@ -60,7 +60,7 @@
   <div>
 	  <p>Область:</p>
 	  <select onchange="loadRgns('rgn',this.value);document.getElementById('mista').options.length=1" id="obl" name="obl">
-		<option value="0">Не важливо</option>
+		<option value="0">--Не важливо--</option>
 		<option value="1">АР Крим</option>
 <option value="3">Волинська</option>
 <option selected="" value="2">Вінницька</option>
@@ -91,7 +91,7 @@
 	  </select>
 	  <p>Район:</p>
 	  <select onchange="loadRgns('mista',this.value);" id="rgn" name="rgn">
-		<option value="0">Не важливо</option>
+		<option value="0">--Не важливо--</option>
 		<option value="20">Барський</option>
 <option value="22">Гайсинський</option>
 <option value="21">Бершадський</option>
@@ -122,7 +122,7 @@
 	  </select>
 	  <p>Населений пункт:</p>
 	  <select id="mista" name="gor">
-		<option value="0">Не важливо</option>
+		<option value="0">--Не важливо--</option>
 		<option value="1070">Гавришівка</option>
 <option value="30001">Гавришівка</option>
 <option value="1064">Агрономічне</option>
