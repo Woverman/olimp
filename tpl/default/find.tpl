@@ -183,7 +183,7 @@
   </div><br>
   Ціна від <input type="text" value="" name="prise1" id="prise1" size="5">
   до <input type="text" value="" name="prise2" id="prise2" size="5"><br>
-  <br><img border="0" onclick="document.form_find.submit();" src="/i/find_button.gif" id="find-submit">
+  <br><button onclick="document.form_find.submit();">Знайти</button>
 </form>
 
 
