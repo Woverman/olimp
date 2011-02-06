@@ -13,21 +13,22 @@
             </div>
         </div>
         <div id="notices_block">
-            <div id="notices_inner" class="ui-corner-all" style="white-space: pre">
+			<div id="news_title" class="ui-corner-all">Нерухомість</div>
+			<div id="notices_inner" class="ui-corner-all">
                 <?
                     $sql = "select * from m_bildings where in_main=1 order by rand() limit 4";
                     $res = $DB->request($sql,ARRAY_A);
                     //print_r($res[0]);
                 ?>
-                <table>
+                <table width="100%">
                     <tr>
-                    <td>
-                        <a href="/object/<?=$res[0]['id']?>"><img src="<?=$res[0]['img']?>" class="notice_img_big"><br />
+                    <td style="width:50%" valign="top">
+                        <a href="/object/<?=$res[0]['id']?>"><img width="400" src="<?=$res[0]['img']?>" class="notice_img_big"><br />
                         <?=$res[0]['adr_gor'].' '.$res[0]['adr_vul']?></a><br />
                         <?=$res[0]['kk'].'-на квартира '.$res[0]['plo_zag'].' кв. м.'?><br />
                         <?=$res[0]['cast'].' '.$res[0]['valuta']?>
                     </td>
-                    <td>
+                    <td valign="top">
                         <a href="/object/<?=$res[1]['id']?>"><img src="<?=$res[1]['img']?>" class="notice_img"><br />
                         <?=$res[1]['adr_gor'].' '.$res[1]['adr_vul']?></a><br />
                         <?=$res[1]['kk'].'-на квартира '.$res[1]['plo_zag'].' кв. м.'?><br />

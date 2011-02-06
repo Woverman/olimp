@@ -1,39 +1,47 @@
 <div id="center_panel">
     <div id="wrapper">
-    <?  ?>
-        <div id="news_block">
-            <div id="news_inner">
-            <p>
-                Кнопка «Пользователи» нажимаем появляется «блок 3 Пользователи» в котором мы даем права этому супервайзеру на блок «Пользователи» добавить,  редактировать, удалить, выбираем из списка логины с которыми он имеет право работать (если он имеет право создавать то созданный им логин автоматически попадает в список разрешённых для работы логинов только этому супервайзеру,) может назначать ХТЗ или нет? Раздел Пн-ВС с-до? И раздел доступ, только в случае если он имеет право на раздел доступ IP менять он не может.
-Кнопка «Работа с Адресами» тоже принципе.
-Кнопка «Работа с информацией и подсказками» тоже.
-Кнопка «Добавить» добавляет супервайзера создаем логин генерируем пароль, назначаем блоки доступа нажимаем «ОК»(блоки появляются в этом разделе слева и путем нажатия на блоки мы редактируем более конкретно права для каждого выбранного блока).
-Кнопка «удалить» удаляет выбранного супервайзера
-</p>
-            </div>
-        </div>
-        <div id="notices_block">
-            <div id="notices_inner">
-                <pre>
-                <?
-                print_r($_REQUEST);
-                //print_r($_SESSION);
-                //print_r($_SERVER);
-                //print_r($page);
-                ?>
-                </pre>
-            </div>
-        </div>
-        <div id="banner_block"><? $banner->showCurrentBanner(); ?></div>
+		<!--  -->
+<?php
+if (!isset($otdel)){
+  $sql='Select * from m_pages where id = '.$id;
+  $res=mysql_query($sql);
+  $row=mysql_fetch_array($res);
+  $text2=$row['text2'];
+
+  $sql="Select otdel, count(id)>0 as 'show_employers' from d_users where otdel<50 group by otdel";
+  $res=mysql_query($sql);
+
+  while ($otdel=mysql_fetch_assoc($res))
+  {
+    if ($otdel['show_employers']>0)
+      $text2=str_replace('{'.$otdel['otdel'].'}','<a href="?tab=2&otdel='.$otdel['otdel'].'">Співробітники...</a>',$text2);
+    else
+      $text2=str_replace('{'.$otdel['otdel'].'}','',$text2);
+  }
+?>
+<div class=maintabs style="padding-top: 1px;">
+<div id="news_title" class="ui-corner-all"><?=$row['title']?></div>
+<?=$row['text']?>
+</div>
+<div class=maintabs>
+<div id="news_title" class="ui-corner-all"><?=$row['title2']?></div>
+<?=$text2?>
+</div>
+
+<? } ?>
+
+		<!--  -->
     </div>
 </div>
 <? if ($page->hasleft){?>
 <div id="left_panel">
-    <div class="vidget ui-corner-all"><span>Пошук</span>
-            
+    <div class="vidget ui-corner-all" id='find_panel'><span>Пошук</span>
+		<?
+	        include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/find.tpl');
+      	?>
     </div>
     <div class="vidget ui-corner-all">
-        <A href="http://www.dilovamova.com/"><IMG width=150 height=250 border=0 alt="Календар свят і подій. Листівки, вітання та побажання" title="Календар свят і подій. Листівки, вітання та побажання" src="http://www.dilovamova.com/images/wpi.cache/informer/informer.png"></A>    
+        <A href="http://www.dilovamova.com/"><IMG width=150 height=250 border=0 alt="Календар свят і подій. Листівки, вітання та побажання" title="Календар свят і подій. Листівки, вітання та побажання" src="http://www.dilovamova.com/images/wpi.cache/informer/informer.png"></A>
     </div>
 </div>
 <? }
