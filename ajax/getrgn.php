@@ -8,7 +8,7 @@ $tbl = $_REQUEST['tbl'];
 $obl = $_REQUEST['obl'];
 echo $tbl.'|';
 $sql = sprintf('SELECT * from d_%s where parent=%s order by name',$tbl,$obl);
-echo $sql.'|';
+//echo $sql.'|';
 $res = $DB->request($sql,ARRAY_N);
 echo json_encode($res);
 ?> 
