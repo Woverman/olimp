@@ -19,8 +19,9 @@ class Menuset
             new Menu("article",3,"Послуги"),
             new Menu("catalog",1,"Каталог"),
             new Menu("catalog",2,"Оренда"),
-            new Menu("article",1,"Кредит"),
-            new Menu("article",2,"Про нас")
+            new Menu("kredit",0,"Кредит"),
+            new Menu("article",2,"Про нас"),
+			new Menu("article",3,"Контакти")
         );
         $this->title = "Олимп. Агенство недвижимости.";
     }

@@ -75,8 +75,8 @@ div#hiddentl{left:0;position:relative;right:0;top:1;visibility:hidden;}
 .news_item p{font:normal normal 500 12px/16px Arial;padding:0 10px;text-align:justify;text-indent:2em;}
 .news_intro{color:#888888;font-style: italic !important;padding-left: 150px !important;padding-right:50px;}
 .news_date{background:#E7F1FF;color:#66CCCC;font-size:11px;font-weight:normal;margin-right:1em;padding:1px 3px;}
-a.news_more_link{color:#009999;text-decoration:none;}
-a.news_more_link:hover{color:#330099;text-decoration:underline;}
+a{color:#009999;text-decoration:none;}
+a:hover{color:#330099;}
 
 /* notice */
 #notices_inner{
@@ -100,5 +100,11 @@ select {
 .maintabs img{
 	margin: 5px 15px 2px 2px;
 	border:1px solid #DDDDDD;border-bottom-width:2px;border-right-width:2px;
+}
+
+/* otdel list page */
+#otdel_tlb {
+	padding: 10px;
+	margin-top: 10px;
 }
 

@@ -1,6 +1,7 @@
 $(document).ready(function(){
     // дублируем меню для скрола
-    $("#menu_panel_double").append($("#menu_panel .hmenu").clone());
+	var mm = $("#menu_panel .hmenu").clone();
+    $("<div>").attr("id","menu_panel_double").append(mm).appendTo($("body"));
     // двигаем фон шапки
     $("#logo_block").mousemove(function(e){
         var x = e.pageX;
