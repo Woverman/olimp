@@ -1,4 +1,4 @@
-<? 
+<?
 header("Content-type: text/html; charset=utf-8");
 session_start();
 
@@ -35,11 +35,11 @@ $banner = new Banner($rpage);
 <body>
 <div id="header_block">
     <div id="logo_block"><img src="/i/logo.png" alt="" id="logo_img"/></div>
-    <div class="ui-corner-all" id="flags_wrapper">
+    <!--<div class="ui-corner-all" id="flags_wrapper">
         <a href="?lang=en"><img src="/i/eng_flag.png" width="32" height="32" alt="English" /></a>
         <a href="?lang=ru"><img src="/i/rus_flag.png" width="32" height="32" alt="Russian" /></a>
         <a href="?lang=ua"><img src="/i/ukr_flag.png" width="32" height="32" alt="Ukrainian" /></a>
-    </div>
+    </div>-->
 </div>
 <div id="menu_panel">
   <ul class="hmenu">
