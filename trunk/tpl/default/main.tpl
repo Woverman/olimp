@@ -16,54 +16,42 @@
 			<div id="news_title" class="ui-corner-all">Нерухомість</div>
 			<div id="notices_inner" class="ui-corner-all">
                 <?
-                    $sql = "select * from m_bildings where in_main=1 order by rand() limit 5";
+					$cnt = 10;
+                    $sql = "select * from m_bildings where in_main=1 order by rand() limit $cnt";
                     $res = $DB->request($sql,ARRAY_A);
                     //print_r($res[0]);
                 ?>
                 <table width="100%">
                     <tr>
                     <td style="width:50%" valign="top">
-						<div class="notice_item_big">
-						<? $object = Object::parse($res[0]); ?>
-                        <a href="/object/<?=$object->id?>"><img width="400" src="<?=$object->img(1)?>" class="notice_img_big"><br />
-                        <?=$object->address()?></a><br />
-                        <?=$object->shortDetails()?><br />
-                        <?=$object->price()?>
+					<div id="big_notices_wrapper" style="height: 374px;overflow: hidden;position: relative;">
+						<div id="big_notices_inner" style="position: relative;width: 200%;height: 374px;">
+							<div class="notice_item_big">
+								<? $object = Object::parse($res[0]); ?>
+		                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
+		                        <?=$object->address()?></a><br />
+		                        <?=$object->shortDetails()?><br />
+		                        <?=$object->price()?>
+							</div>
 						</div>
+					</div>
                     </td>
                     <td valign="top">
+						<div id="small_notices_wrapper" style="height: 374px;overflow: hidden;position: relative;">
+						<div id="small_notices_inner" style="position: relative;">
+						<?
+						for ($i=1;$i<$cnt;$i++){
+							$object = Object::parse($res[$i]);
+						?>
 						<div class="notice_item">
-                        <? $object = Object::parse($res[1]); ?>
-                        <a href="/object/<?=$object->id?>"><img width="100" src="<?=$object->img(1)?>" class="notice_img">
+                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
                         <?=$object->address()?></a><br />
                         <?=$object->shortDetails()?><br />
-                        <?=$object->price()?>
+                        <?=$object->price()?>	</div>
+						<div class="notice_delimiter"></div>
+						<? } ?>
 						</div>
-                        <div class="notice_delimiter"></div>
-						<div class="notice_item">
-						<? $object = Object::parse($res[2]); ?>
-                        <a href="/object/<?=$object->id?>"><img width="100" src="<?=$object->img(1)?>" class="notice_img">
-                        <?=$object->address()?></a><br />
-                        <?=$object->shortDetails()?><br />
-                        <?=$object->price()?>
 						</div>
-                        <div class="notice_delimiter"></div>
-						<div class="notice_item">
-                        <? $object = Object::parse($res[3]); ?>
-                        <a href="/object/<?=$object->id?>"><img width="100" src="<?=$object->img(1)?>" class="notice_img">
-                        <?=$object->address()?></a><br />
-                        <?=$object->shortDetails()?><br />
-                        <?=$object->price()?>
-						</div>
-                        <div class="notice_delimiter"></div>
-						<div class="notice_item">
-                        <? $object = Object::parse($res[4]); ?>
-                        <a href="/object/<?=$object->id?>"><img width="100" src="<?=$object->img(1)?>" class="notice_img">
-                        <?=$object->address()?></a><br />
-                        <?=$object->shortDetails()?><br />
-                        <?=$object->price()?>
-						</div>
-                        <div class="notice_delimiter"></div>
                     </td>
                     </tr>
                 </table>

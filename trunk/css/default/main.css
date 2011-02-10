@@ -107,20 +107,18 @@ select {
 	padding: 10px;
 	margin-top: 10px;
 }
-
-.notice_img{
-	float: left;
-}
 .notice_delimiter{
 	border-bottom: 1px dotted #00CCFF;
 	height: 5px;
 	margin:0 5px;
 	margin-bottom: 5px;
+	position: relative;
 }
 .notice_item{
 	margin: 0 10px;
 	overflow: hidden;
 	padding: 3px;
+	position: relative;
 }
 .notice_item:hover{
 	background-color: #CDD8D8;
@@ -130,10 +128,18 @@ select {
 	padding: 2px;
 	border: 1px solid silver;
 	max-height: 75px;
+	background-color: white;
+	width: 100px;
+	float: left;
+}
+.notice_item_big{
+	float: left;
 }
 .notice_item_big img{
 	margin-right: 5px;
 	padding: 2px;
 	border: 1px solid silver;
 	max-height: 300px;
+	width:400px;
+	background-color: white;
 }
