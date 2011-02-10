@@ -12,7 +12,6 @@
                 </pre>
             </div>
         </div>
-        <div id="banner_block"><? $banner->showCurrentBanner(); ?></div>
     </div>
 </div>
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>

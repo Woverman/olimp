@@ -38,19 +38,20 @@
                     </td>
                     <td valign="top">
 						<div id="small_notices_wrapper" style="height: 374px;overflow: hidden;position: relative;">
-						<div id="small_notices_inner" style="position: relative;">
-						<?
-						for ($i=1;$i<$cnt;$i++){
-							$object = Object::parse($res[$i]);
-						?>
-						<div class="notice_item">
-                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
-                        <?=$object->address()?></a><br />
-                        <?=$object->shortDetails()?><br />
-                        <?=$object->price()?>	</div>
-						<div class="notice_delimiter"></div>
-						<? } ?>
-						</div>
+							<div id="small_notices_inner" style="position: relative;">
+								<?
+								for ($i=1;$i<$cnt;$i++){
+									$object = Object::parse($res[$i]);
+								?>
+								<div class="notice_item">
+			                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
+			                        <?=$object->address()?></a><br />
+			                        <?=$object->shortDetails()?><br />
+			                        <?=$object->price()?>
+								</div>
+								<div class="notice_delimiter"></div>
+								<? } ?>
+							</div>
 						</div>
                     </td>
                     </tr>
