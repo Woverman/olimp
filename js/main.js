@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    // дублируем меню для скрола
+    // дублюємо меню для скрола
 	var mm = $("#menu_panel .hmenu").clone();
     $("<div>").attr("id","menu_panel_double").append(mm).appendTo($("body"));
-    // двигаем фон шапки
+    // рухаємо фон шапки
     $("#logo_block").mousemove(function(e){
         var x = e.pageX;
         var w = $(window).width()/2;
@@ -13,13 +13,28 @@ $(document).ready(function(){
             n = 50 + 'px 0px';
             m = -20 + 'px 0px';
         }
-        $("#logo_block").stop().animate({'background-position':n},3000); 
-        $("#header_block").stop().animate({'background-position':m},3000); 
+        $("#logo_block").stop().animate({'background-position':n},3000);
+        $("#header_block").stop().animate({'background-position':m},3000);
     }).mouseleave(function(){$("#logo_block").stop();$("#header_block").stop();})
-    //
+    // рухаємо оголошення
+   	window.setTimeout(moveNotice,"10000");
     //
 });
 
+function moveNotice(){
+	var h = $("#small_notices_inner .notice_item:first").height() + 18;
+	$("#small_notices_inner").animate({top:0-h + "px"},2000,null,function(){
+		$("#small_notices_inner .notice_item:first").detach().toggleClass("notice_item notice_item_big").appendTo($("#big_notices_inner"));
+		$("#small_notices_inner .notice_delimiter:first").detach().appendTo($("#small_notices_inner"));
+		$("#small_notices_inner").css("top",0);
+			$("#big_notices_inner").animate({left:"-100%"},2000,null,function(){
+			$("#big_notices_inner .notice_item_big:first").detach().toggleClass("notice_item notice_item_big").appendTo($("#small_notices_inner"));
+			$("#big_notices_inner").css("left",0);
+		});
+	});
+
+	window.setTimeout(moveNotice,"10000");
+}
 	/* формуємо параметри пошуку з форми */
 function createParams(){
 	oblid=document.getElementById('obl').value;
