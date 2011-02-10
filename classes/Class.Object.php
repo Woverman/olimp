@@ -72,10 +72,12 @@ abstract class Object
 	}
 	function price(){
 		if ($this->cast){
-		if ($this->valuta==2)
-			return "Ціна: $".number_format($this->cast, 0, ',', ' ');
-		else
-			return "Ціна: ".number_format($this->cast, 0, ',', ' ')." грн.";
+			if ($this->valuta==2)
+				return "Ціна: $".number_format($this->cast, 0, ',', ' ');
+			else
+				return "Ціна: ".number_format($this->cast, 0, ',', ' ')." грн.";
+		} else {
+			return "ціна договірна";
 		}
 	}
 }

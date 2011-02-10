@@ -120,6 +120,10 @@ select {
 .notice_item{
 	margin: 0 10px;
 	overflow: hidden;
+	padding: 3px;
+}
+.notice_item:hover{
+	background-color: #CDD8D8;
 }
 .notice_item img{
 	margin-right: 5px;
