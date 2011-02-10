@@ -108,3 +108,28 @@ select {
 	margin-top: 10px;
 }
 
+.notice_img{
+	float: left;
+}
+.notice_delimiter{
+	border-bottom: 1px dotted #00CCFF;
+	height: 5px;
+	margin:0 5px;
+	margin-bottom: 5px;
+}
+.notice_item{
+	margin: 0 10px;
+	overflow: hidden;
+}
+.notice_item img{
+	margin-right: 5px;
+	padding: 2px;
+	border: 1px solid silver;
+	max-height: 75px;
+}
+.notice_item_big img{
+	margin-right: 5px;
+	padding: 2px;
+	border: 1px solid silver;
+	max-height: 300px;
+}

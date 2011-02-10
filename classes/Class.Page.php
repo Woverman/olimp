@@ -2,11 +2,9 @@
 class Page
 {
     var $menuset;
-    var $title; 
-    var $hasleft = true;
-    var $hasright = true;   
+    var $title;
     var $m_tpl; 
-    private $skin = "default";
+
     function Page($page)
     {
         return $this->__construct($page);
@@ -20,7 +18,7 @@ class Page
     }
     
     function tpl(){
-        return ('tpl/'.$this->skin.'/'.$this->m_tpl.".tpl");
+        return ('tpl/'.SKIN.'/'.$this->m_tpl.".tpl");
     }
 
 }
