@@ -71,7 +71,12 @@ abstract class Object
 		return $ret;
 	}
 	function price(){
-		return "Ціна: $120 000";
+		if ($this->cast){
+		if ($this->valuta==2)
+			return "Ціна: $".number_format($this->cast, 0, ',', ' ');
+		else
+			return "Ціна: ".number_format($this->cast, 0, ',', ' ')." грн.";
+		}
 	}
 }
 
