@@ -39,7 +39,10 @@
 					if (!empty($usl))
 						$sql .= ' where '.implode(" and ", $usl);
 
-					if ($_REQUEST['page']!='all') $sql.=' limit '.(($ff->pg-1)*$perpage).','.$perpage;
+					if ($ff->pg != 'all')
+						$sql.=' limit '.(($ff->pg-1)*$perpage).','.$perpage;
+					echo $ff->pg;
+					echo $sql;
 					$res=mysql_query($sql);
 					while ($row=mysql_fetch_assoc($res)) {
 						$obj = Object::parse($row);
