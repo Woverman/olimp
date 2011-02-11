@@ -9,6 +9,7 @@ $lng = $_SESSION['lang'];
 $lng = $lang?$lang:'ua';
 
 include ('classes.php'); // classes, config and functions
+include ('./inc/functions.php'); // classes, config and functions
 $rpage = $_REQUEST['page'];
 $rpage = $rpage?$rpage:"main";
 $id =  $_REQUEST['id'];

@@ -53,6 +53,9 @@ abstract class Object
 			case "com":
 				$o = new ObjectCom();
 				break;
+			case "bog":
+				$o = new ObjectKva();
+				break;
 		}
 		$o->loadLocalVars($data);
 		return $o;
@@ -79,6 +82,9 @@ abstract class Object
 		} else {
 			return "ціна договірна";
 		}
+	}
+	function ShortInfo(){
+		return $this->comment;
 	}
 }
 

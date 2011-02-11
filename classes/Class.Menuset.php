@@ -18,7 +18,7 @@ class Menuset
             new Menu("articles",0,"Статті"),
             new Menu("article",4,"Послуги"),
             new Menu("catalog",1,"Каталог"),
-            new Menu("catalog",2,"Оренда"),
+            new Menu("catalog",0,"Оренда"),
             new Menu("kredit",0,"Кредит"),
             new Menu("article",2,"Про нас"),
 			new Menu("article",3,"Контакти")
