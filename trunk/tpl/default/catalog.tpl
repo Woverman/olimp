@@ -3,7 +3,7 @@
         <div id="notices_block">
             <div id="notices_inner">
                 <?
-				$ff = new FindRequest();
+				$ff = new FindParameters();
 
 				$ntypes=array('','dom','kva','dil','com','bog');
 				$sql='Select count(id) from m_bildings';
@@ -22,14 +22,9 @@
 				if ($ff->tn==2) {if ($ff->kk!='0') $usl[]='kk='.$ff->kk;}
 				if ($ff->tn==1) {if ($ff->dom_domtype!='0') $usl[]='dom_domtype='.$ff->dom_domtype;}
 
-
-				if (!empty($usl)) {
-				  $uslall=implode(" and ", $usl);
-				  //	print_r($uslall);
-				  $res=mysql_query($sql.' where '.$uslall);
-				} else {
-				  $res=mysql_query($sql);
-				}
+				if (!empty($usl))
+					$sql .= ' where '.implode(" and ", $usl);
+				$res=mysql_query($sql);
 
 				$icnt=mysql_result($res,0);
 				mysql_free_result($res);
@@ -37,16 +32,13 @@
 				if ($icnt>0) {
 					$perpage=10;
 					$pagecount=ceil($icnt/$perpage);
-					if ($ff->pg > $pagecount) $ff->pg=1;
-					   MakePageLinks($ff->pg,$pagecount,$icnt,$ff);
+					if ($ff->pg > $pagecount)
+						$ff->pg=1;
+					MakePageLinks($ff->pg,$pagecount,$icnt,$ff);
+					$sql='Select * from m_bildings';
+					if (!empty($usl))
+						$sql .= ' where '.implode(" and ", $usl);
 
-					if (!empty($uslall)) {
-						$sql='Select * from m_bildings where '.$uslall;
-					} else {
-					  $sql='Select * from m_bildings';
-					}
-
-					//$res = $DB->request($sql,ARRAY_A);
 					if ($_REQUEST['page']!='all') $sql.=' limit '.(($ff->pg-1)*$perpage).','.$perpage;
 					$res=mysql_query($sql);
 					while ($row=mysql_fetch_assoc($res)) {
