@@ -1,5 +1,5 @@
 <?php
-// розпаковка змінних при register_globals=Off
+// СЂРѕР·РїР°РєРѕРІРєР° Р·РјС–РЅРЅРёС… РїСЂРё register_globals=Off
 function my_extract($array) {
     if (!is_array($array)) {
         return FALSE;
@@ -72,7 +72,7 @@ function IsAdmin() {
 	}
 }
 
-function GetFieldByID($tbl,$fld,$id,$notfound='Не знайдено'){
+function GetFieldByID($tbl,$fld,$id,$notfound='РќРµ Р·РЅР°Р№РґРµРЅРѕ'){
   $res=mysql_query("Select $fld from $tbl where id=$id;");
   if (mysql_num_rows($res)>0) {
     return mysql_result($res,0);
@@ -82,7 +82,7 @@ function GetFieldByID($tbl,$fld,$id,$notfound='Не знайдено'){
 }
 
 function params_alter(&$item, $key) { if (!strpos($item,'=')) $item = "$key=$item"; }
-function MakePageLinks($page,$pages,$items) {
+function MakePageLinks($page,$pages,$items,$ff) {
 	$p1=1;$p2=$pages;
     if (($p2-$p1)>10){
         if ($page<=5) {
@@ -99,11 +99,12 @@ function MakePageLinks($page,$pages,$items) {
 	$a = $_GET;
 	if (!isset($a['tab'])) $a['tab']=4;
 	array_walk($a,'params_alter');
-	echo '<div class="pagesdiv"><div style="float:left">Всього знайдено: '.$items.'</div>Сторінки: ';
+	echo '<div class="pagesdiv"><span class="founded">Р’СЃСЊРѕРіРѕ Р·РЅР°Р№РґРµРЅРѕ: '.$items.'</span>';
+	echo '<span class="pagenums">';
     if ($p1>1) {
 		$a['page'] = 'page=1';
 		$params='?'.implode('&',$a);
-		echo '<a class="pages" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"].$params.'">1</a>&nbsp;... ';
+		echo '<a class="pages" href="'.$ff->createURL(1).'">1</a>&nbsp;... ';
         $p1+=2;
 	}
     $after='';
@@ -111,7 +112,7 @@ function MakePageLinks($page,$pages,$items) {
 		$a['page'] = 'page='.$pages;
 		$params='?'.implode('&',$a);
         $p2=$p2-2;
-        $after = '... <a class="pages" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"].$params.'">'.$pages.'</a>&nbsp;';
+        $after = '... <a class="pages" href="'.$ff->createURL($pages).'">'.$pages.'</a>&nbsp;';
 	}
     for ($i=$p1;$i<=$p2;$i++) {
 		$a['page'] = 'page='.$i;
@@ -119,15 +120,14 @@ function MakePageLinks($page,$pages,$items) {
 		if ($i==$page) {
 			echo "<span class='selpage'>$i</span>&nbsp;";
 		} else {
-			echo '<a class="pages" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"].$params.'">'.$i.'</a>&nbsp;';
+			echo '<a class="pages" href="'.$ff->createURL($i).'">'.$i.'</a>&nbsp;';
 		}
 	}
-    $a['page']='page=all';
-    $params='?'.implode('&',$a);
+
   if ($page=='all')
-    echo "<span class='selpage'>Всі</span>&nbsp;";
+    echo "<span class='selpage'>Р’СЃС–</span>&nbsp;";
   else
-    echo '<a class="pages" href="http://'.$_SERVER['HTTP_HOST'].$_SERVER["SCRIPT_NAME"].$params.'">Всі</a>&nbsp;';
+    echo '<a class="pages" href="'.$ff->createURL('all').'">Р’СЃС–</a>&nbsp;';
   echo $after;
 	echo '</div>';
 }
@@ -168,7 +168,7 @@ function ResizeImage( $image, $newWidth, $newHeight){
 }
 
 function newid(){
-	// отримуємо новий ідентифікатор для запису об'єкта в базу
+	// РѕС‚СЂРёРјСѓС”РјРѕ РЅРѕРІРёР№ С–РґРµРЅС‚РёС„С–РєР°С‚РѕСЂ РґР»СЏ Р·Р°РїРёСЃСѓ РѕР±'С”РєС‚Р° РІ Р±Р°Р·Сѓ
 	mysql_unbuffered_query('insert into m_bildings (comment) values (\'qwertyuiol0123456789qwertyuiop\');');
 	$id=mysql_insert_id();
 	mysql_unbuffered_query('update m_bildings set comment=\'\' where id='.$id);
@@ -176,18 +176,18 @@ function newid(){
 }
 
 function ToString($arr,$cnt){
-	// об'єднуємо масив в стрічку (передаємо сам масив і довжину стрічки)
-  // все це наворочено для того, щоб зберегти порядкові номери елементів
+	// РѕР±'С”РґРЅСѓС”РјРѕ РјР°СЃРёРІ РІ СЃС‚СЂС–С‡РєСѓ (РїРµСЂРµРґР°С”РјРѕ СЃР°Рј РјР°СЃРёРІ С– РґРѕРІР¶РёРЅСѓ СЃС‚СЂС–С‡РєРё)
+  // РІСЃРµ С†Рµ РЅР°РІРѕСЂРѕС‡РµРЅРѕ РґР»СЏ С‚РѕРіРѕ, С‰РѕР± Р·Р±РµСЂРµРіС‚Рё РїРѕСЂСЏРґРєРѕРІС– РЅРѕРјРµСЂРё РµР»РµРјРµРЅС‚С–РІ
 	$a = array_fill(0, $cnt, 0);
 	$b = $arr + $a;
 	ksort($b);
 	$result = implode('',$b);
 	return substr($result,0,$cnt);
-	// обратное действие см. preg_split
+	// РѕР±СЂР°С‚РЅРѕРµ РґРµР№СЃС‚РІРёРµ СЃРј. preg_split
 }
 
 function saveImgToBase($id) {
-	// записуємо фотки в базу
+	// Р·Р°РїРёСЃСѓС”РјРѕ С„РѕС‚РєРё РІ Р±Р°Р·Сѓ
 	$num=0;
 	while($a = each($_FILES)) {
 		$iname=$a[1]['tmp_name'];
@@ -206,7 +206,7 @@ function saveImgToBase($id) {
 	}
 }
 function saveImgToFile($id) {
-	// записуємо фотки в файли
+	// Р·Р°РїРёСЃСѓС”РјРѕ С„РѕС‚РєРё РІ С„Р°Р№Р»Рё
 	$num=0;
 	while($a = each($_FILES)) {
 		$iname=$a[1]['tmp_name'];
@@ -232,14 +232,14 @@ function saveImgToFile($id) {
 	}
 }
 
-function findadr($id,$tbl) { // пошук областей, районів, міст тощо
+function findadr($id,$tbl) { // РїРѕС€СѓРє РѕР±Р»Р°СЃС‚РµР№, СЂР°Р№РѕРЅС–РІ, РјС–СЃС‚ С‚РѕС‰Рѕ
     $sql = "Select name from $tbl where id=$id";
     $res = mysql_query($sql);
     return @mysql_result($res,0);
 }
 
-function MakeList($arr,$str) { //будуємо список параметрів по стрічці одиниць і нулів
-  if (intval($str)==0) {return 'нема даних';}
+function MakeList($arr,$str) { //Р±СѓРґСѓС”РјРѕ СЃРїРёСЃРѕРє РїР°СЂР°РјРµС‚СЂС–РІ РїРѕ СЃС‚СЂС–С‡С†С– РѕРґРёРЅРёС†СЊ С– РЅСѓР»С–РІ
+  if (intval($str)==0) {return 'РЅРµРјР° РґР°РЅРёС…';}
   else {
   $ret='';
   $tmp=preg_split('//', $str, -1, PREG_SPLIT_NO_EMPTY);
@@ -303,7 +303,7 @@ function findexl(){
   if (mysql_errno()==0 and mysql_num_rows($res)>0) {
   $cnt=mysql_result($res,0);
   if ($cnt>0) {
-      return '<img src="i/ahtung.gif" border=0 alt="'.$cnt.'" align=left title="Увага! Прострочені ексклюзиви! ('.$cnt.')">';
+      return '<img src="i/ahtung.gif" border=0 alt="'.$cnt.'" align=left title="РЈРІР°РіР°! РџСЂРѕСЃС‚СЂРѕС‡РµРЅС– РµРєСЃРєР»СЋР·РёРІРё! ('.$cnt.')">';
     } else {
       return '';
     }
@@ -318,7 +318,7 @@ function findmsg(){
   if (mysql_errno()==0 and mysql_num_rows($res)>0) {
   $cnt=mysql_result($res,0);
   if ($cnt>0) {
-      return '<img src="i/ahtung.gif" alt="'.$cnt.'" align=left title="Увага! Є замовлення! ('.$cnt.')" border=0>';
+      return '<img src="i/ahtung.gif" alt="'.$cnt.'" align=left title="РЈРІР°РіР°! Р„ Р·Р°РјРѕРІР»РµРЅРЅСЏ! ('.$cnt.')" border=0>';
     } else {
       return '';
     }

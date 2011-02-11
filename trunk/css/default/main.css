@@ -101,6 +101,10 @@ select {
 	margin: 5px 15px 2px 2px;
 	border:1px solid #DDDDDD;border-bottom-width:2px;border-right-width:2px;
 }
+.maintabs h3{
+	padding-top: 10px;
+}
+
 
 /* otdel list page */
 #otdel_tlb {
@@ -142,4 +146,23 @@ select {
 	max-height: 300px;
 	width:400px;
 	background-color: white;
+}
+/* objects */
+.object_outer{
+	border:1px solid #CEE3FF;margin-bottom:5px;min-height:105px;padding:4px;margin: 5px;
+}
+.object_outer img{
+	border:1px solid silver;padding:2px;background-color: white;float: left;margin: 0 20px 5px 0;
+}
+
+.pagenums a{
+	padding:2px;
+	background-color: #CCCCFF;
+	font-size: 14px;
+	width: 20px;
+	position: relative;
+}
+.pagenums a:hover, .selpage{
+	padding:2px;
+	background-color: #FF9966;
 }
