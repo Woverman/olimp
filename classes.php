@@ -18,10 +18,13 @@ include("config.php");
          include("$dir/$value");
      }
 
-
-function debug($var){ 
-    echo('<div style="border:2px solid #BFBFBF;overflow:auto;position:relative;bottom:0;height:100px;width:100%;background-color:#E9E9E9;color:#222;white-space:pre;">');
-    print_r($var);
-    echo('</div>');
-} //фыв
+$debug = Array();
+function debug($var,$title=''){
+    global $debug;
+    if (DEBUG){
+    $title=$title==''?count($debug)+1:$title;
+    $debug[] = "<hr><h3>$title</h3>";
+    $debug[] = print_r($var,true);
+    }
+}
 ?>

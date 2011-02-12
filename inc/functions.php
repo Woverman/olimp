@@ -81,7 +81,6 @@ function GetFieldByID($tbl,$fld,$id,$notfound='Не знайдено'){
   }
 }
 
-function params_alter(&$item, $key) { if (!strpos($item,'=')) $item = "$key=$item"; }
 function MakePageLinks($page,$pages,$items,$ff) {
 	$p1=1;$p2=$pages;
     if (($p2-$p1)>10){
@@ -96,40 +95,47 @@ function MakePageLinks($page,$pages,$items,$ff) {
             }
         }
     }
-	$a = $_GET;
-	if (!isset($a['tab'])) $a['tab']=4;
-	array_walk($a,'params_alter');
 	echo '<div class="pagesdiv"><span class="founded">Всього знайдено: '.$items.'</span>';
 	echo '<span class="pagenums">';
+    if ($page>1) {
+      echo '<a href="'.$ff->createURL(1).'">&lt;&lt;</a>&nbsp;';
+      echo '<a href="'.$ff->createURL($page-1).'">&lt;</a>&nbsp;';
+    } else {
+      echo '<span>&lt;&lt;</span>&nbsp;';
+      echo '<span>&lt;</span>&nbsp;';
+    }
     if ($p1>1) {
-		$a['page'] = 'page=1';
-		$params='?'.implode('&',$a);
-		echo '<a class="pages" href="'.$ff->createURL(1).'">1</a>&nbsp;... ';
-        $p1+=2;
-	}
+  	  echo '<a class="pages" href="'.$ff->createURL(1).'">1</a>&nbsp;... ';
+      $p1+=2;
+	  }
     $after='';
-	if ($p2<$pages) {
-		$a['page'] = 'page='.$pages;
-		$params='?'.implode('&',$a);
-        $p2=$p2-2;
-        $after = '... <a class="pages" href="'.$ff->createURL($pages).'">'.$pages.'</a>&nbsp;';
-	}
+  	if ($p2<$pages) {
+  	  $p2=$p2-2;
+      $after = '... <a href="'.$ff->createURL($pages).'">'.$pages.'</a>&nbsp;';
+  	}
     for ($i=$p1;$i<=$p2;$i++) {
-		$a['page'] = 'page='.$i;
-		$params='?'.implode('&',$a);
-		if ($i==$page) {
-			echo "<span class='selpage'>$i</span>&nbsp;";
-		} else {
-			echo '<a class="pages" href="'.$ff->createURL($i).'">'.$i.'</a>&nbsp;';
-		}
-	}
+  		if ($i==$page) {
+  			echo "<span class='selpage'>$i</span>&nbsp;";
+  		} else {
+  			echo '<a href="'.$ff->createURL($i).'">'.$i.'</a>&nbsp;';
+  		}
+  	}
+    echo $after;
 
-  if ($page=='all')
-    echo "<span class='selpage'>Всі</span>&nbsp;";
-  else
-    echo '<a class="pages" href="'.$ff->createURL('all').'">Всі</a>&nbsp;';
-  echo $after;
-	echo '</div>';
+    if ($page<$pages){
+        echo '<a href="'.$ff->createURL($page+1).'">&gt;</a>&nbsp;';
+        echo '<a href="'.$ff->createURL($pages).'">&gt;&gt;</a>&nbsp;';
+    } else {
+        echo '<span>&gt;</span>&nbsp;';
+        echo '<span>&gt;&gt;</span>&;';
+    }
+
+    if ($page=='all')
+      echo "<span class='selpage'>Всі</span>";
+    else
+      echo '<a href="'.$ff->createURL('all').'">Всі</a>';
+
+  	echo '</div>';
 }
 
  /* ResizeImage with (height % width) */

@@ -31,7 +31,7 @@ class FindParameters{
 	   $ret = "?";
        foreach($this as $key => $value) {
        		if ($key!="pg") $ret .= "$key=$value&";
-			else  $ret .= "pg=".$newpage;
+			else  $ret .= "pg=".$newpage."&";
        }
 	   return $ret;
     }
