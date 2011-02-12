@@ -4,21 +4,21 @@ abstract class Object
     var $id;
     var $type;
     var $num;
-	var $prodazh;
-	var $adr_obl;
-	var $adr_rgn;
-	var $adr_gor;
-	var $adr_vul;
-	var $cast;
-	var $valuta;
-	var $casttype;
-	var $comment;
-	var $add;
-	var $kont;
-	var $in_main;
-	var $in_hot;
-	var $novobud;
-  var $dateadd;
+  	var $prodazh;
+  	var $adr_obl;
+  	var $adr_rgn;
+  	var $adr_gor;
+  	var $adr_vul;
+  	var $cast;
+  	var $valuta;
+  	var $casttype;
+  	var $comment;
+  	var $add;
+  	var $kont;
+  	var $in_main;
+  	var $in_hot;
+  	var $novobud;
+    var $dateadd;
 	protected function loadvars($data){
 		$this->id = $data["id"];
 		$this->type = $data["type"];
@@ -61,24 +61,35 @@ abstract class Object
 		$o->loadLocalVars($data);
 		return $o;
 	}
-	function img($num,$type="1"){
-		$file = "/i/obj/img_".$this->id."_".$num.".jpg";
-		if (file_exists(DOCUMENT_ROOT.$file))
-			return(ROOT_FOLDER."/i/obj/img_".$this->id."_".$num.".jpg");
+    function imgCount(){
+        global $DB;
+	    $images = glob(ROOT_FOLDER."/i/obj/tmb_".$id."_*.jpg", GLOB_NOSORT);
+        if (count($images)==0){
+            $sql = "Select count(*) from m_fotos where objid = " . $this->id;
+            $res = $DB->request($sql,ARRAY_N);
+            $cnt = $res[0][0];
+        } else {
+            $cnt = count($images);
+        }
+        return $cnt;
+    }
+	function img($num,$type=2){
+		if ($this->imgCount() > 0)
+		  	//return("/i/obj/img_".$this->id."_".$num.".jpg");
+            return("/image.php?objid=".$this->id."&mode=".$type."&num=".$num);
 		else
-			return(ROOT_FOLDER."/image.php?objid=".$this->id."&mode=".$type."&num=".$num);
+            return '/i/no_smol.jpg';
 	}
-	function address(){
-	  $a[] = findadr($this->adr_obl,'d_oblasti').' обл.';
-    $a[] = findadr($this->adr_rgn,'d_rgn').' район';
-    $a[] = findadr($this->adr_gor,'d_mista');
-    $a[] = $row['adr_vul'];
 
-		$ret = implode(" ",$a);
-		if ($this->adr_vul)
-			$ret .= ", вул. ".$this->adr_vul;
-		return $ret;
+	function address(){
+	    if ($this->adr_obl) $a[] = findadr($this->adr_obl,'d_oblasti').' обл.';
+        if ($this->adr_rgn) $a[] = findadr($this->adr_rgn,'d_rgn').' район';
+        if ($this->adr_gor) $a[] = findadr($this->adr_gor,'d_mista');
+        if ($this->adr_vul) $a[] = ", вул. ".$this->adr_vul;
+
+		return  implode(" ",$a);
 	}
+
 	function price(){
 		if ($this->cast){
 			if ($this->valuta==2)
@@ -89,14 +100,15 @@ abstract class Object
 			return "ціна договірна";
 		}
 	}
+
 	function ShortInfo(){
-    $ret = $this->area();
-    return $ret;
+    $ret[] = $this->area();
+    $ret[] = $this->float();
+    return implode('<br>',$ret);
 	}
-  function added(){
-    $t = time($this->dateadd);
-    return strftime("%d.%m.%Y %H:%M",$t);
-  }
+
+  function added(){ return strftime("%d.%m.%Y %H:%M",time($this->dateadd)); }
+
   function commentCrop(){
     if (strlen($this->comment)<150)
       return $this->comment;
@@ -137,6 +149,7 @@ class ObjectDom extends Object{
   function area(){
       return 'Площа: загальна - '.$this->pzag.' м<sup>2</sup>, житлова - '.$this->pzit.' м<sup>2</sup>, кухня - '.$this->pkuh.' м<sup>2</sup>, ділянка - '.$this->pdil.(($this->plo_od==1)?(($this->pdil>4)?" соток":" сотки"):" га");;
   }
+  function float(){ if ($this->povv) return $this->povv.($this->povv<5?($this->povv=='1'?' поверх':' поверхи'):' поверхів');}
 }
 class ObjectKva extends Object{
 	var $pov;
@@ -164,9 +177,10 @@ class ObjectKva extends Object{
 			$ret .= $this->pzag." м<sup>2</sup>";
 		return $ret;
 	}
-  function area(){
+    function area(){
       return 'Площа: загальна - '.$this->pzag.' м<sup>2</sup>, житлова - '.$this->pzit.' м<sup>2</sup>, кухня - '.$this->pkuh.' м<sup>2</sup>';
-  }
+    }
+    function float(){ if ($this->pov) return $this->pov.'-й поверх';}
 }
 class ObjectCom extends Object{
 	var $pov;
@@ -192,6 +206,7 @@ class ObjectCom extends Object{
   function area(){
       return 'Площа: загальна - '.$this->pzag.' м<sup>2</sup>';
   }
+  function float(){ }
 }
 class ObjectDil extends Object{
 	var $rTipC;
@@ -211,5 +226,6 @@ class ObjectDil extends Object{
   function area(){
       return 'Площа: загальна - '.$this->pdil.(($this->plo_od==1)?(($this->pdil>4)?" соток":" сотки"):" га");
   }
+  function float(){ }
 }
 ?>
