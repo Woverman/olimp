@@ -107,15 +107,12 @@ select {color: #696969; width: 90%;}
 #object_wrapper{
   float: left;
   padding: 10px 0px 10px 20%;
-  width: 80%;
+  width: 60%;
 }
 
 .object_outer{border: 1px solid #CEE3FF;
-  float: left;
   margin: 5px;
-  max-width: 550px;
   min-height: 105px;
-  min-width: 450px;
   padding: 10px;
 }
 
