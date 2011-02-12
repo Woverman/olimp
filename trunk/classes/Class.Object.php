@@ -18,7 +18,7 @@ abstract class Object
 	var $in_main;
 	var $in_hot;
 	var $novobud;
-
+  var $dateadd;
 	protected function loadvars($data){
 		$this->id = $data["id"];
 		$this->type = $data["type"];
@@ -37,6 +37,7 @@ abstract class Object
 		$this->in_main = $data["in_main"];
 		$this->in_hot = $data["in_hot"];
 		$this->novobud = $data["novobud"];
+    $this->dateadd = $data["add"];
  	}
 	function parse($data){
 		$o=null;
@@ -68,7 +69,12 @@ abstract class Object
 			return(ROOT_FOLDER."/image.php?objid=".$this->id."&mode=".$type."&num=".$num);
 	}
 	function address(){
-		$ret = "м. Вінниця";
+	  $a[] = findadr($this->adr_obl,'d_oblasti').' обл.';
+    $a[] = findadr($this->adr_rgn,'d_rgn').' район';
+    $a[] = findadr($this->adr_gor,'d_mista');
+    $a[] = $row['adr_vul'];
+
+		$ret = implode(" ",$a);
 		if ($this->adr_vul)
 			$ret .= ", вул. ".$this->adr_vul;
 		return $ret;
@@ -84,8 +90,19 @@ abstract class Object
 		}
 	}
 	function ShortInfo(){
-		return $this->comment;
+    $ret = $this->area();
+    return $ret;
 	}
+  function added(){
+    $t = time($this->dateadd);
+    return strftime("%d.%m.%Y %H:%M",$t);
+  }
+  function commentCrop(){
+    if (strlen($this->comment)<150)
+      return $this->comment;
+    else
+      return substr($this->comment,0  ,150).'<span title="'.$this->comment.'">...</span>';
+  }
 }
 
 class ObjectDom extends Object{
@@ -112,11 +129,14 @@ class ObjectDom extends Object{
 	}
 	function shortDetails(){
 		if ($this->pzag)
-			return "будинок ".$this->pzag." м.кв.";
+			return "будинок ".$this->pzag." м<sup>2</sup>";
 		else
 			return "будинок";
 
 	}
+  function area(){
+      return 'Площа: загальна - '.$this->pzag.' м<sup>2</sup>, житлова - '.$this->pzit.' м<sup>2</sup>, кухня - '.$this->pkuh.' м<sup>2</sup>, ділянка - '.$this->pdil.(($this->plo_od==1)?(($this->pdil>4)?" соток":" сотки"):" га");;
+  }
 }
 class ObjectKva extends Object{
 	var $pov;
@@ -141,9 +161,12 @@ class ObjectKva extends Object{
 			$ret = $this->kk."-на ";
 		$ret .= "квартира ";
 		if ($this->pzag)
-			$ret .= $this->pzag." м.кв.";
+			$ret .= $this->pzag." м<sup>2</sup>";
 		return $ret;
 	}
+  function area(){
+      return 'Площа: загальна - '.$this->pzag.' м<sup>2</sup>, житлова - '.$this->pzit.' м<sup>2</sup>, кухня - '.$this->pkuh.' м<sup>2</sup>';
+  }
 }
 class ObjectCom extends Object{
 	var $pov;
@@ -164,8 +187,11 @@ class ObjectCom extends Object{
 		$this->com_var = $data["com_var"];
 	}
 	function shortDetails(){
-		return "комерційна нерухомість ".$this->pzag." м.кв.";
+		return "комерційна нерухомість ".$this->pzag." м<sup>2</sup>";
 	}
+  function area(){
+      return 'Площа: загальна - '.$this->pzag.' м<sup>2</sup>';
+  }
 }
 class ObjectDil extends Object{
 	var $rTipC;
@@ -182,5 +208,8 @@ class ObjectDil extends Object{
 	function shortDetails(){
 		return "ділянка ".$this->pdil.(($this->plo_od==1)?(($this->pdil>4)?" соток":" сотки"):" га");
 	}
+  function area(){
+      return 'Площа: загальна - '.$this->pdil.(($this->plo_od==1)?(($this->pdil>4)?" соток":" сотки"):" га");
+  }
 }
 ?>

@@ -1,7 +1,5 @@
 <div id="center_panel">
-    <div id="wrapper">
-        <div id="notices_block">
-            <div id="notices_inner">
+        <div id="object_wrapper">
                 <?
 				$ff = new FindParameters();
 
@@ -41,8 +39,8 @@
 
 					if ($ff->pg != 'all')
 						$sql.=' limit '.(($ff->pg-1)*$perpage).','.$perpage;
-					echo $ff->pg;
-					echo $sql;
+					debug($sql,'$sql =');
+					debug($ff->pg,'$ff->pg =');
 					$res=mysql_query($sql);
 					while ($row=mysql_fetch_assoc($res)) {
 						$obj = Object::parse($row);
@@ -51,15 +49,13 @@
 					    $imgsrc=(count($images) > 0) ? '/image.php?objid='.$id.'&mode=2' : $imgsrc='/i/no_smol.jpg';
 						?>
 <div class='object_outer ui-corner-all'>
-
-<div><?=$sys['lists']['actions'][$row['prodazh']].$sys['lists']['typesner'][$row['type']]?></div>
-Ціна: <?=(empty($row['cast'])?'дог.':($row['cast'].' '.$sys['lists']['valutes'][$row['valuta']]))?>
-<a href=<?=ROOT_FOLDER.'?tab=4&mode=details&oid='.$row['id']?>><img src=<?=$imgsrc?> class='thumb'></a>
-
-<?=findadr($row['adr_obl'],'d_oblasti').' обл. / '.findadr($row['adr_rgn'],'d_rgn').' район / '.findadr($row['adr_gor'],'d_mista').' / вул. '.$row['adr_vul']?>
-<? echo ($obj->ShortInfo()); ?>
-<p><?=$row['comment']?></p>
-<a href=<?=ROOT_FOLDER.'/object/'.$obj->id;?>>Детальніше...</a>
+<a href=<?=ROOT_FOLDER.'?tab=4&mode=details&oid='.$row['id']?>><div class="news_shadow_img"><img src=<?=$imgsrc?> class='thumb'></div></a>
+<span class="action"><?=$sys['lists']['actions'][$row['prodazh']].$sys['lists']['typesner'][$row['type']]?></span>
+<span class="price"><?=$obj->price()?></span>
+<span class="address"><?=$obj->address()?></span>
+<span class="shortinfo"><?=$obj->ShortInfo()?></span>
+<p class="comment"><?=$obj->commentCrop()?></p>
+<span class="datemore"><span><?=$obj->added()?></span><span class="more"><a href=<?=ROOT_FOLDER.'/object/'.$obj->id;?>>Детальніше...</a></span></span>
 
 </div>
 <?
@@ -70,9 +66,8 @@
 }
 ?>
 
-            </div>
         </div>
-    </div>
+
 </div>
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>
-<? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/right.tpl'); ?>
+<? //include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/right.tpl'); ?>
