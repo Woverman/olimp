@@ -1,0 +1,39 @@
+﻿/* TEAM */
+	Chef:Juanjo Bernabeu
+	Contact: hello [at] humanstxt.org
+	Twitter: @cssbarcelona
+	From:Barcelona, Catalonia, Spain
+
+	CSS3 and HTML5 Girl: Maria Macias
+	Twitter: @lafabricaverde
+	From:Barcelona, Catalonia, Spain
+
+	One eyed illustrator: Carlos Mañas
+	Twitter: @oneeyedman
+	From:Madrid, Spain
+
+	Standard Man: Abel Cabans
+	Twitter: @abelcabans
+	From:Barcelona, Catalonia, Spain
+
+	Creative mind: Abel Sutilo
+	Twitter: @abelsutilo
+	From:Sevilla, Andalucia, Spain
+
+	CA Translator: Eva AC
+	Twitter: @evaac
+	From:Barcelona, Catalonia, Spain
+
+	EN Translator: Jose Flores
+	From:Barcelona, Catalonia, Spain
+	
+	Copy review: Marta Armada
+	Twitter: @martuishere
+	From: Barcelona, Catalonia, Spain
+
+/* SITE */
+	Last update:2011/01/23
+	Language:English
+	Doctype:HTML5 with CSS3
+	Tools:PHP
+	IDE:Aptana Studio 3 and Notepad++

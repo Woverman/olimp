@@ -45,17 +45,17 @@
 					while ($row=mysql_fetch_assoc($res)) {
 						$obj = Object::parse($row);
 						$id=$row['id'];
-				    	$images = glob("./i/obj/tmb_".$id."_*.jpg", GLOB_NOSORT);
-					    $imgsrc=(count($images) > 0) ? '/image.php?objid='.$id.'&mode=2' : $imgsrc='/i/no_smol.jpg';
+				    	//$images = glob("./i/obj/tmb_".$id."_*.jpg", GLOB_NOSORT);
+					    //$imgsrc=(count($images) > 0) ? '/image.php?objid='.$id.'&mode=2' : $imgsrc='/i/no_smol.jpg';
 						?>
 <div class='object_outer ui-corner-all'>
-<a href=<?=ROOT_FOLDER.'?tab=4&mode=details&oid='.$row['id']?>><div class="news_shadow_img"><img src=<?=$imgsrc?> class='thumb'></div></a>
-<span class="action"><?=$sys['lists']['actions'][$row['prodazh']].$sys['lists']['typesner'][$row['type']]?></span>
+<a href=<?='/object/'.$obj->id?>><div class="news_shadow_img"><img src=<?=$obj->img(1)?> class='thumb'></div></a>
+<span class="action"><?=$sys['lists']['actions'][$obj->prodazh].$sys['lists']['typesner'][$obj->type]?></span>
 <span class="price"><?=$obj->price()?></span>
 <span class="address"><?=$obj->address()?></span>
 <span class="shortinfo"><?=$obj->ShortInfo()?></span>
 <p class="comment"><?=$obj->commentCrop()?></p>
-<span class="datemore"><span><?=$obj->added()?></span><span class="more"><a href=<?=ROOT_FOLDER.'/object/'.$obj->id;?>>Детальніше...</a></span></span>
+<span class="datemore"><span><?=$obj->added()?></span><span class="more"><a href=<?='/object/'.$obj->id;?>>Детальніше...</a></span></span>
 
 </div>
 <?
