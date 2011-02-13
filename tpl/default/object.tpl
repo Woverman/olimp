@@ -5,12 +5,12 @@
         <?
             $obj = Object::load($id);
             debug($obj);
-            echo "<div class='news_shadow_img'><img width='500' src='".$obj->img(2,1)."'></div>";
+            echo "<div class='news_shadow_img'><a href='".$obj->img(2,1)."'><img width='500' src='".$obj->img(2,1)."'></a></div>";
             echo "<br style='clear:both'>";
             $cnt = $obj->imgCount();
             if ($cnt>1){
                 for ($i=2;$i<$cnt;$i++){
-                    echo "<img src='".$obj->img($i,2)."'>";
+                    echo "<a href='".$obj->img($i,1)."'><img src='".$obj->img($i,2)."'></a>";
                 }
             }
         ?>
