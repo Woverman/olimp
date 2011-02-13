@@ -37,8 +37,13 @@ abstract class Object
 		$this->in_main = $data["in_main"];
 		$this->in_hot = $data["in_hot"];
 		$this->novobud = $data["novobud"];
-    $this->dateadd = $data["add"];
+        $this->dateadd = $data["add"];
  	}
+    function load($id){
+        global $DB;
+        $res = $DB->request("select * from m_bildings where id=$id",ARRAY_A);
+        return Object::parse($res[0]);
+    }
 	function parse($data){
 		$o=null;
 		switch ($data['type']){
