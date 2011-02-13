@@ -28,10 +28,14 @@ $banner = new Banner($rpage);
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/struct.css">
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/main.css">
     <link rel="stylesheet" type="text/css" href="/css/sunny/jquery-ui-1.8.7.custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css">
+
     <script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/jquery.lightbox-0.5.min.js"></script>
+    <LINK REL="SHORTCUT ICON" href="/favicon.ico">
 </head>
 
 <body>
@@ -54,10 +58,12 @@ $banner = new Banner($rpage);
 if (!empty($debug)){?>
     <div id="debug_button" class="ui-corner-all" style="position:fixed;top:-20;right:10px;background-color:red;color:#FC6;z-index:10000;cursor: pointer;padding: 22px 10px 4px 10px;border: 1px solid #903;" onclick="showDebug()">Debug</div>
     <div id="debug_dialog" class="moveable" style="display:none;border: 2px outset #FC8;background-color:#FFCC66">
-      <div id="debug_dialog_caption" style="background-color: #CC9966; color:#993333;padding: 2px 0 2px 10px;margin:5px;">Налагоджувальна інформація...</div>
+      <div id="debug_dialog_caption" style="background-color: #CC9966; color:#993333;padding: 2px 0 2px 10px;margin:5px;">Налагоджувальна інформація...
+        <img src="/i/window_close.png" width="24" onclick="hideDebug();" style="float: right;cursor: pointer;position: relative;top:-4px;right:-2px"/>
+      </div>
         <div style="position: relative;width: 700px;
           background-color: white;height: 300px;overflow: auto;margin: 5px;
-          border: 1px inset #FFCC66;
+          border: 3px groove #FFCC66;
           ">
         <div style="position: relative;width: 670px;background-color: white;white-space:pre;margin:5px;">
           <?=implode(' ',$debug)?>

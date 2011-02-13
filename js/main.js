@@ -18,7 +18,8 @@ $(document).ready(function(){
     }).mouseleave(function(){$("#logo_block").stop();$("#header_block").stop();})
     // рухаємо оголошення
    	window.setTimeout(moveNotice,"10000");
-    //
+    // лайтбоксуємо фотки
+    $('#only_wrapper').lightBox();
 });
 
 function moveNotice(){

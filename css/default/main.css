@@ -150,6 +150,11 @@ select {color: #696969; width: 90%;}
     background-repeat: no-repeat;
     background-image: url(../../i/forward.png);
 }
+/* only object */
+#only_wrapper img {
+    background-color: white; border: 1px solid silver; padding: 2px;
+}
+
 
 /* pages links */
 .pagesdiv{margin: 0 7px; display:block;clear:both;}
