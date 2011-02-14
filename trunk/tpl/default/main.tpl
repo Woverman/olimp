@@ -21,11 +21,11 @@
                     $res = $DB->request($sql,ARRAY_A);
                     //print_r($res[0]);
                 ?>
-                <table width="100%">
+                <!--<table width="100%">
                     <tr>
-                    <td style="width:50%" valign="top">
-					<div id="big_notices_wrapper" style="height: 374px;overflow: hidden;position: relative;">
-						<div id="big_notices_inner" style="position: relative;width: 200%;height: 374px;">
+                    <td valign="top">-->
+					<div id="big_notices_wrapper">
+						<div id="big_notices_inner">
 							<div class="notice_item_big">
 								<? $object = Object::parse($res[0]); ?>
 		                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
@@ -35,10 +35,10 @@
 							</div>
 						</div>
 					</div>
-                    </td>
-                    <td valign="top">
-						<div id="small_notices_wrapper" style="height: 374px;overflow: hidden;position: relative;">
-							<div id="small_notices_inner" style="position: relative;">
+                    <!--</td>
+                    <td valign="top">-->
+						<div id="small_notices_wrapper">
+							<div id="small_notices_inner">
 								<?
 								for ($i=1;$i<$cnt;$i++){
 									$object = Object::parse($res[$i]);
@@ -53,9 +53,9 @@
 								<? } ?>
 							</div>
 						</div>
-                    </td>
+                    <!--</td>
                     </tr>
-                </table>
+                </table>-->
 
             </div>
         </div>
