@@ -197,14 +197,14 @@ a:hover{
 
 #big_notices_wrapper{
 	height: 374px;
-	width: 55%;
+	width: 51%;
 	overflow: hidden;
 	position: relative;
 	float:left;
 }
 #big_notices_inner{
 	position: relative;
-	width: 200%;
+	width: 900px;
 	height: 374px;
 }
 #small_notices_wrapper{
@@ -212,7 +212,7 @@ a:hover{
 	overflow: hidden;
 	position: relative;
 	float: right;
-	width: 45%;
+	width: 49%;
 }
 
 #small_notices_inner{
