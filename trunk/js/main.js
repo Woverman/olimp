@@ -17,6 +17,7 @@ $(document).ready(function(){
         $("#header_block").stop().animate({'background-position':m},3000);
     }).mouseleave(function(){$("#logo_block").stop();$("#header_block").stop();})
     // рухаємо оголошення
+	$("#small_notices_wrapper").width($("#notices_inner").width()-$("#big_notices_wrapper").width()+'px');
    	window.setTimeout(moveNotice,"10000");
     // лайтбоксуємо фотки
     $('#only_wrapper').lightBox();

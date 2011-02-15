@@ -192,12 +192,13 @@ a:hover{
   margin-bottom: 5px;
   min-height: 376px;
   max-height: 376px;
-  padding: 5px;
+  padding: 4px;
 }
 
 #big_notices_wrapper{
 	height: 374px;
 	width: 51%;
+	min-width: 406px;
 	overflow: hidden;
 	position: relative;
 	float:left;
@@ -211,10 +212,9 @@ a:hover{
 	height: 374px;
 	overflow: hidden;
 	position: relative;
-	float: right;
+	float: left;
 	width: 49%;
 }
-
 #small_notices_inner{
 	position: relative;
 }
