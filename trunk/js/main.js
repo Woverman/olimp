@@ -20,7 +20,7 @@ $(document).ready(function(){
 	$("#small_notices_wrapper").width($("#notices_inner").width()-$("#big_notices_wrapper").width()+'px');
    	window.setTimeout(moveNotice,"10000");
     // лайтбоксуємо фотки
-    $('#only_wrapper').lightBox();
+    $('#only_wrapper a').lightBox();
 });
 
 function moveNotice(){
