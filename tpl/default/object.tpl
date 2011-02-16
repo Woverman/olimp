@@ -1,10 +1,8 @@
 <div id="center_panel">
     <div id="wrapper">
-        <? print_r($_REQUEST) ?>
         <div id="only_wrapper" class="ui-corner-all" style="border: 1px solid #99CCFF;padding:5px;">
         <?
             $obj = Object::load($id);
-            debug($obj);
             echo "<div class='news_shadow_img'><a href='".$obj->img(2,1)."'><img width='500' src='".$obj->img(2,1)."'></a></div>";
             echo "<br style='clear:both'>";
             $cnt = $obj->imgCount();
