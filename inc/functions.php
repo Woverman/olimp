@@ -95,14 +95,12 @@ function MakePageLinks($page,$pages,$items,$ff) {
             }
         }
     }
-	echo '<div class="pagesdiv"><span class="founded">Всього знайдено: '.$items.'</span>';
-	echo '<span class="pagenums">';
+	echo '<table class="pagesdiv"><tr><td class="founded">Всього знайдено: '.$items.'</td>';
+	echo '<td class="pagenums">';
     if ($page>1) {
-      echo '<a href="'.$ff->createURL(1).'">&lt;&lt;</a>&nbsp;';
-      echo '<a href="'.$ff->createURL($page-1).'">&lt;</a>&nbsp;';
+      echo '<a href="'.$ff->createURL($page-1).'">&lt; Назад</a>&nbsp;';
     } else {
-      echo '<span>&lt;&lt;</span>&nbsp;';
-      echo '<span>&lt;</span>&nbsp;';
+      echo '<span>&lt; Назад</span>&nbsp;';
     }
     if ($p1>1) {
   	  echo '<a class="pages" href="'.$ff->createURL(1).'">1</a>&nbsp;... ';
@@ -123,19 +121,17 @@ function MakePageLinks($page,$pages,$items,$ff) {
     echo $after;
 
     if ($page<$pages){
-        echo '<a href="'.$ff->createURL($page+1).'">&gt;</a>&nbsp;';
-        echo '<a href="'.$ff->createURL($pages).'">&gt;&gt;</a>&nbsp;';
+        echo '<a href="'.$ff->createURL($page+1).'">Вперед &gt;</a>&nbsp;';
     } else {
-        echo '<span>&gt;</span>&nbsp;';
-        echo '<span>&gt;&gt;</span>&;';
+        echo '<span>Вперед &gt;</span>&nbsp;';
     }
-
-    if ($page=='all')
-      echo "<span class='selpage'>Всі</span>";
-    else
-      echo '<a href="'.$ff->createURL('all').'">Всі</a>';
-
-  	echo '</div>';
+//
+//    if ($page=='all')
+//      echo "<span class='selpage'>Всі</span>";
+//    else
+//      echo '<a href="'.$ff->createURL('all').'">Всі</a>';
+//
+  	echo '</td></tr></table>';
 }
 
  /* ResizeImage with (height % width) */

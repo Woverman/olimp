@@ -17,12 +17,16 @@ $(document).ready(function(){
         $("#header_block").stop().animate({'background-position':m},3000);
     }).mouseleave(function(){$("#logo_block").stop();$("#header_block").stop();})
     // рухаємо оголошення
-	$("#small_notices_wrapper").width($("#notices_inner").width()-$("#big_notices_wrapper").width()+'px');
+	resizeNotices();
+	$(window).resize(resizeNotices);
    	window.setTimeout(moveNotice,"10000");
     // лайтбоксуємо фотки
     $('#only_wrapper a').lightBox();
 });
 
+function resizeNotices(){
+	$("#small_notices_wrapper").width($("#notices_inner").width()-$("#big_notices_wrapper").width()+'px');
+}
 function moveNotice(){
 	var h = $("#small_notices_inner .notice_item:first").height() + 18;
 	$("#small_notices_inner").animate({top:0-h + "px"},2000,null,function(){

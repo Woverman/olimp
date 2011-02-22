@@ -15,13 +15,16 @@
 				if ($ff->rgn!='0') $usl[]='adr_rgn='.$ff->rgn;
 				if ($ff->dist!='0') $usl[]='adr_dist='.$ff->dist;
 				if ($ff->obl!='0') $usl[]='adr_obl='.$ff->obl;
-				if ($ff->prise1!=0) $usl[]='cast>='.$ff->prise1;
-				if ($ff->prise2!=0) $usl[]='cast<='.$ff->prise2;
+				if ($ff->price1!=0) $usl[]='cast>='.$ff->price1;
+				if ($ff->price2!=0) $usl[]='cast<='.$ff->price2;
 				if ($ff->tn==2) {if ($ff->kk!='0') $usl[]='kk='.$ff->kk;}
 				if ($ff->tn==1) {if ($ff->dom_domtype!='0') $usl[]='dom_domtype='.$ff->dom_domtype;}
 
 				if (!empty($usl))
 					$sql .= ' where '.implode(" and ", $usl);
+
+//					debug($usl,"usl=");
+  //					debug($sql,"sql=");
 				$res=mysql_query($sql);
 
 				$icnt=mysql_result($res,0);
@@ -39,8 +42,8 @@
 
 					if ($ff->pg != 'all')
 						$sql.=' limit '.(($ff->pg-1)*$perpage).','.$perpage;
-					debug($sql,'$sql =');
-					debug($ff->pg,'$ff->pg =');
+					//debug($sql,'$sql =');
+					//debug($ff->pg,'$ff->pg =');
 					$res=mysql_query($sql);
 					while ($row=mysql_fetch_assoc($res)) {
 						$obj = Object::parse($row);
@@ -55,7 +58,7 @@
 <span class="address"><?=$obj->address()?></span>
 <span class="shortinfo"><?=$obj->ShortInfo()?></span>
 <p class="comment"><?=$obj->commentCrop()?></p>
-<span class="datemore"><span><?=$obj->added()?></span><span class="more"><a href=<?='/object/'.$obj->id;?>>Детальніше...</a></span></span>
+<div class="datemore"><div><?=$obj->added()?></div><div class="more"><a href=<?='/object/'.$obj->id;?>>Детальніше...</a></div></div>
 
 </div>
 <?

@@ -15,20 +15,21 @@ body{
 }
 /* Menu */
 
-ul.hmenu{
-  /*margin-left: -40px;*/
-}
-
 .hmenu a{
-  color: #0099CC;
+  color: #00769D;
   font: bold 14px Verdana, Arial, Helvetica, sans-serif;
   padding: 8px 30px 5px 30px;
   text-decoration: none;
+  zoom: 1;
 }
 
 .hmenu a:hover,.hmenu a.cur{
-  background: url(../../i/menu_back.png) repeat-x 0px -25px;
-  color: #006C91;
+  /*background: url(../../i/menu_back.png) repeat-x 0px -25px;*/
+ /* font-size: 16px;
+  padding-left: 27px;
+  padding-right: 27px;*/
+  color: #47B8E5 ;/*#006C91;*/
+
 }
 /* banners block */
 
@@ -38,7 +39,7 @@ ul.hmenu{
 /* vidgets */
 
 .vidget{
-  border: 1px solid #66CCFF;
+  border: 1px solid #CCC; /*#66CCFF*/
   margin: 5px;
   overflow: hidden;
   padding: 10px;
@@ -47,7 +48,7 @@ ul.hmenu{
 }
 
 .vidget span{
-  background: url(../../i/under.png) no-repeat bottom center;
+  background: url(../../i/under.png) no-repeat center 17px ;
   color: #509693;
   display: block;
   font: normal normal bolder 13px Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -374,13 +375,14 @@ select {
 /* pages links */
 
 .pagesdiv{
+  width: 100%;
   clear: both;
-  display: block;
   margin: 0 7px;
 }
 
 .pagenums{
-  float: right;
+  text-align: right;
+  padding-right: 20px;
 }
 
 .pagenums .selpage{
