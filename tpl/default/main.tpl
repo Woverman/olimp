@@ -2,7 +2,7 @@
     <div id="wrapper">
         <div id="news_block">
             <div id="news_inner" class="ui-corner-all">
-            <div id="news_title" class="ui-corner-all">Останні новини</div>
+            <div id="news_title" class="ui-corner-all">Новини</div>
             <?
                 $sql = "Select * from new_news where published=1 order by dateadd desc limit 3";
                 $res = $DB->request($sql,ARRAY_A);

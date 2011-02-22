@@ -39,6 +39,46 @@ $banner = new Banner($rpage);
 </head>
 
 <body>
+<?if ($_REQUEST['var']=='1'){?>
+<div id="header_block">
+	<div id="logo_block">
+		<img src="/i/logo1.png" alt="" id="logo_img" />
+	</div>
+</div>
+<? } ?>
+<?if ($_REQUEST['var']=='2'){?>
+<div id="header_block">
+	<div id="logo_block">
+		<img src="/i/logo2.png" alt="" id="logo_img" />
+	</div>
+</div>
+<? } ?>
+<?if ($_REQUEST['var']=='3'){?>
+<div id="header_block">
+	<div style="
+		background:url(../../i/logo1.png);
+		background-repeat: no-repeat;
+		background-position: 163px 2px;
+		">
+	<div id="logo_block"></div>
+	</div>
+</div>
+<? } ?>
+<?if ($_REQUEST['var']=='4'){?>
+<div id="header_block">
+	<div id="logo_block">
+		<img src="/i/logo3.png" alt="" id="logo_img" />
+	</div>
+</div>
+<? } ?>
+<?if ($_REQUEST['var']=='5'){?>
+<div id="header_block">
+	<div id="logo_block">
+		<img src="/i/logo4.png" alt="" id="logo_img" />
+	</div>
+</div>
+<? } ?>
+<?if ($_REQUEST['var']==''){?>
 <div id="header_block">
 	<div id="logo_block">
 		<img src="/i/logo.png" alt="" id="logo_img" />
@@ -49,6 +89,7 @@ $banner = new Banner($rpage);
         <a href="?lang=ua"><img src="/i/ukr_flag.png" width="32" height="32" alt="Ukrainian" /></a>
     </div>-->
 </div>
+<? } ?>
 <div id="menu_panel">
   <ul class="hmenu">
     <? echo $page->menuset->listitems();?>
