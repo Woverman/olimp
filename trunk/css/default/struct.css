@@ -22,8 +22,8 @@ body{
 
 #flags_wrapper{background-color: #D8E9EE;float: right;height: 104px;margin-right: 6px;margin-top: -119px;padding: 8px 0px 0px 8px;width: 40px;}
 
-#menu_panel,#menu_panel_double{background:url(../../i/menu_back.png) repeat-x 0px -29px;height:30px;position:absolute;top:126px;width:100%;z-index:2;white-space:nowrap;overflow: hidden;}
+#menu_panel,#menu_panel_double{background:url(../../i/menu_back.png) repeat-x 0px -9px;height:30px;position:absolute;top:126px;width:100%;z-index:2;white-space:nowrap;overflow: hidden;}
 #menu_panel ul,#menu_panel_double ul{width: 200%}
-#menu_panel li,#menu_panel_double li{display:inline;float:left;height:30px;margin-top: 7px;background: url(../../i/menudelimiter.png) no-repeat right top;}
-#menu_panel_double{background:url(../../i/menu_back.png) repeat-x 0px -29px;position:fixed;top:-25px;z-index:1;}
+#menu_panel li,#menu_panel_double li{display:inline;float:left;height:30px;margin-top: 7px;background: url(../../i/menudelimiter.png) no-repeat right -2px;}
+#menu_panel_double{position:fixed;top:-25px;z-index:1;}
 #menu_panel_double:hover{top:0px;}

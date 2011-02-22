@@ -19,6 +19,8 @@ abstract class Object
   	var $in_hot;
   	var $novobud;
     var $dateadd;
+	var $m_imgcount = 999;
+
 	protected function loadvars($data){
 		$this->id = $data["id"];
 		$this->type = $data["type"];
@@ -67,20 +69,23 @@ abstract class Object
 		return $o;
 	}
     function imgCount(){
-        global $DB;
-	    $images = glob(ROOT_FOLDER."/i/obj/tmb_".$id."_*.jpg", GLOB_NOSORT);
-        if (count($images)==0){
+		if ($this->m_imgcount != 999) return $this->m_imgcount;
+	    global $DB;
+	  //	debug(DOCUMENT_ROOT."/i/obj/tmb_".$this->id."_*.jpg");
+	    $images = glob(DOCUMENT_ROOT."/i/obj/tmb_".$this->id."_*.jpg", GLOB_NOSORT);
+		$cnt = count($images);
+	   //	debug($cnt,"cnt1 = ");
+        if ($cnt==0){
             $sql = "Select count(*) from m_fotos where objid = " . $this->id;
             $res = $DB->request($sql,ARRAY_N);
             $cnt = $res[0][0];
-        } else {
-            $cnt = count($images);
         }
-        return $cnt;
+	   //	debug($cnt,"cnt2 = ");
+		$this->m_imgcount = $cnt;
+		return $cnt;
     }
 	function img($num,$type=2){
 		if ($this->imgCount() > 0)
-		  	//return("/i/obj/img_".$this->id."_".$num.".jpg");
             return("/image.php?objid=".$this->id."&mode=".$type."&num=".$num);
 		else
             return '/i/no_smol.jpg';
