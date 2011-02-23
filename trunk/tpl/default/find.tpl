@@ -1,4 +1,4 @@
-<form name="find" action="/catalog/1/" method="post" enctype="multipart/form-data">
+<form name="find" action="/catalog/1/" method="get" enctype="multipart/form-data">
    	<label><input type="radio" checked="checked" name="pr" value="1" id="modeprod"/>Продаж</label>&nbsp;
 	<label><input type="radio" name="pr" value="0" id="modeorenda"/>Оренда</label>
 <br/>
@@ -36,7 +36,7 @@
   </select>
   <div style="display: none;" id="finddiv1">
     <p>Тип будинку:</p>
-    <select name="dom_domtype">
+    <select name="dom_domtype" id="dom_domtype">
   	  <option value="0">--Не важливо--</option>
       <option value="1">будинок</option>
       <option value="2">частина будинку</option>
@@ -45,7 +45,7 @@
   </div>
   <div style="display: none;" id="finddiv2">
     <p>Тип квартири:</p>
-    <select name="kk">
+    <select name="kk" id="kk">
       <option value="0">--Не важливо--</option>
       <option value="-1">частина квартири</option>
       <option value="1">1-кімнатна</option>
