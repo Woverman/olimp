@@ -22,8 +22,42 @@ $(document).ready(function(){
    	window.setTimeout(moveNotice,"10000");
     // лайтбоксуємо фотки
     $('#only_wrapper a').lightBox();
+	updateFindForm();
 });
 
+function updateFindForm(){
+	var tmp = new Array();		// два вспомагательных
+	var tmp2 = new Array();		// массива
+	var param = new Array();
+
+	var get = location.search;	// строка GET запроса
+	if(get != '') {
+		tmp = (get.substr(1)).split('&');	// разделяем переменные
+		for(var i=0; i < tmp.length; i++) {
+			tmp2 = tmp[i].split('=');		// массив param будет содержать
+			param[tmp2[0]] = tmp2[1];		// пары ключ(имя переменной)->значение
+		}
+		if (param['pr']==0) $("#modeorenda").attr("checked", "checked");
+		if (param['tn']>0){
+			$("#typener [value='"+param['tn']+"']").attr("selected", "selected");
+			showdiv(param['tn']);
+		}
+		if (param['dom_domtype']>0) $("#dom_domtype [value='"+param['dom_domtype']+"']").attr("selected", "selected");
+		if (param['kk']>0) $("#kk [value='"+param['kk']+"']").attr("selected", "selected");
+		if (param['typener']>0) $("#typener [value='"+param['typener']+"']").attr("selected", "selected");
+		if (param['obl']!='') {
+			$("#obl [value='"+param['obl']+"']").attr("selected", "selected");
+			loadRgns('rgn',param['obl']);
+		}
+		if (param['rgn']!=''){
+			$("#rgn [value='"+param['rgn']+"']").attr("selected", "selected");
+			loadRgns('mista',param['rgn']);
+		}
+		if (param['mista']>0) $("#mista [value='"+param['mista']+"']").attr("selected", "selected");
+		if (param['prise1']!='') $("#prise1").val(param['prise1']);
+		if (param['prise2']!='') $("#prise2").val(param['prise2']);
+	}
+}
 function resizeNotices(){
 	$("#small_notices_wrapper").width($("#notices_inner").width()-$("#big_notices_wrapper").width()+'px');
 }
