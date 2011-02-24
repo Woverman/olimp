@@ -29,11 +29,17 @@ class FindParameters{
 		$this->dist = $_REQUEST['dist']?$_REQUEST['dist']:0;
 		debug($this,"FindParameters");
 	}
-	function createURL($newpage) {
+	function createURL($newpage,$tn=-1,$dom_domtype=-1,$kk=-99) {
 	   $ret = "?";
        foreach($this as $key => $value) {
-       		if ($key!="pg") $ret .= "$key=$value&";
-			else  $ret .= "pg=".$newpage."&";
+       		if ($key=="pg") $value=$newpage;
+			if ($tn!=-1)
+				if ($key=="tn") $value=$tn;
+			if ($kk!=-1)
+				if ($key=="kk") $value=$kk;
+			if ($dom_domtype!=-99)
+				if ($key=="dom_domtype") $value=$dom_domtype;
+			$ret .= "$key=$value&";
        }
 	   return $ret;
     }
