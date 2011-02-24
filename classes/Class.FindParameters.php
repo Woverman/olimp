@@ -15,7 +15,7 @@ class FindParameters{
 		$this->parse();
 	}
 	private function parse(){
-		debug($_REQUEST,'ReQUEST = ');
+		//debug($_REQUEST,'ReQUEST = ');
 		$this->pr = $_REQUEST['pr']?$_REQUEST['pr']:($_REQUEST['id']==0?0:1);
 		$this->obl = $_REQUEST['obl']?$_REQUEST['obl']:0;
 		$this->rgn = $_REQUEST['rgn']?$_REQUEST['rgn']:0;
@@ -27,18 +27,12 @@ class FindParameters{
 		$this->dom_domtype = $_REQUEST['dom_domtype']?$_REQUEST['dom_domtype']:0;
 		$this->pg = $_REQUEST['pg']?$_REQUEST['pg']:1;
 		$this->dist = $_REQUEST['dist']?$_REQUEST['dist']:0;
-		debug($this,"FindParameters");
+		//debug($this,"FindParameters");
 	}
-	function createURL($newpage,$tn=-1,$dom_domtype=-1,$kk=-99) {
+	function createURL($field,$new_value) {
 	   $ret = "?";
        foreach($this as $key => $value) {
-       		if ($key=="pg") $value=$newpage;
-			if ($tn!=-1)
-				if ($key=="tn") $value=$tn;
-			if ($kk!=-1)
-				if ($key=="kk") $value=$kk;
-			if ($dom_domtype!=-99)
-				if ($key=="dom_domtype") $value=$dom_domtype;
+       		if ($key==$field) $value=$new_value;
 			$ret .= "$key=$value&";
        }
 	   return $ret;

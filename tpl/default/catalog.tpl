@@ -5,9 +5,14 @@
 			<div id="sub_menu" style="text-align: center;">
 			<?
 			$ff = new FindParameters();
-			echo maketabs(array('Все','Будинки','Квартири','Ділянки','Комерційна нерухомість'),array($ff->createURL(0,0),$ff->createURL(0,1),$ff->createURL(0,2),$ff->createURL(0,3),$ff->createURL(0,4)),$ff->tn);
+			$ff->kk=0;
+			$ff->dom_domtype=0;
+			$ff->pg=0;
+			echo maketabs(array('Все','Будинки','Квартири','Ділянки','Комерційна нерухомість'),array($ff->createURL("tn",0),$ff->createURL("tn",1),$ff->createURL("tn",2),$ff->createURL("tn",3),$ff->createURL("tn",4)),$ff->tn);
+			$ff = new FindParameters();
+			$ff->pg=0;
 			if ($ff->tn==1) {
-			  echo maketabs(array('Всі','будинок','частина будинку','дача'),array($ff->createURL(0,1,0),$ff->createURL(0,1,1),$ff->createURL(0,1,2),$ff->createURL(0,1,3)),$ff->dom_domtype);
+			  echo maketabs(array('Всі','будинок','частина будинку','дача'),array($ff->createURL("dom_domtype",0),$ff->createURL("dom_domtype",1),$ff->createURL("dom_domtype",2),$ff->createURL("dom_domtype",3)),$ff->dom_domtype);
 			  }
 			if ($ff->tn==2){
 			  if ($ff->kk==0) $pos = 0;
@@ -17,13 +22,13 @@
 			  if ($ff->kk==3) $pos = 4;
 			  if ($ff->kk==4) $pos = 5;
 			  if ($ff->kk==99) $pos = 6;
-			  echo maketabs(array('Всі','Частина квартири','1-кімн.','2-кімн.','3-кімн.','4-кімн.','>4 кімнат'),array($ff->createURL(0,2,0,0),$ff->createURL(0,2,0,-1),$ff->createURL(0,2,0,1),$ff->createURL(0,2,0,2),$ff->createURL(0,2,0,3),$ff->createURL(0,2,0,4),$ff->createURL(0,2,0,99)),$pos);
+			  echo maketabs(array('Всі','Частина квартири','1-кімн.','2-кімн.','3-кімн.','4-кімн.','>4 кімнат'),array($ff->createURL("kk",0),$ff->createURL("kk",-1),$ff->createURL("kk",1),$ff->createURL("kk",2),$ff->createURL("kk",3),$ff->createURL("kk",4),$ff->createURL("kk",99)),$pos);
 			}
 			?>
 			</div>
                 <?
 
-
+				$ff = new FindParameters();
 				$ntypes=array('','dom','kva','dil','com','bog');
 				$sql='Select count(id) from m_bildings';
 				if ($ff->tn!='0')
