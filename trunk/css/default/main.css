@@ -108,7 +108,7 @@ div#hiddentl{
 .news_item_wrapper{}
 
 .news_item_inner{
-  border: 1px solid #CEE3FF;
+  border: 1px solid #CCC;
   margin-bottom: 5px;
   min-height: 105px;
   padding: 4px;
@@ -146,7 +146,7 @@ div#hiddentl{
 
 #news_title{
   background: #E7F1FF;
-  border: 1px solid #CEE3FF;
+  border: 1px solid #CCFDCC;
   color: #509693;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -189,7 +189,7 @@ a:hover{
 
 /* notice */
 #notices_inner{
-  border: 1px solid #CEE3FF;
+  border: 1px solid #CCC;
   margin-bottom: 5px;
   min-height: 376px;
   max-height: 376px;
