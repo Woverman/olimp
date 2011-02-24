@@ -21,7 +21,7 @@ $(document).ready(function(){
 	$(window).resize(resizeNotices);
    	window.setTimeout(moveNotice,"10000");
     // лайтбоксуємо фотки
-    $('#only_wrapper a').lightBox();
+    $('#only_wrapper a.ilink').lightBox();
 	updateFindForm();
 });
 

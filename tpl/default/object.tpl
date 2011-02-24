@@ -5,13 +5,13 @@
 		<div style="clear: both"></div>
         <?
             $obj = Object::load($id);
-            echo "<div class='news_shadow_img' style='float:left;overflow:hidden;max-height:450px;'><a href='".$obj->img(1,1)."'><img width='400' src='".$obj->img(1,1)."'></a></div>";
+            echo "<div class='news_shadow_img' style='float:left;overflow:hidden;max-height:450px;'><a href='".$obj->img(1,1)."' class='ilink'><img width='400' src='".$obj->img(1,1)."'></a></div>";
             //
             $cnt = $obj->imgCount();
             if ($cnt>1){
             	echo("<div style='padding:1px; margin-left:415px;'>");
                 for ($i=2;$i<=$cnt;$i++){
-                    echo "<a href='".$obj->img($i,1)."'><div style='display: table-cell;width:104px; height:104px;margin:2px;padding:2px;float:left; border:1px solid silver;text-align:center;vertical-align: middle;'><img src='".$obj->img($i,2)."' style='border:0;'></div></a>";
+                    echo "<a href='".$obj->img($i,1)."' class='ilink'><div style='display: table-cell;width:104px; height:104px;margin:2px;padding:2px;float:left; border:1px solid silver;text-align:center;vertical-align: middle;'><img src='".$obj->img($i,2)."' style='border:0;'></div></a>";
                 }
             }
 
