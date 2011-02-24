@@ -37,7 +37,7 @@ function updateFindForm(){
 			tmp2 = tmp[i].split('=');		// массив param будет содержать
 			param[tmp2[0]] = tmp2[1];		// пары ключ(имя переменной)->значение
 		}
-		if (param['pr']==0) $("#modeorenda").attr("checked", "checked");
+		if (param['id']==0) $("#modeorenda").attr("checked", "checked");
 		if (param['tn']>0){
 			$("#typener [value='"+param['tn']+"']").attr("selected", "selected");
 			showdiv(param['tn']);

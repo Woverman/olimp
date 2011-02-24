@@ -1,6 +1,6 @@
 <form name="find" action="/catalog/1/" method="get" enctype="multipart/form-data">
-   	<label><input type="radio" checked="checked" name="pr" value="1" id="modeprod"/>Продаж</label>&nbsp;
-	<label><input type="radio" name="pr" value="0" id="modeorenda"/>Оренда</label>
+   	<label><input type="radio" checked="checked" name="id" value="1" id="modeprod"/>Продаж</label>&nbsp;
+	<label><input type="radio" name="id" value="0" id="modeorenda"/>Оренда</label>
 <br/>
   <script type="text/javascript">
     function showdiv(id){
