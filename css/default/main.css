@@ -307,10 +307,11 @@ select {
 }
 
 .object_outer{
-  border: 1px solid #CEE3FF;
-  margin: 5px;
-  min-height: 105px;
-  padding: 10px;
+border: 1px solid #CCC;
+margin: 2px;
+padding: 10px;
+width: 350px;
+float: left;
 }
 
 .object_outer .news_shadow_img{
@@ -356,6 +357,8 @@ select {
   clear: both;
   display: block;
   padding: 2px 5px 2px 22px;
+  position: relative;
+  bottom: -1.5em;
 }
 
 .object_outer .more a{
@@ -364,6 +367,8 @@ select {
   background-repeat: no-repeat;
   float: right;
   padding-right: 20px;
+  position: relative;
+  top: -1.3em;
 }
 /* only object */
 
@@ -375,13 +380,17 @@ select {
 /* pages links */
 
 .pagesdiv{
-  width: 100%;
+ /* width: 100%; */
   clear: both;
-  margin: 0 7px;
+  margin: 5px auto;
+}
+.pagesdiv td{
+	padding: 4px;
 }
 
+
 .pagenums{
-  text-align: right;
+  text-align: center;
   padding-right: 20px;
 }
 
@@ -401,3 +410,13 @@ select {
 .pagenums a:hover, .selpage{
   background-color: #FF9966;
 }
+
+#sub_menu a {
+	zoom: 1;
+	line-height: 2em;
+	border: 1px dotted #99CCCC;
+	padding: 2px 4px;
+	margin-right: 5px;
+}
+#sub_menu a.sel {color:red;}
+

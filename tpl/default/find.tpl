@@ -13,6 +13,7 @@
 	/* запрос районов и городов */
 	function loadRgns(tbl,par) {
 		var data={tbl:tbl,obl:par};
+		$.ajaxSetup({async:false});
 		$.get("/ajax/getrgn.php",data,function(values){
 			  a = new Array();
 			  a = values.split("|");
@@ -24,6 +25,7 @@
 			  	listBox.append(new Option(text,id));
 			  }
 		});
+		$.ajaxSetup({async:true});
 	}
   </script>
   <p>Тип нерухомості:</p>
