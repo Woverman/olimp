@@ -53,7 +53,7 @@ function updateFindForm(){
 			$("#rgn [value='"+param['rgn']+"']").attr("selected", "selected");
 			loadRgns('mista',param['rgn']);
 		}
-		if (param['mista']>0) $("#mista [value='"+param['mista']+"']").attr("selected", "selected");
+		if (param['gor']>0) $("#mista [value='"+param['gor']+"']").attr("selected", "selected");
 		if (param['prise1']!='') $("#prise1").val(param['prise1']);
 		if (param['prise2']!='') $("#prise2").val(param['prise2']);
 	}
