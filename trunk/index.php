@@ -29,6 +29,12 @@ $banner = new Banner($rpage);
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/main.css">
     <link rel="stylesheet" type="text/css" href="/css/sunny/jquery-ui-1.8.7.custom.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css">
+	<?
+		$pageCss = DOCUMENT_ROOT.'/css/'.SKIN.'/'.addslashes($rpage).'.css';
+		debug($pageCss,"pageCss");
+		if (file_exists($pageCss))
+			echo('<link rel="stylesheet" type="text/css" href="/css/'.SKIN.'/'.$rpage.'.css">');
+	?>0
     <script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
