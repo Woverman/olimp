@@ -97,34 +97,36 @@ function MakePageLinks($page,$pages,$items,$ff) {
     }
 	echo '<table class="pagesdiv"><tr><td class="founded">Всього знайдено: '.$items.'</td>';
 	echo '<td class="pagenums">';
-    if ($page>1) {
-      echo '<a href="'.$ff->createURL("pg",$page-1).'">&lt; Назад</a>&nbsp;';
-    } else {
-      echo '<span>&lt; Назад</span>&nbsp;';
-    }
-    if ($p1>1) {
-  	  echo '<a class="pages" href="'.$ff->createURL("pg",1).'">1</a>&nbsp;... ';
-      $p1+=2;
-	  }
-    $after='';
-  	if ($p2<$pages) {
-  	  $p2=$p2-2;
-      $after = '... <a href="'.$ff->createURL("pg",$pages).'">'.$pages.'</a>&nbsp;';
-  	}
-    for ($i=$p1;$i<=$p2;$i++) {
-  		if ($i==$page) {
-  			echo "<span class='selpage'>$i</span>&nbsp;";
-  		} else {
-  			echo '<a href="'.$ff->createURL("pg",$i).'">'.$i.'</a>&nbsp;';
-  		}
-  	}
-    echo $after;
+	if ($pages>1){
+	    if ($page>1) {
+	      echo '<a href="'.$ff->createURL("pg",$page-1).'">&lt; Назад</a>&nbsp;';
+	    } else {
+	      echo '<span>&lt; Назад</span>&nbsp;';
+	    }
+	    if ($p1>1) {
+	  	  echo '<a class="pages" href="'.$ff->createURL("pg",1).'">1</a>&nbsp;... ';
+	      $p1+=2;
+		  }
+	    $after='';
+	  	if ($p2<$pages) {
+	  	  $p2=$p2-2;
+	      $after = '... <a href="'.$ff->createURL("pg",$pages).'">'.$pages.'</a>&nbsp;';
+	  	}
+	    for ($i=$p1;$i<=$p2;$i++) {
+	  		if ($i==$page) {
+	  			echo "<span class='selpage'>$i</span>&nbsp;";
+	  		} else {
+	  			echo '<a href="'.$ff->createURL("pg",$i).'">'.$i.'</a>&nbsp;';
+	  		}
+	  	}
+	    echo $after;
 
-    if ($page<$pages){
-        echo '<a href="'.$ff->createURL("pg",$page+1).'">Вперед &gt;</a>&nbsp;';
-    } else {
-        echo '<span>Вперед &gt;</span>&nbsp;';
-    }
+	    if ($page<$pages){
+	        echo '<a href="'.$ff->createURL("pg",$page+1).'">Вперед &gt;</a>&nbsp;';
+	    } else {
+	        echo '<span>Вперед &gt;</span>&nbsp;';
+	    }
+	}
 //
 //    if ($page=='all')
 //      echo "<span class='selpage'>Всі</span>";

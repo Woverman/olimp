@@ -100,14 +100,15 @@ abstract class Object
 		return  implode(" ",$a);
 	}
 
-	function price(){
+	function price($noTitle=false){
+		$title = $noTitle?"":"Ціна: ";
 		if ($this->cast){
 			if ($this->valuta==2)
-				return "Ціна: $".number_format($this->cast, 0, ',', ' ');
+				return $title."$".number_format($this->cast, 0, ',', ' ');
 			else
-				return "Ціна: ".number_format($this->cast, 0, ',', ' ')." грн.";
+				return $title.number_format($this->cast, 0, ',', ' ')." грн.";
 		} else {
-			return "ціна договірна";
+			return $title."договірна";
 		}
 	}
 
