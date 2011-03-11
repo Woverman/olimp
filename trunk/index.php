@@ -17,7 +17,8 @@ $page = new Page($rpage);
 $banner = new Banner($rpage);
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 
