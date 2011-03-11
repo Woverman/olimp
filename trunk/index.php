@@ -17,8 +17,7 @@ $page = new Page($rpage);
 $banner = new Banner($rpage);
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 
@@ -104,8 +103,7 @@ $banner = new Banner($rpage);
 </div>
 
 <? include($page->tpl()); ?>
-<?
-if (!empty($debug)){?>
+<? if (!empty($debug)){?>
     <div id="debug_button" class="ui-corner-all" style="position:fixed;top:-20;right:10px;background-color:red;color:#FC6;z-index:10000;cursor: pointer;padding: 22px 10px 4px 10px;border: 1px solid #903;" onclick="showDebug()">Debug</div>
     <div id="debug_dialog" class="moveable" style="display:none;border: 2px outset #FC8;background-color:#FFCC66">
       <div id="debug_dialog_caption" style="background-color: #CC9966; color:#993333;padding: 2px 0 2px 10px;margin:5px;">Налагоджувальна інформація...
