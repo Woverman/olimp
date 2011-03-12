@@ -62,7 +62,7 @@ if (!isset($page)) $page=1;
 $perpage=15;
 $pagecount=ceil($rowcount/$perpage);
 if ($page>$pagecount) $page=1;
-if ($pagecount>1) {	MakePageLinks($page,$pagecount,$rowcount); }
+if ($pagecount>1) {	MakePageLinks($page,$pagecount,$rowcount,0); }
 $sql="Select * from d_rgn where parent=".$obl." order by id asc limit ".(($page-1)*$perpage).','.$perpage.";";
 $res=mysql_query($sql);
 $a=1;

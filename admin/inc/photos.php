@@ -58,7 +58,7 @@ if (isset($_REQUEST['ajax']))
   }
   exit;
 }
-// обработка событий
+// РѕР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№
 
 if (isset($_POST['mode'])){
   $tmpfile=$_FILES['foto']['tmp_name'];
@@ -103,11 +103,11 @@ foreach ($files as $file){
   <img class="award_smoll" width="<?=$w?>" height="<?=$h?>" title="<?=$file[3]?>" src="/<?=$MINDIR?>/<?=$file[0]?>" style="margin-bottom:<?=120-$h?>px">
   <br />
   <div style="border:1px solid #FF00FF;margin-bottom: 2px;font-size: x-small;overflow:hidden;" title="<?=$file[0]?>"><?=$file[0]?></div>
-  <button class="bleft" title="Вліво"><img src="/i/left.png" border="0"></button
-  ><button class="bdelete" title="Знищити"><img src="/i/delete.png" border="0"></button
-  ><button class="bedit"  title="Редагувати підпис"><img src="/i/edit.png" border="0"></button
-  ><button class="bcopy"  title="Копіювати адресу"><img src="/i/copy.png" border="0"></button
-  ><button class="bright" title="Вправо"><img src="/i/right.png" border="0"></button>
+  <button class="bleft" title="Р’Р»С–РІРѕ"><img src="/i/left.png" border="0"></button
+  ><button class="bdelete" title="Р—РЅРёС‰РёС‚Рё"><img src="/i/delete.png" border="0"></button
+  ><button class="bedit"  title="Р РµРґР°РіСѓРІР°С‚Рё РїС–РґРїРёСЃ"><img src="/i/edit.png" border="0"></button
+  ><button class="bcopy"  title="РљРѕРїС–СЋРІР°С‚Рё Р°РґСЂРµСЃСѓ"><img src="/i/copy.png" border="0"></button
+  ><button class="bright" title="Р’РїСЂР°РІРѕ"><img src="/i/right.png" border="0"></button>
 </div>
 <?php } } ?>
 </div>
@@ -115,17 +115,17 @@ foreach ($files as $file){
 <div  style="display:block;padding:10px;">
 <Form method=post enctype='multipart/form-data'>
 <table align="center"><tr><th colspan="2" align="left">
-Добавити зображення.
+Р”РѕР±Р°РІРёС‚Рё Р·РѕР±СЂР°Р¶РµРЅРЅСЏ.
 <input type='hidden' value='add' name='mode' id='mode'>
 </th></tr>
-<tr><td>Виберіть фото</td><td>
-<input type='file' name='foto' id='foto' class="txt" text="Обзор" size=60 >
+<tr><td>Р’РёР±РµСЂС–С‚СЊ С„РѕС‚Рѕ</td><td>
+<input type='file' name='foto' id='foto' class="txt" text="РћР±Р·РѕСЂ" size=60 >
 </td></tr>
-<tr><td>Коментар</td><td>
+<tr><td>РљРѕРјРµРЅС‚Р°СЂ</td><td>
 <textarea name="info" rows="3" cols="50"></textarea>
 </td></tr>
 <tr><th colspan="2" align="right">
-<input type='submit' value='Загрузити'>
+<input type='submit' value='Р—Р°РіСЂСѓР·РёС‚Рё'>
 </th></tr></table>
 </form>
 </div>
@@ -166,14 +166,14 @@ jQuery(".fotoframe .bcopy").click(function(){
     if (window.clipboardData){ // IE
         window.clipboardData.setData("Text", file);
     } else {
-        window.prompt("Виділіть текст і нажміть Ctrl-C",file);
+        window.prompt("Р’РёРґС–Р»С–С‚СЊ С‚РµРєСЃС‚ С– РЅР°Р¶РјС–С‚СЊ Ctrl-C",file);
     }
   });
 
 jQuery(".fotoframe .bedit").click(function(){
   file = jQuery(this).siblings("[type='hidden']").val();
   text = jQuery(this).siblings("img").attr("title");
-  text1 = window.prompt("Підпис до картинки:",text);
+  text1 = window.prompt("РџС–РґРїРёСЃ РґРѕ РєР°СЂС‚РёРЅРєРё:",text);
   if (text1!=null){
     jQuery(this).siblings("img").attr("title",text1);
     //jQuery.get(location,{ajax:1,file:file,action:'edittitle',text:encodeURIComponent(text1)},function(data){if (data!='') alert(data);});

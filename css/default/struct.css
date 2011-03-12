@@ -7,6 +7,7 @@ body{
 #logo_block{background:url(../../i/header_bg2.png);height:126px;}
 
 #center_panel{margin-top:156px;position:relative;}
+#admin_panel{margin-top:140px;position:relative;}
 
 #banner_block{float:left;height:100px;position:absolute;top:0px;width:60%;overflow: hidden;}
 

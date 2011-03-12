@@ -16,14 +16,14 @@ if (isset($_POST['mode'])) {
 <script type='text/javascript'>
 function ToEdit(row) {
 	var tr=document.getElementById(row);
-	document.getElementById('title').innerHTML="Редагуємо: " + tr.cells[0].innerHTML;		document.getElementById('obl').value=tr.cells[1].innerHTML;
+	document.getElementById('title').innerHTML="Р РµРґР°РіСѓС”РјРѕ: " + tr.cells[0].innerHTML;		document.getElementById('obl').value=tr.cells[1].innerHTML;
 	document.getElementById('uid').value=tr.cells[0].innerHTML;
 	document.getElementById('mode').value="edit";
 	document.forms[0].focus();
 }
 function ToDel(row) {
 	var tr=document.getElementById(row);
-	if (confirm("Знищити "+tr.cells[1].innerHTML+"?"))	{
+	if (confirm("Р—РЅРёС‰РёС‚Рё "+tr.cells[1].innerHTML+"?"))	{
 	clearForm();
 	document.getElementById('uid').value=tr.cells[0].innerHTML;
 	document.getElementById('mode').value="del";
@@ -31,14 +31,14 @@ function ToDel(row) {
 	}
 }
 function clearForm() {
-	document.getElementById('title').innerHTML='Нова область:';
+	document.getElementById('title').innerHTML='РќРѕРІР° РѕР±Р»Р°СЃС‚СЊ:';
 	document.getElementById('uid').value='0';
 	document.getElementById('obl').value='';
 	document.getElementById('mode').value='add';
 }
 </script>
 <table width=98%  class="mytab">
-<tr bgcolor=#BDCACC><th>№</th><th>Назва</th><th>Райони</th><th>Операції</th></tr>
+<tr bgcolor=#BDCACC><th>в„–</th><th>РќР°Р·РІР°</th><th>Р Р°Р№РѕРЅРё</th><th>РћРїРµСЂР°С†С–С—</th></tr>
 <?php
 
 if (isset($_GET['mode'])){
@@ -54,7 +54,7 @@ if (isset($_GET['mode'])){
 	while ($row=mysql_fetch_array($res)){
 		echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
 		echo '<td>'.$row[0].'</td><td>'.$row[1].'</td>';
-		echo '<td><a href=/admin/admin.php?panel=rgn&obl='.$row[0].'>Райони</td>';
+		echo '<td><a href=/admin/admin.php?panel=rgn&obl='.$row[0].'>Р Р°Р№РѕРЅРё</td>';
 		echo '<td>';
     echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="./i/edit.gif"></a>';
 		echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="./i/del.gif"></a>';
@@ -70,8 +70,8 @@ if (isset($_GET['mode'])){
 <input type='hidden' value=0 name='uid' id='uid'>
 <input type='hidden' value='add' name='mode' id='mode'>
 <table border=0>
-<tr><th colspan=2><h4 id='title'>Нова область:</h4></th></tr>
-<tr><td align=right>Область:</td><td><input type='text' name='obl' id='obl'></td></tr>
+<tr><th colspan=2><h4 id='title'>РќРѕРІР° РѕР±Р»Р°СЃС‚СЊ:</h4></th></tr>
+<tr><td align=right>РћР±Р»Р°СЃС‚СЊ:</td><td><input type='text' name='obl' id='obl'></td></tr>
 <tr><td colspan=2 align=right><input type='submit' value='Save'> <input type='reset' value='Reset' onclick="clearForm()"></td></tr>
 </table>
 </form>
