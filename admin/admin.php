@@ -26,7 +26,7 @@ include (DOCUMENT_ROOT.'/config.php');
 		<!--<a class=<?=$cls?> href="/admin/main">Головна</a>
 		  <div class=spacer></div>-->
 		<? if ($panel=='kva') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/kva">Квартири (Додати)</a>
+		<div class=<?=$cls?>><a href="/admin/kva">Квартири</a> (<a href="/admin/kvaadd">Додати</a>)</div>
 		<? if ($panel=='kvaadd') $cls='sels'; else $cls='aa'; ?>
 		<!-- a class=<?=$cls?> href="apartment_edit.php">Додати квартиру</a -->
 		<? if ($panel=='dom') $cls='sels'; else $cls='aa'; ?>

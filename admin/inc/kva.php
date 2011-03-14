@@ -8,12 +8,12 @@
 	if (!empty($_GET["result"]))
 	{
 		?>
-		<div style="border:1px solid green; height:1em; margin:4px; padding:14px; font-weight:bold;" align="center">Дані успішно збережені</div>
+		<div style="border:1px solid green; height:1em; margin:4px; padding:14px; font-weight:bold;" align="center">Р”Р°РЅС– СѓСЃРїС–С€РЅРѕ Р·Р±РµСЂРµР¶РµРЅС–</div>
 		<?
 	}
 ?>
 
-<div style="border:1px dotted green;height:20px;margin:4px;padding:4px" id='sdiv'><div onclick="ShowHideDiv('findforms');" style="cursor:pointer;float:left" width=50%><button>Відбір &#8595;</button></div><div style="float:right;"><button  onclick="window.location='apartment_edit.php?panel=kvaadd';">Додати</button></div></div>
+<div style="border:1px dotted green;height:20px;margin:4px;padding:4px" id='sdiv'><div onclick="ShowHideDiv('findforms');" style="cursor:pointer;float:left" width=50%><button>Р’С–РґР±С–СЂ &#8595;</button></div><div style="float:right;"><button  onclick="window.location='apartment_edit.php?panel=kvaadd';">Р”РѕРґР°С‚Рё</button></div></div>
 <?php
 require('./inc/findforms.php');
 $usl='where type=\'kva\' ';
@@ -28,20 +28,20 @@ $res=mysql_query($sql);
 if (mysql_errno()>0) echo $sql;
 $rowcount=mysql_result($res,0);
 if ($rowcount>0) {
-if (!isset($page)) $page=1;
+/*if (!isset($page)) $page=1;
 $perpage=10;
 $pagecount=ceil($rowcount/$perpage);
 if ($page>$pagecount) $page=1;
-if ($pagecount>1) MakePageLinks($page,$pagecount,$rowcount);
+if ($pagecount>1) MakePageLinks($page,$pagecount,$rowcount);*/
 ?>
 <table width=98%  class="mytab">
-<tr bgcolor=#BDCACC><th rowspan=2>№</th><th>Місто</th><th>Кімнати</th><th>Поверх</th><th>Ціна</th><th>Правка</th></tr>
-<tr bgcolor=#BDCACC><th>Вулиця</th><th>Площі</th><th>Огол.</th><th>Агент</th><th>Знищити</th></tr>
+<tr style="background-color: #BDCACC"><th rowspan=2>в„–</th><th>РњС–СЃС‚Рѕ</th><th>РљС–РјРЅР°С‚Рё</th><th>РџРѕРІРµСЂС…</th><th>Р¦С–РЅР°</th><th>РџСЂР°РІРєР°</th></tr>
+<tr style="background-color: #BDCACC"><th>Р’СѓР»РёС†СЏ</th><th>РџР»РѕС‰С–</th><th>РћРіРѕР».</th><th>РђРіРµРЅС‚</th><th>Р—РЅРёС‰РёС‚Рё</th></tr>
 <?php
 	$a=1;
-if ($page!='all')
-	$sql="Select * from m_bildings $usl order by id limit ".(($page-1)*$perpage).','.$perpage.";";
-else
+//if ($page!='all')
+	//$sql="Select * from m_bildings $usl order by id limit ".(($page-1)*$perpage).','.$perpage.";";
+//else
   $sql="Select * from m_bildings $usl order by id;";
 	$res=mysql_query($sql);
 	while ($row=mysql_fetch_array($res)){
@@ -53,19 +53,19 @@ else
     if ($row['cast']>0)	echo '<td>'.$row['cast'].' '.$sys['lists']['valutes'][$row['valuta']].'</td>';
     else echo '<td> - </td>';
     $params = '&nomer='.$nomer.'&agent='.$agent.'&obl='.$obl.'&rgn='.$rgn.'&mista='.$mista;
-		echo '<td><a href="apartment_edit.php?id='.$row['id'].$params.'"><img class=aimg src="./i/edit.gif" style="cursor:pointer;border:0"></td>';
+		echo '<td><a href="apartment_edit.php?id='.$row['id'].$params.'"><img class=aimg src="/i/edit.png" style="cursor:pointer;border:0"></td>';
 		echo '</tr><tr class="row'.$a.'">';
     echo '<td>'.$row['adr_vul'].'</td>';
 		echo '<td>'.$row['pzag'].'/'.$row['pzit'].'/'.$row['pkuh'].'</td>';
-		echo '<td>'.($row['prodazh']==1 ? 'продаж':'оренда').'</td>';
+		echo '<td>'.($row['prodazh']==1 ? 'РїСЂРѕРґР°Р¶':'РѕСЂРµРЅРґР°').'</td>';
 		echo '<td>'.GetFieldByID('d_users','name',$row['kont'],'-').'</td>';
-		echo '<td><a href="obj_del.php?id='.$row['id'].'" onclick="return confirm(\'Знищити квартиру?\')"><img class=aimg src="./i/del.gif"></a></td>';
-		echo '</tr><tr><td colspan="6" style="background-color: #660066; height:2px; border:1px solid #660066"></td></tr>';
+		echo '<td><a href="obj_del.php?id='.$row['id'].'" onclick="return confirm(\'Р—РЅРёС‰РёС‚Рё РєРІР°СЂС‚РёСЂСѓ?\')"><img class=aimg src="/i/delete.png"></a></td>';
+		echo '</tr><tr><td colspan="6" style="background-color: #660066; height:1px; border:1px solid #660066"></td></tr>';
 	}
 ?>
 
 </table>
 
 <? } else { ?>
-<p>Жоден запис не відповідає умові пошуку.<br><?=$sql?></p>
+<p>Р–РѕРґРµРЅ Р·Р°РїРёСЃ РЅРµ РІС–РґРїРѕРІС–РґР°С” СѓРјРѕРІС– РїРѕС€СѓРєСѓ.<br><?=$sql?></p>
 <? } ?>
