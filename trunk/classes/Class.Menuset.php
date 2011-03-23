@@ -1,41 +1,42 @@
 <?
 class Menuset
 {
-    var $title; 
     var $items;
-        
+    var $type; // 0=horizontal 1=vertical
+    var $title;
+
     function Menuset($page)
     {
         return $this->__construct($page);
     }
 
-    function __construct($page)
+    function __construct($name)
     {
-        $this->title = "main";
-        $this->items = Array(
-            new Menu("main",0,"Головна"),
-            new Menu("newslist",0,"Новини"),
-            new Menu("articles",0,"Статті"),
-            new Menu("article",4,"Послуги"),
-            new Menu("catalog",1,"Каталог"),
-            new Menu("catalog",0,"Оренда"),
-            new Menu("kredit",0,"Кредит"),
-            new Menu("article",2,"Про нас"),
-			new Menu("article",3,"Контакти")
-        );
-        if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
-            $this->items[] = new Menu("admin","exit","Вихід");
-        } else {
-            $this->items[] = new Menu("admin","main","Адмінка");
+        global $DB;
+        $this->title = $name;
+        $sql = "Select id,title,vertical from s_menuset where title='$name'";
+        $res = $DB->request($sql,ARRAY_A);
+        $gid = $res[0]['id'];
+        $this->type = $res[0]['vertical'];
+
+        $sql = "Select `title`,`itemid`,`href` from `s_menu` where `enable`=1 and `group`=$gid order by `orderid`";
+        print_r($sql);
+        unset($this->items);
+        $res = $DB->request($sql,ARRAY_A);
+        print_r($res);
+        foreach ($res as $item){
+            $this->items[] = new Menu($item['href'],$item['itemid'],$item['title']);
         }
-        $this->title = "Олимп. Агенство недвижимости.";
+        /*if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
+            $this->items[] = new Menu("admin","exit","Вихід");
+        }*/
     }
-    
+
     function listitems(){
         foreach ($this->items as $item){
         $ret .= "<li><a href='".$item->href()."'>".$item->text."</a></li>";
         }
-        return $ret; 
+        return $ret;
     }
 }
 ?>

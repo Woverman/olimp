@@ -1,4 +1,4 @@
-<?  $obj = Object::load($id); debug($id,"id"); debug($obj,"obj"); ?>
+<?  $obj = Object::load($id); //debug($id,"id"); debug($obj,"obj"); ?>
 <div id="center_panel" style="padding-top: 1px;">
     <div id="wrapper">
         <div id="only_wrapper" class="ui-corner-all" style="border: 1px solid #99CCFF;padding:5px;margin-top: 4px;">

@@ -16,7 +16,7 @@ include (DOCUMENT_ROOT.'/config.php');
   });
 </script>
 <table align=center CELLPADDING=0 CELLSPACING=2px width='100%'>
-<tr><td id=lpan valign=top width='150px' style="border:1px solid gray">
+<tr><td id=lpan valign=top style="border:1px solid gray;width: 200px;">
 
 		<div class=spacer></div>
 		<?
@@ -26,11 +26,11 @@ include (DOCUMENT_ROOT.'/config.php');
 		<!--<a class=<?=$cls?> href="/admin/main">Головна</a>
 		  <div class=spacer></div>-->
 		<? if ($panel=='kva') $cls='sels'; else $cls='aa'; ?>
-		<div class=<?=$cls?>><a href="/admin/kva">Квартири</a> (<a href="/admin/kvaadd">Додати</a>)</div>
+		<li class=<?=$cls?>><a href="/admin/kva" class="noaddbutton">Квартири</a><a href="/admin/kvaadd" class="addbutton">+</a></li>
 		<? if ($panel=='kvaadd') $cls='sels'; else $cls='aa'; ?>
 		<!-- a class=<?=$cls?> href="apartment_edit.php">Додати квартиру</a -->
 		<? if ($panel=='dom') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/dom">Будинки (Додати)</a>
+		<li class=<?=$cls?> href="/admin/dom"><a>Будинки</a> <a>+</a></li>
 		<? if ($panel=='domadd') $cls='sels'; else $cls='aa'; ?>
 <!--		<a class=<?=$cls?> href="house_edit.php">Додати будинок</a>-->
 		<? if ($panel=='dil') $cls='sels'; else $cls='aa'; ?>
@@ -83,7 +83,7 @@ include (DOCUMENT_ROOT.'/config.php');
         <div class=spacer></div>
     <? if ($panel=='stat') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/stat">Статистика</a>
-</td><td id=rpan valign=top style="border:1px solid gray" width='600'>
+</td><td id=rpan valign=top style="border:1px solid gray">
 <div id='content' style="padding:0; margin:6px;position:relative;height:100%;min-height:100%;display: block;">
 <? } ?>
 <?php
