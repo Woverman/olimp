@@ -47,11 +47,11 @@ function updateFindForm(){
 		if (param['typener']>0) $("#typener [value='"+param['typener']+"']").attr("selected", "selected");
 		if (param['obl']!='') {
 			$("#obl [value='"+param['obl']+"']").attr("selected", "selected");
-			loadRgns('rgn',param['obl']);
+			loadRgns('rgn','rgn',param['obl']);
 		}
 		if (param['rgn']!=''){
 			$("#rgn [value='"+param['rgn']+"']").attr("selected", "selected");
-			loadRgns('mista',param['rgn']);
+			loadRgns('mista','mista',param['rgn']);
 		}
 		if (param['gor']>0) $("#mista [value='"+param['gor']+"']").attr("selected", "selected");
 		if (param['prise1']!='') $("#prise1").val(param['prise1']);
@@ -205,4 +205,21 @@ function validateForm(){
   if (val=='110') ok=false;
   if (!ok) alert("Не вибрана відповідальна особа!");
   return(ok);
+}
+/* запрос районов и городов */
+function loadRgns(tbl,cmb,par) {
+	var data={tbl:tbl,obl:par};
+	$.ajaxSetup({async:false});
+	$.get("/ajax/getrgn.php",data,function(values){
+		  a = new Array();
+		  a = values.split("|");
+		  var arr = eval("(" + a[1] + ")");
+		  var listBox = $("#"+cmb).empty().append("<option value=0>--Не важливо--</option>");
+		  for (var key in arr) {
+      		  	id = arr[key][0];
+      		  	text = arr[key][1];
+		  	listBox.append(new Option(text,id));
+		  }
+	});
+	$.ajaxSetup({async:true});
 }

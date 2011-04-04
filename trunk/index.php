@@ -3,7 +3,7 @@ header("Content-type: text/html; charset=utf-8");
 session_start();
 
 if (isset($_REQUEST['lang'])){
-    $_SESSION['lang']=$_REQUEST['lang'];   
+    $_SESSION['lang']=$_REQUEST['lang'];
 }
 $lng = $_SESSION['lang'];
 $lng = $lang?$lang:'ua';
@@ -17,6 +17,7 @@ $page = new Page($rpage);
 $banner = new Banner($rpage);
 
 ?>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -31,7 +32,6 @@ $banner = new Banner($rpage);
     <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css">
 	<?
 		$pageCss = DOCUMENT_ROOT.'/css/'.SKIN.'/'.addslashes($rpage).'.css';
-		debug($pageCss,"pageCss");
 		if (file_exists($pageCss))
 			echo('<link rel="stylesheet" type="text/css" href="/css/'.SKIN.'/'.$rpage.'.css">');
 	?>0
@@ -39,8 +39,19 @@ $banner = new Banner($rpage);
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
+	<? if ($rpage=='admin') { ?>
     <script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
-
+	<script type='text/javascript' src='/js/sliding.form.js'></script>
+	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
+	<script type="text/javascript">
+	  $(document).ready(function(){
+	    $('#redactor_content_master').redactor({ focus: true });
+	    $('#redactor_content_slave').redactor();
+	  });
+	</script>
+	<link href="/admin/editor/css/redactor.css" type="text/css" rel="stylesheet">
+	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
+	<? } ?>
     <LINK REL="SHORTCUT ICON" href="/favicon.ico">
 </head>
 

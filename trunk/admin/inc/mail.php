@@ -83,7 +83,7 @@ while ($row=mysql_fetch_array($res)){
   if (IsAdmin($luser)) {
   echo '<select name=\'agent\' id=\'agent'.$row['id'].'\' onchange="form.btn'.$row['id'].'.disabled=false">';
 	echo '<option value=\'0\'>&nbsp;</option>';
-    getaslist('d_users',$row['user']);
+    getaslist('d_users',$row['user'],'id<>110');
   echo '</select>';
   }
   echo '</td>';

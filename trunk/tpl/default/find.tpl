@@ -10,23 +10,7 @@
       $("#finddiv4").hide();
       $("#finddiv"+id).show();
     }
-	/* запрос районов и городов */
-	function loadRgns(tbl,par) {
-		var data={tbl:tbl,obl:par};
-		$.ajaxSetup({async:false});
-		$.get("/ajax/getrgn.php",data,function(values){
-			  a = new Array();
-			  a = values.split("|");
-			  var arr = eval("(" + a[1] + ")");
-			  var listBox = $("#"+a[0]).empty().append("<option value=0>--Не важливо--</option>");
-			  for (var key in arr) {
-       		  	id = arr[key][0];
-       		  	text = arr[key][1];
-			  	listBox.append(new Option(text,id));
-			  }
-		});
-		$.ajaxSetup({async:true});
-	}
+
   </script>
   <p>Тип нерухомості:</p>
   <select onchange="showdiv(this.selectedIndex)" id="typener" name="tn">
@@ -61,66 +45,14 @@
   <div style="display: none;" id="finddiv4"></div>
   <div>
 	  <p>Область:</p>
-	  <select onchange="loadRgns('rgn',this.value);document.getElementById('mista').options.length=1" id="obl" name="obl">
+	  <select onchange="loadRgns('rgn','rgn',this.value);document.getElementById('mista').options.length=1" id="obl" name="obl">
 		<option value="0">--Не важливо--</option>
-		<option value="1">АР Крим</option>
-		<option value="3">Волинська</option>
-		<option selected="" value="2">Вінницька</option>
-		<option value="7">Закарпатська</option>
-		<option value="8">Запоріжська</option>
-		<option value="18">Рівненська</option>
-		<option value="10">Київ</option>
-		<option value="11">Київська</option>
-		<option value="13">Луганська</option>
-		<option value="14">Львівська</option>
-		<option value="12">Кіровоградська</option>
-		<option value="15">Миколаївська</option>
-		<option value="17">Полтавська</option>
-		<option value="16">Одеська</option>
-		<option value="20">Сумська</option>
-		<option value="19">Севастополь</option>
-		<option value="22">Харьківська</option>
-		<option value="24">Хмельницька</option>
-		<option value="21">Тернопільська</option>
-		<option value="23">Херсонська</option>
-		<option value="6">Житомирська</option>
-		<option value="5">Донецька</option>
-		<option value="4">Дніпропетровська</option>
-		<option value="9">Івано-Франківська</option>
-		<option value="25">Черкаська</option>
-		<option value="26">Чернівецька</option>
-		<option value="27">Чернігівська</option>
+		 <?php $obl=2;@getaslist('d_oblasti',$obl,'1=1'); ?>
 	  </select>
 	  <p>Район:</p>
-	  <select onchange="loadRgns('mista',this.value);" id="rgn" name="rgn">
+	  <select onchange="loadRgns('mista','mista',this.value);" id="rgn" name="rgn">
 		<option value="0">--Не важливо--</option>
-		<option value="20">Барський</option>
-		<option value="22">Гайсинський</option>
-		<option value="21">Бершадський</option>
-		<option selected="selected" value="19">Вінницький</option>
-		<option value="25">Калинівський</option>
-		<option value="27">Крижопільский</option>
-		<option value="28">Липовецький</option>
-		<option value="26">Козятинський</option>
-		<option value="29">Літинський</option>
-		<option value="33">Оратівський</option>
-		<option value="35">Погребищенський</option>
-		<option value="30">Могилів-Подільський</option>
-		<option value="31">Мурованокуриловецький</option>
-		<option value="32">Немирівский</option>
-		<option value="34">Піщанський</option>
-		<option value="39">Тростянецький</option>
-		<option value="37">Тиврівский</option>
-		<option value="38">Томашпільський</option>
-		<option value="41">Хмільницький</option>
-		<option value="40">Тульчинський</option>
-		<option value="36">Теплицький</option>
-		<option value="23">Жмеринський</option>
-		<option value="24">Ілінецький</option>
-		<option value="42">Чернівецький</option>
-		<option value="43">Чечільницький</option>
-		<option value="44">Шаргородський</option>
-		<option value="45">Ямпільський</option>
+		<?php $rgn=19;getaslist('d_rgn',$rgn,"parent='2'");  ?>
 	  </select>
 	  <p>Населений пункт:</p>
 	  <select id="mista" name="gor">
