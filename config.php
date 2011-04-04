@@ -3,7 +3,7 @@
 $debug = True;
 
 // MySQL connect
-$sqlserver = 0; // current db connection
+$sqlserver = 1; // current db connection
 
 // Sergey's PC
 $dbuser[0] = "olimp";

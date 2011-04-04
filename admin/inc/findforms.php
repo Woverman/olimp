@@ -15,12 +15,12 @@
 <input type='submit' value='Вибрати'>
 </td><td style="border:1px solid black;text-align:center;background-color:#FFFFCC" width=33%>
 Область:
-<select name='obl' id='obl' onChange="loadRgns('rgn',this.value);">
+<select name='obl' id='obl' onChange="loadRgns('rgn','rgn',this.value);">
   <option value=0>Виберіть область</option>
   <?php @getaslist('d_oblasti',$obl,'1=1'); ?>
 </select><br>
 Район:
-<select name='rgn' id='rgn' onChange="loadRgns('mista',this.value);">
+<select name='rgn' id='rgn' onChange="loadRgns('mista','mista',this.value);">
   <option value=0>Виберіть район</option>
   <?php	if ($obl>0) getaslist('d_rgn',$rgn,"parent='$obl'");  ?>
 </select><br>

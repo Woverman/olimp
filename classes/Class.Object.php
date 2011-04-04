@@ -41,8 +41,10 @@ abstract class Object
 		$this->novobud = $data["novobud"];
         $this->dateadd = $data["add"];
  	}
-    function load($id){
+    function load($id,$type="kva"){
         global $DB;
+		if ($id==0 || $id=="")
+			$id = $DB->insert("insert into m_bildings (type) values ('$type')");
         $res = $DB->request("select * from m_bildings where id=$id",ARRAY_A);
         return Object::parse($res[0]);
     }

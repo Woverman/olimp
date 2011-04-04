@@ -50,7 +50,7 @@ if ($pagecount>1) MakePageLinks($page,$pagecount,$rowcount);
     if ($row['cast']>0)	echo '<td>'.$row['cast'].' '.$sys['lists']['valutes'][$row['valuta']].'</td>';
     else echo '<td> - </td>';
     $params = '&nomer='.$nomer.'&agent='.$agent.'&obl='.$obl.'&rgn='.$rgn.'&mista='.$mista;
-		echo '<td><a href="area_edit.php?id='.$row['id'].$params.'"><img class=aimg src="./i/edit.gif" style="cursor:pointer;border:0"></td>';
+		echo '<td><a href="/admin/diladd/?oid='.$row['id'].$params.'"><img class=aimg src="./i/edit.gif" style="cursor:pointer;border:0"></td>';
 		echo '</tr><tr class="row'.$a.'">';
     echo '<td>'.$row['adr_vul'].'</td>';
 		echo '<td>'.$sys['lists']['vlasn'][$row['vlasnist']].'</td>';

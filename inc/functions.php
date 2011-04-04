@@ -25,11 +25,11 @@ function getaslist ($tbl,&$selid,$usl='1=1') {
 	while ($row=mysql_fetch_array($res)) {
         $T='';
 		if (isset($selid)) {
-			if ($row[0]==$selid) $T=' selected';
+			if ($row['id']==$selid) $T=' selected="selected"';
 		} else {
-			if ($row['def']=='1') $T=' selected';
+			if ($row['def']=='1') $T=' selected="selected"';
 		}
-        if ($T==' selected') $selid=$row[0];
+        if ($T==' selected') $selid=$row['id'];
 		echo '<option value='.$row['id'].$T.'>'.$row['name']."</option>\n";
 	}
 }
