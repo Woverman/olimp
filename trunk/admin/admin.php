@@ -3,9 +3,12 @@
 
 		<div class=spacer></div>
 		<?
-        $panel = $_REQUEST['panel'];
-		if (!isset($panel)) $panel='kva';
+        $panel = $_GET['panel'];
+		if (!isset($panel)) $panel='main';
 		?>
+		<? if ($panel=='main') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/main">Головна</a>
+		<div class=spacer></div>
 		<? if ($panel=='kva') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/kva">Квартири</a>
 		<? if ($panel=='kvaadd') $cls='sels'; else $cls='aa'; ?>

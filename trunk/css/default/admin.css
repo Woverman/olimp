@@ -41,8 +41,8 @@ body {font-size: 12px}
 
    img.aimg, img.bimg {
     border: 0;
-    width: 16px;
-    height: 16px;
+    /*width: 24px;
+    height: 24px;*/
     margin:0 3px;
     vertical-align:middle;
   }
@@ -75,4 +75,45 @@ div#loginat img {
 
 #upimg{
   display: none;
+}
+
+.widjet_outer {
+  border: 1px solid silver;
+  display: block;
+  float: left;
+  height: 100px;
+  margin-right: 5px;
+  padding: 4px;
+  position: relative;
+  width: 100px;
+}
+.widjet_outer:hover{
+	background-color: #CCF5FD;
+  	border: 1px solid #FF99FF;
+}
+
+.widjet_inner {
+  border: 1px solid silver;
+  height: 98px;
+  margin: 0 auto;
+  position: absolute;
+  width: 98px;
+  background-color: white;
+}
+
+
+.widjet_inner div {
+  bottom: -1px;
+  left: -1px;
+  padding: 4px;
+  position: absolute;
+  text-align: center;
+  width: 90px;
+}
+
+.widjet_inner img {
+  left: 50%;
+  margin-left: -25%;
+  margin-top: 10px;
+  position: absolute;
 }

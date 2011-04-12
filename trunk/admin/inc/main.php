@@ -8,6 +8,27 @@
 .mainrow a:hover div {background-color: #99CCFF; color:blue;}
 </style>
 
+<?
+function widjet($title,$href,$imgsrc){
+	?>
+<div class="widjet_outer">
+	<a href='/admin/<?=$href?>'>
+		<div class="widjet_inner">
+			<img src='/i/admin/<?=$imgsrc?>.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/i/admin/<?=$imgsrc?>.png); width:expression(1); height:expression(1);}'>
+			<div><?=$title?></div>
+		</div>
+	</a>
+</div>
+	<?
+}
+
+widjet("Квартири","kva","kva");
+widjet("Будинки","dom","home");
+widjet("Комерційна нерухомість","com","com");
+
+exit;
+?>
+
 <div class=mainrow>
   <div onclick="ShowHideDiv('neruh')"><h4><button style="position:relative; top:0;float:right">...</button>Нерухомість</h4></div>
   <div id=neruh style="display:block;">

@@ -1,19 +1,15 @@
 <?
-	if (!isset($obl)) $obl=0;
-	if (!isset($rgn)) $rgn=0;
-	if (!isset($mista)) $mista=0;
-	if (!isset($agent)) $agent=0;
-	if (!isset($nomer)) $nomer='';
+$obl= (isset($_REQUEST['obl']))? $_REQUEST['obl']:0;
+$rgn= (isset($_REQUEST['rgn']))? $_REQUEST['rgn']:0;
+$mista= (isset($_REQUEST['mista']))? $_REQUEST['mista']:0;
+$agent= (isset($_REQUEST['agent']))? $_REQUEST['agent']:0;
+$nomer= (isset($_GET['nomer']))? $_GET['nomer']:0;
 
-	if (!empty($_GET["result"]))
-	{
-		?>
-		<div style="border:1px solid green; height:1em; margin:4px; padding:14px; font-weight:bold;" align="center">Дані успішно збережені</div>
-		<?
-	}
-?>
-<div style="border:1px dotted green;height:20px;margin:4px;padding:4px" id='sdiv'><div onclick="ShowHideDiv('findforms');" style="cursor:pointer;float:left" width=50%><button>Відбір &#8595;</button></div><div style="float:right;"><button onclick="window.location='house_edit.php?panel=kvaadd';">Додати</button></div></div>
-<?php
+if (!empty($_GET["result"])){
+	?>
+	<div style="border:1px solid green; height:1em; margin:4px; padding:14px; font-weight:bold;" align="center">Дані успішно збережені</div>
+	<?
+}
 require('./inc/findforms.php');
 $usl='where type=\'dom\' ';
 if ($mista != '0') $usl.=('and adr_gor='.$mista);
@@ -22,25 +18,15 @@ elseif ($obl != '0') $usl.=('and adr_obl='.$obl);
 if ($agent != '0') $usl.=('and kont='.$agent);
 if ($nomer != '') $usl.=('and num='.$nomer);
 $sql="Select count(id) from m_bildings $usl";
-//echo $sql;
 $res=mysql_query($sql);
-if (mysql_errno()>0) echo $sql;
-$rowcount=mysql_result($res,0);
+if (mysql_errno()==0) $rowcount=mysql_result($res,0);
 if ($rowcount>0) {
-/*if (!isset($page)) $page=1;
-$perpage=10;
-$pagecount=ceil($rowcount/$perpage);
-if ($page>$pagecount) $page=1;
-if ($pagecount>1) MakePageLinks($page,$pagecount,$rowcount);*/
 ?>
 <table width=98%  class="mytab">
-<tr bgcolor=#BDCACC><th rowspan=2>№</th><th>Місто</th><th>Кімнат</th><th>Поверхів</th><th>Ціна</th><th>Правка</th></tr>
-<tr bgcolor=#BDCACC><th>Вулиця</th><th>Стан</th><th>Оголош.</th><th>Агент</th><th>Знищити</th></tr>
+<tr style="background-color: #BDCACC"><th rowspan=2>№</th><th>Місто</th><th>Кімнат</th><th>Поверх/Поверхів</th><th>Ціна</th><th rowspan=2>Правка/Знищити</th></tr>
+<tr style="background-color: #BDCACC"><th>Вулиця</th><th>Площі</th><th>Огол.</th><th>Агент</th></tr>
 <?php
 	$a=1;
-  //if ($page!='all')
-//	  $sql="Select * from m_bildings $usl order by id limit ".(($page-1)*$perpage).','.$perpage.";";
-//  else
     $sql="Select * from m_bildings $usl order by id;";
 	$res=mysql_query($sql);
 	while ($row=mysql_fetch_array($res)){
@@ -52,17 +38,19 @@ if ($pagecount>1) MakePageLinks($page,$pagecount,$rowcount);*/
     if ($row['cast']>0)	echo '<td>'.$row['cast'].' '.$sys['lists']['valutes'][$row['valuta']].'</td>';
     else echo '<td> - </td>';
     $params = '&nomer='.$nomer.'&agent='.$agent.'&obl='.$obl.'&rgn='.$rgn.'&mista='.$mista;
-		echo '<td><a href="/admin/domadd/?oid='.$row['id'].$params.'"><img class=aimg src="/i/edit.png" style="cursor:pointer;border:0"></td>';
+	  	echo '<td rowspan=2><a href="/admin/domadd/?oid='.$row['id'].$params.'">';
+		echo '<img class=aimg src="/i/edit.png" style="cursor:pointer;border:0">';
+		echo '<a href="obj_del.php?id='.$row['id'].'" onclick="return confirm(\'Знищити квартиру?\')">';
+		echo '<img class=aimg src="/i/delete.png"></a></td>';
 		echo '</tr><tr class="row'.$a.'">';
     echo '<td>'.$row['adr_vul'].'</td>';
 		echo '<td>'.$row['pzag'].'/'.$row['pzit'].'/'.$row['pkuh'].'</td>';
 		echo '<td>'.($row['prodazh']==1 ? 'продаж':'оренда').'</td>';
 		echo '<td>'.GetFieldByID('d_users','name',$row['kont'],'-').'</td>';
-		echo '<td><a href="obj_del.php?id='.$row['id'].'" onclick="return confirm(\'Знищити будинок?\')"><img class=aimg src="/i/delete.png"></a></td>';
 		echo '</tr><tr><td colspan="6" style="background-color: #660066; height:1px; border:1px solid #660066"></td></tr>';
 	}
 ?>
 </table>
 <? } else { ?>
-<p>Жоден запис не відповідає умові пошуку.<br><?=$sql?></p>
+<p>Жоден запис не відповідає умові пошуку.<br></p>
 <? } ?>
