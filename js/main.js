@@ -199,7 +199,7 @@ function ShowText(txt){
 
 function validateForm(){
   var ok=true;
-  var val=document.getElementById('agent').value;
+  var val=$('#agent').val();
   if (val=='') ok=false;
   if (val=='0') ok=false;
   if (val=='110') ok=false;

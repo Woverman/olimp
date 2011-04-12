@@ -307,7 +307,7 @@ function findexl(){
   if (mysql_errno()==0 and mysql_num_rows($res)>0) {
   $cnt=mysql_result($res,0);
   if ($cnt>0) {
-      return '<img src="i/ahtung.gif" border=0 alt="'.$cnt.'" align=left title="Увага! Прострочені ексклюзиви! ('.$cnt.')">';
+      return '<img src="/i/ahtung.gif" border=0 alt="'.$cnt.'" align=left title="Увага! Прострочені ексклюзиви! ('.$cnt.')">';
     } else {
       return '';
     }
@@ -322,7 +322,7 @@ function findmsg(){
   if (mysql_errno()==0 and mysql_num_rows($res)>0) {
   $cnt=mysql_result($res,0);
   if ($cnt>0) {
-      return '<img src="i/ahtung.gif" alt="'.$cnt.'" align=left title="Увага! Є замовлення! ('.$cnt.')" border=0>';
+      return '<img src="/i/ahtung.gif" alt="'.$cnt.'" align=left title="Увага! Є замовлення! ('.$cnt.')" border=0>';
     } else {
       return '';
     }

@@ -1,12 +1,17 @@
 <?
+	$obl= (isset($_REQUEST['obl']))? $_REQUEST['obl']:0;
+	$rgn= (isset($_REQUEST['rgn']))? $_REQUEST['rgn']:0;
+	$mista= (isset($_REQUEST['mista']))? $_REQUEST['mista']:0;
+	$agent= (isset($_REQUEST['agent']))? $_REQUEST['agent']:0;
+	$nomer= (isset($_GET['nomer']))? $_GET['nomer']:0;
 	$obj = Object::load($_REQUEST['oid'],'dom');
+	debug($obj);
 ?>
 <form method="post" action='/admin/saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
 <div id="form-wrapper">
 	<div id="steps">
 	<fieldset class="step">
-		<input type=hidden name='panel' value='kva'>
-		<input type='hidden' name='type' value='kva'>
+		<input type='hidden' name='type' value='dom'>
 		<input type='hidden' name='editid' value="<?=$obj->id?>">
 		<input type='hidden' name='f_nomer' value="<?=$obj->num?>">
 		<input type='hidden' name='f_agent' value="<?=$obj->kont?>">
@@ -47,7 +52,7 @@
 				<tr>
 					<td>Насел. пункт</td>
 					<td>
-						<select name='adr_mista' id='adr_mista' onChange="HideZeroItem('adr_mista');">
+						<select name='adr_mista' id='adr_mista' onChange="if (this.value==1063){$('#row_dist').hide()} else {$('#row_dist').show()};HideZeroItem('adr_mista');">
 						  <option value=0>Виберіть населений пункт</option>
 						  <?php
 							if ($obj->adr_rgn>0) {$usl="parent='$obj->adr_rgn'";} else {$usl="obl='$obj->adr_obl'";}
@@ -56,7 +61,7 @@
 						</select>
 					</td>
 				</tr>
-				<tr>
+				<tr id="row_dist" style="display: <?=$obj->adr_gor!=1063?"none":"table-row"?>">
 					<td>Район міста</td>
 					<td>
 						<select name='adr_dist' id='adr_dist' onChange="HideZeroItem('adr_dist');">
@@ -77,10 +82,10 @@
 					<td>Тип будинку</td>
 					<td>
 					<select name='dom_domtype'>
-						{if !$smarty.get.id}<option value=0 selected>Оберіть</option>{/if}
-						 <option value=1 {if $dom.dom_domtype==1}selected="selected"{/if}>будинок</option>
-						 <option value=2 {if $dom.dom_domtype==2}selected="selected"{/if}>частина будинку</option>
-						 <option value=3 {if $dom.dom_domtype==3}selected="selected"{/if}>дача</option>
+						<?if ($obj->dom_domtype=="0"){?><option value=0 selected>Оберіть</option><?}?>
+						 <option value=1 <?if ($obj->dom_domtype=="1"){?>selected="selected"<?}?>>будинок</option>
+						 <option value=2 <?if ($obj->dom_domtype=="2"){?>selected="selected"<?}?>>частина будинку</option>
+						 <option value=3 <?if ($obj->dom_domtype=="3"){?>selected="selected"<?}?>>дача</option>
 					 </select>
 					</td>
 				</tr>
@@ -88,11 +93,11 @@
 					<td>Кількість поверхів</td>
 					<td>
 						<select name='povv'>
-							{if !$smarty.get.id}<option value=0 selected>Виберіть</option>{/if}
-							<option value=1 {if $dom.povv=="1"}selected="selected"{/if}>1</option>
-							<option value=2 {if $dom.povv=="2"}selected="selected"{/if}>2</option>
-							<option value=3 {if $dom.povv=="3"}selected="selected"{/if}>3</option>
-							<option value=4 {if $dom.povv=="4"}selected="selected"{/if}>4</option>
+							<?if ($obj->povv=="0"){?><option value=0 selected>Виберіть</option><?}?>
+							<option value=1 <?if ($obj->povv=="1"){?>selected="selected"<?}?>>1</option>
+							<option value=2 <?if ($obj->povv=="2"){?>selected="selected"<?}?>>2</option>
+							<option value=3 <?if ($obj->povv=="3"){?>selected="selected"<?}?>>3</option>
+							<option value=4 <?if ($obj->povv=="4"){?>selected="selected"<?}?>>4</option>
 						</select>
 					</td>
 				</tr>
@@ -110,10 +115,10 @@
 				</tr>
 				<tr>
 					<td>Площа ділянки</td>
-					<td><input type='text' name='pdil' value="{$dom.pdil}" style='width:73px'>
+					<td><input type='text' name='pdil' value="<?=$obj->pdil?>" style='width:73px'>
 						<select name='plo_od'  style='width:73px'>
-							<option value=1 {if $dom.plo_od=="1"}selected="selected"{/if}>сотки</option>
-							<option value=2 {if $dom.plo_od=="2"}selected="selected"{/if}>га</option>
+							<option value=1 <?if ($obj->plo_od=="1"){?>selected="selected"<?}?>>сотки</option>
+							<option value=2 <?if ($obj->plo_od=="2"){?>selected="selected"<?}?>>га</option>
 						</select>
 					</td>
 				</tr>
@@ -206,7 +211,7 @@
 				<a href="#">Фотографії</a>
 			</li>
 			<li>
-				<a href="#" style="color:#CECECE">Зберегти все</a>
+				<a href="#" onclick="forms[0].submit()">Зберегти</a>
 			</li>
 		</ul>
 	</div>

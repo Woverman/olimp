@@ -1,18 +1,22 @@
 <?
+	$obl= (isset($_REQUEST['obl']))? $_REQUEST['obl']:0;
+	$rgn= (isset($_REQUEST['rgn']))? $_REQUEST['rgn']:0;
+	$mista= (isset($_REQUEST['mista']))? $_REQUEST['mista']:0;
+	$agent= (isset($_REQUEST['agent']))? $_REQUEST['agent']:0;
+	$nomer= (isset($_GET['nomer']))? $_GET['nomer']:0;
 	$obj = Object::load($_REQUEST['oid'],'kva');
 ?>
-<form method="post" action='/admin/saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
+<form method="post" action='/index.php?page=admin&panel=saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
 <div id="form-wrapper">
 	<div id="steps">
 	<fieldset class="step">
-		<input type=hidden name='panel' value='kva'>
 		<input type='hidden' name='type' value='kva'>
 		<input type='hidden' name='editid' value="<?=$obj->id?>">
-		<input type='hidden' name='f_nomer' value="<?=$obj->num?>">
-		<input type='hidden' name='f_agent' value="<?=$obj->kont?>">
-		<input type='hidden' name='f_obl' value="<?=$obj->adr_obl?>">
-		<input type='hidden' name='f_rgn' value="<?=$obj->adr_rgn?>">
-		<input type='hidden' name='f_mista' value="<?=$obj->adr_gor?>">
+		<input type='hidden' name='f_nomer' value="<?=$nomer?>">
+		<input type='hidden' name='f_agent' value="<?=$agent?>">
+		<input type='hidden' name='f_obl' value="<?=$obl?>">
+		<input type='hidden' name='f_rgn' value="<?=$rgn?>">
+		<input type='hidden' name='f_mista' value="<?=$mista?>">
 
 			<table cellpadding=4 cellspacing=5>
 				<tr>
@@ -47,7 +51,7 @@
 				<tr>
 					<td>Насел. пункт</td>
 					<td>
-						<select name='adr_mista' id='adr_mista' onChange="HideZeroItem('adr_mista');">
+						<select name='adr_mista' id='adr_mista' onChange="if (this.value==1063){$('#row_dist').hide()} else {$('#row_dist').show()};HideZeroItem('adr_mista');">
 						  <option value=0>Виберіть населений пункт</option>
 						  <?php
 							if ($obj->adr_rgn>0) {$usl="parent='$obj->adr_rgn'";} else {$usl="obl='$obj->adr_obl'";}
@@ -56,7 +60,7 @@
 						</select>
 					</td>
 				</tr>
-				<tr>
+				<tr id="row_dist" style="display: <?=$obj->adr_gor!=1063?"none":"table-row"?>">
 					<td>Район міста</td>
 					<td>
 						<select name='adr_dist' id='adr_dist' onChange="HideZeroItem('adr_dist');">
@@ -199,7 +203,7 @@
 				<a href="#">Загальне</a>
 			</li>
 			<li>
-				<a href="#">Додатково</a>
+				<a href="#">Коментар</a>
 			</li>
 			<li>
 				<a href="#">Службове</a>
@@ -208,7 +212,7 @@
 				<a href="#">Фотографії</a>
 			</li>
 			<li>
-				<a href="#" style="color:#CECECE">Зберегти все</a>
+				<a href="#" onclick="forms[0].submit()">Зберегти</a>
 			</li>
 		</ul>
 	</div>

@@ -7,5 +7,5 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !(.*)/$
 RewriteRule ^(.*)$ /$1/ [R=301,L]
-RewriteRule ^([^/]{4,})/([\d]*)/?$ /index.php?page=$1&id=$2 [L,QSA]
-RewriteRule ^admin/([^/]{1,})/?$ /index.php?page=admin&panel=$1 [L,QSA]
+RewriteRule ^([^/]{4,})/([\d]*)/?$ /index.php?page=$1&id=$2 [L,QSA,NE]
+RewriteRule ^admin/([^/]{1,})/?$ /index.php?page=admin&panel=$1 [L,QSA,NE]
