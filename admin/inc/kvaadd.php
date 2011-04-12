@@ -212,7 +212,7 @@
 				<a href="#">Фотографії</a>
 			</li>
 			<li>
-				<a href="#" onclick="forms[0].submit()">Зберегти</a>
+				<a href="#" onclick="if (validateForm()) forms[0].submit()">Зберегти</a>
 			</li>
 		</ul>
 	</div>

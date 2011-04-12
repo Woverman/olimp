@@ -211,7 +211,7 @@ class ObjectCom extends Object{
 		$this->pzag = $data["pzag"];
 		$this->stelya = $data["stelya"];
 		$this->office_type = $data["office_type"];
-		$this->com_var = $data["com_var"];
+		$this->com_var = preg_split('//', $data["com_var"], -1);
 	}
 	function shortDetails(){
 		return "комерційна нерухомість ".$this->pzag." м<sup>2</sup>";
@@ -228,7 +228,7 @@ class ObjectDil extends Object{
 	var $plo_od;
  	function loadLocalVars($data){
 		$this->loadvars($data);
-		$this->rTipC = $data["rTipC"];
+		$this->rTipC = preg_split('//', $data["rTipC"], -1);
 		$this->dil_add = $data["dil_add"];
 		$this->pdil = $data["pdil"];
 		$this->plo_od = $data["plo_od"];

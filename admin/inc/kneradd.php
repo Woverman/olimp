@@ -5,6 +5,7 @@
 	$agent= (isset($_REQUEST['agent']))? $_REQUEST['agent']:0;
 	$nomer= (isset($_GET['nomer']))? $_GET['nomer']:0;
 	$obj = Object::load($_REQUEST['oid'],'com');
+	debug($obj);
 ?>
 <form method="post" action='/index.php?page=admin&panel=saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
 <div id="form-wrapper">
@@ -128,10 +129,11 @@
 			<tr>
 				<td width="30%">Можливi варiанти використання</td>
 				<td>
-				<? foreach ($sys['lists']['com_var'] as $key){?>
-					<label><input type="checkbox" value=1 name="com_var[<?= $key ?>]" <?if ($obj->com_var[$i++]==$key){?>checked="checked"<?}?>>
-				   <?=$key?></label><br>
-				<? } ?>
+				<?
+				$i=0;
+				 foreach ($sys['lists']['com_var'] as $key){?>
+					<label><input type="checkbox" value=1 name="com_var[<?=$i?>]" <?if ($obj->com_var[$i+1]==1){?>checked="checked"<?}?>><?=$key?></label><br>
+				<? $i++;} ?>
 				</td>
 			</tr>
 		</table>
@@ -148,7 +150,7 @@
 					<tr>
 						<td>Контактна особа</td>
 						<td>
-						<select name='agent' id='agent' style="width:300px">
+						<select name='agent' id='agent' style="width:300px" required>
 						  	<option value='0'>Оберіть</option>
 							<? getaslist('d_users',$obj->kont,'id<>110'); ?>
 						</select>
@@ -212,7 +214,7 @@
 				<a href="#">Фотографії</a>
 			</li>
 			<li>
-				<a href="#" onclick="forms[0].submit()">Зберегти</a>
+				<a href="#" onclick="if (validateForm()) forms[0].submit()">Зберегти</a>
 			</li>
 		</ul>
 	</div>
