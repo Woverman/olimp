@@ -7,17 +7,17 @@
 	$obj = Object::load($_REQUEST['oid'],'dom');
 	debug($obj);
 ?>
-<form method="post" action='/admin/saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
+<form method="post" action='/index.php?page=admin&panel=saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
 <div id="form-wrapper">
 	<div id="steps">
 	<fieldset class="step">
 		<input type='hidden' name='type' value='dom'>
 		<input type='hidden' name='editid' value="<?=$obj->id?>">
-		<input type='hidden' name='f_nomer' value="<?=$obj->num?>">
-		<input type='hidden' name='f_agent' value="<?=$obj->kont?>">
-		<input type='hidden' name='f_obl' value="<?=$obj->adr_obl?>">
-		<input type='hidden' name='f_rgn' value="<?=$obj->adr_rgn?>">
-		<input type='hidden' name='f_mista' value="<?=$obj->adr_gor?>">
+		<input type='hidden' name='f_nomer' value="<?=$nomer?>">
+		<input type='hidden' name='f_agent' value="<?=$agent?>">
+		<input type='hidden' name='f_obl' value="<?=$obl?>">
+		<input type='hidden' name='f_rgn' value="<?=$rgn?>">
+		<input type='hidden' name='f_mista' value="<?=$mista?>">
 
 			<table cellpadding=2 cellspacing=1>
 				<tr>
@@ -202,7 +202,7 @@
 				<a href="#">Загальне</a>
 			</li>
 			<li>
-				<a href="#">Додатково</a>
+				<a href="#">Коментар</a>
 			</li>
 			<li>
 				<a href="#">Службове</a>
@@ -211,7 +211,7 @@
 				<a href="#">Фотографії</a>
 			</li>
 			<li>
-				<a href="#" onclick="forms[0].submit()">Зберегти</a>
+				<a href="#" onclick="if (validateForm()) forms[0].submit()">Зберегти</a>
 			</li>
 		</ul>
 	</div>

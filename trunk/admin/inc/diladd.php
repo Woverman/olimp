@@ -3,20 +3,21 @@
 	$rgn= (isset($_REQUEST['rgn']))? $_REQUEST['rgn']:0;
 	$mista= (isset($_REQUEST['mista']))? $_REQUEST['mista']:0;
 	$agent= (isset($_REQUEST['agent']))? $_REQUEST['agent']:0;
-	$nomer= (isset($_GET['nomer']))? $_GET['nomer']:0;
+	$nomer= (isset($_GET['nomer']))? $_GET['nomer']:"";
 	$obj = Object::load($_REQUEST['oid'],'dil');
+	debug($obj);
 ?>
-<form method="post" action='/admin/saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
+<form method="post" action='/index.php?page=admin&panel=saveobj' enctype='multipart/form-data' onsubmit="return validateForm();">
 <div id="form-wrapper">
 	<div id="steps">
 	<fieldset class="step">
 		<input type='hidden' name='type' value='dil'>
 		<input type='hidden' name='editid' value="<?=$obj->id?>">
-		<input type='hidden' name='f_nomer' value="<?=$obj->num?>">
-		<input type='hidden' name='f_agent' value="<?=$obj->kont?>">
-		<input type='hidden' name='f_obl' value="<?=$obj->adr_obl?>">
-		<input type='hidden' name='f_rgn' value="<?=$obj->adr_rgn?>">
-		<input type='hidden' name='f_mista' value="<?=$obj->adr_gor?>">
+		<input type='hidden' name='f_nomer' value="<?=$nomer?>">
+		<input type='hidden' name='f_agent' value="<?=$agent?>">
+		<input type='hidden' name='f_obl' value="<?=$obl?>">
+		<input type='hidden' name='f_rgn' value="<?=$rgn?>">
+		<input type='hidden' name='f_mista' value="<?=$mista?>">
 
 			<table cellpadding=4 cellspacing=5>
 				<tr>
@@ -79,7 +80,7 @@
 				</tr>
 				<tr>
 					<td>Площа</td>
-					<td><input type='text' name='pdil' value="{$dilyanka.pdil}" style='width:73px'>
+					<td><input type='text' name='pdil' value="<?=$obj->pdil?>" style='width:73px'>
 						<select name='plo_od'  style='width:73px'>
 							<option value=1 <?if ($obj->plo_od=="1"){?>selected="selected"<?}?>>сотки</option>
 							<option value=2 <?if ($obj->plo_od=="2"){?>selected="selected"<?}?>>га</option>
@@ -110,10 +111,11 @@
 		<td valign="top">
 			<div id="group_3" name='panel'>
 				<div style="margin: 7px 7px 7px 7px;">
-					<? foreach ($sys['lists']['rTipC'] as $key){?>
-						<label><input type="checkbox" value=1 name="rTipC[<?= $key ?>]" checked="checked" id="rTipC[<?= $key ?>]">
-					   <?=$key?></label><br>
-					<? } ?>
+					<? $i=0;
+					foreach ($sys['lists']['rTipC'] as $key){
+						?>
+						<label><input type="checkbox" value=1 name="rTipC[<?=$i?>]" <?if ($obj->rTipC[$i+1]==1){?>checked="checked"<?}?>><?=$key?></label><br>
+					<? $i++; } ?>
 				</div>
 			</div>
 		</td>
@@ -196,7 +198,7 @@
 				<a href="#">Фотографії</a>
 			</li>
 			<li>
-				<a href="#" onclick="forms[0].submit()">Зберегти</a>
+				<a href="#" onclick="if (validateForm()) forms[0].submit()">Зберегти</a>
 			</li>
 		</ul>
 	</div>

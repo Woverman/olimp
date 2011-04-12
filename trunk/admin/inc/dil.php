@@ -7,7 +7,10 @@ $nomer= (isset($_GET['nomer']))? $_GET['nomer']:0;
 
 if (!empty($_GET["result"])){
 	?>
-	<div style="border:1px solid green; height:1em; margin:4px; padding:14px; font-weight:bold;" align="center">Дані успішно збережені</div>
+	<div id="succesInfo" style="border:1px solid green; height:1em; margin:4px; padding:14px; font-weight:bold;" align="center">Інформація про ділянку успішно збережена</div>
+	<script language="JavaScript" type="text/javascript">
+		$('#succesInfo').delay(2000).slideUp(400);
+	</script>
 	<?
 }
 require('./inc/findforms.php');

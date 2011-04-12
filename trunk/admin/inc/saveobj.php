@@ -36,11 +36,11 @@ debug($_GET,"GET");
   if (isset($_POST['plo_od'])) mysql_unbuffered_query(sprintf($sql,'plo_od',$_POST['plo_od']));
 
 // ділянка -->
-  if (isset($_POST['rTipC'])) mysql_unbuffered_query(sprintf($sql,'rTipC',ToString($_POST['rTipC'],9)));
-
+  if (isset($_POST['rTipC'])){ mysql_unbuffered_query(sprintf($sql,'rTipC',ToString($_POST['rTipC'],11)));
+debug(ToString($_POST['rTipC'],11),"rTipC");}
 // комерційний -->
-
-
+ if (isset($_POST['com_var'])){ mysql_unbuffered_query(sprintf($sql,'com_var',ToString($_POST['com_var'],9)));
+debug(ToString($_POST['com_var'],9),"com_var");}
 // загальне -->
   if (isset($_POST['agent'])) mysql_unbuffered_query(sprintf($sql,'kont',$_POST['agent']));
   if (isset($_POST['comment'])) mysql_unbuffered_query(sprintf($sql,'comment',addslashes($_POST['comment'])));
