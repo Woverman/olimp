@@ -6,7 +6,7 @@ function ToEdit(id) {
   rt.send(null);
   if ( rt.status == 200 ) {
   	txt=rt.responseText.split("{");
-  	document.getElementById('formtitle').innerHTML="Редагуємо RSS-стрічку";
+  	document.getElementById('formtitle').innerHTML="Р РµРґР°РіСѓС”РјРѕ RSS-СЃС‚СЂС–С‡РєСѓ";
 	  document.getElementById('mode').value="edit";
     document.getElementById('uid').value=txt[0];
     document.getElementById('sight').value=txt[7];
@@ -34,7 +34,7 @@ function ToAdd(){
 }
 function ToDel(row) {
 	var tr=document.getElementById('row'+row);
-	if (confirm("Знищити "+tr.cells[2].innerHTML+"?"))	{
+	if (confirm("Р—РЅРёС‰РёС‚Рё "+tr.cells[2].innerHTML+"?"))	{
 	clearForm();
 	document.getElementById('uid').value=row;
 	document.getElementById('mode').value="del";
@@ -42,7 +42,7 @@ function ToDel(row) {
 	}
 }
 function clearForm() {
-	document.getElementById('formtitle').innerHTML='Нова RSS-стрічка';
+	document.getElementById('formtitle').innerHTML='РќРѕРІР° RSS-СЃС‚СЂС–С‡РєР°';
 	document.getElementById('uid').value='0';
 	document.getElementById('sight').value='';
   document.getElementById('title').value='';
@@ -109,7 +109,7 @@ if (isset($_GET['page'])) $page=$_GET['page'];
 <div id="formbox" style="position:fixed;display:none;background-color: #f0f0f0;z-index:6;width:450px">
 <Form method=post action='/admin/editrss.php' name='mainform' target="ifrm" style="border:2px outset gray;display:block;padding-bottom:2px">
 <div style="display:block;position:relative;width:100%;height:18px;background-color:blue;">
-<h4 id='formtitle' style="text-align:left;color:white;margin-left:5px;">Нова стрічка новин:</h4>
+<h4 id='formtitle' style="text-align:left;color:white;margin-left:5px;">РќРѕРІР° СЃС‚СЂС–С‡РєР° РЅРѕРІРёРЅ:</h4>
 <img align='right' src="/i/close.gif" style="position:absolute;top:1px;left:426px" onclick="HideModal()" border=0>
 </div>
 <input type='hidden' value=0 name='uid' id='uid'>
@@ -117,51 +117,47 @@ if (isset($_GET['page'])) $page=$_GET['page'];
 <input type='hidden' value="<?=$page?>" name='page'>
 <table border=0 width=100% style="padding:10px">
 <tr>
-<td align=right width=100><label for="link">Посилання:</label></td>
+<td align=right width=100><label for="link">РџРѕСЃРёР»Р°РЅРЅСЏ:</label></td>
 <td><input type='text' name='link' id='link' style="width:300px"><br>
-<input type="button" onclick="ToCheck()" style="width:300px" value="Перевірити / Заповнити" disabled="disabled">
+<input type="button" onclick="ToCheck()" style="width:300px" value="РџРµСЂРµРІС–СЂРёС‚Рё / Р—Р°РїРѕРІРЅРёС‚Рё" disabled="disabled">
 </td>
 </tr>
 <tr>
-<td align=right width=100><label for="sight">Сайт:</label></td>
+<td align=right width=100><label for="sight">РЎР°Р№С‚:</label></td>
 <td><input type='text' name='sight' id='sight' style="width:300px"></td>
 </tr>
 <tr>
-<td align=right width=100><label for="title">Назва:</label></td>
+<td align=right width=100><label for="title">РќР°Р·РІР°:</label></td>
 <td><input type='text' name='title' id='title' style="width:300px"></td>
 </tr>
 <tr>
-<td align=right width=100><label for="timeout">Таймаут:</label></td>
+<td align=right width=100><label for="timeout">РўР°Р№РјР°СѓС‚:</label></td>
 <td><input type='text' name='timeout' id='timeout' size="5" style="width:50px">
 <select name='minute' id='minute' style="width:100px">
-<option value=1>секунд</option>
-<option value=60>хвилин</option>
-<option value=3600>годин</option>
-<option value=86400>днів</option>
+<option value=1>СЃРµРєСѓРЅРґ</option>
+<option value=60>С…РІРёР»РёРЅ</option>
+<option value=3600>РіРѕРґРёРЅ</option>
+<option value=86400>РґРЅС–РІ</option>
 </select>
 </td>
 </tr>
 <tr>
-<td align=right width=100><label for="active">Показувати:</label></td>
+<td align=right width=100><label for="active">РџРѕРєР°Р·СѓРІР°С‚Рё:</label></td>
 <td><input type='checkbox' name='active' id='active'></td>
 </tr>
-<tr><td colspan=2 align=right><input id="sbm" type='submit' value='Зберегти' onclick="HideModal()"> <input type='reset' value='Відмінити' onclick="clearForm()"></td></tr>
+<tr><td colspan=2 align=right><input id="sbm" type='submit' value='Р—Р±РµСЂРµРіС‚Рё' onclick="HideModal()"> <input type='reset' value='Р’С–РґРјС–РЅРёС‚Рё' onclick="clearForm()"></td></tr>
 </table>
 </form>
 </div>
-<input type="button" value="Добавити нову RSS-стрічку" onclick="ToAdd();">
+<button style="height: 40px" onclick="ToAdd();"><img class="bimg" src="/i/rss.png">Р”РѕР±Р°РІРёС‚Рё РЅРѕРІСѓ RSS-СЃС‚СЂС–С‡РєСѓ...</button>
 <table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Сайт</th><th>Назва</th><th>Обновлено</th><th></th></tr>
+<tr bgcolor=#BDCACC><th>в„–</th><th>РЎР°Р№С‚</th><th>РќР°Р·РІР°</th><th>РћР±РЅРѕРІР»РµРЅРѕ</th><th></th></tr>
 <?php
 $sql="Select count(id) from rss_news";
 $res=mysql_query($sql);
 $rowcount=mysql_result($res,0);
 if ($rowcount>0) {
-$perpage=10;
-$pagecount=ceil($rowcount/$perpage);
-if ($page>$pagecount) $page=1;
-MakePageLinks($page,$pagecount,$rowcount);
-$sql="Select `id`,`sight`,`title`,DATE_FORMAT(last,'%d.%m.%Y %H:%i:%s') from rss_news limit ".(($page-1)*$perpage).','.$perpage.";";
+$sql="Select `id`,`sight`,`title`,DATE_FORMAT(last,'%d.%m.%Y %H:%i:%s') from rss_news;";
 
 $res=mysql_query($sql);
 $a=1;
@@ -169,8 +165,8 @@ while ($row=mysql_fetch_array($res)) {
 	echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
 	echo '<td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[2].'</td><td>'.$row[3].'</td>';
 	echo '<td>';
-	echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="./i/edit.gif"></a>';
-	echo '<a href="javascript:ToDel('.$row[0].')"><img class=aimg src="./i/del.gif"></a>';
+	echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="/i/edit.png"></a>';
+	echo '<a href="javascript:ToDel('.$row[0].')"><img class=aimg src="/i/delete.png"></a>';
 	echo '</td>';
 	echo '</tr>';
 }}

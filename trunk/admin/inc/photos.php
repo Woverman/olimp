@@ -86,6 +86,7 @@ $dir=$config['SIGHT_ROOT'].$MINDIR;
 $files=showDir($dir);
 if (is_array($files)){
 foreach ($files as $file){
+	if (file_exists($config['SIGHT_ROOT'].$MAXDIR.$file['0'])){
   list($width, $height, $type, $attr) = getimagesize($config['SIGHT_ROOT'].$MAXDIR.$file['0']);
   if ($width>$height) {
     $w=120;
@@ -104,15 +105,15 @@ foreach ($files as $file){
   <br />
   <div style="border:1px solid #FF00FF;margin-bottom: 2px;font-size: x-small;overflow:hidden;" title="<?=$file[0]?>"><?=$file[0]?></div>
   <button class="bleft" title="Вліво"><img src="/i/left.png" border="0"></button
-  ><button class="bdelete" title="Знищити"><img src="/i/delete.png" border="0"></button
-  ><button class="bedit"  title="Редагувати підпис"><img src="/i/edit.png" border="0"></button
+  ><button class="bdelete" title="Знищити"><img src="/i/deleteimg.png" border="0"></button
+  ><button class="bedit"  title="Редагувати підпис"><img src="/i/editimg.png" border="0"></button
   ><button class="bcopy"  title="Копіювати адресу"><img src="/i/copy.png" border="0"></button
   ><button class="bright" title="Вправо"><img src="/i/right.png" border="0"></button>
 </div>
-<?php } } ?>
+<?php } } } ?>
 </div>
-<br />
-<div  style="display:block;padding:10px;">
+<br style="clear: both" /><hr />
+<div  style="display:block;padding:10px;float: left">
 <Form method=post enctype='multipart/form-data'>
 <table align="center"><tr><th colspan="2" align="left">
 Добавити зображення.
@@ -135,29 +136,29 @@ foreach ($files as $file){
 jQuery(".fotoframe .bleft:first").attr("disabled","disabled");
 jQuery(".fotoframe .bright:last").attr("disabled","disabled");
 jQuery(".fotoframe .bleft").click(function(){
-  mydiv = jQuery(this).parents("div").get(0);
+  mydiv = jQuery(this).parent();
   file = jQuery(mydiv).find("[type='hidden']").val();
   jQuery(mydiv).prev().before(mydiv);
   jQuery(".fotoframe button").removeAttr("disabled");
   jQuery(".fotoframe .bright:last").attr("disabled","disabled");
   jQuery(".fotoframe .bleft:first").attr("disabled","disabled");
-  jQuery.get(location,{ajax:1,file:file,action:'imageleft'});
+  //jQuery.get(location,{ajax:1,file:file,action:'imageleft'});
   });
 
 jQuery(".fotoframe .bright").click(function(){
-  mydiv = jQuery(this).parents("div").get(0);
+  mydiv = jQuery(this).parent();
   file = jQuery(mydiv).find("[type='hidden']").val();
   jQuery(mydiv).next().after(mydiv);
   jQuery(".fotoframe button").removeAttr("disabled");
   jQuery(".fotoframe .bright:last").attr("disabled","disabled");
   jQuery(".fotoframe .bleft:first").attr("disabled","disabled");
-  jQuery.get(location,{ajax:1,file:file,action:'imageright'});
+  //jQuery.get(location,{ajax:1,file:file,action:'imageright'});
   });
 
 jQuery(".fotoframe .bdelete").click(function(){
-  mydiv = jQuery(this).parents("div").get(0);
+  mydiv = jQuery(this).parent();
   file = jQuery(mydiv).find("[type='hidden']").val();
-  jQuery.get(location,{ajax:1,file:file,action:'imagedel'});
+  //jQuery.get(location,{ajax:1,file:file,action:'imagedel'});
   jQuery(mydiv).remove();
   });
 

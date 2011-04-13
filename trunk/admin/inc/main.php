@@ -21,68 +21,55 @@ function widjet($title,$href,$imgsrc){
 </div>
 	<?
 }
-
-widjet("Квартири","kva","kva");
-widjet("Будинки","dom","home");
-widjet("Комерційна нерухомість","com","com");
-
-exit;
+$sql = "select * from s_widjets order by orderid";
+$res = $DB->request($sql,ARRAY_A);
+foreach ($res as $item){
+	if ($item['enabled']==1)
+	widjet($item['title'],$item['href'],$item['img']);
+}
+//exit;
 ?>
+<div class="ui-corner-all" style="position: fixed;bottom:-10px;right: 10px; background-color:#CCCCFF;color:#9900FF;z-index:10000;cursor: pointer;padding: 4px 10px 10px 10px;border: 1px solid #903;" onclick="showConfigure()">
+	Налаштування
+</div>
+<div id="config_dialog" class="moveable" style="display:none;border: 2px outset #FC8;background-color:#FFCC66">
+  <div id="config_dialog_caption" style="background-color: #CC9966; color:#993333;padding: 2px 0 2px 10px;margin:5px;">Управління віджетами
+    <img src="/i/window_close.png" width="24" onclick="hideConfigure();" style="float: right;cursor: pointer;position: relative;top:-4px;right:-2px"/>
+  </div>
+    <div style="position: relative;width: 700px;
+      background-color: white;height: 300px;overflow: auto;margin: 5px;
+      border: 3px groove #FFCC66;
+      ">
+    <!--<div style="position: relative;width: 670px;background-color: white;white-space:pre;margin:5px;text-align: center;">-->
+<table style="width: 100%" class="mytab">
+	<tr style="background-color: #C9C9C9; color: #343434"><th>Підпис</th><th>Посилання</th><th>Картинка</th><th>Видимість</th><th>Порядок</th></tr>
+	<?
+	$a=0;
+	foreach ($res as $item){
+		echo('<tr class="row'.$a=abs($a-1).'">');
+		echo("<td>".$item['title']."</td>");
+		echo("<td>".$item['href']."</td>");
+		echo("<td>".$item['img']."</td>");
+		echo("<td><img src='/i/".($item['enabled']?"on":"off").".png'></td>");
+		echo("<td><img src='/i/up.png'><img src='/i/down.png'></td>");
+		echo("</tr>");
+	}?>
+</table>
 
-<div class=mainrow>
-  <div onclick="ShowHideDiv('neruh')"><h4><button style="position:relative; top:0;float:right">...</button>Нерухомість</h4></div>
-  <div id=neruh style="display:block;">
-    <table border=0 width=99%>
-      <tr>
-        <th><a href='/admin/admin.php?panel=kva'><img src='./i/kva.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/kva.png); width:expression(1); height:expression(1);}'><div>Квартири</div></a></th>
-        <th><a href='/admin/admin.php?panel=dom'><img src='./i/home.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/home.png); width:expression(1); height:expression(1);}'><div>Будинки</div></a></th>
-        <th><a href='/admin/admin.php?panel=dil'><img src='./i/zdil.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/zdil.png); width:expression(1); height:expression(1);}'><div>Ділянки</div></a></th>
-        <th><a href='/admin/admin.php?panel=kner'><img src='./i/com.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/com.png); width:expression(1); height:expression(1);}'><div class='l2'>Комерційна нерухомість</div></a></th>
-      </tr>
-    </table>
+    <!--</div>-->
   </div>
+  <div style="text-align: right;margin: 5px;"><button onclick="hideConfigure();">Закрити</button></div>
 </div>
-<br />
-<div class=mainrow>
-  <div onclick="ShowHideDiv('boguna')"><h4><button style="position:relative; top:0;float:right">...</button>Богуна</h4></div>
-  <div id=boguna style="display:block;">
-    <table border=0 width=99%>
-      <tr>
-        <th><a href='/admin/admin.php?panel=boguna_main'><img src='./i/nb_main.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/nb_main.png); width:expression(1); height:expression(1);}'><div>Головна</div></a></th>
-        <th><a href='/admin/admin.php?panel=boguna_list'><img src='./i/nb_list.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/nb_list.png); width:expression(1); height:expression(1);}'><div>Список</div></a></th>
-        <th><a href='/admin/admin.php?panel=boguna_stages'><img src='./i/nb_stages.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/nb_stages.png); width:expression(1); height:expression(1);}'><div>Етапи</div></a></th>
-        <th><a href='/admin/admin.php?panel=boguna_old'><img src='./i/nb_old.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/nb_old.png); width:expression(1); height:expression(1);}'><div>Готові</div></a></th>
-      </tr>
-    </table>
-  </div>
-</div>
-<br />
-<div class=mainrow>
-  <div onclick="ShowHideDiv('dovidn')"><h4><button style="position:relative; top:0;float:right">...</button>Довідники</h4></div>
-  <div id=dovidn style="display:block;">
-    <table border=0 width=99%>
-      <tr>
-        <th><a href='/admin/admin.php?panel=obl'><img src='./i/star_blue.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/star_blue.png); width:expression(1); height:expression(1);}'><div>Області</div></a></th>
-        <th><a href='/admin/admin.php?panel=rgn'><img src='./i/star_green.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/star_green.png); width:expression(1); height:expression(1);}'><div>Райони</div></a></th>
-        <th><a href='/admin/admin.php?panel=gor'><img src='./i/star_red.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/star_red.png); width:expression(1); height:expression(1);}'><div>Міста</div></a></th>
-        <th><a href='/admin/admin.php?panel=vul'><img src='./i/star_grey.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/star_grey.png); width:expression(1); height:expression(1);}'><div>Вулиці</div></a></th>
-      </tr>
-    </table>
-  </div>
-</div>
-<br />
-<?if (IsAdmin()):?>
-<div class=mainrow>
-  <div onclick="ShowHideDiv('additional')"><h4><button style="position:relative; top:0;float:right">...</button>Додатково</h4></div>
-  <div id=additional style="display:block;">
-    <table border=0 width=99%>
-      <tr>
-        <th><a href='/admin/admin.php?panel=user'><img src='./i/users.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/users.png); width:expression(1); height:expression(1);}'><div>Користувачі</div></a></th>
-        <th><a href='/admin/admin.php?panel=exl'><img src='./i/exl.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/exl.png); width:expression(1); height:expression(1);}'><div>Ексклюзив</div></a></th>
-        <th><a href='/admin/admin.php?panel=mail'><img src='./i/mail.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/mail.png); width:expression(1); height:expression(1);}'><div>Заявки</div></a></th>
-        <th><a href='/admin/admin.php?panel=news'><img src='./i/news.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=./i/news.png); width:expression(1); height:expression(1);}'><div>Новини</div></a></th>
-      </tr>
-    </table>
-  </div>
-</div>
-<?endif?>
+<script language="JavaScript" type="text/javascript">
+   function showConfigure(){
+     $("#config_dialog").css({
+   		position:'fixed',
+   		left: ($(window).width() - $('#config_dialog').outerWidth())/2,
+   		top: ($(window).height() - $('#config_dialog').outerHeight())/2
+   	}).show();
+   }
+   function hideConfigure(){
+     $("#config_dialog").hide();
+   }
+   $('#config_dialog_caption').drag();
+</script>

@@ -20,6 +20,7 @@ class Menuset
             new Menu("catalog",1,"Каталог"),
             new Menu("catalog",0,"Оренда"),
             new Menu("kredit",0,"Кредит"),
+            //new Menu("mail",0,"Оголошення"),
             new Menu("article",2,"Про нас"),
 			new Menu("article",3,"Контакти")
         );

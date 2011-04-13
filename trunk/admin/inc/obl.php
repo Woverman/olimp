@@ -56,9 +56,9 @@ if (isset($_GET['mode'])){
 		echo '<td>'.$row[0].'</td><td>'.$row[1].'</td>';
 		echo '<td><a href=/admin/admin.php?panel=rgn&obl='.$row[0].'>Райони</td>';
 		echo '<td>';
-    echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="./i/edit.gif"></a>';
-		echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="./i/del.gif"></a>';
-    echo '<a href=/admin/admin.php?panel=obl&mode=setdef&id='.$row['id'].'><img class=aimg src="./i/'.($row['def']==1?'on':'off').'.gif"></a>';
+    echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="/i/edit.png"></a>';
+		echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="/i/delete.png"></a>';
+    echo '<a href=/admin/admin.php?panel=obl&mode=setdef&id='.$row['id'].'><img class=aimg src="/i/'.($row['def']==1?'on':'off').'.png"></a>';
     echo '</td>';
 		echo '</tr>';
 	}

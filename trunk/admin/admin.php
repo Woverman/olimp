@@ -4,6 +4,7 @@
 		<div class=spacer></div>
 		<?
         $panel = $_GET['panel'];
+        $folder = $_GET['folder'];
 		if (!isset($panel)) $panel='main';
 		?>
 		<? if ($panel=='main') $cls='sels'; else $cls='aa'; ?>
@@ -39,6 +40,9 @@
 		<a class=<?=$cls?> href="/admin/news">Новини сайту</a>
     <? if ($panel=='rss') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/rss">Імпорт новин</a>
+	<? if ($panel=='pages') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/pages">Статичні сторінки</a>
+
     <div class=spacer></div>
 		<?if (IsAdmin()):?>
 		<? if ($panel=='user') $cls='sels'; else $cls='aa'; ?>
@@ -48,8 +52,8 @@
 		<a class=<?=$cls?> href="/admin/mail"><? echo(findmsg())?>Заявки</a>
     <? if ($panel=='photos' && $folder=='awards') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/photos/?folder=awards">Дипломи</a>
-    <? if ($panel=='about') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/about">Про нас</a>
+    <? //if ($panel=='about') $cls='sels'; else $cls='aa'; ?>
+<!--		<a class=<?=$cls?> href="/admin/about">Про нас</a>-->
     <? if ($panel=='photos' && $folder=='site') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/photos/?folder=site">Зображення</a>
 		  <div class=spacer></div>
@@ -59,8 +63,11 @@
 		<a class=<?=$cls?> href="/admin/rgn">Райони</a>
 		<? if ($panel=='gor') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/gor">Міста</a>
+ 		<? if ($panel=='dist') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/dist">Райони міста</a>
 		<? if ($panel=='vul') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/vul">Вулиці</a>
+
 		<div class=spacer></div>
 		<? if ($panel=='exl') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/exl"><? echo(findexl())?>Ексклюзив</a>
