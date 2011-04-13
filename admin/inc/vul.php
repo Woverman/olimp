@@ -1,7 +1,7 @@
 <script type='text/javascript'>
 function ToEdit(row) {
 	var tr=document.getElementById(row);
-	document.getElementById('title').innerHTML="Редагуємо: " + tr.cells[0].innerHTML;		
+	document.getElementById('title').innerHTML="Р РµРґР°РіСѓС”РјРѕ: " + tr.cells[0].innerHTML;		
 	with (document.getElementById('vul')) {
 		value=tr.cells[1].innerHTML;
 		focus();
@@ -11,7 +11,7 @@ function ToEdit(row) {
 }
 function ToDel(row) {
 	var tr=document.getElementById(row);
-	if (confirm("Знищити "+tr.cells[1].innerHTML+"?"))	{
+	if (confirm("Р—РЅРёС‰РёС‚Рё "+tr.cells[1].innerHTML+"?"))	{
 	clearForm();
 	document.getElementById('uid').value=tr.cells[0].innerHTML;
 	document.getElementById('mode').value="del";
@@ -19,7 +19,7 @@ function ToDel(row) {
 	}
 }
 function clearForm() {
-	document.getElementById('title').innerHTML='Нова вулиця:';
+	document.getElementById('title').innerHTML='РќРѕРІР° РІСѓР»РёС†СЏ:';
 	document.getElementById('uid').value='0';
 	document.getElementById('vul').value='';
 	document.getElementById('mode').value='add';
@@ -41,7 +41,7 @@ if (isset($_GET['page'])) $page=$_GET['page'];
 <input type=hidden name=panel value=vul>
 <input type=hidden id='noinfo' name='noinfo' value="<?=@$_GET['noinfo']?>">
 <?
-if (@$_GET['noinfo']!=1) infodiv("Ця сторінка призначена лише для редагування і знищення вулиць. Нові вулиці добавляються автоматично при внесенні нових об'єктів нерухомості.<br>&nbsp;&nbsp;&nbsp;&nbsp;Список міст також поповнюється динамічно.");
+if (@$_GET['noinfo']!=1) infodiv("Р¦СЏ СЃС‚РѕСЂС–РЅРєР° РїСЂРёР·РЅР°С‡РµРЅР° Р»РёС€Рµ РґР»СЏ СЂРµРґР°РіСѓРІР°РЅРЅСЏ С– Р·РЅРёС‰РµРЅРЅСЏ РІСѓР»РёС†СЊ. РќРѕРІС– РІСѓР»РёС†С– РґРѕР±Р°РІР»СЏСЋС‚СЊСЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РЅРѕ РїСЂРё РІРЅРµСЃРµРЅРЅС– РЅРѕРІРёС… РѕР±'С”РєС‚С–РІ РЅРµСЂСѓС…РѕРјРѕСЃС‚С–.<br>&nbsp;&nbsp;&nbsp;&nbsp;РЎРїРёСЃРѕРє РјС–СЃС‚ С‚Р°РєРѕР¶ РїРѕРїРѕРІРЅСЋС”С‚СЊСЃСЏ РґРёРЅР°РјС–С‡РЅРѕ.");
 ?>
 <select name='parent' onchange='form.submit()'>
   <?php
@@ -56,25 +56,21 @@ if (@$_GET['noinfo']!=1) infodiv("Ця сторінка призначена лише для редагування і 
 </select>
 </form>
 <table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Вулиця</th><th>Операції</th></tr>
+<tr bgcolor=#BDCACC><th>в„–</th><th>Р’СѓР»РёС†СЏ</th><th>РћРїРµСЂР°С†С–С—</th></tr>
 <?php
 $sql="Select count(id) from d_vul where parent=".$parent;
 $res=mysql_query($sql);
 $rowcount=mysql_result($res,0);
 if ($rowcount>0) {
-$perpage=15;
-$pagecount=ceil($rowcount/$perpage);
-if ($page>$pagecount) $page=1;
-MakePageLinks($page,$pagecount,$rowcount);
-$sql="Select id,name from d_vul where parent=".$parent." order by id asc limit ".(($page-1)*$perpage).','.$perpage.";";
+$sql="Select id,name from d_vul where parent=".$parent." order by id asc;";
 $res=mysql_query($sql);
 $a=1;
 while ($row=mysql_fetch_array($res)) {
 	echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
 	echo '<td>'.$row[0].'</td><td>'.$row[1].'</td>';
 	echo '<td>';
-	echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="./i/edit.gif"></a>';
-	echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="./i/del.gif"></a>';
+	echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="/i/edit.png"></a>';
+	echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="/i/delete.png"></a>';
 	echo '</td>';
 	echo '</tr>';
 }}
@@ -87,13 +83,13 @@ while ($row=mysql_fetch_array($res)) {
 <input type='hidden' value='<?=$page?>' name='page'>
 <input type='hidden' value='1063' name='parent'>
 <table border=0 width=100%>
-<tr><th colspan=2><h4 id='title' style="text-align:left">Нова вулиця:</h4></th><td align=right><i><img class=aimg src="./i/edit.gif"> - змінити <img class=aimg src="./i/del.gif"> - знищити</i></td></tr>
+<tr><th colspan=2><h4 id='title' style="text-align:left">РќРѕРІР° РІСѓР»РёС†СЏ:</h4></th><td align=right><i><img class=aimg src="./i/edit.gif"> - Р·РјС–РЅРёС‚Рё <img class=aimg src="./i/del.gif"> - Р·РЅРёС‰РёС‚Рё</i></td></tr>
 <tr>
-<td align=right width=100>Вулиця:</td>
+<td align=right width=100>Р’СѓР»РёС†СЏ:</td>
 <td width=120><input type='text' name='vul' id='vul' onkeydown="sbm.disabled=false;"></td>
 <td rowspan=2 align=center valign=center id="StatusLine"></td>
 </tr>
-<tr><td colspan=2 align=right><input id="sbm" type='submit' value='Зберегти'> <input type='reset' value='Відмінити' onclick="clearForm()"></td></tr>
+<tr><td colspan=2 align=right><input id="sbm" type='submit' value='Р—Р±РµСЂРµРіС‚Рё'> <input type='reset' value='Р’С–РґРјС–РЅРёС‚Рё' onclick="clearForm()"></td></tr>
 </table>
 </form>
 <script type='text/javascript'>

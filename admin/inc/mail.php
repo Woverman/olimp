@@ -12,25 +12,25 @@ if (isset($_POST['id'])) {
   <form method=post>
   <input type="hidden" name="id" value="<?=$id?>">
   <table border="0" cellpadding="5" cellspacing="2" width="100%">
-  <tr><td align="right"><b>Дата</b></td><td style="border:1px solid #999"><?=$row['dt']?></td></tr>
-  <tr><td align="right"><b>Клієнт</b></td><td style="border:1px solid #999"><?=$row['cli']?></td></tr>
-  <tr><td align="right"><b>Телефон</b></td><td style="border:1px solid #999"><?=$row['phone']?></td></tr>
+  <tr><td align="right"><b>Р”Р°С‚Р°</b></td><td style="border:1px solid #999"><?=$row['dt']?></td></tr>
+  <tr><td align="right"><b>РљР»С–С”РЅС‚</b></td><td style="border:1px solid #999"><?=$row['cli']?></td></tr>
+  <tr><td align="right"><b>РўРµР»РµС„РѕРЅ</b></td><td style="border:1px solid #999"><?=$row['phone']?></td></tr>
   <tr><td align="right"><b>Email</b></td><td style="border:1px solid #999"><?=$row['email']?></td></tr>
-  <tr><td align="right"><b>к/п</b></td><td style="border:1px solid #999"><? echo $row['buy']==1?"Купує":"-"; ?>/<?  echo $row['sell']==1?"Продає":"-" ?></td></tr>
-  <tr><td align="right"><b>Текст повідомлення</b></td><td style="border:1px solid #999"><?=$row['txt']?></td></tr>
-  <tr><td align="right"><b>IP клієнта</b></td><td style="border:1px solid #999"><?=$row['ip']?></td></tr>
+  <tr><td align="right"><b>Рє/Рї</b></td><td style="border:1px solid #999"><? echo $row['buy']==1?"РљСѓРїСѓС”":"-"; ?>/<?  echo $row['sell']==1?"РџСЂРѕРґР°С”":"-" ?></td></tr>
+  <tr><td align="right"><b>РўРµРєСЃС‚ РїРѕРІС–РґРѕРјР»РµРЅРЅСЏ</b></td><td style="border:1px solid #999"><?=$row['txt']?></td></tr>
+  <tr><td align="right"><b>IP РєР»С–С”РЅС‚Р°</b></td><td style="border:1px solid #999"><?=$row['ip']?></td></tr>
   <?
   if (IsAdmin($luser)) {
-  echo '<tr><td align="right"><b>Відповідальний</b></td><td style="border:1px solid #999">';
+  echo '<tr><td align="right"><b>Р’С–РґРїРѕРІС–РґР°Р»СЊРЅРёР№</b></td><td style="border:1px solid #999">';
   echo '<select name=agent>';
 	echo '<option value=0>&nbsp;</option>';
     getaslist('d_users',$row['user']);
-  echo '</select><tr><td colspan=2><input type=submit value=Записати>&nbsp;';
+  echo '</select><tr><td colspan=2><input type=submit value=Р—Р°РїРёСЃР°С‚Рё>&nbsp;';
   }
   if ($row['deleted']==1){
-  echo '<input type=submit value=Відновити name=delbtn></td></tr>';
+  echo '<input type=submit value=Р’С–РґРЅРѕРІРёС‚Рё name=delbtn></td></tr>';
   } else {
-  echo '<input type=submit value=Знищити name=delbtn></td></tr>';
+  echo '<input type=submit value=Р—РЅРёС‰РёС‚Рё name=delbtn></td></tr>';
   }
   ?>
   </td></tr>
@@ -40,11 +40,11 @@ if (isset($_POST['id'])) {
   if (isset($_POST['delbtn'])) {
     $sql="Update m_messages set deleted=ABS(deleted-1) where id=$id";
     echo '<font color=green>';
-    if ($_POST['delbtn']=='Х') echo 'Знищено';
-    else 'Відновлено';
+    if ($_POST['delbtn']=='РҐ') echo 'Р—РЅРёС‰РµРЅРѕ';
+    else 'Р’С–РґРЅРѕРІР»РµРЅРѕ';
     echo '</font>';
     }
-  else {$sql="update m_messages set user=$us where id=$id";echo '<font color=green>Записано</font>';}
+  else {$sql="update m_messages set user=$us where id=$id";echo '<font color=green>Р—Р°РїРёСЃР°РЅРѕ</font>';}
   mysql_unbuffered_query($sql);
 
   }
@@ -65,19 +65,19 @@ $res=mysql_query($sql);
 if (!isset($_GET['showdeleted'])){
 ?>
 <input type="hidden" value="1" name="showdeleted">
-<input type="submit" value="Показати знищені">
+<input type="submit" value="РџРѕРєР°Р·Р°С‚Рё Р·РЅРёС‰РµРЅС–">
 <? } else {?>
-<input type="submit" value="Заховати знищені">
+<input type="submit" value="Р—Р°С…РѕРІР°С‚Рё Р·РЅРёС‰РµРЅС–">
 <? } ?>
 </form>
-<table width=98% class="mytab"><tr bgcolor=silver><th>...</th><th>Дата</th><th>клієнт</th><th>к/п</th><th>ір</th><th title="Відповідальний ріелтор">Ріелтор</th><th>&nbsp;</th></tr><?
+<table width=98% class="mytab"><tr bgcolor=silver><th>...</th><th>Р”Р°С‚Р°</th><th>РєР»С–С”РЅС‚</th><th>Рє/Рї</th><th>С–СЂ</th><th title="Р’С–РґРїРѕРІС–РґР°Р»СЊРЅРёР№ СЂС–РµР»С‚РѕСЂ">Р С–РµР»С‚РѕСЂ</th><th>&nbsp;</th></tr><?
 $a=1;
 while ($row=mysql_fetch_array($res)){
   echo '<form method=post><input type="hidden" name="id" value="'.$row['id'].'"><tr class="row'.($a=abs($a-1)).'">';
-  echo '<td><input type=submit value="..." name=viewbtn title="Подробиці"></td>';
+  echo '<td><input type=submit value="..." name=viewbtn title="РџРѕРґСЂРѕР±РёС†С–"></td>';
   echo '<td>'.$row['dt'].'</td>';
   echo '<td>'.$row['cli'].'</td>';
-  echo '<td>'.($row['buy']==1?"Купує":"-").'/'.($row['sell']==1?"Продає":"-").'</td>';
+  echo '<td>'.($row['buy']==1?"РљСѓРїСѓС”":"-").'/'.($row['sell']==1?"РџСЂРѕРґР°С”":"-").'</td>';
   echo '<td>'.$row['ip'].'</td>';
   echo '<td>';
   if (IsAdmin($luser)) {
@@ -90,9 +90,9 @@ while ($row=mysql_fetch_array($res)){
   echo '<td>';
   if (IsAdmin($luser)) echo '<input type=submit value=Ok DISABLED id=\'btn'.$row['id'].'\'>';
   if ($row['deleted']==1){
-  echo '<input type=submit value=O name=delbtn title="Знищити"></td>';
+  echo '<input type=submit value=O name=delbtn title="Р—РЅРёС‰РёС‚Рё"></td>';
   } else {
-  echo '<input type=submit value=Х name=delbtn title="Знищити"></td>';
+  echo '<input type=submit value=РҐ name=delbtn title="Р—РЅРёС‰РёС‚Рё"></td>';
   }
   echo '<tr></form>';
 }

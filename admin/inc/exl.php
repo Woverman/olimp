@@ -6,7 +6,7 @@ function ToEdit(id){
   rt.send(null);
   if ( rt.status == 200 ) {
   	txt=rt.responseText.split("{");
-  	document.getElementById('title').innerHTML="Редагуємо ексклюзив";
+  	document.getElementById('title').innerHTML="Р РµРґР°РіСѓС”РјРѕ РµРєСЃРєР»СЋР·РёРІ";
   	document.getElementById('uid').value=txt[0];
   	document.getElementById('rieltor').value=txt[1];
   	document.getElementById('viddil').value=txt[2];
@@ -46,7 +46,7 @@ function updaterow(row,data) {
 }
 
 function clearForm() {
-	document.getElementById('title').innerHTML='Нова вулиця:';
+	document.getElementById('title').innerHTML='РќРѕРІР° РІСѓР»РёС†СЏ:';
 	document.getElementById('uid').value='0';
 	document.getElementById('adresa').value='';
   document.getElementById('rieltor').value='';
@@ -100,31 +100,31 @@ function HideModal(){
 <div id="formbox" style="position:fixed;display:none;background-color: #f0f0f0;z-index:6;width:450px">
 <Form method='post' action='/admin/editexl.php' name='mainform' target='ifrm' style="border:2px outset gray;display:block">
 <div style="display:block;position:relative;width:100%;height:18px;background-color:blue;">
-<h4 id='title' style="text-align:left;color:white;margin-left:5px;">Новий ексклюзив:</h4>
+<h4 id='title' style="text-align:left;color:white;margin-left:5px;">РќРѕРІРёР№ РµРєСЃРєР»СЋР·РёРІ:</h4>
 <img align='right' src="/i/close.gif" style="position:absolute;top:1px;left:426px" onclick="HideModal()" border=0>
 </div>
 <div style="padding:10px;overflow:hidden;">
 <table border=0 width=400>
 <tr>
-<td align=right width=100>Адреса:</td>
+<td align=right width=100>РђРґСЂРµСЃР°:</td>
 <td width=120><input type='text' name='adresa' id='adresa'></td>
-<td><font color="#909090">Фактична адреса</font></td>
+<td><font color="#909090">Р¤Р°РєС‚РёС‡РЅР° Р°РґСЂРµСЃР°</font></td>
 </tr>
 <tr>
-<td align=right>Ріелтор:</td>
+<td align=right>Р С–РµР»С‚РѕСЂ:</td>
 <td><select name='rieltor' id='rieltor'>
 <option value=0>-</option>
 <?php @getaslist('d_users',$row['user'],'rights>-1'); ?>
 </select></td>
-<td><font color="#909090">Відповідальний</font></td>
+<td><font color="#909090">Р’С–РґРїРѕРІС–РґР°Р»СЊРЅРёР№</font></td>
 </tr>
 <tr>
-<td align=right>Відділення:</td>
+<td align=right>Р’С–РґРґС–Р»РµРЅРЅСЏ:</td>
 <td><select name='viddil' id='viddil'>
-<option value=1>Фрунзе</option>
-<option value=2>Київська</option>
-<option value=3>Вишенька</option>
-<option value=4>Центральне</option>
+<option value=1>Р¤СЂСѓРЅР·Рµ</option>
+<option value=2>РљРёС—РІСЃСЊРєР°</option>
+<option value=3>Р’РёС€РµРЅСЊРєР°</option>
+<option value=4>Р¦РµРЅС‚СЂР°Р»СЊРЅРµ</option>
 </select>
 </td>
 <td><font color="#909090"></font>
@@ -134,55 +134,55 @@ function HideModal(){
 </td>
 </tr>
 <tr>
-<td align=right>Початок:</td>
+<td align=right>РџРѕС‡Р°С‚РѕРє:</td>
 <td><input type='text' name='dstart' id='dstart' onkeydown="sbm.disabled=false;"></td>
 <td><font color="#909090">dd.mm.yyyy</font></td>
 </tr>
 <tr>
-<td align=right>Кінець:</td>
+<td align=right>РљС–РЅРµС†СЊ:</td>
 <td><input type='text' name='dend' id='dend' onkeydown="sbm.disabled=false;"></td>
 <td><font color="#909090">dd.mm.yyyy</font></td>
 </tr>
 <tr>
-<td align=right>Примітка:</td>
+<td align=right>РџСЂРёРјС–С‚РєР°:</td>
 <td><input type='text' name='comment' id='comment' onkeydown="sbm.disabled=false;"></td>
 <td><font color="#909090"></font></td>
 <td><font color="#909090"></font></td>
 </tr>
-<tr><td colspan=3 align=right style="text-align:right"><input id="sbm" type='submit' value='Зберегти' onclick="HideModal()">
- <input type='reset' value='Відмінити' onclick="HideModal()"></td><td><font color="#909090"></font></td></tr>
+<tr><td colspan=3 align=right style="text-align:right"><input id="sbm" type='submit' value='Р—Р±РµСЂРµРіС‚Рё' onclick="HideModal()">
+ <input type='reset' value='Р’С–РґРјС–РЅРёС‚Рё' onclick="HideModal()"></td><td><font color="#909090"></font></td></tr>
 </table>
 </div>
 </form>
 </div><!-- div for form -->
 <form>
-<input type="button" value="Добавити новий ексклюзив" onclick="ToAdd();">
+<input type="button" value="Р”РѕР±Р°РІРёС‚Рё РЅРѕРІРёР№ РµРєСЃРєР»СЋР·РёРІ" onclick="ToAdd();">
 <input type="hidden" value="exl" name="panel">
 <?php
 if (!isset($_GET['showdeleted'])) $_GET['showdeleted']=1;
 if (!isset($_GET['filter'])) $_GET['filter']=0;
 echo '<input type="hidden" value="'.$_GET['showdeleted'].'" name="showdeleted" id="showdeleted">';
 if ($_GET['showdeleted']==1){
-echo '<input type="submit" value="Показати знищені" onclick="showdeleted.value=2"> ';
+echo '<input type="submit" value="РџРѕРєР°Р·Р°С‚Рё Р·РЅРёС‰РµРЅС–" onclick="showdeleted.value=2"> ';
 } else {
-echo '<input type="submit" value="Заховати знищені" onclick="showdeleted.value=1"> ';
+echo '<input type="submit" value="Р—Р°С…РѕРІР°С‚Рё Р·РЅРёС‰РµРЅС–" onclick="showdeleted.value=1"> ';
 } ?>
 <select name=filter onchange='form.submit()'>
-    <option value=0 <? if ($_GET['filter']==0) echo 'SELECTED' ?>>Всі</option>
-    <optgroup label="Відділення">
-    <option value=-1 <? if ($_GET['filter']==-1) echo 'SELECTED' ?>>Фрунзе</option>
-    <option value=-2 <? if ($_GET['filter']==-2) echo 'SELECTED' ?>>Київська</option>
-    <option value=-3 <? if ($_GET['filter']==-3) echo 'SELECTED' ?>>Вишенька</option>
-    <option value=-4 <? if ($_GET['filter']==-4) echo 'SELECTED' ?>>Центральне</option>
+    <option value=0 <? if ($_GET['filter']==0) echo 'SELECTED' ?>>Р’СЃС–</option>
+    <optgroup label="Р’С–РґРґС–Р»РµРЅРЅСЏ">
+    <option value=-1 <? if ($_GET['filter']==-1) echo 'SELECTED' ?>>Р¤СЂСѓРЅР·Рµ</option>
+    <option value=-2 <? if ($_GET['filter']==-2) echo 'SELECTED' ?>>РљРёС—РІСЃСЊРєР°</option>
+    <option value=-3 <? if ($_GET['filter']==-3) echo 'SELECTED' ?>>Р’РёС€РµРЅСЊРєР°</option>
+    <option value=-4 <? if ($_GET['filter']==-4) echo 'SELECTED' ?>>Р¦РµРЅС‚СЂР°Р»СЊРЅРµ</option>
     </optgroup>
-    <optgroup label="Ріелтори">
+    <optgroup label="Р С–РµР»С‚РѕСЂРё">
     <?php @getaslist('d_users',$_GET['filter'],'rights>-1'); ?>
     </optgroup>
 </select>
 </form>
 <div align=center valign=center id="StatusLine"></div>
 <table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Адреса</th><th>Ріелтор</th><th>Відділ</th><th>Початок</th><th>Кінець</th><th>Мітка</th><th>Операції</th></tr>
+<tr bgcolor=#BDCACC><th>в„–</th><th>РђРґСЂРµСЃР°</th><th>Р С–РµР»С‚РѕСЂ</th><th>Р’С–РґРґС–Р»</th><th>РџРѕС‡Р°С‚РѕРє</th><th>РљС–РЅРµС†СЊ</th><th>РњС–С‚РєР°</th><th>РћРїРµСЂР°С†С–С—</th></tr>
 <?php
 $a=" where e.deleted<".$_GET['showdeleted'];
 //if (isset($_GET['showdeleted'])) $a=' where e.deleted<>-2';
@@ -194,7 +194,7 @@ $sql="select e.id,e.adresa,u.name,e.viddil,date_format(e.dstart,'%d.%m.%Y'),date
 //echo "<hr>$sql<hr>";
 $res=mysql_query($sql);
 $a=1;
-$b=array(1=>'Фрунзе',2=>'Київська',3=>'Вишенька',4=>'Центральне');
+$b=array(1=>'Р¤СЂСѓРЅР·Рµ',2=>'РљРёС—РІСЃСЊРєР°',3=>'Р’РёС€РµРЅСЊРєР°',4=>'Р¦РµРЅС‚СЂР°Р»СЊРЅРµ');
 $npp=0;
 while ($row=mysql_fetch_array($res)) {
   $aa=$row[7];
@@ -211,19 +211,19 @@ while ($row=mysql_fetch_array($res)) {
 	echo '<td>';
 	echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="./i/edit.gif"></a>';
   if ($del){
-  echo '<a href="javascript:ToDel(\'Відновити\','.$row[0].')"><img class=aimg src="/i/undo.gif"></a>';
+  echo '<a href="javascript:ToDel(\'Р’С–РґРЅРѕРІРёС‚Рё\','.$row[0].')"><img class=aimg src="/i/undo.gif"></a>';
   } else {
-  echo '<a href="javascript:ToDel(\'Знищити\','.$row[0].')"><img class=aimg src="./i/del.gif"></a>';
+  echo '<a href="javascript:ToDel(\'Р—РЅРёС‰РёС‚Рё\','.$row[0].')"><img class=aimg src="./i/del.gif"></a>';
   }
 	echo '</td>';
 	echo '</tr>';
 }
 ?>
 <tr><td align="right" colspan="7" style="text-align:right;"><i>
-<img class=aimg src="./i/edit.gif"> - змінити
-<img class=aimg src="./i/del.gif"> - знищити
+<img class=aimg src="./i/edit.gif"> - Р·РјС–РЅРёС‚Рё
+<img class=aimg src="./i/del.gif"> - Р·РЅРёС‰РёС‚Рё
 <? if (isset($_GET['showdeleted'])){ ?>
-<img class=aimg src="/i/undo.gif"> - відновити
+<img class=aimg src="/i/undo.gif"> - РІС–РґРЅРѕРІРёС‚Рё
 <? } ?>
 </i></td></tr>
 </table>

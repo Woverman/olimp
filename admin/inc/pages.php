@@ -101,7 +101,7 @@ switch (@$_REQUEST['mode']) {
       //echo '<font color=red>Дані збережено.</font><br>';
       }
   default:
-    $sql='Select *,date_format(date,"%d.%m.%Y %H:%e")as dt from news';
+    $sql='Select * from m_pages';
     $res=mysql_query($sql);
     echo '<table cellspasing=2 width=100% class="mytab">';
     $a=1;

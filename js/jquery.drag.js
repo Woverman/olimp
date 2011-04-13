@@ -26,9 +26,9 @@
           xx = a.pageX - x;
           // не допускаем ухода окна за пределы экрана
           yy=(yy<0)?0:yy;
-          xx=(xx<0)?0:xx;
-          yy=(yy>($(window).height()-d.parent().height()))?$(window).height()-d.parent().height():yy;
-          xx=(xx+2>($(window).width()-d.parent().width()))?$(window).width()-d.parent().width():xx;
+          //xx=(xx<0)?0:xx;
+          //yy=(yy>($(window).height()-d.parent().height()))?$(window).height()-d.parent().height():yy;
+          //xx=(xx+2>($(window).width()-d.parent().width()))?$(window).width()-d.parent().width():xx;
           
 					d.parent().css({'top' : yy + 'px','left' : xx + 'px'}); // двигаем блок
 				});

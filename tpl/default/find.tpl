@@ -55,7 +55,7 @@
 		<?php $rgn=19;getaslist('d_rgn',$rgn,"parent='2'");  ?>
 	  </select>
 	  <p>Населений пункт:</p>
-	  <select id="mista" name="gor">
+	  <select id="mista" name="gor" style="width: 75%" onchange="if (this.value==1063) {$('#map_e').show();$('#map_d').hide();} else {$('#map_e').hide();$('#map_d').show();}">
 		<option value="0">--Не важливо--</option>
 		<option value="1070">Гавришівка</option>
 		<option value="1064">Агрономічне</option>
@@ -112,6 +112,10 @@
 		<option value="29999">Шкуринці</option>
 		<option value="1114">Якушинці</option>
 	  </select>
+&nbsp;
+<img id="map_e" src="/i/map.gif" width="28" height="21" alt="vinnitsa map small enable" style="cursor: pointer;" title="Райони міста та околиці" onclick="showMapDist()"/>
+<img id="map_d" src="/i/map_dis.gif" width="28" height="21" alt="vinnitsa map small disable" style="display:none;cursor: not-allowed;"/>
+<input type="hidden" name="dist" />
   </div><br>
   Ціна від <input type="text" value="" name="prise1" id="prise1" size="5">
   до <input type="text" value="" name="prise2" id="prise2" size="5"><br>
