@@ -15,7 +15,7 @@ $rpage = $rpage?$rpage:"main";
 $id =  $_REQUEST['id'];
 $page = new Page($rpage);
 $banner = new Banner($rpage);
-
+debug($_POST);
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

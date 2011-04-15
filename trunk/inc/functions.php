@@ -219,8 +219,8 @@ function saveImgToFile($id) {
 		if ($iname!='') {
       $img=ResizeImage($iname,1024,768);
 			$thumb=ResizeImage($iname,100,70);
-      $resultFileName = "/home/hosting/windb/olimp/i/obj/img_".$id."_".$num.".jpg";
-      $resultThumbName = "/home/hosting/windb/olimp/i/obj/tmb_".$id."_".$num.".jpg";
+      $resultFileName = DOCUMENT_ROOT."/i/obj/img_".$id."_".$num.".jpg";
+      $resultThumbName = DOCUMENT_ROOT."/i/obj/tmb_".$id."_".$num.".jpg";
       //imagejpeg($img,$resultFileName);
       //imagejpeg($thumb,$resultThumbName);
       // Save file

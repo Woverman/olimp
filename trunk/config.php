@@ -19,7 +19,7 @@ $dbhost[1] = "localhost";
 
 // configuration
 define('SKIN', "default");
-define('DEBUG', true);
+define('DEBUG', false);
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); //.'/tool');
 define('ROOT_FOLDER', '');
 // Email and Name for Problem List Mailer

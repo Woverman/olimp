@@ -81,7 +81,7 @@ function ShowModal(){
       ov.style.width="100%";
       ov.style.height="100%";
     }
-    frm.style.zIndex="2";
+    frm.style.zIndex="3";
     frm.style.display="block";
     }
 function HideModal(){
@@ -93,7 +93,7 @@ function HideModal(){
     ov.style.height=0;
     }
 </script>
-<div id="overlay" style="display:block;background-color:#000;">
+<div id="overlay" style="display:none;background-color:#000;">
 <!-- div for hide content -->
 </div>
  <!-- div for form -->
@@ -209,19 +209,19 @@ while ($row=mysql_fetch_array($res)) {
   echo '<td>'.$color.$b[$row[3]].$col.'</td><td>'.$color.$row[4].$col.'</td>';
   echo '<td>'.$color.$row[5].$col.'</td><td>'.$color.$row[6].$col.'</td>';
 	echo '<td>';
-	echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="./i/edit.gif"></a>';
+	echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="/i/edit.gif"></a>';
   if ($del){
   echo '<a href="javascript:ToDel(\'Відновити\','.$row[0].')"><img class=aimg src="/i/undo.gif"></a>';
   } else {
-  echo '<a href="javascript:ToDel(\'Знищити\','.$row[0].')"><img class=aimg src="./i/del.gif"></a>';
+  echo '<a href="javascript:ToDel(\'Знищити\','.$row[0].')"><img class=aimg src="/i/del.gif"></a>';
   }
 	echo '</td>';
 	echo '</tr>';
 }
 ?>
 <tr><td align="right" colspan="7" style="text-align:right;"><i>
-<img class=aimg src="./i/edit.gif"> - змінити
-<img class=aimg src="./i/del.gif"> - знищити
+<img class=aimg src="/i/edit.gif"> - змінити
+<img class=aimg src="/i/del.gif"> - знищити
 <? if (isset($_GET['showdeleted'])){ ?>
 <img class=aimg src="/i/undo.gif"> - відновити
 <? } ?>
