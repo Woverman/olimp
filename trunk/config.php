@@ -16,10 +16,12 @@ $dbname[1] = "olimpbiz_maindb";
 $dbuser[1] = "olimpbiz_user";
 $dbpass[1] = "gSDJgYJd";
 $dbhost[1] = "localhost";
-
+$conn =  mysql_connect($dbhost[$sqlserver], $dbuser[$sqlserver], $dbpass[$sqlserver], true);
+ mysql_select_db($dbname[$sqlserver]);
+ mysql_query('set names "utf8"');
 // configuration
 define('SKIN', "default");
-define('DEBUG', false);
+define('DEBUG', true);
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); //.'/tool');
 define('ROOT_FOLDER', '');
 // Email and Name for Problem List Mailer
