@@ -7,15 +7,13 @@ if (isset($_REQUEST['lang'])){
 }
 $lng = $_SESSION['lang'];
 $lng = $lang?$lang:'ua';
-
-include ('classes.php'); // classes, config and functions
-include ('./inc/functions.php'); // classes, config and functions
+include ($_SERVER['DOCUMENT_ROOT'].'/classes.php'); // classes, config and functions
+include ($_SERVER['DOCUMENT_ROOT'].'/inc/functions.php'); // classes, config and functions
 $rpage = $_REQUEST['page'];
 $rpage = $rpage?$rpage:"main";
 $id =  $_REQUEST['id'];
 $page = new Page($rpage);
 $banner = new Banner($rpage);
-debug($_POST);
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,7 +32,7 @@ debug($_POST);
 		$pageCss = DOCUMENT_ROOT.'/css/'.SKIN.'/'.addslashes($rpage).'.css';
 		if (file_exists($pageCss))
 			echo('<link rel="stylesheet" type="text/css" href="/css/'.SKIN.'/'.$rpage.'.css">');
-	?>0
+	?>
     <script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>

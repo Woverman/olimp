@@ -1,5 +1,5 @@
 <?
-include("config.php");
+include($_SERVER['DOCUMENT_ROOT']."/config.php");
 
      $dir = DOCUMENT_ROOT."/classes";
      $hdl = opendir($dir);
