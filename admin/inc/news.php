@@ -1,3 +1,5 @@
+<? debug($_POST); ?>
+<? debug($_GET); ?>
 <script type="text/javascript">
   function putNow(){
     var txt=document.getElementById('news_dt');
@@ -18,7 +20,7 @@
     }
   return i;
   }
-  function validform(frm)
+  function validform()
   {
     if ($('#news_dt').val()==''){
       alert("Вкажіть дату публікації!");
@@ -37,13 +39,13 @@
       return
       }
 
-    frm.submit();
+    document.forms[0].submit();
   }
 </script>
 <div style="border:1px solid #BFBFBF;padding:2px;margin:2px">
 <?if (@$_REQUEST['mode']=="add" || @$_REQUEST['mode']=="edit"){?>
 <a href=/admin/news/><button style="height: 40px"><img class=bimg src="/i/list.png">Список...</button></a>
-<button style="height: 40px" onclick="validform(form); return(false);"><img class=bimg src="/i/save.png">Записати</button>
+<button style="height: 40px" onclick="validform(); return(false);"><img class=bimg src="/i/save.png">Записати</button>
 <?}else{?>
 <a href=/admin/news/?mode=add><button style="height: 40px"><img class=bimg src="/i/add.png">Добавити...</button></a>
 <?}?>
@@ -55,17 +57,17 @@ switch (@$_REQUEST['mode']) {
     if ($res=mysql_query($sql)) list($id,$title,$short,$long,$date,$enbl,$dt)=mysql_fetch_array($res);
   case 'add':
     ?>
-    <form name="newsedit" method="post" action="/index.php?page=admin&panel=news">
+    <form name="newsedit" method="POST" action="/admin/news/">
     <input type="hidden" name="id" value="<?=@$id?>">
+    <input type="hidden" name="page" value="admin">
     <input type="hidden" name="mode" value="save">
-    <input type="hidden" name="panel" value="<?=@$panel?>">
+    <input type="hidden" name="panel" value="news">
     Дата, час <input id="news_dt" name="news_dt" type="text" size="55" value="<?=@$dt?>"> <input type="button" value="Зараз" onclick="putNow()"><br>
     Назва <input id="news_name" name="news_name" type="text" size="75" value="<?=@stripslashes($title)?>"><br>
     Короткий текст.<i>(перший абзац новини впишіть сюди)</i><br>
     <textarea name="news_short" rows="10" cols="100" id="redactor_content_master"><?=@stripslashes($short)?></textarea>
     Повний текст.<i>(продовження впишіть сюди)</i><br>
     <textarea wrap=soft name="news_long" rows="20" cols="100" id="redactor_content_slave"><?=@stripslashes($long)?></textarea>
-
     </form>
     <?
     break;

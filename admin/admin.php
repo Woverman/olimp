@@ -78,8 +78,8 @@
 <div id='content' style="padding:0; margin:6px;position:relative;height:100%;min-height:100%;display: block;">
 <?php
 if (!isset($panel)) $panel='main';
-$fname=$config['SIGHT_ROOT'].'admin/inc/'.addslashes($panel).'.php';
-if (!file_exists($fname)) $fname='./inc/main.php';
+$fname=DOCUMENT_ROOT.'/admin/inc/'.addslashes($panel).'.php';
+if (!file_exists($fname)) $fname=DOCUMENT_ROOT.'/admin/inc/main.php';
 include ($fname)
 ?>
 </div>

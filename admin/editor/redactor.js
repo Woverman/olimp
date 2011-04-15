@@ -52,7 +52,7 @@ var twidth;
 			resize: true,
 			visual: true,
 			focus: false,
-			upload: 'upload.php',
+			upload: '/admin/news/upload.php',
 			uploadParams: '',
 			uploadFunction: false,
 			width: false,

@@ -71,8 +71,8 @@ function ShowModal(){
     ov.style.height="2000";
     if (document.all){
       frm.style.position="absolute";
-      frm.style.top=document.body.scrollTop+10;
-      frm.style.left=document.body.scrollLeft+10;
+      frm.style.top=document.body.scrollTop+100;
+      frm.style.left=document.body.scrollLeft+100;
       ov.style.zIndex="1";
       ov.style.filter = "progid:DXImageTransform.Microsoft.Alpha(opacity = 80)"
       setInterval("var a=document.getElementById('formbox');a.style.top=document.body.scrollTop+10;a.style.left=document.body.scrollLeft+10;",30);
@@ -102,7 +102,7 @@ function HideModal(){
 $page=1;
 if (isset($_GET['page'])) $page=$_GET['page'];
 ?>
-<div id="overlay" style="display:block;background-color:#000;">
+<div id="overlay" style="display:none;background-color:#000;">
 <!-- div for hide content -->
 </div>
  <!-- div for form -->

@@ -40,7 +40,6 @@ foreach ($res as $item){
       background-color: white;height: 300px;overflow: auto;margin: 5px;
       border: 3px groove #FFCC66;
       ">
-    <!--<div style="position: relative;width: 670px;background-color: white;white-space:pre;margin:5px;text-align: center;">-->
 <table style="width: 100%" class="mytab">
 	<tr style="background-color: #C9C9C9; color: #343434"><th>Підпис</th><th>Посилання</th><th>Картинка</th><th>Видимість</th><th>Порядок</th></tr>
 	<?
@@ -55,8 +54,6 @@ foreach ($res as $item){
 		echo("</tr>");
 	}?>
 </table>
-
-    <!--</div>-->
   </div>
   <div style="text-align: right;margin: 5px;"><button onclick="hideConfigure();">Закрити</button></div>
 </div>
