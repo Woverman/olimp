@@ -79,5 +79,5 @@ $url = "/admin/".$_POST['type']."/?result=1".$f_params;
 ?>
 
 <script>
-//window.location.href="<?=$url?>"
+window.location.href="<?=$url?>"
 </script>

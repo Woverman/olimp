@@ -21,7 +21,7 @@ $conn =  mysql_connect($dbhost[$sqlserver], $dbuser[$sqlserver], $dbpass[$sqlser
  mysql_query('set names "utf8"');
 // configuration
 define('SKIN', "default");
-define('DEBUG', true);
+define('DEBUG', True);
 define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']); //.'/tool');
 define('ROOT_FOLDER', '');
 // Email and Name for Problem List Mailer

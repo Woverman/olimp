@@ -1,7 +1,7 @@
 body {font-size: 12px}
-  a {text-decoration: none}
-  form {margin:0}
-  .aa, .sels{
+a {text-decoration: none}
+form {margin:0}
+.aa, .sels{
 	display:block;
 	padding: 4px;
 	margin: 1px;
@@ -12,45 +12,51 @@ body {font-size: 12px}
 	font-weight: bold;
 	font-size: 12px;
 	color: #003366;
-  }
-  td a {color:blue}
-  .mytab td a:hover {text-decoration: underline;}
-  .spacer,.spacer:hover {
+}
+td a {color:blue}
+.mytab td a:hover {text-decoration: underline;}
+.spacer,.spacer:hover {
 	height: 4px;
 	background-color: #CCCCFF;
 	border: 1px solid black;
 	margin:1px;
 	font-size: 2px;
-  }
+}
 
-  a.sels,a.sels:hover,a.aa:hover {
+a.sels,a.sels:hover,a.aa:hover {
 	background-color: #B163AA;
 	color:white;
 	font-weight: bold;
-  }
-  h4 {margin:0;}
-  input.txt {width:250px;}
-  select {width:150px;}
-  .mytab {empty-cells: show; font-size: 14px;}
-  .pagesdiv {text-align:right;padding:2px;}
-  span.selpage, a.pages {display:inline; border:1px solid #EAEAEA; padding:1px 4px; margin:0px ;background-color: #D3D3D3}
-  span.selpage {color:white;}
-  .mytab td {
-  	text-align: center;
+}
+h4 {margin:0;}
+input.txt {width:250px;}
+select {width:150px;}
+.mytab {empty-cells: show; font-size: 14px;}
+.pagesdiv {text-align:right;padding:2px;}
+span.selpage, a.pages {display:inline; border:1px solid #EAEAEA; padding:1px 4px; margin:0px ;background-color: #D3D3D3}
+span.selpage {color:white;}
+.mytab td {
+	text-align: center;
 	vertical-align: middle;
-	}
-  tr.row1 {background-color: #CCF5FD;}
-  tr.row1:hover,tr.row0:hover {background-color: #BAF0FC;}
-  tr.row0 {background-color: #F7EACA;}
+}
+.mytab th{
+	height: 30px;
+	vertical-align: middle;
+	border: 1px solid #C0C0C0;
+}
+.mytab tr.row1 {background-color: #CCF5FD;}
+.mytab tr.row0 {background-color: #F7EACA;}
+.mytab tr.row1 td{border-right: 1px solid #CCCCFF;}
+.mytab tr.row0 td{border-right: 1px solid #FFCCCC;}
+.mytab tr:hover {background-color: #BAF0FC;}
 
-
-   img.aimg, img.bimg {
-    border: 0;
-    /*width: 24px;
-    height: 24px;*/
-    margin:0 3px;
-    vertical-align:middle;
-  }
+img.aimg, img.bimg {
+	border: 0;
+	/*width: 24px;
+	height: 24px;*/
+	margin:0 3px;
+	vertical-align:middle;
+}
 img.award_smoll{
   margin: 2px;
   border: 3px double silver;
@@ -165,4 +171,17 @@ div#loginat img {
 	padding: 1px;
   	margin: 0;
 }
+.field_title{
+	display: block;
+	float: left;
+	width: 50px;
+	text-align: right;
+	padding-right: 4px;
+	vertical-align: middle;
+}
+
+
+
+
+
 

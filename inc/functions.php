@@ -344,7 +344,7 @@ function check_vul($vulname,$parrent){
 
 function infodiv($text){
   echo "<div id='infodiv' style='color:#707070;border:1px solid silver;padding:2px 2px 2px 10px;margin-bottom:4px'>";
-  echo "<img align=right border=0 onClick=\"document.getElementById('infodiv').style.display='none';document.getElementById('noinfo').value=1;\" src='i/_del.gif'>";
+  echo "<img align=right border=0 onClick=\"document.getElementById('infodiv').style.display='none';document.getElementById('noinfo').value=1;\" src='/i/del.gif'>";
   echo "&nbsp;&nbsp;&nbsp;&nbsp;".$text;
   echo "</div>";
   }
@@ -373,4 +373,15 @@ function delTree($dir,$pattern) {
     rmdir( $dir );
   }
 }
+
+function initials($str){
+	if ($str=='') return;
+	list($n1,$n2,$n3) = split(' ',$str);
+	return($n1);
+}
+
 ?>
+
+
+
+

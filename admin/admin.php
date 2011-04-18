@@ -42,7 +42,7 @@
     <? if ($panel=='rss') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/rss">Імпорт новин</a>
 	<? if ($panel=='pages') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/pages">Статичні сторінки</a>
+		<a class=<?=$cls?> href="/admin/pages">Статті</a>
 
     <div class=spacer></div>
 		<?if (IsAdmin()):?>

@@ -50,8 +50,8 @@ if (isset($_GET['obl'])) $obl=$_GET['obl']; ?>
   <?php @getaslist('d_oblasti',$obl,'1=1'); ?>
 </select>
 </form>
-<table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Район</th><th>Міста</th><th>Операції</th></tr>
+<table class="mytab" width=100%>
+<tr style="background-color: #BDCACC"><th>№</th><th>Район</th><th>Міста</th><th>Операції</th></tr>
 <?php
 
 $sql="Select count(id) from d_rgn where parent=".$obl;
