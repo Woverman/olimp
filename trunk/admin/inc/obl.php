@@ -37,8 +37,8 @@ function clearForm() {
 	document.getElementById('mode').value='add';
 }
 </script>
-<table width=98%  class="mytab">
-<tr bgcolor=#BDCACC><th>№</th><th>Назва</th><th>Райони</th><th>Операції</th></tr>
+<table width=100% class="mytab">
+<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Райони</th><th>Операції</th></tr>
 <?php
 
 if (isset($_GET['mode'])){

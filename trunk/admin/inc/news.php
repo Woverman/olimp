@@ -1,5 +1,3 @@
-<? debug($_POST); ?>
-<? debug($_GET); ?>
 <script type="text/javascript">
   function putNow(){
     var txt=document.getElementById('news_dt');

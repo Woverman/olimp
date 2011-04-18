@@ -37,7 +37,7 @@ $page=1;
 if (isset($_GET['parent'])) $parent=$_GET['parent'];
 if (isset($_GET['page'])) $page=$_GET['page']; 
 ?>
-<form method=get action='/admin/admin.php'>
+<form method=get>
 <input type=hidden name=panel value=vul>
 <input type=hidden id='noinfo' name='noinfo' value="<?=@$_GET['noinfo']?>">
 <?
@@ -46,17 +46,12 @@ if (@$_GET['noinfo']!=1) infodiv("Ця сторінка призначена л�
 <select name='parent' onchange='form.submit()'>
   <?php
     $sql="Select distinct(parent) from d_vul";
-    $res=mysql_query($sql);
-    while ($res1=mysql_fetch_row($res)){
-       $res2[]=$res1[0];
-       }
-    $parents=implode(",",$res2);
-    @getaslist('d_mista',$parent,'id in ('.$parents.')');
+    @getaslist('d_mista',$parent,'id in ('.$sql.')');
   ?>
 </select>
 </form>
-<table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Вулиця</th><th>Операції</th></tr>
+<table class="mytab" width=100%>
+<tr style="background-color: #BDCACC"><th>№</th><th>Вулиця</th><th>Операції</th></tr>
 <?php
 $sql="Select count(id) from d_vul where parent=".$parent;
 $res=mysql_query($sql);

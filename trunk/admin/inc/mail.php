@@ -70,7 +70,8 @@ if (!isset($_GET['showdeleted'])){
 <input type="submit" value="Заховати знищені">
 <? } ?>
 </form>
-<table width=98% class="mytab"><tr bgcolor=silver><th>...</th><th>Дата</th><th>клієнт</th><th>к/п</th><th>ір</th><th title="Відповідальний ріелтор">Ріелтор</th><th>&nbsp;</th></tr><?
+<table width=100% class="mytab">
+<tr style="background-color: #BDCACC"><th>...</th><th>Дата</th><th>клієнт</th><th>к/п</th><th>ір</th><th title="Відповідальний ріелтор">Ріелтор</th><th>&nbsp;</th></tr><?
 $a=1;
 while ($row=mysql_fetch_array($res)){
   echo '<form method=post><input type="hidden" name="id" value="'.$row['id'].'"><tr class="row'.($a=abs($a-1)).'">';
@@ -98,3 +99,4 @@ while ($row=mysql_fetch_array($res)){
 }
 
 ?>
+</table>

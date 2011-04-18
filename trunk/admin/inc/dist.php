@@ -59,8 +59,8 @@ $sql="Select id,name from d_dist order by `name` asc;";
 $res=mysql_query($sql);
 $a=1;
 ?>
-<table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Район</th><th>Правка</th><th>Знищити</th></tr>
+<table class="mytab" width=100%>
+<tr style="background-color: #BDCACC"><th>№</th><th>Район</th><th>Правка</th><th>Знищити</th></tr>
 <?php
 while ($row=mysql_fetch_row($res)) {
 	echo '<tr class="row'.$a=abs($a-1).'">';

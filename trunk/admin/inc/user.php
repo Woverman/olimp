@@ -74,7 +74,7 @@ function clearForm() {
 }
 function updaterow(row,id){
 	var role=["Адмін","Оператор","Ріелтор"];
-	var locked = ($("#locked").is(':checked'))?1:0;
+	var locked = ( $("#locked").is(':checked'))?1:0;
 	$(row).children().get(0).textContent=id;
 	$(row).children().get(1).textContent=$("#login").val();
 	$(row).children().get(2).textContent=$("#longname").val();
@@ -99,7 +99,7 @@ function HideModal(){
 
 <button style="height: 40px;" onclick="ToAdd();"><img class="bimg" src="/i/add.png"> Додати нового спiвробiтника...</button>
 <table class="mytab" id="tblMain" width=100%>
-<thead><tr bgcolor=#BDCACC><th>№</th><th>Логін</th><th>Ім'я</th><th>Права</th><th>Блок</th><th>Операції</th></tr></thead>
+<thead><tr style="background-color: #BDCACC"><th>№</th><th>Логін</th><th>Ім'я</th><th>Права</th><th>Блок</th><th>Операції</th></tr></thead>
 <tbody>
 <?php
 $sql="Select count(id) from d_users where login<>'serg'";
@@ -130,7 +130,8 @@ while ($row=mysql_fetch_row($res)) {
 		<input type='hidden' value=0 name='uid' id='uid'>
 		<input type='hidden' value='add' name='mode' id='mode'>
 		<table class="fields_tbl" style="border-width: 1px;border-collapse: separate;">
-		<tr><td width="120">Логін:</td><td><input type='text' name='login' id='login' class="txt"></td><td rowspan=13 style="vertical-align: top"><img id=userfoto name=userfoto src="/image.php?mode=2"></td></tr>
+		<tr><td width="120">Логін:</td><td><input type='text' name='login' id='login' class="txt"></td>
+		<td rowspan=13 style="vertical-align: top"><img id=userfoto name=userfoto src="/image.php?mode=2&objid=0&num=0"></td></tr>
 		<tr><td>Пароль:</td><td><input type='text' name='pass' id='pass' class="txt"></td></tr>
 		<tr><td>ПІП:</td><td><input type='text' name='longname' id='longname' class="txt"></td></tr>
 		<tr><td>Доступ:</td><td>
