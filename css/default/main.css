@@ -25,12 +25,7 @@ body{
 }
 
 .hmenu a:hover,.hmenu a.cur{
-  /*background: url(../../i/menu_back.png) repeat-x 0px -25px;*/
- /* font-size: 16px;
-  padding-left: 27px;
-  padding-right: 27px;*/
-  color: #47B8E5 ;/*#006C91;*/
-
+  color: #47B8E5 ;
 }
 /* banners block */
 
@@ -442,3 +437,15 @@ float: left;
 .dist-mark:hover{
 	color: #0000FF;
 	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #00F 0px 0px 0px 3px;}
+#cleardist{
+	cursor: pointer;
+	opacity: 0.2;
+	margin-top: 7px;
+	margin-bottom: 7px;
+	float: right;
+}
+#cleardist:hover{
+	opacity: 0.7;
+}
+
+

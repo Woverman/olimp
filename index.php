@@ -38,8 +38,8 @@ $banner = new Banner($rpage);
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/jquery.boxshadow.js"></script>
+	<script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
 	<? if ($rpage=='admin') { ?>
-    <script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/sliding.form.js"></script>
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
 	<script type="text/javascript">

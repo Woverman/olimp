@@ -19,44 +19,34 @@
 					$cnt = 10;
                     $sql = "select * from m_bildings where in_main=1 order by rand() limit $cnt";
                     $res = $DB->request($sql,ARRAY_A);
-                    //print_r($res[0]);
                 ?>
-                <!--<table width="100%">
-                    <tr>
-                    <td valign="top">-->
-					<div id="big_notices_wrapper">
-						<div id="big_notices_inner">
-							<div class="notice_item_big">
-								<? $object = Object::parse($res[0]); ?>
-		                        <a href="/object/<?=$object->id?>"><img lowsrc="<?=$object->img(1,2)?>" src="<?=$object->img(1,1)?>"><br />
-		                        <?=$object->address()?></a><br />
-		                        <?=$object->shortDetails()?><br />
-		                        <?=$object->price()?>
-							</div>
+				<div id="big_notices_wrapper">
+					<div id="big_notices_inner">
+						<div class="notice_item_big">
+							<? $object = Object::parse($res[0]); ?>
+	                        <a href="/object/<?=$object->id?>"><img lowsrc="<?=$object->img(1,2)?>" src="<?=$object->img(1,1)?>"><br />
+	                        <?=$object->address()?></a><br />
+	                        <?=$object->shortDetails()?><br />
+	                        <?=$object->price()?>
 						</div>
 					</div>
-                    <!--</td>
-                    <td valign="top">-->
-						<div id="small_notices_wrapper">
-							<div id="small_notices_inner">
-								<?
-								for ($i=1;$i<$cnt;$i++){
-									$object = Object::parse($res[$i]);
-								?>
-								<div class="notice_item">
-			                        <a href="/object/<?=$object->id?>"><img lowsrc="<?=$object->img(1,1)?>" src="<?=$object->img(1,2)?>"><br />
-			                        <?=$object->address()?></a><br />
-			                        <?=$object->shortDetails()?><br />
-			                        <?=$object->price()?>
-								</div>
-								<div class="notice_delimiter"></div>
-								<? } ?>
-							</div>
+				</div>
+				<div id="small_notices_wrapper">
+					<div id="small_notices_inner">
+						<?
+						for ($i=1;$i<$cnt;$i++){
+							$object = Object::parse($res[$i]);
+						?>
+						<div class="notice_item">
+	                        <a href="/object/<?=$object->id?>"><img lowsrc="<?=$object->img(1,1)?>" src="<?=$object->img(1,2)?>"><br />
+	                        <?=$object->address()?></a><br />
+	                        <?=$object->shortDetails()?><br />
+	                        <?=$object->price()?>
 						</div>
-                    <!--</td>
-                    </tr>
-                </table>-->
-
+						<div class="notice_delimiter"></div>
+						<? } ?>
+					</div>
+				</div>
             </div>
         </div>
         <div id="banner_block"><? $banner->showCurrentBanner(); ?></div>
