@@ -37,9 +37,10 @@ $banner = new Banner($rpage);
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/js/jquery.boxshadow.js"></script>
 	<? if ($rpage=='admin') { ?>
     <script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
-	<script type='text/javascript' src='/js/sliding.form.js'></script>
+	<script type="text/javascript" src="/js/sliding.form.js"></script>
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
 	<script type="text/javascript">
 	  $(document).ready(function(){
@@ -95,9 +96,10 @@ $banner = new Banner($rpage);
 <? } ?>
 <?if ($_REQUEST['var']==''){?>
 <div id="header_block">
+
 	<div id="logo_block">
-		<img src="/i/logo.png" alt="" id="logo_img" />
-	</div>
+
+	</div><img src="/i/Sait_4_2.2_logo.png" alt="" id="logo_img" />
     <!--<div class="ui-corner-all" id="flags_wrapper">
         <a href="?lang=en"><img src="/i/eng_flag.png" width="32" height="32" alt="English" /></a>
         <a href="?lang=ru"><img src="/i/rus_flag.png" width="32" height="32" alt="Russian" /></a>

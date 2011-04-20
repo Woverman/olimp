@@ -8,11 +8,12 @@ body{
 }
 /* Logo */
 
-#logo_img{
-  left: 24px;
+#logo_img {
+  left: 200px;
   position: absolute;
-  top: 13px;
+  top: 15px;
 }
+
 /* Menu */
 
 .hmenu a{
@@ -420,3 +421,24 @@ float: left;
 }
 #sub_menu a.sel {color:red;}
 
+.dist-mark{
+	cursor: pointer;
+	position: absolute;
+	border-radius: 3px 3px;
+	background-color: #D6E9F3;
+	box-shadow: #CCCCFF 0px 0px 2px 2px;
+	/*, #FFFFFF 2px 2px 0px 2px, #CCCCFF 2px 2px 0px 3px;*/
+	color: #9966FF;
+	padding: 1px 2px;
+	text-decoration: underline;
+	text-decoration-line: underline;
+}
+.dist-mark1:active{
+	position: absolute;
+	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #CCCCFF 0px 0px 0px 3px;
+	margin-top: 2px;
+	margin-left: 2px;
+}
+.dist-mark:hover{
+	color: #0000FF;
+	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #00F 0px 0px 0px 3px;}

@@ -49,8 +49,8 @@
 				if (!empty($usl))
 					$sql .= ' where '.implode(" and ", $usl);
 
-//					debug($usl,"usl=");
-  //					debug($sql,"sql=");
+					debug($usl,"usl=");
+  					debug($sql,"sql=");
 				$res=mysql_query($sql);
 
 				$icnt=mysql_result($res,0);
