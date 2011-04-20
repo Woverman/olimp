@@ -90,7 +90,7 @@ abstract class Object
 		if ($this->imgCount() > 0)
             return("/image.php?objid=".$this->id."&mode=".$type."&num=".$num);
 		else
-            return '/i/no_smol.jpg';
+            return '/i/no_big.jpg';
 	}
 
 	function address(){
