@@ -98,8 +98,8 @@ $banner = new Banner($rpage);
 <div id="header_block">
 
 	<div id="logo_block">
-
-	</div><img src="/i/Sait_4_2.2_logo.png" alt="" id="logo_img" />
+		<img src="/i/logo.png" alt="" id="logo_img" />
+	</div>
     <!--<div class="ui-corner-all" id="flags_wrapper">
         <a href="?lang=en"><img src="/i/eng_flag.png" width="32" height="32" alt="English" /></a>
         <a href="?lang=ru"><img src="/i/rus_flag.png" width="32" height="32" alt="Russian" /></a>

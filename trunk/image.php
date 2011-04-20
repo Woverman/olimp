@@ -1,11 +1,10 @@
 <?php
-header('Content-type: image/gif',true);
+header('Content-type: image/jpeg',true);
 
-require_once('./inc/functions.php');
 require_once('classes.php');
-$objid = $_REQUEST['objid'];
-$mode = $_REQUEST['mode'];
-$num = $_REQUEST['num'];
+$objid = $_GET['objid'];
+$mode = $_GET['mode'];
+$num = $_GET['num'];
 if (!isset($mode)) $mode=2;
 if (!isset($objid)) $objid=0;
 if (!isset($num)) $num=1;
