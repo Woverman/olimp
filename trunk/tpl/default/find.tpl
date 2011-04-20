@@ -23,7 +23,7 @@
 			top: T + "px",
 			left: L + "px"
 		},
-		1000,
+		500,
 		"linear",
 		function(){$("#map_large").css("box-shadow", "#4A4FAB 0px 0px 14px 2px")}
 		);
@@ -37,12 +37,22 @@
 			top: 0 + "px",
 			left: 0 + "px"
 		},
-		1000
+		500
 		);
 	}
-	function setDist(dID){
-		$("[name='dist']").val(dID);
+	function setDist(dID,dName){
+		$("#dist").val(dID);
+		$("#dist_name").text(dName);
+		$("#distwrap").show();
 		hideMapDist()
+	}
+	function cityChanged(id){
+		if (id==1063)
+			{$('#map_e').show();$('#map_d').hide();}
+		else
+			{$('#map_e').hide();$('#map_d').show();}
+		$('#distwrap').hide('slow');
+		$('#dist').val('');
 	}
   </script>
   <p>Тип нерухомості:</p>
@@ -88,7 +98,7 @@
 		<?php $rgn=19;getaslist('d_rgn',$rgn,"parent='2'");  ?>
 	  </select>
 	  <p>Населений пункт:</p>
-	  <select id="mista" name="gor" style="width: 75%" onchange="if (this.value==1063) {$('#map_e').show();$('#map_d').hide();} else {$('#map_e').hide();$('#map_d').show();}">
+	  <select id="mista" name="gor" style="width: 75%" onchange="cityChanged(this.value)">
 		<option value="0">--Не важливо--</option>
 		<option value="1070">Гавришівка</option>
 		<option value="1064">Агрономічне</option>
@@ -148,8 +158,10 @@
 &nbsp;
 <img id="map_e" src="/i/map.gif" width="28" height="21" alt="vinnitsa map small enable" style="cursor: pointer;" title="Райони міста та околиці" onclick="showMapDist()"/>
 <img id="map_d" src="/i/map_dis.gif" width="28" height="21" alt="vinnitsa map small disable" style="display:none;cursor: not-allowed;"/>
-<input type="hidden" name="dist" />
-  </div><br>
+<div id="distwrap" style="display: none;padding: 0 12px;"><div id="dist_name" style="padding-top: 6px;display: block;margin-top: 0;float: left;"></div>
+<img id="cleardist" src="/i/clear.png" width="16" height="16" alt="" onclick="$('#distwrap').hide('slow');$('#dist').val('');"/></div>
+<input type="hidden" name="dist" id="dist" />
+  </div><br style="clear: both;">
   Ціна від <input type="text" value="" name="prise1" id="prise1" size="5">
   до <input type="text" value="" name="prise2" id="prise2" size="5"><br>
   <br><button onclick="document.form_find.submit();">Знайти</button>
@@ -160,7 +172,7 @@
 	<?
 		$dists = $DB->request("select * from d_dist",ARRAY_A);
 		foreach($dists as $dist){
-			echo('<div class="dist-mark" onclick="setDist('.$dist['id'].')" style="left: '.$dist['left'].'px;top:'.$dist['top'].'px;">c. '.$dist['name'].'</div>');
+			echo('<div class="dist-mark" onclick="setDist('.$dist['id'].',\''.$dist['name'].'\')" style="left: '.$dist['left'].'px;top:'.$dist['top'].'px;">c. '.$dist['name'].'</div>');
 		}
 	?>
 </div>
