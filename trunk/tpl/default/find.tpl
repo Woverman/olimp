@@ -10,7 +10,40 @@
       $("#finddiv4").hide();
       $("#finddiv"+id).show();
     }
+	function showMapDist(){
+		var w = $(window);
+		var W = (w.width()<970?w.width()-100:970);
+		var H =	(w.height()<716?w.height()-100:970);
+		var L = (w.width()-W)/2;
+		var T = (w.height()-H)/2;
+		$("#map_large").animate(
+		{
+			height: H + "px",
+			width: W + "px",
+			top: T + "px",
+			left: L + "px"
+		},
+		1000,
+		"linear",
+		function(){$("#map_large").css("box-shadow", "#4A4FAB 0px 0px 14px 2px")}
+		);
 
+	}
+	function hideMapDist(){
+		$("#map_large").css("box-shadow","").animate(
+		{
+			height: 0 + "px",
+			width: 0 + "px",
+			top: 0 + "px",
+			left: 0 + "px"
+		},
+		1000
+		);
+	}
+	function setDist(dID){
+		$("[name='dist']").val(dID);
+		hideMapDist()
+	}
   </script>
   <p>Тип нерухомості:</p>
   <select onchange="showdiv(this.selectedIndex)" id="typener" name="tn">
@@ -121,5 +154,14 @@
   до <input type="text" value="" name="prise2" id="prise2" size="5"><br>
   <br><button onclick="document.form_find.submit();">Знайти</button>
 </form>
-
+<div id="map_large" style="display:block;position:fixed;width:0;height:0;top:0;left:0;overflow:hidden;z-index:10;text-align: center;vertical-align: middle">
+	<img src="/i/window_close.png" width="24" height="24" style="float: right; position: relative;" onclick="hideMapDist()">
+	<img src="/i/map.jpg" width="970" height="716" style="margin-top: -24px;" />
+	<?
+		$dists = $DB->request("select * from d_dist",ARRAY_A);
+		foreach($dists as $dist){
+			echo('<div class="dist-mark" onclick="setDist('.$dist['id'].')" style="left: '.$dist['left'].'px;top:'.$dist['top'].'px;">c. '.$dist['name'].'</div>');
+		}
+	?>
+</div>
 
