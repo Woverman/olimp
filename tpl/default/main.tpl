@@ -28,7 +28,7 @@
 						<div id="big_notices_inner">
 							<div class="notice_item_big">
 								<? $object = Object::parse($res[0]); ?>
-		                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
+		                        <a href="/object/<?=$object->id?>"><img lowsrc="<?=$object->img(1,2)?>" src="<?=$object->img(1,1)?>"><br />
 		                        <?=$object->address()?></a><br />
 		                        <?=$object->shortDetails()?><br />
 		                        <?=$object->price()?>
@@ -44,7 +44,7 @@
 									$object = Object::parse($res[$i]);
 								?>
 								<div class="notice_item">
-			                        <a href="/object/<?=$object->id?>"><img src="<?=$object->img(1)?>"><br />
+			                        <a href="/object/<?=$object->id?>"><img lowsrc="<?=$object->img(1,1)?>" src="<?=$object->img(1,2)?>"><br />
 			                        <?=$object->address()?></a><br />
 			                        <?=$object->shortDetails()?><br />
 			                        <?=$object->price()?>
