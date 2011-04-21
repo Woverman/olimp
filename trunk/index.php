@@ -42,12 +42,6 @@ $banner = new Banner($rpage);
 	<? if ($rpage=='admin') { ?>
 	<script type="text/javascript" src="/js/sliding.form.js"></script>
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
-	<script type="text/javascript">
-	  $(document).ready(function(){
-	    $('#redactor_content_master').redactor({ focus: true });
-	    $('#redactor_content_slave').redactor();
-	  });
-	</script>
 	<link href="/admin/editor/css/redactor.css" type="text/css" rel="stylesheet">
 	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
 	<? } ?>

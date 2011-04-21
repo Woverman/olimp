@@ -1,5 +1,5 @@
 <?php;
-	$dir = $_SERVER['DOCUMENT_ROOT'].'/i/news/';
+	$dir = $_SERVER['DOCUMENT_ROOT'].'/i/site/';
 
 	$_FILES['file']['type'] = strtolower($_FILES['file']['type']);
 
@@ -11,6 +11,6 @@
 	{
 	  $fname=md5(date('YmdHis')).'.jpg';
 		copy($_FILES['file']['tmp_name'], $dir.$fname);
-		echo '/i/news/'.$fname;
+		echo '/i/site/'.$fname;
 	}
 ?>
