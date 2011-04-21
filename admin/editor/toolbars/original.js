@@ -51,7 +51,7 @@ var RTOOLBAR = {
 	},				
 	image: { name: 'image', title: RLANG.image, func: 'showImage' },
 	table: { name: 'table', title: RLANG.table, func: 'showTable' },
-	video: { name: 'video', title: RLANG.video, func: 'showVideo' },
+	//video: { name: 'video', title: RLANG.video, func: 'showVideo' },
 	//charmap: { name: 'charmap', title: RLANG.charmap, func: 'showCharmap' },	
 	link: 
 	{

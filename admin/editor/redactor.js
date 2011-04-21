@@ -833,7 +833,8 @@ var twidth;
 		},
 		imageSave: function(el)
 		{
-			$(el).attr('alt', $('#redactor_file_alt').val());
+			var alt = $('#redactor_file_alt').val();
+			$(el).attr('alt', alt).attr('title', alt);
 	
 			var style = '';
 			if ($('#redactor_form_image_align') != 0)
@@ -867,19 +868,19 @@ var twidth;
 				if (this.opts.uploadFunction) var params = this.opts.uploadFunction();
 				this.uploadInit('redactorInsertImageForm', { url: this.opts.upload + params, trigger: 'redactorUploadBtn', success: function() {
 					this.imageUploadCallback();
-				}.bind(this)  });			
+				}.bind(this)  });
 
 			}.bind(this);
-			
-		
+
+
 			RedactorActive = this;
-			this.modalInit(RLANG.image, this.opts.path + 'plugins/image.html', 450, 330, handler);
+			this.modalInit(RLANG.image, this.opts.path + 'plugins/image.php', 445, 460, handler);
 		},
 		imageUploadCallback: function(data)
 		{
 			if ($('#redactor_file_link').val() != '') data = $('#redactor_file_link').val();
 			var alt = $('#redactor_file_alt').val();
-	
+
 			var style = '';
 			if ($('#redactor_form_image_align') != 0)
 			{
@@ -888,11 +889,11 @@ var twidth;
 				if (float == 'left') style = 'style="float: left; margin-right: 10px; margin-bottom: 10px;"';
 				else if (float == 'right') style = 'style="float: right; margin-left: 10px; margin-bottom: 10px;"';
 				
-				var html = '<img alt="' + alt + '" src="' + data + '" ' + style + ' />';
+				var html = '<img alt="' + alt + '" title="' + alt + '" src="' + data + '" ' + style + ' />';
 			}
 			else
 			{
-				var html = '<p><img alt="' + alt + '" src="' + data + '" /></p>'; 
+				var html = '<p><img alt="' + alt + '" title="' + alt + '" src="' + data + '" /></p>';
 			}
 		
 			RedactorActive.frame.get(0).contentWindow.focus();
@@ -1640,7 +1641,15 @@ var twidth;
 					{					
 						$('#imp_redactor_table_box').height(height-$('#redactor_imp_modal_header').outerHeight()-130).css('overflow', 'auto');						
 					}
-					
+					$('#redactor_images img').each(function(id,obj){
+							$(obj).click(function(){
+								$('#redactor_file_link').val($(obj).attr('src'));
+								$('#redactor_images img').css("outline","0px");
+								$(obj).css("outline","2px solid #E5E5E5");
+								}
+							).css({"margin":"2px","max-width":"100px","max-height":"74px"});
+						}
+					);
 					if (typeof(handler) == 'function') handler();
 				}.bind(this)
 			});
