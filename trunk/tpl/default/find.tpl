@@ -13,7 +13,7 @@
 	function showMapDist(){
 		var w = $(window);
 		var W = (w.width()<970?w.width()-100:970);
-		var H =	(w.height()<716?w.height()-100:970);
+		var H =	(w.height()<716?w.height()-100:716);
 		var L = (w.width()-W)/2;
 		var T = (w.height()-H)/2;
 		$("#map_large").animate(
