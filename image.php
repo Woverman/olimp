@@ -21,8 +21,7 @@ else // image saved to DB
 	if ($res[0][0]!='') {
   		echo $res[0][0];
 	} else {
-		$img= ($mode==2 ? 'smol' : 'big');
-		$href = './i/no_'.$img.'.jpg';
+		$href = './i/no_'.($mode==2 ? 'smol' : 'big').'.jpg';
 		readfile($href);
     }
 }
