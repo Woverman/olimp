@@ -21,7 +21,7 @@ if (!isset($otdel)){
 ?>
 <div class=maintabs style="padding-top: 1px;">
 <div id="news_title" class="ui-corner-all"><?=$row['title']?></div>
-<?=$text?>
+<?=stripslashes($text)?>
 </div>
 
 <? } ?>
