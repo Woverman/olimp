@@ -18,7 +18,6 @@ if (!empty($_GET["result"])){
 			$col = "red";
 			break;
 	}
-	debug($_GET['sql']);
 	?>
 	<div id="succesInfo" style="border:1px solid <?= $col ?>; height:1em; margin:4px; padding:14px; font-weight:bold;color:<?= $col ?>;" align="center"><?= $msg ?></div>
 	<script language="JavaScript" type="text/javascript">
@@ -27,6 +26,11 @@ if (!empty($_GET["result"])){
 	<?
 }
 ?>
+<script language="JavaScript" type="text/javascript">
+	function copyLink(id){
+		var a = prompt('Просилання на статтю','/article/'+id+'/');
+	}
+</script>
 <div style="border:1px solid #BFBFBF;padding:2px;margin:2px">
 <a href=/admin/pageedit/?mode=add><button style="height: 40px"><img class=bimg src="/i/add.png">Добавити...</button></a>
 </div>
@@ -52,6 +56,7 @@ switch (@$_REQUEST['mode']) {
       echo '<a href=/admin/pageedit/?mode=edit&pid='.$row['id'].'><img class=aimg src="/i/edit.png" title="Правка"></a>';
       echo '<a href=/admin/pages/?mode=delete&id='.$row['id'].'><img class=aimg src="/i/delete.png" title="Знищити"></a>';
       echo '<a href=/admin/pages/?mode=offon&id='.$row['id'].'><img class=aimg src="/i/'.($row['enable']==1?'on':'off').'.png" title="'.($row['enable']!=1?'Увімкнути':'Вимкнути').'"></a>';
+      echo '<a href="#" onclick="copyLink('.$row['id'].')"><img class=aimg src="/i/copy_src.png" title="Копіювати посилання"></a>';
       echo '</td></tr>';
     }
     echo '<tr>';

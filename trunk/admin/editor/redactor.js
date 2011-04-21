@@ -1268,7 +1268,7 @@ var twidth;
 				$('#redactor_link_title').val(title);			
 			}.bind(this);
 
-			this.modalInit(RLANG.link, this.opts.path + 'plugins/link.html', 400, 300, handler);
+			this.modalInit(RLANG.link, this.opts.path + 'plugins/link.php', 400, 300, handler);
 	
 		},	
 		insertLink: function()
@@ -1279,8 +1279,8 @@ var twidth;
 			var title = $('#redactor_link_title').val();
 			if (title != '') title = ' title="' + $('#redactor_link_title').val() + '"';			
 			
-			if ($('#redactor_link_id_url').get(0).checked)  var mailto = '';
-			else var mailto = 'mailto:';
+			if ($('#redactor_link_id_email').get(0).checked)  var mailto = 'mailto:';
+			else var mailto = '';
 			
 			var a = '<a href="' + mailto + $('#redactor_link_url').val() + '"' + title +'>' + value + '</a> ';
 	
