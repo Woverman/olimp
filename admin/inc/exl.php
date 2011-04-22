@@ -182,7 +182,7 @@ echo '<input type="submit" value="Заховати знищені" onclick="show
 </form>
 <div align=center valign=center id="StatusLine"></div>
 <table class="mytab" width=98%>
-<tr bgcolor=#BDCACC><th>№</th><th>Адреса</th><th>Ріелтор</th><th>Відділ</th><th>Початок</th><th>Кінець</th><th>Мітка</th><th>Операції</th></tr>
+<tr style="background-color: #BDCACC"><th>№</th><th>Адреса</th><th>Ріелтор</th><th>Відділ</th><th>Початок</th><th>Кінець</th><th>Мітка</th><th>Операції</th></tr>
 <?php
 $a=" where e.deleted<".$_GET['showdeleted'];
 //if (isset($_GET['showdeleted'])) $a=' where e.deleted<>-2';

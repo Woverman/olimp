@@ -42,5 +42,15 @@ switch($_REQUEST['action'])
 	  //echo ($sql);
       $DB->insert($sql);
       break;
+	case 'addfolder':
+	  $folder = urldecode($_REQUEST['name']);
+	  $title  = urldecode($_REQUEST['title']);
+	  $path = $_SERVER['DOCUMENT_ROOT']."/i/".$folder;
+	  if (mkdir($path,0777)){
+		mkdir($path."-p",0777);
+	  	$sql = "INSERT INTO img_folders (folder,title) values('".$folder."','".$title."')";
+		$DB->insert($sql);
+	  }
+	  break;
   }
   ?>

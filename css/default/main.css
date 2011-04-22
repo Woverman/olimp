@@ -448,4 +448,14 @@ float: left;
 	opacity: 0.7;
 }
 
+.art_del{
+	color:#6600FF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	padding: 24px 10px 25px 80px;
+}
+
+#articles_inner li{
+	list-style-image: url(../../i/article.png);
+}
 
