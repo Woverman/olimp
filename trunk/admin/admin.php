@@ -36,28 +36,30 @@
 		<a class=<?=$cls?> href="/admin/photos/?folder=stages">Богуна / Етапи</a>
     <? if ($panel=='photos' && $folder=='old') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/photos/?folder=old">Богуна / Готові</a>-->
-		  <div class=spacer></div>
+		<div class=spacer></div>
+		<? if ($panel=='spec') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/spec">Cпецпроекти</a>
+		<? if ($panel=='exl') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/exl"><? echo(findexl())?>Ексклюзиви</a>
+		 <!-- <div class=spacer></div>-->
     <? if ($panel=='news') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/news">Новини сайту</a>
-    <? if ($panel=='rss') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/rss">Імпорт новин</a>
+		<a class=<?=$cls?> href="/admin/news">Новини</a>
+<!--    <? if ($panel=='rss') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/rss">Імпорт новин</a>-->
 	<? if ($panel=='pages') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/pages">Статті</a>
 
-    <div class=spacer></div>
+    <!--<div class=spacer></div>-->
+
+    	<? if ($panel=='mail') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/mail"><? echo(findmsg())?>Заявки</a>
+    	<? if ($panel=='photos') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/photos/?folder=site">Зображення</a>
+		<div class=spacer></div>
 		<?if (IsAdmin()):?>
 		<? if ($panel=='user') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/user">Користувачі/Ріелтори</a>
 		<?endif?>
-    <? if ($panel=='mail') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/mail"><? echo(findmsg())?>Заявки</a>
-    <? if ($panel=='photos' && $folder=='awards') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/photos/?folder=awards">Дипломи</a>
-    <? //if ($panel=='about') $cls='sels'; else $cls='aa'; ?>
-<!--		<a class=<?=$cls?> href="/admin/about">Про нас</a>-->
-    <? if ($panel=='photos' && $folder=='site') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/photos/?folder=site">Зображення</a>
-		  <div class=spacer></div>
 		<? if ($panel=='obl') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/obl">Області</a>
 		<? if ($panel=='rgn') $cls='sels'; else $cls='aa'; ?>
@@ -69,12 +71,10 @@
 		<? if ($panel=='vul') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/vul">Вулиці</a>
 
-		<div class=spacer></div>
-		<? if ($panel=='exl') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/exl"><? echo(findexl())?>Ексклюзив</a>
-        <div class=spacer></div>
+
+<!--        <div class=spacer></div>
     <? if ($panel=='stat') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/stat">Статистика</a>
+		<a class=<?=$cls?> href="/admin/stat">Статистика</a>-->
 </td><td id=rpan valign=top>
 <div id='content' style="padding:0; margin:6px;position:relative;height:100%;min-height:100%;display: block;">
 <?php

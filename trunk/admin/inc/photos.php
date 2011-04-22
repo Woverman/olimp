@@ -1,6 +1,8 @@
 <?php
 
 $dirname = $_REQUEST['folder'];
+$dirname = ($dirname?$dirname:'site');
+$dirid = fldID($dirname);
 
 $MAXDIR = "i/".$dirname."/";
 $MINDIR = "i/".$dirname."-p/";
@@ -16,7 +18,12 @@ function showDir($dir){
 	debug($listFile);
     if (!empty($listFile)) return $listFile;
 }
-
+function fldID($fldName){
+	$sql = "select id from img_folders where folder='".$fldName."'";
+	debug($sql);
+	$res = mysql_query($sql);
+	return(mysql_result($res,0,0));
+}
 // обработка событий
 
 if (isset($_POST['mode'])){
@@ -33,12 +40,24 @@ if (isset($_POST['mode'])){
   $comment = $_POST['info'];
   $id = mysql_result(mysql_query("SELECT max(orderid)+1 FROM img_info WHERE file like '%".$MINDIR."%'"),0,0);
   mysql_unbuffered_query("DELETE FROM `img_info` WHERE `file` = '".$thumbnail."'");
-  $sql ="INSERT INTO `img_info` (`file`,`comment`,`orderid`) values ('".$thumbnail."','".$comment."','".$id."')";
+  $sql ="INSERT INTO `img_info` (`file`,`folder`,`comment`,`orderid`) values ('".$_FILES['foto']['name']."','".$dirid."','".$comment."','".$id."')";
   mysql_unbuffered_query($sql);
-  $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE file like '%".$MINDIR."%' ORDER BY orderid;";
+  $sql = "SET @i=0; UPDATE `img_info` SET orderid = @i:=@i+1 WHERE folder=".$dirid." ORDER BY orderid;";
   mysql_unbuffered_query($sql);
 }
+$sql = "select * from img_folders";
+$ff = $DB->request($sql,ARRAY_A);
 ?>
+Виберіть папку:
+<select onchange="location=this.value">
+<? foreach($ff as $f) {
+echo "<option value='/admin/photos/?folder=".$f['folder']."' ".($dirname==$f['folder']?"selected='selected'":"").">".$f['title']."</option>";
+} ?>
+</select>
+<button name='addnew' onclick="$('#dialog1').dialog({width:'500px',title:'Добавити папку.'})">Створити нову папку</button>
+<!--<button name='delete'>Видалити папку</button>-->
+<button name='addfoto' onclick="$('#dialog').dialog({width:'500px',title:'Добавити зображення.'})">Загрузити нове фото</button>
+<hr>
 <div style="display:block;margin-bottom:10px;width:100%;float:top;border:1px solid white;">
 <?
 $dir=ROOT_FOLDER.$MINDIR;
@@ -60,7 +79,7 @@ foreach ($files as $file){
 <div class="fotoframe" style="display:block;border:1px solid #000;margin:2px;float:left;text-align:center; width:140px;height:180px;padding: 2px">
   <input type="hidden" name="file_to_del" value="<?=$file[1]?>">
   <input type="hidden" name="file_path" value="<?=$filepath?>">
-  <img class="award_smoll" width="<?=$w?>" height="<?=$h?>" title="<?=$file[3]?>" src="/<?=$MINDIR?>/<?=$file[0]?>" style="margin-bottom:<?=120-$h?>px">
+  <img class="award_smoll" width="<?=$w?>" height="<?=$h?>" title="<?=$file[3]?>" src="/<?=$MINDIR?><?=$file[0]?>" style="margin-bottom:<?=120-$h?>px">
   <br />
   <div style="border:1px solid #FF00FF;margin-bottom: 2px;font-size: x-small;overflow:hidden;" title="<?=$file[0]?>"><?=$file[0]?></div>
   <button class="bleft" title="Вліво"><img src="/i/left.png" border="0"></button
@@ -72,10 +91,9 @@ foreach ($files as $file){
 <?php } } } ?>
 </div>
 <br style="clear: both" /><hr />
-<div  style="display:block;padding:10px;float: left">
+<div id="dialog"  style="display:none;padding:10px;float: left">
 <Form method=post enctype='multipart/form-data'>
 <table align="center"><tr><th colspan="2" align="left">
-Добавити зображення.
 <input type='hidden' value='add' name='mode' id='mode'>
 </th></tr>
 <tr><td>Виберіть фото</td><td>
@@ -89,7 +107,18 @@ foreach ($files as $file){
 </th></tr></table>
 </form>
 </div>
-
+<div id="dialog1"  style="display:none;padding:10px;float: left">
+<table style="width: 450px;">
+<tr><td>Назва (українською)</td><td>
+<input type='text' name='title' id='title' style="width: 100%">
+</td></tr>
+<tr><td>Папка (англійською)</td><td>
+<input type='text' name='name' id='name' style="width: 100%">
+</td></tr>
+<tr><td colspan="2" align="right"><br />
+<input type='button' id="createFolder" value='Створити'>
+</td></tr></table>
+</div>
 <script language="JavaScript" type="text/javascript">
 /*<![CDATA[*/
 jQuery(".fotoframe .bleft:first").attr("disabled","disabled");
@@ -145,6 +174,14 @@ jQuery(".fotoframe button").css({
   padding: '1px',
   margin: '0'
 })
+
+jQuery("#createFolder").click(function(){
+  name = jQuery("#dialog1 #name").val();
+  title = jQuery("#dialog1 #title").val();
+  jQuery.get("/ajax/imgActions.php",{title:title,action:'addfolder',name:name});
+  location.href="/admin/photos/?folder="+name;
+  });
+
 /*]]>*/
 </script>
 

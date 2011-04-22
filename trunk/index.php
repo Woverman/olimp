@@ -26,15 +26,18 @@ $banner = new Banner($rpage);
     <link rel="stylesheet" type="text/css" href="/css/null.css">
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/struct.css">
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/sunny/jquery-ui-1.8.7.custom.css">
+    <!--<link rel="stylesheet" type="text/css" href="/css/sunny/jquery-ui-1.8.7.custom.css">-->
+    <link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.8.11.custom.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css">
 	<?
 		$pageCss = DOCUMENT_ROOT.'/css/'.SKIN.'/'.addslashes($rpage).'.css';
 		if (file_exists($pageCss))
 			echo('<link rel="stylesheet" type="text/css" href="/css/'.SKIN.'/'.$rpage.'.css">');
 	?>
-    <script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
-    <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
+    <!--<script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>-->
+    <script language="JavaScript" src="/js/jquery-1.5.1.min.js" type="text/javascript"></script>
+    <!--<script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>-->
+    <script language="JavaScript" src="/js/jquery-ui-1.8.11.custom.min.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/jquery.boxshadow.js"></script>
@@ -49,46 +52,6 @@ $banner = new Banner($rpage);
 </head>
 
 <body>
-<?if ($_REQUEST['var']=='1'){?>
-<div id="header_block">
-	<div id="logo_block">
-		<img src="/i/logo1.png" alt="" id="logo_img" />
-	</div>
-</div>
-<? } ?>
-<?if ($_REQUEST['var']=='2'){?>
-<div id="header_block">
-	<div id="logo_block">
-		<img src="/i/logo2.png" alt="" id="logo_img" />
-	</div>
-</div>
-<? } ?>
-<?if ($_REQUEST['var']=='3'){?>
-<div id="header_block">
-	<div style="
-		background:url(../../i/logo1.png);
-		background-repeat: no-repeat;
-		background-position: 163px 2px;
-		">
-	<div id="logo_block"></div>
-	</div>
-</div>
-<? } ?>
-<?if ($_REQUEST['var']=='4'){?>
-<div id="header_block">
-	<div id="logo_block">
-		<img src="/i/logo3.png" alt="" id="logo_img" />
-	</div>
-</div>
-<? } ?>
-<?if ($_REQUEST['var']=='5'){?>
-<div id="header_block">
-	<div id="logo_block">
-		<img src="/i/logo4.png" alt="" id="logo_img" />
-	</div>
-</div>
-<? } ?>
-<?if ($_REQUEST['var']==''){?>
 <div id="header_block">
 
 	<div id="logo_block">
@@ -100,7 +63,6 @@ $banner = new Banner($rpage);
         <a href="?lang=ua"><img src="/i/ukr_flag.png" width="32" height="32" alt="Ukrainian" /></a>
     </div>-->
 </div>
-<? } ?>
 <div id="menu_panel">
   <ul class="hmenu">
     <? echo $page->menuset->listitems();?>
