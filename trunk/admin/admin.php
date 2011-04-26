@@ -38,7 +38,7 @@
 		<a class=<?=$cls?> href="/admin/photos/?folder=old">Богуна / Готові</a>-->
 		<div class=spacer></div>
 		<? if ($panel=='spec') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/spec">Cпецпроекти</a>
+		<a class=<?=$cls?> href="/admin/spec">Проекти</a>
 		<? if ($panel=='exl') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/exl"><? echo(findexl())?>Ексклюзиви</a>
 		 <!-- <div class=spacer></div>-->
@@ -48,7 +48,8 @@
 		<a class=<?=$cls?> href="/admin/rss">Імпорт новин</a>-->
 	<? if ($panel=='pages') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/pages">Статті</a>
-
+	<? if ($panel=='baners') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/baners">Банери</a>
     <!--<div class=spacer></div>-->
 
     	<? if ($panel=='mail') $cls='sels'; else $cls='aa'; ?>

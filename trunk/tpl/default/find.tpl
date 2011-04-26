@@ -161,18 +161,19 @@
 <div id="distwrap" style="display: none;padding: 0 12px;"><div id="dist_name" style="padding-top: 6px;display: block;margin-top: 0;float: left;"></div>
 <img id="cleardist" src="/i/clear.png" width="16" height="16" alt="" onclick="$('#distwrap').hide('slow');$('#dist').val('');"/></div>
 <input type="hidden" name="dist" id="dist" />
+<input type="hidden" name="proj" id="proj" value="0" />
   </div><br style="clear: both;">
   Ціна від <input type="text" value="" name="prise1" id="prise1" size="5">
   до <input type="text" value="" name="prise2" id="prise2" size="5"><br>
   <br><button onclick="document.form_find.submit();">Знайти</button>
 </form>
-<div id="map_large" style="display:block;position:fixed;width:0;height:0;top:0;left:0;overflow:hidden;z-index:10;text-align: center;vertical-align: middle">
+<div id="map_large" style="display:block;position:fixed;width:0;height:0;top:0;left:0;overflow:hidden;z-index:10;text-align: center;vertical-align: middle;background-color: #c6e2ff">
 	<img src="/i/window_close.png" width="24" height="24" style="float: right; position: relative;" onclick="hideMapDist()">
-	<img src="/i/map.jpg" width="970" height="716" style="margin-top: -24px;" />
+	<img src="/i/map.png" style="margin-top: -24px;" />
 	<?
 		$dists = $DB->request("select * from d_dist",ARRAY_A);
 		foreach($dists as $dist){
-			echo('<div class="dist-mark" onclick="setDist('.$dist['id'].',\''.$dist['name'].'\')" style="left: '.$dist['left'].'px;top:'.$dist['top'].'px;">c. '.$dist['name'].'</div>');
+			echo('<div class="dist-mark" onclick="setDist('.$dist['id'].',\''.$dist['name'].'\')" style="left: '.$dist['left'].'px;top:'.$dist['top'].'px;">'.$dist['name'].'</div>');
 		}
 	?>
 </div>

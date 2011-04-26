@@ -330,7 +330,7 @@ float: left;
   background-position: right center;
   background-repeat: no-repeat;
   display: block;
-  float: right;
+  text-align: right;
   font-weight: bold;
   padding-right: 20px;
 }
@@ -459,3 +459,27 @@ float: left;
 	list-style-image: url(../../i/article.png);
 }
 
+/* crop images in projects */
+.crop{
+	width: 242px;
+	height: 246px;
+	float:left;
+	margin:6px;
+	overflow:hidden; /* this is important */
+	border:1px solid #003366;
+	padding: 0;
+}
+	/* input values to crop the image: top, right, bottom, left */
+.crop img{
+    margin:-20px -50px -22px -50px;
+    height: 236px;
+    border:1px solid #003366;
+}
+.crop span {
+    display: block;
+    background-color: #FFFF66;
+    padding:25px;
+    color:blue;
+    text-align:right;
+}
+/* end of crop images in projects */

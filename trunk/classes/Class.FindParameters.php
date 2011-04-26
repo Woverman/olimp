@@ -11,6 +11,7 @@ class FindParameters{
 	var $dom_domtype;
 	var $pg;
 	var $dist;
+	var $proj;
 	function FindParameters(){
 		$this->parse();
 	}
@@ -27,6 +28,7 @@ class FindParameters{
 		$this->dom_domtype = $_REQUEST['dom_domtype']?$_REQUEST['dom_domtype']:0;
 		$this->pg = $_REQUEST['pg']?$_REQUEST['pg']:1;
 		$this->dist = $_REQUEST['dist']?$_REQUEST['dist']:0;
+		$this->proj = $_REQUEST['proj']?$_REQUEST['proj']:0;
 		//debug($this,"FindParameters");
 	}
 	function createURL($field,$new_value) {

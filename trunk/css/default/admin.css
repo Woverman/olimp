@@ -134,17 +134,6 @@ div#loginat img {
 	text-align: right;
 	padding: 2px 5px;
 }
-#formbox{
-	position:fixed;
-	width:500px;
-	top:50px;
-	left:250px;
-	border-right: 2px outset #FC8;
-	border-bottom: 2px outset #FC8;
-	border-top: 2px inset #FC8;
-	border-left: 2px inset #FC8;
-	background-color:#FFCC66;
-}
 #overlay {
 	z-index:1000;
 	position:fixed;

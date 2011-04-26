@@ -99,7 +99,7 @@ abstract class Object
         if ($this->adr_gor) $a[] = findadr($this->adr_gor,'d_mista');
         if ($this->adr_vul) $a[] = ", вул. ".$this->adr_vul;
 
-		return  implode(" ",$a);
+		return  @implode(" ",$a);
 	}
 
 	function price($noTitle=false){

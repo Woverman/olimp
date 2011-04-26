@@ -29,7 +29,7 @@
                 <?
 
 				$ff = new FindParameters();
-				$ntypes=array('','dom','kva','dil','com','bog');
+				$ntypes=array('','dom','kva','dil','com');
 				$sql='Select count(id) from m_bildings';
 				if ($ff->tn!='0')
 				  $usl[]="type='".$ntypes[$ff->tn]."'";
@@ -43,6 +43,7 @@
 				if ($ff->obl!='0') $usl[]='adr_obl='.$ff->obl;
 				if ($ff->price1!=0) $usl[]='cast>='.$ff->price1;
 				if ($ff->price2!=0) $usl[]='cast<='.$ff->price2;
+				$usl[]='proj='.$ff->proj;
 				if ($ff->tn==2) {if ($ff->kk!='0') $usl[]='kk='.$ff->kk;}
 				if ($ff->tn==1) {if ($ff->dom_domtype!='0') $usl[]='dom_domtype='.$ff->dom_domtype;}
 
