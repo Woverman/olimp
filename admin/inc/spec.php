@@ -46,7 +46,7 @@ function clearForm() {
 <?}?>
 </div>
 <table width=100% class="mytab">
-<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Титулка</th><th>Об'єкти</th><th>Етапи</th><th>Операції</th></tr>
+<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Титулка</th><th>Об'єкти</th><th>Банери</th><th>Етапи</th><th>Операції</th></tr>
 <?php
 
 if (isset($_GET['mode'])){
@@ -62,8 +62,9 @@ if (isset($_GET['mode'])){
 	while ($row=mysql_fetch_array($res)){
 		echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
 		echo '<td>'.$row[0].'</td><td>'.$row[1].'</td>';
-		echo '<td><a href=/admin/pageedit/?mode=edit&pid='.$row[2].'>Титулка</a></td>';
-		echo '<td><a href=/admin/pageedit/?mode=edit&pid='.$row[2].'>Об\'єкти</a></td>';
+		echo '<td><a href=/admin/pageedit/?mode=edit&back=1&pid='.$row[2].'>Титулка</a></td>';
+		echo '<td><a href=/admin/prjitems/?pid='.$row[0].'>Об\'єкти</a></td>';
+		echo '<td><a href=/admin/photos/?folder=proj'.$row[0].'>Банери</a></td>';
 		echo '<td>'.$row[3].'</td>';
 		echo '<td>';
 	    echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="/i/edit.gif"></a>';
