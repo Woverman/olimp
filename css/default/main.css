@@ -425,8 +425,8 @@ float: left;
 	/*, #FFFFFF 2px 2px 0px 2px, #CCCCFF 2px 2px 0px 3px;*/
 	color: #9966FF;
 	padding: 1px 2px;
-	text-decoration: underline;
-	text-decoration-line: underline;
+	/*text-decoration: underline;
+	text-decoration-line: underline;*/
 }
 .dist-mark1:active{
 	position: absolute;
@@ -435,8 +435,7 @@ float: left;
 	margin-left: 2px;
 }
 .dist-mark:hover{
-	color: #0000FF;
-	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #00F 0px 0px 0px 3px;}
+	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #CCE0FF 0px 0px 2px 4px;}
 #cleardist{
 	cursor: pointer;
 	opacity: 0.2;

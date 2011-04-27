@@ -30,8 +30,11 @@ function ToEdit(id) {
     }
     $("#formbox").dialog({
     	title:"Редагуємо: " + txt[0],
-		width:'500px'
-	});
+		width:'500px',
+		buttons: [
+			    {text: "Зберегти", click: function() { $(this).dialog("close"); } },
+			    {text: "Закрити", click: function() { $(this).dialog("close"); } }
+		]})
   })
 }
 function ToDel(id) {
@@ -49,8 +52,11 @@ function ToAdd(){
     	//$('#mode').val("add");
 		$("#formbox").dialog({
 			title:"Новий об'єкт",
-			width:"500px"
-			});
+			width:"500px",
+			buttons: [
+			    {text: "Зберегти", click: function() { $(this).dialog("close"); } },
+			    {text: "Закрити", click: function() { $(this).dialog("close"); } }
+			]});
 	});
 }
 
@@ -72,7 +78,6 @@ function loaded(fname)
 
 function AppendImage(filename)
 {
-  alert(filename);
   var row = document.getElementById("imagesrow");
   var new_num = row.cells.length;
   var newcell = row.insertCell(new_num);
