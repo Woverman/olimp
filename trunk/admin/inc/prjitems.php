@@ -47,7 +47,10 @@ function ToAdd(){
 		txt=data.split("{");
   		$('#id').val(txt[0]);
     	//$('#mode').val("add");
-		$("#formbox").dialog({title:"Новий об'єкт"});
+		$("#formbox").dialog({
+			title:"Новий об'єкт",
+			width:"500px"
+			});
 	});
 }
 
@@ -238,7 +241,7 @@ if (!isset($pov)) $pov=0;
 if (!isset($agent)) $agent=0;
 if (!isset($num)) $num=0;
 
-$usl='where type=\''.$pid.'\' ';
+$usl='where proj=\''.$pid.'\' ';
 if ($pov != '0') $usl.=(' and pov='.$pov);
 if ($agent != '0') $usl.=(' and kont='.$agent);
 if ($num != '0') $usl.=(' and num='.$num);
