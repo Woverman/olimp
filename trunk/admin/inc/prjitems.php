@@ -32,11 +32,17 @@ function ToEdit(id) {
     	title:"Редагуємо: " + txt[0],
 		width:'500px',
 		buttons: [
-			    {text: "Зберегти", click: function() { $(this).dialog("close"); } },
+			    {text: "Зберегти", click: function() { SaveObject();$(this).dialog("close"); } },
 			    {text: "Закрити", click: function() { $(this).dialog("close"); } }
 		]})
   })
 }
+
+function SaveObject(){
+	var data = $('#editform').serialize();
+	$.post("/admin/save/boguna/listitem.php",data,function(data){location.reload(true)});
+}
+
 function ToDel(id) {
 //  var iframe = document.getElementById('ifrm');
 //    iframe.src = "/admin/save/boguna/listitem_del.php?id=" + id;
@@ -54,7 +60,7 @@ function ToAdd(){
 			title:"Новий об'єкт",
 			width:"500px",
 			buttons: [
-			    {text: "Зберегти", click: function() { $(this).dialog("close"); } },
+			    {text: "Зберегти", click: function() {SaveObject(); $(this).dialog("close"); } },
 			    {text: "Закрити", click: function() { $(this).dialog("close"); } }
 			]});
 	});
@@ -125,7 +131,8 @@ function updaterow(row,num,kk,pov,s1,s2,s3,price,prodazh) {
 <div>
 <Form id="editform">
 <input type='hidden' value=0 name='id' id='id'>
-<input type='hidden' value='<?=$_GET['pid']?>' name='type' id='type'>
+<input type='hidden' value='kva' name='type' id='type'>
+<input type='hidden' value='<?=$_GET['pid']?>' name='proj' id='proj'>
 <table border=0 width=100%>
 <tr>
   <td align=right><b>Номер в базі</b></td>

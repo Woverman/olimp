@@ -231,17 +231,18 @@ var twidth;
 			Enable 
 		*/	
 		enable: function(html)
-		{				
-	   		this.doc = this.contentDocumentFrame(this.frame);
-	   		
-			// flash replace
-			html = html.replace(/\<object([\w\W]*?)\<\/object\>/gi, '<p class="redactor_video_box"><object$1</object></p>');	   		
-	   		
-			this.doc.open();
-			this.doc.write(this.getEditorDoc(html));
-			this.doc.close();
+		{
+			if(html){
+		   		this.doc = this.contentDocumentFrame(this.frame);
 
-			this.designMode();		
+				// flash replace
+				html = html.replace(/\<object([\w\W]*?)\<\/object\>/gi, '<p class="redactor_video_box"><object$1</object></p>');
+
+				this.doc.open();
+				this.doc.write(this.getEditorDoc(html));
+			this.doc.close();
+			}
+			this.designMode();
 		},
 		getEditorDoc: function(html)
 		{
@@ -695,7 +696,7 @@ var twidth;
 				html = html.replace(/\%7B/gi, '{');
 				html = html.replace(/\%7D/gi, '}');
 	
-	
+
 				// flash replace
 				html = html.replace(/<p(.*?)class="redactor_video_box"(.*?)>([\w\W]*?)\<\/p>/gi, "$3");
 
@@ -727,7 +728,7 @@ var twidth;
 				
 				this.frame.show();
 				this.focus();
-				
+
 				this.opts.visual = true;
 				this.docObserve();
 			}
@@ -823,7 +824,7 @@ var twidth;
 				
 				var float = $el.css('float');
 				if (float == 'none') float = 0;
-				
+
 				$('#redactor_form_image_align').val(float);
 
 			}.bind(this);		
@@ -919,7 +920,7 @@ var twidth;
 		showTable: function(edit, e)
 		{		
 			RedactorActive = this;
-			
+
 			var handler = function()
 			{				
 				if (edit === true) 
@@ -983,7 +984,7 @@ var twidth;
 			if ($thead.size() == 0) $thead = false;
 			$table_tr = $table.find('tr');
 		 	$table_td = $table.find('td');
-		 	
+
 			this.resizeTDWidth($table.width());		 
 			this.setFocus();	
 			this.resizeTD();		
@@ -1175,7 +1176,7 @@ var twidth;
 				var index = $($current_td).attr('cellIndex');
 			
 				$table_tr.each(function(i,s)
-				{	
+				{
 					var current = $(s).find('td').eq(index);
 					
 					if ($(current).parent().parent().get(0).tagName != 'THEAD') var html = '&nbsp;';
@@ -1207,7 +1208,7 @@ var twidth;
 			if ($current_td !== false)
 			{
 				var index = $($current_td).attr('cellIndex');
-				
+
 				$table_tr.each(function()
 				{	
 					$(this).find('td').eq(index).remove();

@@ -126,7 +126,7 @@
    <!-- ----------------------------------------------------------------------------------------------------------------------- -->
 	<fieldset class="step">
 				<h4>Короткий коментар</h4>
-				<textarea name=comment cols=70 rows=20><?=$obj->comment?></textarea>
+				<textarea id='redactor_content_master' name=comment cols=70 rows=20><?=$obj->comment?></textarea>
 	</fieldset>
    <!-- ----------------------------------------------------------------------------------------------------------------------- -->
   	<fieldset class="step">

@@ -23,7 +23,7 @@ $(document).ready(function(){
     // лайтбоксуємо фотки
     $('#only_wrapper a.ilink').lightBox();
 	updateFindForm();
-    $('#redactor_content_master').redactor({ focus: true });
+    $('#redactor_content_master').redactor();
     $('#redactor_content_slave').redactor();
 });
 
