@@ -20,6 +20,7 @@ abstract class Object
   	var $novobud;
     var $dateadd;
 	var $m_imgcount = 999;
+	var $proj;
 
 	protected function loadvars($data){
 		$this->id = $data["id"];
@@ -40,7 +41,8 @@ abstract class Object
 		$this->in_hot = $data["in_hot"];
 		$this->novobud = $data["novobud"];
         $this->dateadd = $data["add"];
- 	}
+		$this->proj = $data['proj'];
+	}
     function load($id,$type="kva"){
         global $DB;
 		if ($id==0 || $id=="")
@@ -63,9 +65,6 @@ abstract class Object
 			case "com":
 				$o = new ObjectCom();
 				break;
-			case "bog":
-				$o = new ObjectKva();
-				break;
 		}
 		$o->loadLocalVars($data);
 		return $o;
@@ -74,7 +73,10 @@ abstract class Object
 		if ($this->m_imgcount != 999) return $this->m_imgcount;
 	    global $DB;
 	  //	debug(DOCUMENT_ROOT."/i/obj/tmb_".$this->id."_*.jpg");
-	    $images = glob(DOCUMENT_ROOT."/i/obj/tmb_".$this->id."_*.jpg", GLOB_NOSORT);
+	  	if ($this->proj>0)
+			$images = glob(DOCUMENT_ROOT."/i/obj/".$this->id."/min/*.jpg", GLOB_NOSORT);
+		else
+	    	$images = glob(DOCUMENT_ROOT."/i/obj/tmb_".$this->id."_*.jpg", GLOB_NOSORT);
 		$cnt = count($images);
 	   //	debug($cnt,"cnt1 = ");
         if ($cnt==0){

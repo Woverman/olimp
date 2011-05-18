@@ -29,14 +29,14 @@ else
   while ($row=mysql_fetch_row($res))
     {
       $dir = $config['SIGHT_ROOT'].'/i/obj/'.$row[0];
-      delTree($dir.'/min/',"*.*");
-      delTree($dir.'/max/',"*.*");
-      rmdir($dir);
+      @delTree($dir.'/min/',"*.*");
+      @delTree($dir.'/max/',"*.*");
+      @rmdir($dir);
     }
   mysql_unbuffered_query("DELETE FROM m_bildings WHERE `adr_vul` = 'insertforproject'");
   mysql_unbuffered_query("INSERT INTO m_bildings (`adr_vul`) values ('insertforproject')");
   $newid = mysql_insert_id();
-  $dir=$config['SIGHT_ROOT'].'/i/obj/'.$newid;
+  $dir=DOCUMENT_ROOT.'/i/obj/'.$newid;
   mkdir($dir);
   chmod($dir,0777);
   mkdir($dir.'/min/');

@@ -1,6 +1,6 @@
 <div id="right_panel">
 	<div class="vidget ui-corner-all"><a href="/alert/0/">Залишити оголошення...</a></div>
-    <div class="vidget ui-corner-all"><a href="/article/1/"><img src="/ban/novo5.gif" width="228" height="300" alt="" /></a></div>
+    <div class="vidget ui-corner-all"><a href="/article/8/"><img src="/ban/novo2.png" width="228" height="300" alt="" /></a></div>
     <div class="vidget ui-corner-all"><span>Курси валют</span>
         <a href="http://www.ukrbanks.info/" target="_blank" alt="Банки України - новини банків, курси валют, рейтинг банків України!"><img src="http://www.ukrbanks.info/informer/nbu/ua-nbu.big.gif" width="240" height="210" border="0" alt="Курси НБУ на сьогодні"></a>
     </div>

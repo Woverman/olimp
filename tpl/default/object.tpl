@@ -1,6 +1,7 @@
-<?  $obj = Object::load($id); //debug($id,"id"); debug($obj,"obj"); ?>
+<?  $obj = Object::load($id);?>
 <div id="center_panel" style="padding-top: 1px;">
     <div id="wrapper">
+		<div class="vidget ui-corner-all"><a href="<?=$_SERVER["HTTP_REFERER"]?>">Повернутись до списку</a></div>
         <div id="only_wrapper" class="ui-corner-all" style="border: 1px solid #99CCFF;padding:5px;margin-top: 4px;min-height: 295px;">
 		<? if ($obj->adr_obl) { ?>
 		<span><a href='/catalog/<?=$obj->prodazh?>/?obl=<?= $obj->adr_obl ?>'><?= findadr($obj->adr_obl,'d_oblasti') ?> обл.</a></span> / <?}?>
@@ -13,19 +14,20 @@
 		<div style="clear: both"></div>
         <?
 
-            echo "<div class='news_shadow_img' style='float:left;overflow:hidden;max-height:450px;'><a href='".$obj->img(1,1)."' class='ilink'><img width='400' src='".$obj->img(1,1)."'></a></div>";
+            echo "<div class='news_shadow_img' style='float:left;overflow:hidden;max-height:450px;padding-right:10px;'><a href='".$obj->img(1,1)."' class='ilink'><img width='400' style='max-height:448px;' src='".$obj->img(1,1)."'></a></div>";
             //
             $cnt = $obj->imgCount();
             if ($cnt>1){
             	echo("<div style='padding:1px; margin-left:415px;'>");
                 for ($i=2;$i<=$cnt;$i++){
-                    echo "<a href='".$obj->img($i,1)."' class='ilink'><div style='display: table-cell;width:104px; height:104px;margin:2px;padding:2px;float:left; border:1px solid silver;text-align:center;vertical-align: middle;'><img src='".$obj->img($i,2)."' style='border:0;'></div></a>";
+                    echo "<a href='".$obj->img($i,1)."' class='ilink'><div style='display: table-cell;width:104px; height:104px;margin:2px;padding:2px;float:left; border:1px solid silver;text-align:center;vertical-align: middle;'><img src='".$obj->img($i,2)."' style='border:0;max-width:102px;max-height:102px'></div></a>";
                 }
             }
 
         ?>
-	<span class="price"><?=$obj->price(true)?></span><br />
-			<div style="padding: 10px;float:left;">
+			<div style="padding: 10px;margin:5px;">
+			<span class="price"><?=$obj->price(true)?></span><br />
+
 			<ul style="margin:1px;list-style-position: inside;">
 	 <?
 	 $li="<li>%s: &nbsp;<b>%s</b></li>";
