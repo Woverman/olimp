@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var mm = $("#menu_panel .hmenu").clone();
     $("<div>").attr("id","menu_panel_double").append(mm).appendTo($("body"));
     // рухаємо фон шапки
-    $("#logo_block").mousemove(function(e){
+    $("#header_block").mousemove(function(e){
         var x = e.pageX;
         var w = $(window).width()/2;
         if (x<w){
@@ -13,9 +13,9 @@ $(document).ready(function(){
             n = 50 + 'px 0px';
             m = -20 + 'px 0px';
         }
-        $("#logo_block").stop().animate({'background-position':n},3000);
+        $("#logo_grace").stop().animate({'background-position':n},3000);
         $("#header_block").stop().animate({'background-position':m},3000);
-    }).mouseleave(function(){$("#logo_block").stop();$("#header_block").stop();})
+    }).mouseleave(function(){$("#logo_grace").stop();$("#header_block").stop();})
     // рухаємо оголошення
 	resizeNotices();
 	$(window).resize(resizeNotices);

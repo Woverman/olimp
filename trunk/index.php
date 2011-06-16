@@ -53,10 +53,14 @@ $banner = new Banner($rpage);
 
 <body>
 <div id="header_block">
+  <div id="logo_wrap">
+	<div id="logo_block">
 
-	<!--<div id="logo_block">
-		<img src="/i/logo.png" alt="" id="logo_img" />
-	</div>-->
+	   <!--	<img src="/i/logo.png" alt="" id="logo_img" />-->
+	</div>
+    <div id="logo_grace">
+    </div>
+  </div>
     <!--<div class="ui-corner-all" id="flags_wrapper">
         <a href="?lang=en"><img src="/i/eng_flag.png" width="32" height="32" alt="English" /></a>
         <a href="?lang=ru"><img src="/i/rus_flag.png" width="32" height="32" alt="Russian" /></a>
