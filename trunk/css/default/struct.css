@@ -3,7 +3,18 @@ body{
     min-width:1024px;
 }
 
-#header_block{background:url(../../i/header_bg1.png);height:126px;position:absolute;top:0;width:100%;z-index:3;min-width:800px;}
+/*#header_block{background:url(../../i/header_bg1.png);height:126px;position:absolute;top:0;width:100%;z-index:3;min-width:800px;}*/
+#header_block{
+	background:url(../../i/logo3.jpg);
+	background-repeat: no-repeat;
+	background-color:  #E6EFFD;
+	height:126px;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index:3;
+	min-width:800px;
+}
 #logo_block{background:url(../../i/header_bg2.png);height:126px;}
 
 #center_panel{margin-top:156px;position:relative;}

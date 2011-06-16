@@ -1,19 +1,21 @@
 <div id="center_panel">
         <div id="object_wrapper">
         <div id="object_inner">
-
+<?
+			$ff = new FindParameters();
+			if ($ff->showSubmenu==1){
+?>
 			<div id="sub_menu" style="text-align: center;">
 			<?
-			$ff = new FindParameters();
 			$ff->kk=0;
 			$ff->dom_domtype=0;
 			$ff->pg=0;
 			echo maketabs(array('Все','Будинки','Квартири','Ділянки','Комерційна нерухомість'),array($ff->createURL("tn",0),$ff->createURL("tn",1),$ff->createURL("tn",2),$ff->createURL("tn",3),$ff->createURL("tn",4)),$ff->tn);
-			$ff = new FindParameters();
+  			$ff = new FindParameters();
 			$ff->pg=0;
 			if ($ff->tn==1) {
-			  echo maketabs(array('Всі','будинок','частина будинку','дача'),array($ff->createURL("dom_domtype",0),$ff->createURL("dom_domtype",1),$ff->createURL("dom_domtype",2),$ff->createURL("dom_domtype",3)),$ff->dom_domtype);
-			  }
+		  		echo maketabs(array('Всі','будинок','частина будинку','дача'),array($ff->createURL("dom_domtype",0),$ff->createURL("dom_domtype",1),$ff->createURL("dom_domtype",2),$ff->createURL("dom_domtype",3)),$ff->dom_domtype);
+			}
 			if ($ff->tn==2){
 			  if ($ff->kk==0) $pos = 0;
 			  if ($ff->kk==-1) $pos = 1;
@@ -27,7 +29,7 @@
 			?>
 			</div>
                 <?
-
+			}
 				$ff = new FindParameters();
 				$ntypes=array('','dom','kva','dil','com');
 				$sql='Select count(id) from m_bildings';
