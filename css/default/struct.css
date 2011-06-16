@@ -5,8 +5,8 @@ body{
 
 /*#header_block{background:url(../../i/header_bg1.png);height:126px;position:absolute;top:0;width:100%;z-index:3;min-width:800px;}*/
 #header_block{
-	background:url(../../i/logo3.jpg);
-	background-repeat: no-repeat;
+	background:url(../../i/header_bg_3.png);
+	background-repeat: repeat-x;
 	background-color:  #E6EFFD;
 	height:126px;
 	position:absolute;
@@ -15,7 +15,14 @@ body{
 	z-index:3;
 	min-width:800px;
 }
-#logo_block{background:url(../../i/header_bg2.png);height:126px;}
+#logo_wrap{background:url(../../i/header_bg_21.png);height:126px;}
+#logo_block{background:url(../../i/header_bg_2.png);background-repeat: no-repeat;height:126px;}
+#logo_grace{
+    margin-top: -40px;
+    background-repeat: repeat-x;
+    background:url(../../i/header_bg_1.png);
+    height: 43px;
+    }
 
 #center_panel{margin-top:156px;position:relative;}
 #admin_panel{margin-top:140px;position:relative;}
