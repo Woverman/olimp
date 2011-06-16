@@ -32,7 +32,7 @@ $pid = $_GET['pid'];
 switch (@$_GET['mode']) {
   case 'edit':
     $sql='Select * from m_pages where id='.$pid;
-    if ($res=mysql_query($sql)) list($id,$title,$text,$folder,$enbl)=mysql_fetch_array($res);
+    if ($res=mysql_query($sql)) list($id,$title,$text,$folder,$enbl,$template)=mysql_fetch_array($res);
   case 'add':
     ?>
     <form name="newsedit" method="post" action="/index.php?page=admin&panel=pagesave">
@@ -54,6 +54,18 @@ switch (@$_GET['mode']) {
 	<a href="#" onclick="$('#addnew').show().focus().val('');$('#addnewa').hide();">Добавити</a></span>
 	<input type="text" style="display: none" id="addnew" onblur="addFolder()"/>
     <br>
+	<span class="field_title">Шаблон:</span>
+	<?
+		$sql = "select id,title from m_page_types order by id";
+		$res=$DB->request($sql);
+		echo("<select name='page_template'>");
+		foreach($res as $f){
+			$sel = ($f[0]==$template?"selected":"");
+			echo("<option value='$f[0]' $sel>$f[1]</option>");
+		}
+		echo("</select>");
+	?>
+	<br>
     <textarea name="page_text" rows="30" cols="140" id="redactor_content_master"><?=@stripslashes($text)?></textarea>
     </form>
     <?
