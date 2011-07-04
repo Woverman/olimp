@@ -23,6 +23,7 @@ $banner = new Banner($rpage);
 <head>
     <title><?=$page->title;?></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
     <link rel="stylesheet" type="text/css" href="/css/null.css">
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/struct.css">
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/main.css">
@@ -42,6 +43,7 @@ $banner = new Banner($rpage);
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/jquery.boxshadow.js"></script>
 	<script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
+    <script language="JavaScript" src="/js/jquery.parallax-0.2-min.js" type="text/javascript"></script>
 	<? if ($rpage=='admin') { ?>
 	<script type="text/javascript" src="/js/sliding.form.js"></script>
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
@@ -74,6 +76,7 @@ $banner = new Banner($rpage);
 </div>
 
 <? include($page->tpl()); ?>
+
 <? if (!empty($debug)){?>
     <div id="debug_button" class="ui-corner-all" style="position:fixed;top:-20;right:10px;background-color:red;color:#FC6;z-index:10000;cursor: pointer;padding: 22px 10px 4px 10px;border: 1px solid #903;" onclick="showDebug()">Debug</div>
     <div id="debug_dialog" class="moveable" style="display:none;border: 2px outset #FC8;background-color:#FFCC66">
@@ -104,5 +107,8 @@ $banner = new Banner($rpage);
     $('#debug_dialog_caption').drag();
     </script>
 <?}?>
+<div id="footer" class="vidget ui-corner-all">
+  &copy; Olimp - 2011р.
+</div>
 </body>
 </html>

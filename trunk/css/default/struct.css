@@ -46,3 +46,10 @@ body{
 #menu_panel li,#menu_panel_double li{display:inline;float:left;height:30px;margin-top: 7px;background: url(../../i/menudelimiter.png) no-repeat right -2px;}
 #menu_panel_double{position:fixed;top:-25px;z-index:1;}
 #menu_panel_double:hover{top:0px;}
+#footer{
+    position: fixed;
+    clear: both;
+    background-color: #ccc;
+    bottom: 1px;
+}
+

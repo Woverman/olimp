@@ -45,7 +45,8 @@ abstract class Object
 	}
     function load($id,$type="kva"){
         global $DB;
-		if ($id==0 || $id=="")
+        if ($id<0) return;
+        if ($id==0 || $id=="")
 			$id = $DB->insert("insert into m_bildings (type) values ('$type')");
         $res = $DB->request("select * from m_bildings where id=$id",ARRAY_A);
         return Object::parse($res[0]);

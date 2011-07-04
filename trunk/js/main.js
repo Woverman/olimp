@@ -3,25 +3,27 @@ $(document).ready(function(){
 	var mm = $("#menu_panel .hmenu").clone();
     $("<div>").attr("id","menu_panel_double").append(mm).appendTo($("body"));
     // рухаємо фон шапки
-    $("#header_block").mousemove(function(e){
-        var x = e.pageX;
-        var w = $(window).width()/2;
-        if (x<w){
-            n = -10 + 'px 0px';
-            m = 20 + 'px 0px';
-        } else {
-            n = 50 + 'px 0px';
-            m = -20 + 'px 0px';
+    $('#header_block').parallax({
+        'object':'#header_block',
+      'useHTML':false,
+      'elements': [
+        {
+          'selector': '#logo_grace',
+          'properties': {'x': {'background-position-x': {'initial': 0,'multiplier': 0.05 }}}
+        },
+        {
+          'selector': '#header_block',
+          'properties': {'x': {'background-position-x': {'initial': 0,'multiplier': 0.1,'invert': true}}}
         }
-        $("#logo_grace").stop().animate({'background-position':n},3000);
-        $("#header_block").stop().animate({'background-position':m},3000);
-    }).mouseleave(function(){$("#logo_grace").stop();$("#header_block").stop();})
+      ]
+    });
     // рухаємо оголошення
 	resizeNotices();
 	$(window).resize(resizeNotices);
    	window.setTimeout(moveNotice,"10000");
     // лайтбоксуємо фотки
     $('#only_wrapper a.ilink').lightBox();
+    $('[rel=lightbox-rel]').lightBox();
 	updateFindForm();
     $('#redactor_content_master').redactor();
     $('#redactor_content_slave').redactor();

@@ -12,7 +12,9 @@ class FindParameters{
 	var $pg;
 	var $dist;
 	var $proj;
+    var $projTitle;
 	var $showSubmenu;
+
 	function FindParameters(){
 		$this->parse();
 	}
@@ -30,8 +32,9 @@ class FindParameters{
 		$this->pg = $_REQUEST['pg']?$_REQUEST['pg']:1;
 		$this->dist = $_REQUEST['dist']?$_REQUEST['dist']:0;
 		$this->proj = $_REQUEST['proj']?$_REQUEST['proj']:0;
-		$this->showSubmenu = $this->getSubmenuFlag($this->proj);
-		//debug($this,"FindParameters");
+		$this->projTitle = $this->getPageTitle($this->proj);
+        $this->showSubmenu = $this->getSubmenuFlag($this->proj);
+		debug($this,"FindParameters");
 	}
 	function createURL($field,$new_value) {
 	   $ret = "?";
@@ -41,12 +44,20 @@ class FindParameters{
        }
 	   return $ret;
     }
-	private function getSubmenuFlag($prjid){
+	private function getPageTitle($prjid){
+		global $DB;
+		if ($prjid==0) return 1;
+		$sql = "Select title from m_pages where id = ".$prjid;
+		$res = $DB->request($sql);
+		return $res[0][0];
+	}
+    private function getSubmenuFlag($prjid){
 		global $DB;
 		if ($prjid==0) return 1;
 		$sql = "Select isShowObjectTypes from m_projects where id = ".$prjid;
 		$res = $DB->request($sql);
 		return $res[0][0];
 	}
+
 }
 ?>
