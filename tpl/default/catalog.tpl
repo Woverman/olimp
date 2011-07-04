@@ -3,6 +3,15 @@
         <div id="object_inner">
 <?
 			$ff = new FindParameters();
+            if ($ff->proj!=0){
+                $pn = "<div id='news_title' class='ui-corner-all'>".$ff->projTitle."</div>"
+                  ."<div class='vidget ui-corner-all'>"." | "
+                  ."<a href='/article/".$ff->proj."/'> Головна </a>"." | "
+                  ."Список квартир"." | "
+                  ."<a href='/galery/".$ff->proj."/'> Етапи будівництва </a>"." | "
+                  ."</div>";
+                echo($pn);
+            }
 			if ($ff->showSubmenu==1){
 ?>
 			<div id="sub_menu" style="text-align: center;">
@@ -38,7 +47,8 @@
 				else
 				  $usl[]="type<>'bog'";
 
-				$usl[]='prodazh='.$ff->pr;
+				if ($ff->proj==0)$usl[]='prodazh='.$ff->pr;
+
 				if ($ff->gor!='0') $usl[]='adr_gor='.$ff->gor;
 				if ($ff->rgn!='0') $usl[]='adr_rgn='.$ff->rgn;
 				if ($ff->dist!='0') $usl[]='adr_dist='.$ff->dist;
@@ -80,7 +90,7 @@
 				    	//$images = glob("./i/obj/tmb_".$id."_*.jpg", GLOB_NOSORT);
 					    //$imgsrc=(count($images) > 0) ? '/image.php?objid='.$id.'&mode=2' : $imgsrc='/i/no_smol.jpg';
 						?>
-<div class='object_outer ui-corner-all'><div style="height: 150px;overflow: auto;">
+<div class='object_outer ui-corner-all <?=($obj->proj!=0)?(($obj->prodazh==1)?"prodano":"neprodano"):""?>'><div class="content">
 <a href=<?='/object/'.$obj->id?>><div class="news_shadow_img"><img src=<?=$obj->img(1)?> class='thumb'></div></a>
 <span class="action"><?=$sys['lists']['actions'][$obj->prodazh].$sys['lists']['typesner'][$obj->type]?></span>
 <span class="price"><?=$obj->price()?></span>

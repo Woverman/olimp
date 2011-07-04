@@ -8,8 +8,9 @@ function phone($num){
 }
 ?>
 <div id="center_panel">
-    <div id="wrapper">
-		<h2>Співробітники відділення:</h2>
+    <div id="object_wrapper">
+        <div id="object_inner">
+		<div id="news_title" class="ui-corner-all">Співробітники відділення:</div>
 		<table border=0 width=100% id="otdel_tlb">
 		<?php
 		  $sql="Select * from d_users where otdel=".$id;
@@ -36,6 +37,7 @@ function phone($num){
 		</tr>
 		<? } ?>
 		</table>
+        </div>
 	</div>
 </div>
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>

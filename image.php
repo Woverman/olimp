@@ -1,6 +1,5 @@
 <?php
 header('Content-type: image/jpeg',true);
-
 require_once('classes.php');
 $objid = $_GET['objid'];
 $mode = $_GET['mode'];
