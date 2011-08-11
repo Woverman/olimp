@@ -62,6 +62,8 @@ switch (@$_REQUEST['mode']) {
     <input type="hidden" name="panel" value="news">
     Дата, час <input id="news_dt" name="news_dt" type="text" size="55" value="<?=@$dt?>"> <input type="button" value="Зараз" onclick="putNow()"><br>
     Назва <input id="news_name" name="news_name" type="text" size="75" value="<?=@stripslashes($title)?>"><br>
+    Фото: <input id="news_foto" name="news_foto" type="file" size="75" title="Загрузити нове"> або <button>Вибрати загружене</button><br>
+    <i>Вимоги до зображення: </i>
     Короткий текст.<i>(перший абзац новини впишіть сюди)</i><br>
     <textarea name="news_short" rows="10" cols="100" id="redactor_content_master"><?=@stripslashes($short)?></textarea>
     Повний текст.<i>(продовження впишіть сюди)</i><br>
