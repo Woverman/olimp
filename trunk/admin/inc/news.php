@@ -65,9 +65,9 @@ switch (@$_REQUEST['mode']) {
     Фото: <input id="news_foto" name="news_foto" type="file" size="75" title="Загрузити нове"> або <button>Вибрати загружене</button><br>
     <i>Вимоги до зображення: </i>
     Короткий текст.<i>(перший абзац новини впишіть сюди)</i><br>
-    <textarea name="news_short" rows="10" cols="100" id="redactor_content_master"><?=@stripslashes($short)?></textarea>
+    <textarea name="news_short" rows="2" cols="100" id="redactor_content_master"><?=@stripslashes($short)?></textarea>
     Повний текст.<i>(продовження впишіть сюди)</i><br>
-    <textarea wrap=soft name="news_long" rows="20" cols="100" id="redactor_content_slave"><?=@stripslashes($long)?></textarea>
+    <textarea wrap=soft name="news_long" rows="18" cols="100" id="redactor_content_slave"><?=@stripslashes($long)?></textarea>
     </form>
     <?
     break;
