@@ -203,20 +203,20 @@ while ($row=mysql_fetch_array($res)) {
   if ($aa<1) $color="<font color=red>";
   $del=$row[8];
   if ($del) $color="<font color=#A7A7A7>";
-	echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
-    echo '<td>'.$color.++$npp.$color.'</td>';
-	echo '<td>'.$color.$row[1].$col.'</td><td>'.$color.$row[2].$col.'</td>';
+  echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
+  echo '<td>'.$color.++$npp.$color.'</td>';
+  echo '<td>'.$color.$row[1].$col.'</td><td>'.$color.$row[2].$col.'</td>';
   echo '<td>'.$color.$b[$row[3]].$col.'</td><td>'.$color.$row[4].$col.'</td>';
   echo '<td>'.$color.$row[5].$col.'</td><td>'.$color.$row[6].$col.'</td>';
-	echo '<td>';
-	echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="/i/edit.gif"></a>';
+  echo '<td>';
+  echo '<a href="javascript:ToEdit('.$row[0].')"><img class=aimg src="/i/edit.gif"></a>';
   if ($del){
-  echo '<a href="javascript:ToDel(\'Відновити\','.$row[0].')"><img class=aimg src="/i/undo.gif"></a>';
+    echo '<a href="javascript:ToDel(\'Відновити\','.$row[0].')"><img class=aimg src="/i/undo.gif"></a>';
   } else {
-  echo '<a href="javascript:ToDel(\'Знищити\','.$row[0].')"><img class=aimg src="/i/del.gif"></a>';
+    echo '<a href="javascript:ToDel(\'Знищити\','.$row[0].')"><img class=aimg src="/i/del.gif"></a>';
   }
-	echo '</td>';
-	echo '</tr>';
+  echo '</td>';
+  echo '</tr>';
 }
 ?>
 <tr><td align="right" colspan="7" style="text-align:right;"><i>
