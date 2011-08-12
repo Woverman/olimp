@@ -66,7 +66,7 @@ switch (@$_GET['mode']) {
 		echo("</select>");
 	?>
 	<br>
-    <textarea name="page_text" rows="30" cols="140" id="redactor_content_master"><?=@stripslashes($text)?></textarea>
+    <textarea name="page_text" rows="30" cols="120" id="redactor_content_master"><?=@stripslashes($text)?></textarea>
     </form>
     <?
 }
