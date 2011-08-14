@@ -29,8 +29,8 @@ class Menuset
         //} else {
         $this->items[] = new Menu("admin","main","Адмінка");
         //}
-		if (isset($_SESSION['logged']) and $_SESSION['logged']>0)
-            $this->items[] = new Menu("admin","exit","Вихід");
+		//if (isset($_SESSION['logged']) and $_SESSION['logged']>0)
+            //$this->items[] = new Menu("admin","exit","Вихід");
     }
     
     function listitems(){

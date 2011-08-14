@@ -9,7 +9,7 @@
 	<td align="center" class="head" width="40%">&nbsp;</td>
   </tr>
 </table>
-<iframe src='<?=DOCUMENT_ROOT?>/modules/bnr/admin.php?action=edit' style="width: 100%; min-height:100%; height: 500px " frameborder=0 name='iBanners' >
+<iframe src='/modules/bnr/admin.php?action=edit' style="width: 100%; min-height:100%; height: 500px " frameborder=0 name='iBanners' >
 <?
 include(DOCUMENT_ROOT.'/modules/bnr/admin.php?action=edit')
 ?>

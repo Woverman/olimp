@@ -8,6 +8,8 @@
         $folder = $_GET['folder'];
 		if (!isset($panel)) $panel='main';
 		?>
+		<a class='aa' href="/admin/exit">Вихід</a>
+		<div class=spacer></div>
 		<? if ($panel=='main') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/main">Головна</a>
 		<div class=spacer></div>
