@@ -28,6 +28,7 @@ function addFolder(){
 <button style="height: 40px" onclick="validform(form); return(false);"><img class=bimg src="/i/save.png">Записати</button>
 </div>
 <?
+debug($_SERVER,'$_SERVER');
 $pid = $_GET['pid'];
 switch (@$_GET['mode']) {
   case 'edit':
