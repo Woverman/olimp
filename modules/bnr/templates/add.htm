@@ -1,0 +1,49 @@
+
+<form action="admin.php" method="post" enctype="multipart/form-data">
+<input name="action" type="hidden" value="<? echo $act; ?>">
+<input name="id" type="hidden" value="<? echo $id; ?>">
+<input name="MAX_FILE_SIZE" type="hidden" value="100000">
+<table align="center" width="500" border="0" cellspacing="0" cellpadding="2">
+<tr>
+<td width="100%">
+ <table align="center" class="head" width="500" border="1" cellspacing="0" cellpadding="2">
+  <? echo $imgrow; ?>
+  <tr>
+    <td class="list" width="127">&nbsp;type</td>
+    <td class="list" width="359"><? echo $adstyle; ?></td>
+  </tr>
+  <tr>
+    <td class="list" width="127">&nbsp;link</td>
+    <td class="list" width="359"><input type="text" name="link" size="50" value="<? echo $link; ?>"></td>
+  </tr>
+  <tr>
+    <td class="list">&nbsp;existing image</td>
+    <td class="list"><input type="text" name="image" size="50" value="<? echo $image; ?>"></td>
+  </tr>
+  <tr>
+    <td class="list">&nbsp;upload image</td>
+    <td class="list"><input name="upimage" type="file" size="40"></td>
+  </tr>
+  <tr>
+    <td class="list">&nbsp;text / html</td>
+    <td class="list"><textarea name="adtext" cols="37" rows="5" value=""><? echo $adtext; ?></textarea></td>
+  </tr>
+  <tr>
+    <td class="list">&nbsp;title</td>
+    <td class="list"><input type="text" name="alt" size="50" value="<? echo $alt; ?>"></td>
+  </tr>
+  <tr>
+    <td class="list">&nbsp;status</td>
+    <td class="list">
+	  <? echo $radio; ?>
+	</td>
+  </tr>
+  <tr>
+    <td class="list">&nbsp;</td>
+    <td class="list"><input name="btnSubmit" type="submit" value="Submit"></td>
+  </tr>
+</table>
+</td>
+  </tr>
+</table>
+</form>

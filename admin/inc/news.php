@@ -111,7 +111,7 @@ switch (@$_REQUEST['mode']) {
     echo '<table cellspasing=2 width=100% class="mytab">';
     $a=1;
     while ($row=mysql_fetch_array($res)) {
-      echo '<tr class="row'.$a=abs($a-1).'"><td style="padding:2px 10px;">'.$row['title'].'</a></td><td style="padding:2px 10px;">'.$row['dt'].'</td><td width="120">';
+      echo '<tr class="row'.$a=abs($a-1).'"><td style="padding:2px 10px;text-align:left">'.$row['title'].'</a></td><td style="padding:2px 10px;">'.$row['dt'].'</td><td width="120">';
       echo '<a href=/admin/admin.php?panel=news&mode=edit&id='.$row['id'].'><img class=aimg src="/i/edit.png" title="Правка"></a>';
       echo '<a href=/admin/admin.php?panel=news&mode=delete&id='.$row['id'].'><img class=aimg src="/i/delete.png" title="Знищити"></a>';
       echo '<a href=/admin/admin.php?panel=news&mode=offon&id='.$row['id'].'><img class=aimg src="/i/'.($row['enable']==1?'on':'off').'.png" title="'.($row['enable']!=1?'Увімкнути':'Вимкнути').'"></a>';

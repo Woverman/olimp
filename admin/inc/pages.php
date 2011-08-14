@@ -1,4 +1,5 @@
 <?
+debug($_SERVER,'$_SERVER');
 if (!empty($_GET["result"])){
 	switch($_GET["result"]){
 		case 'edited':
