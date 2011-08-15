@@ -2,48 +2,79 @@
 <form action="admin.php" method="post" enctype="multipart/form-data">
 <input name="action" type="hidden" value="<? echo $act; ?>">
 <input name="id" type="hidden" value="<? echo $id; ?>">
-<input name="MAX_FILE_SIZE" type="hidden" value="100000">
-<table align="center" width="500" border="0" cellspacing="0" cellpadding="2">
-<tr>
-<td width="100%">
- <table align="center" class="head" width="500" border="1" cellspacing="0" cellpadding="2">
+<input name="MAX_FILE_SIZE" type="hidden" value="500000">
+ <table align="center" class="head" width="700" border="0" cellspacing="0" cellpadding="2">
   <? echo $imgrow; ?>
+  <!-- rows for image and text -->
   <tr>
-    <td class="list" width="127">&nbsp;type</td>
-    <td class="list" width="359"><? echo $adstyle; ?></td>
+    <td class="list" width="210">&nbsp;Тип банера:</td>
+    <td class="list"><?=$adstyle?></td>
   </tr>
   <tr>
-    <td class="list" width="127">&nbsp;link</td>
-    <td class="list" width="359"><input type="text" name="link" size="50" value="<? echo $link; ?>"></td>
+    <td class="list">&nbsp;Заголовок:</td>
+    <td class="list"><input type="text" name="title" size="75" value="<? echo $title; ?>"><br>
+	<i><label><input type="checkbox" name="hidetitle" value=1 <?echo($hidetitle==1?' checked':'')?>/> Приховати заголовок</label></i></td>
   </tr>
-  <tr>
-    <td class="list">&nbsp;existing image</td>
-    <td class="list"><input type="text" name="image" size="50" value="<? echo $image; ?>"></td>
+  <!-- rows for image -->
+  <tr id='link_row' style="display: <?=$displayImage?>">
+    <td class="list">&nbsp;Посилання:</td>
+    <td class="list"><input type="text" name="link" size="35" value="<? echo $link; ?>">
+		<select size="1" onchange="setLink(this.options[this.selectedIndex].value);" style="width: 234px;">
+			<option value="">[Виберіть статтю]</option>
+			<optgroup label="Статті">
+				<?=$pages?>
+			</optgroup>
+			<optgroup label="Новини">
+				<?=$news?>
+			</optgroup>
+		</select>
+	</td>
   </tr>
-  <tr>
-    <td class="list">&nbsp;upload image</td>
+  <tr id='image_row' style="display: <?=$displayImage?>">
+    <td class="list">&nbsp;Існуюча картинка:</td>
+    <td class="list"><input type="text" name="image" size="75" value="<? echo $image; ?>"></td>
+  </tr>
+  <tr id='upimage_row' style="display: <?=$displayImage?>">
+    <td class="list">&nbsp;Загрузити картинку:</td>
     <td class="list"><input name="upimage" type="file" size="40"></td>
   </tr>
-  <tr>
-    <td class="list">&nbsp;text / html</td>
-    <td class="list"><textarea name="adtext" cols="37" rows="5" value=""><? echo $adtext; ?></textarea></td>
+  <tr id='alt_row' style="display: <?=$displayImage?>">
+    <td class="list">&nbsp;Альтернативний текст:</td>
+    <td class="list"><input type="text" name="alt" size="75" value="<? echo $alt; ?>"></td>
   </tr>
-  <tr>
-    <td class="list">&nbsp;title</td>
-    <td class="list"><input type="text" name="alt" size="50" value="<? echo $alt; ?>"></td>
+  <tr id='newpage_row' style="display: <?=$displayImage?>">
+    <td class="list">&nbsp;Відкривати на новій сторінці:</td>
+    <td class="list"><? echo $newpage; ?></td>
   </tr>
+  <!-- rows for text -->
+  <tr id='adtext_row' style="display: <?=$displayText?>">
+    <td class="list">&nbsp;Tекст / html:</td>
+    <td class="list"><textarea name="adtext" cols="58" rows="5" value=""><? echo $adtext; ?></textarea></td>
+  </tr>
+  <!-- rows for image and text -->
   <tr>
-    <td class="list">&nbsp;status</td>
+    <td class="list">&nbsp;Показати на сайті:</td>
+    <td class="list"><? echo $radio; ?></td>
+  </tr>
+  <tr id="target_row" style="display: <?=$displayTarget?>">
+    <td class="list">&nbsp;Виберіть розміщення:</td>
     <td class="list">
-	  <? echo $radio; ?>
+		<select name="target" size="1">
+			<option value="Up1" <? echo($target=='Top1'?' selected':'')?>>Верх</option>
+			<option value="Left1" <? echo($target=='Left1'?' selected':'')?>>Ліво 1 </option>
+			<option value="left2" <? echo($target=='Left2'?' selected':'')?>>Ліво 2</option>
+			<option value="left3" <? echo($target=='Left3'?' selected':'')?>>Ліво 3</option>
+			<option value="left3" <? echo($target=='Left3'?' selected':'')?>>Ліво 4</option>
+			<option value="Right1" <? echo($target=='Right1'?' selected':'')?>>Право 1</option>
+			<option value="Right2" <? echo($target=='Right2'?' selected':'')?>>Право 2</option>
+			<option value="Right3" <? echo($target=='Right3'?' selected':'')?>>Право 3</option>
+			<option value="Right3" <? echo($target=='Right3'?' selected':'')?>>Право 4</option>
+		</select>
 	</td>
   </tr>
   <tr>
     <td class="list">&nbsp;</td>
-    <td class="list"><input name="btnSubmit" type="submit" value="Submit"></td>
-  </tr>
-</table>
-</td>
+    <td class="list" style="text-align: right"><input name="btnSubmit" type="submit" value="Зберегти"></td>
   </tr>
 </table>
 </form>

@@ -127,15 +127,16 @@ $today = date("Y-m-d");
  $tabstats = "";
  foreach($arstats as $key => $value){
   if(!isset($adid) || $adid == $key){
-   $tabstats .= "<tr><td align='right' class='list'><a href= admin.php?action=stats&adid=$key>$key</a>&nbsp;</td><td align='right' class='list'>".$value['ydisplays']."&nbsp;</td><td align='right' class='list'>".$value['mdisplays']."&nbsp;</td><td align='right' class='list'>".$value['ddisplays']."&nbsp;</td>";
+  	$title=$titles[$key];
+   $tabstats .= "<tr><td align='right' class='list'><a href= admin.php?action=stats&adid=$key>$title</a>&nbsp;</td><td align='right' class='list'>".$value['ydisplays']."&nbsp;</td><td align='right' class='list'>".$value['mdisplays']."&nbsp;</td><td align='right' class='list'>".$value['ddisplays']."&nbsp;</td>";
    $tabstats .= "<td align='right' class='list'>".$value['yclicks']."&nbsp;</td><td align='right' class='list'>".$value['mclicks']."&nbsp;</td><td align='right' class='list'>".$value['dclicks']."&nbsp;</td></tr>";
   }
  }
  if(!isset($adid)){
-  $tabstats .= "<tr><td align='center' class='list'>totals</td><td align='right' class='list'>$tydisplays&nbsp;</td><td align='right' class='list'>$tmdisplays&nbsp;</td><td align='right' class='list'>$tddisplays&nbsp;</td>";
+  $tabstats .= "<tr><td align='center' class='list'>Всього</td><td align='right' class='list'>$tydisplays&nbsp;</td><td align='right' class='list'>$tmdisplays&nbsp;</td><td align='right' class='list'>$tddisplays&nbsp;</td>";
   $tabstats .= "<td align='right' class='list'>$tyclicks&nbsp;</td><td align='right' class='list'>$tmclicks&nbsp;</td><td align='right' class='list'>$tdclicks&nbsp;</td></tr>";
  }
  
- $txtrow = "<tr><th align='center' colspan='7' class='list'>totals by banner</th></tr>";
+ $txtrow = "<tr><th align='center' colspan='7' class='list'>Всього по банерах</th></tr>";
  include("templates/stats.htm");
 ?>

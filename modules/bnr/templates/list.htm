@@ -1,14 +1,20 @@
 <br>
 <table align="center" class="head" width="500" border="1" cellspacing="0" cellpadding="2">
-  <tr> 
-    <td align="center" class="list" colspan="3" height="84" valign="middle">
+  <tr>
+  	<td style="width: 24px;"><img src="/i/<?=$hideshowaction?>.png" alt="" /></td>
+    <td align="center" class="list" colspan="4" valign="middle">
+	 <? echo $title; ?>
+	</td>
+  </tr>
+  <tr>
+    <td align="center" class="list" colspan="5" height="84" valign="middle">
 	 <? echo $adimg; ?>
 	</td>
   </tr>
-  <tr> 
-    <td align="center" class="list" width="33%"><a href="admin.php?id=<? echo $id; ?>&action=item">modify</a></td>
-    <td align="center" class="list" width="34%"><a href="admin.php?id=<? echo $id; ?>&action=delete">delete</a> </td>
-    <td align="center" class="list" width="33%"><a href="admin.php?adid=<? echo $id; ?>&action=stats">stats</a></td>
+  <tr>
+    <td colspan=2 align="center" class="list" width="25%"><a href="admin.php?id=<? echo $id; ?>&action=item">Змінити</a></td>
+    <td align="center" class="list" width="25%"><a href="admin.php?id=<? echo $id; ?>&action=delete">Видалити</a> </td>
+	<td align="center" class="list" width="25%"><a href="admin.php?id=<? echo $id; ?>&action=<?=$hideshowaction?>"><?=$hideshowtitle?></a> </td>
+    <td align="center" class="list" width="25%"><a href="admin.php?adid=<? echo $id; ?>&action=stats">Статистика</a></td>
   </tr>
 </table>
- 

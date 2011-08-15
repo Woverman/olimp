@@ -64,12 +64,11 @@ if (isset($_GET['mode'])){
 		echo '<td>'.$row[0].'</td><td>'.$row[1].'</td>';
 		echo '<td><a href=/admin/pageedit/?mode=edit&back=1&pid='.$row[2].'>Титулка</a></td>';
 		echo '<td><a href=/admin/prjitems/?pid='.$row[0].'>Об\'єкти</a></td>';
-		echo '<td><a href=/admin/photos/?folder=proj'.$row[0].'>Банери</a></td>';
+		//echo '<td><a href=/admin/photos/?folder=proj'.$row[0].'>Банери</a></td>';
 		echo '<td>'.$row[3].'</td>';
 		echo '<td>';
 	    echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="/i/edit.gif"></a>';
 		echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="/i/del.gif"></a>';
-	    echo '<a href=/admin/admin.php?panel=obl&mode=setdef&id='.$row['id'].'><img class=aimg src="/i/'.($row['def']==1?'on':'off').'.gif"></a>';
 	    echo '</td>';
 		echo '</tr>';
 	}

@@ -1,6 +1,3 @@
-<pre>
-
-</pre>
 <?php
 /*************************************************************************************************
 
@@ -15,53 +12,89 @@
 
 ****************************************************************************************************/
 include("config.php");
+include("templates/header.htm");
 
-if(!isset($_GET['action'])){
- $message = "<tr><td align='center' class='message' colspan='2'>Welcome to Ad Manager 1.0<br>Use the menus above to navigate.</td></tr>";
- $msg .= $message . "</table>";
- echo $msg;
+ mysql_query('SET NAMES utf8;');
+ $pages='';
+ $query="select id,title from m_pages order by title;";
+ $result = doquery($query);
+ if(mysql_num_rows($result) != 0){
+  	while ($row = mysql_fetch_array($result)){
+		$pages .= "<option value='/pages/".$row['id']."'>".$row['title']."</option>";
+	}
+ }
+
+ $news='';
+ $query="select id,title from new_news where published=1 order by title;";
+ $result = doquery($query);
+ if(mysql_num_rows($result) != 0){
+  	while ($row = mysql_fetch_array($result)){
+		$news .= "<option value='/newsarticle/".$row['id']."'>".$row['title']."</option>";
+	}
+ }
+ //mysql_query('SET NAMES cp1251;');
+
+function saveImage(){
+	if (count($_FILES)==1){
+		$upimage_name = $_FILES['upimage']['name'];
+		$upimage_type = $_FILES['upimage']['type'];
+		$upimage_tmpname = $_FILES['upimage']['tmp_name'];
+		if ($upimage_type=='image/jpeg' || $upimage_type=='image/gif'  || $upimage_type=='image/png'  ){
+			$imgfile = $_SERVER['DOCUMENT_ROOT']."/i/banners/".$upimage_name;
+			print_r($imgfile);
+			if(move_uploaded_file($upimage_tmpname, $imgfile)){
+				return "/i/banners/".$upimage_name;
+			}
+		}
+	}
+	return "";
+};
+
+if(isset($_REQUEST['action'])){
+	$adtype = $_REQUEST['adtype'];
+	$link = $_REQUEST['link'];
+	$image = $_REQUEST['image'];
+	$adtext = $_REQUEST['adtext'];
+	$alt = $_REQUEST['alt'];
+	$title = $_REQUEST['title'];
+	$status = $_REQUEST['status'];
+	$id = $_REQUEST['id'];
+	$adid = $_REQUEST['adid'];
+	$newpage = $_REQUEST['newpage'];
+	$target = $_REQUEST['target'];
+	$hidetitle = $_REQUEST['hidetitle'];
 }
+
 $action = $_REQUEST['action'];
 if($action == "add"){
  $act = "insert";
- $imgrow = "<tr><td align='center' class='list' colspan='2'>add new banner</td></tr>";
- $radio = "&nbsp;off<input name='status' type='radio' value='0'>&nbsp;on<input name='status' type='radio' value='1' checked>";
- $adstyle = "&nbsp;image<input name='adtype' type='radio' value='1' checked>&nbsp;rich text / html <input name='adtype' type='radio' value='0'";
+ $imgrow = "<tr><td align='center' class='list' colspan='2'>Новий банер / інформер</td></tr>";
+ $radio = "&nbsp;<label>Ні<input name='status' type='radio' value='0' onchange='setVisible(this.value);'></label>&nbsp;<label>Так<input name='status' type='radio' value='1' checked onchange='setVisible(this.value);'></label>";
+ $adstyle = "&nbsp;<label>Зображення<input name='adtype' type='radio' value='1' checked onchange='setType(this.value);'></label>&nbsp;<label>Текст <input name='adtype' type='radio' value='0' onchange='setType(this.value);'></label>";
+ $newpage = "&nbsp;<label>Ні<input name='newpage' type='radio' value='0'></label>&nbsp;<label>Так<input name='newpage' type='radio' value='1' checked></label>";
+ $displayText='none';
+ $displayImage='table-row';
+ $displayText='table-row';
+
  include("templates/add.htm");
 }
 
-if($action == "insert"){
+if($action == "insert"){ //after submit new item
 
-$adtype = $_REQUEST['adtype'];
-$link = $_REQUEST['link'];
-$image = $_REQUEST['image'];
-$upimage = $_REQUEST['upimage'];
-$adtext = $_REQUEST['adtext'];
-$alt = $_REQUEST['alt'];
-$status = $_REQUEST['status'];
-
- if($upimage != ""){
-  $imgfile = "images/".$upimage_name;
-  if(!move_uploaded_file($upimage, $imgfile)){echo "Upload failed.";}
-  $fp = fopen($imgfile, 'r');
-  $temp = fread($fp, filesize($imgfile));
-  fclose($fp);
-  //$temp = strip_tags($temp);
-  $fp = fopen($imgfile, 'w');
-  fwrite($fp, $temp);
-  fclose($fp);
+ $newimage = saveImage();
+ if($newimage != ""){
+  $image = $newimage;
  }
- 
- if(isset($imgfile)){$image = $imgfile;}
- if(!isset($imgfile)){$image = " ";}
- if(!isset($link)){$link = " ";}
- if(!isset($adtext)){$adtext = " ";}
- 
- $query = "INSERT INTO $banners (id,adtype,link,image,adtext,alt,status) VALUES ('','$adtype','$link','$image','$adtext','$alt',$status)";
+ if(!isset($link)){$link = "";}
+ if(!isset($adtext)){$adtext = "";}
+
+ $query = "INSERT INTO $banners (`adtype`,`link`,`image`,`adtext`,`alt`,`status`,`title`,`isNewPage`,`target`,`hidetitle`) VALUES
+ ('$adtype','$link','$image','$adtext','$alt','$status','$title','$newpage','$target','$hidetitle')";
+
  $result = doquery($query);
 }
 
-if($action == "edit"){
+if($action == "edit"){ // list all items
  $query = "select * from $banners";
  $result = doquery($query);
  if(mysql_num_rows($result) != 0){
@@ -69,10 +102,14 @@ if($action == "edit"){
    $id = $row['id'];
    $image = $row['image'];
    $alt = $row['alt'];
+   $title = $row['title'];
    $adtype = $row['adtype'];
    $adtext = $row['adtext'];
+   $status = $row['status'];
+   $hideshowaction = $status==1?'hide':'show';
+   $hideshowtitle = $status==1?'Приховати':'Опублікувати';
    if($adtype == 1){
-    $adimg = "<img src='$image' alt='$image'>";
+    $adimg = "<img src='$image' alt='$alt'>";
    }else{
     $adimg = $adtext;
    }
@@ -80,77 +117,112 @@ if($action == "edit"){
   }
   echo "<br>";
  }else{
-  $message = "<tr><td align='center' class='message' colspan='2'>No banners found.</td></tr>";
+  $message = "<tr><td align='center' class='message' colspan='2'>Банерів не знайдено</td></tr>";
   $msg .= $message . "</table>";
   echo $msg;
  }
-} 
+}
 
-if($action == "delete"){
+if($action == "delete"){ // delete a item
  $query = "DELETE FROM $banners WHERE id = $id";
  $result = doquery($query);
-} 
+ $message = "Банер видалено!";
+}
 
-if($action == "item"){
+if($action == "hide"){ // set status to 'hide'
+ $query = "UPDATE $banners SET status=0 WHERE id = $id";
+ $result = doquery($query);
+ $message = "Банер приховано!";
+}
+
+if($action == "show"){ // set status to 'show'
+ $query = "UPDATE $banners SET status=1 WHERE id = $id";
+ $result = doquery($query);
+ $message = "Банер показано на сайті!";
+}
+
+if($action == "item"){ // display a item for modify
  $query = "select * from $banners WHERE id = $id";
  $result = doquery($query);
  $row = mysql_fetch_array($result);
+
  $id = $row['id'];
+ $title = $row['title'];
  $adtype = $row['adtype'];
  $image = $row['image'];
  $alt = $row['alt'];
  $link = $row['link'];
  $adtext = $row['adtext'];
  $status = $row['status'];
+ $newpage = $row['isNewPage'];
+ $target = $row['target'];
+ $hidetitle = $row['hidetitle'];
+
  if(!isset($adtype) || $adtype == 1){
-  $adstyle = "&nbsp;image<input name='adtype' type='radio' value='1' checked>&nbsp;text / html<input name='adtype' type='radio' value='0'>";
+	$imgchecked=' checked';
+	$txtchecked='';
+	$displayText='none';
+ 	$displayImage='table-row';
  }else{
-  $adstyle = "&nbsp;image<input name='adtype' type='radio' value='1'>&nbsp;text / html<input name='adtype' type='radio' value='0' checked>";
+ 	$adtype = 0;
+	$imgchecked='';
+	$txtchecked=' checked';
+	$displayText='table-row';
+ 	$displayImage='none';
  }
+$adstyle = "&nbsp;<label>Зображення <input name='adtype' type='radio' value='1'".$imgchecked." onchange='setType(this.value);'></label>";
+$adstyle .= "&nbsp;<label>Текст <input name='adtype' type='radio' value='0'".$txtchecked." onchange='setType(this.value);'></label>";
+
  if(!isset($status) || $status == 1){
-  $radio = "&nbsp;off<input name='status' type='radio' value='0'>&nbsp;on<input name='status' type='radio' value='1' checked>";
+  $enable = ' checked';
+  $disable = '';
+  $displayTarget='table-row';
  }else{
-  $radio = "&nbsp;off<input name='status' type='radio' value='0' checked>&nbsp;on<input name='status' type='radio' value='1'>";
+  $enable = '';
+  $disable = ' checked';
+  $displayTarget='none';
  }
- $act = "update";
+ $radio = "&nbsp;<label>Ні<input name='status' type='radio' value='0'".$disable." onchange='setVisible(this.value);'></label>&nbsp;<label>Так<input name='status' type='radio' value='1'".$enable." onchange='setVisible(this.value);'></label>";
+
+ if(!isset($newpage) || $newpage == 1){
+  $enable = ' checked';
+  $disable = '';
+ }else{
+  $enable = '';
+  $disable = ' checked';
+ }
+ $newpage = "&nbsp;<label>Ні<input name='newpage' type='radio' value='0'".$disable."></label>&nbsp;<label>Так<input name='newpage' type='radio' value='1'".$enable."></label>";
+
  if($adtype == 1){
   $imgrow = "<tr><td align='center' class='list' colspan='2' height='84'><img border='0' src='$image'></td></tr>";
  }else{
   $imgrow = "<tr><td align='center' class='list' colspan='2' height='84'>$adtext</td></tr>";
  }
+
+ $act = "update";
+
  include("templates/add.htm");
 }
 
-if($action == "update"){
+if($action == "update"){ // after submit a item
 
-$adtype = $_REQUEST['adtype'];
-$link = $_REQUEST['link'];
-$image = $_REQUEST['image'];
-$upimage = $_REQUEST['upimage'];
-$adtext = $_REQUEST['adtext'];
-$alt = $_REQUEST['alt'];
-$status = $_REQUEST['status'];
-
- if($upimage != ""){
-  $imgfile = "images/".$upimage_name;
-  $image = $imgfile;
-  if(!move_uploaded_file($upimage, $imgfile)){echo "Upload failed.";}
-  $fp = fopen($imgfile, 'r');
-  $temp = fread($fp, filesize($imgfile));
-  fclose($fp);
-  //$temp = strip_tags($temp);
-  $fp = fopen($imgfile, 'w');
-  fwrite($fp, $temp);
-  fclose($fp);
+ $newimage = saveImage();
+ if($newimage != ""){
+  $image = $newimage;
  }
- if(!isset($image)){$image = " ";}
  if(!isset($link)){$link = " ";}
  if(!isset($adtext)){$adtext = " ";}
- $query = "UPDATE $banners SET adtype = '$adtype' , link ='$link' , image ='$image' , adtext = '$adtext' , alt ='$alt' , status ='$status'  WHERE id = '$id'";
+ $query = "UPDATE $banners SET adtype = '$adtype' , link ='$link' , image ='$image' , adtext = '$adtext'
+ , alt ='$alt' , status ='$status', title='$title' , isNewPage='$newpage' , target = '$target', hidetitle='$hidetitle' WHERE id = '$id'";
  $result = doquery($query);
 }
 
 if($action == "stats"){
+ $query = "select id,title from $banners";
+ $result = doquery($query);
+ while ($row = mysql_fetch_array($result)){
+   $titles[$row['id']] = $row['title'];
+ }
  if(isset($adid)){
   $query = "select * from $banners where id = $adid";
   $result = doquery($query);
@@ -168,4 +240,6 @@ if($action == "stats"){
  include('stats.php');
 }
 
+echo($message.'<br>');
+include("templates/footer.htm");
 ?>
