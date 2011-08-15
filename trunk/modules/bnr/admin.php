@@ -20,7 +20,7 @@ include("templates/header.htm");
  $result = doquery($query);
  if(mysql_num_rows($result) != 0){
   	while ($row = mysql_fetch_array($result)){
-		$pages .= "<option value='/pages/".$row['id']."'>".$row['title']."</option>";
+		$pages .= "<option value='/article/".$row['id']."'>".$row['title']."</option>";
 	}
  }
 
@@ -32,7 +32,7 @@ include("templates/header.htm");
 		$news .= "<option value='/newsarticle/".$row['id']."'>".$row['title']."</option>";
 	}
  }
- //mysql_query('SET NAMES cp1251;');
+ mysql_query('SET NAMES cp1251;');
 
 function saveImage(){
 	if (count($_FILES)==1){

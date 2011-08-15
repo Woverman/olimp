@@ -49,7 +49,9 @@
 				</div>
             </div>
         </div>
-        <div id="banner_block"><? $target='Top1';include(DOCUMENT_ROOT.'/modules/bnr/adman.php');?></div>
+        <div id="banner_block">
+		<? $target='Top1';include(DOCUMENT_ROOT.'/modules/bnr/adman.php');?>
+		</div>
     </div>
 </div>
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>

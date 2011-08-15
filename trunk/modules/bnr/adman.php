@@ -11,9 +11,7 @@
 	This script is protected by New Zealand copyright law.
 	
 ****************************************************************************************************/
- if($action == show){
-  include("../config.php");
- }
+$action = $_REQUEST['action'];
 
  if(!isset($action)){
   mysql_query('set names "cp1251"');
@@ -53,7 +51,9 @@
 	if ($showframe) echo('<div class="vidget ui-corner-all">');
 	if ($hidetitle=='0') echo('<span>'.$title.'</span>');
 	if($adtype == 1){
-		echo "<a href='/modules/bnr/adman.php?id=".$id."&action=show' target='_blank'><img border='0' src='$image' alt='$alt'></a>";
+		echo "<a href='/modules/bnr/adman.php?id=".$id."&action=show'";
+		if ($newpage==1) echo(" target='_blank'");
+		echo "><img border='0' src='$image' alt='$alt'></a>";
 	}else{
 	 	echo $adtext;
 	}
@@ -63,6 +63,12 @@
 }
 
 if($action == "show"){
+	//echo('<pre>');
+//	print_r($_SERVER);
+//	echo('</pre>');
+
+ include("./config.php");
+ $id = $_REQUEST['id'];
  $query = "select * from $banners where id = $id";
  $result = doquery($query);
  $row = mysql_fetch_array($result);
@@ -71,10 +77,10 @@ if($action == "show"){
  $query = "select * from $stats where DATE_FORMAT(amdate, '%d %m %Y') = '$today' and id = $id";
  $result = doquery($query);
  $num_results = mysql_num_rows($result);
- $today = date("Y-m-d"); 
+ $today = date("Y-m-d");
  $query = "UPDATE $stats SET clicks = clicks + 1 WHERE id = $id AND amdate = '$today'";
  $result = doquery($query);
  header("Location: ".$link);
  exit;
-} 
+}
 ?>

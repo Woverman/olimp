@@ -28,7 +28,7 @@ $prefix = "adman_";
 $banners = $prefix . "banners";
 $stats = $prefix . "stats";
 
- 
+
 function doquery($query) {
 	$result = mysql_query($query);
 	return $result;
