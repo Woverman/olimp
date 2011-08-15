@@ -46,7 +46,7 @@ function clearForm() {
 <?}?>
 </div>
 <table width=100% class="mytab">
-<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Титулка</th><th>Об'єкти</th><th>Банери</th><th>Етапи</th><th>Операції</th></tr>
+<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Титулка</th><th>Об'єкти</th><th>Етапи</th><th>Операції</th></tr>
 <?php
 
 if (isset($_GET['mode'])){

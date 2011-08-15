@@ -1,11 +1,11 @@
 <script type='text/javascript'>
 function ToEdit(id){
-  var rt=getHTTPRequestObject();
+  //var rt=getHTTPRequestObject();
   var txt;
-  rt.open("POST", "/ajax/getById.php?tbl=m_exl&id=" + id,false);
-  rt.send(null);
-  if ( rt.status == 200 ) {
-  	txt=rt.responseText.split("{");
+  //rt.open("POST", "/ajax/getById.php?tbl=m_exl&id=" + id,false);
+  //rt.send(null);
+  $.get("/ajax/getById.php?tbl=m_exl&id=" + id,function(data){
+  	txt=data.split("{");
   	document.getElementById('title').innerHTML="Редагуємо ексклюзив";
   	document.getElementById('uid').value=txt[0];
   	document.getElementById('rieltor').value=txt[1];
@@ -19,7 +19,8 @@ function ToEdit(id){
   	document.getElementById('mode').value="edit";
     ShowModal();
     document.forms[0].focus();
-  }
+  });
+
 }
 function ToAdd(){
     clearForm();
@@ -38,11 +39,11 @@ function updaterow(row,data) {
   var txt=data.split("{");
 	var tr=document.getElementById('row' + row);
 	tr.cells[1].innerHTML = txt[0];
-  tr.cells[2].innerHTML = txt[1];
-  tr.cells[3].innerHTML = txt[2];
-  tr.cells[4].innerHTML = txt[3];
-  tr.cells[5].innerHTML = txt[4];
-  tr.cells[6].innerHTML = txt[5];
+	tr.cells[2].innerHTML = txt[1];
+	tr.cells[3].innerHTML = txt[2];
+	tr.cells[4].innerHTML = txt[3];
+	tr.cells[5].innerHTML = txt[4];
+	tr.cells[6].innerHTML = txt[5];
 }
 
 function clearForm() {
@@ -57,52 +58,22 @@ function clearForm() {
 	document.getElementById('mode').value='add';
 }
 function ShowModal(){
-    var ov = document.getElementById("overlay");
-    var frm = document.getElementById("formbox")
-    ov.style.position="absolute";
-    ov.style.top="-1000";
-    ov.style.left="-1000";
-    ov.style.width="4000";
-    ov.style.height="2000";
-    if (document.all){
-      frm.style.position="absolute";
-      frm.style.top=document.body.scrollTop+10;
-      frm.style.left=document.body.scrollLeft+10;
-      ov.style.zIndex="1";
-      ov.style.filter = "progid:DXImageTransform.Microsoft.Alpha(opacity = 80)"
-      setInterval("var a=document.getElementById('formbox');a.style.top=document.body.scrollTop+10;a.style.left=document.body.scrollLeft+10;",30);
-    } else {
-      ov.style.position="fixed";
-      ov.style.top=0;
-      ov.style.left=0;
-      ov.style.zIndex="1";
-      ov.style.opacity=0.8;
-      ov.style.MozOpacity = 0.8;
-      ov.style.width="100%";
-      ov.style.height="100%";
-    }
-    frm.style.zIndex="3";
-    frm.style.display="block";
-    }
+	$('#overlay').show();
+	$('#formbox').show();
+	$('#dialogTitle').drag();
+  }
 function HideModal(){
-    document.getElementById("formbox").style.display="none";
-    var ov = document.getElementById("overlay");
-    ov.style.opacity=0;
-    ov.style.MozOpacity = 0;
-    ov.style.width=0;
-    ov.style.height=0;
-    }
+   	$('#overlay').hide();
+	$('#formbox').hide();
+  }
 </script>
-<div id="overlay" style="display:none;background-color:#000;">
-<!-- div for hide content -->
-</div>
+<div id="overlay"><!-- div for hide content --></div>
  <!-- div for form -->
-<div id="formbox" style="position:fixed;display:none;background-color: #f0f0f0;z-index:6;width:450px">
+<div id="formbox" style="display:none;position:relative; margin:0 auto;top:100px;background-color: #DFDFDF;border:1px solid #FEFEFE;width:450px;">
+<div id="dialogTitle"><span id="title">Новий ексклюзив:</span>
+	    <img src="/i/window_close.png" width="24" onclick="HideModal();" style="float: right;cursor: pointer;position: relative;top:-4px;right:-2px"/>
+	</div>
 <Form method='post' action='/admin/editexl.php' name='mainform' target='ifrm' style="border:2px outset gray;display:block">
-<div style="display:block;position:relative;width:100%;height:18px;background-color:blue;">
-<h4 id='title' style="text-align:left;color:white;margin-left:5px;">Новий ексклюзив:</h4>
-<img align='right' src="/i/close.gif" style="position:absolute;top:1px;left:426px" onclick="HideModal()" border=0>
-</div>
 <div style="padding:10px;overflow:hidden;">
 <table border=0 width=400>
 <tr>
