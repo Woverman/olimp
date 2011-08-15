@@ -20,14 +20,14 @@ class Menuset
             new Menu("catalog",1,"Каталог"),
             new Menu("catalog",0,"Оренда"),
             new Menu("kredit",0,"Кредит"),
-            //new Menu("mail",0,"Оголошення"),
+            new Menu("alert",0,"Залишити оголошення"),
             new Menu("article",2,"Про нас"),
 			new Menu("article",3,"Контакти")
         );
         //if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
           //  $this->items[] = new Menu("admin","exit","Вихід");
         //} else {
-        $this->items[] = new Menu("admin","main","Адмінка");
+        //$this->items[] = new Menu("admin","main","Адмінка");
         //}
 		//if (isset($_SESSION['logged']) and $_SESSION['logged']>0)
             //$this->items[] = new Menu("admin","exit","Вихід");
