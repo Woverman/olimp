@@ -20,9 +20,9 @@ class Menuset
             new Menu("catalog",1,"Каталог"),
             new Menu("catalog",0,"Оренда"),
             new Menu("kredit",0,"Кредит"),
-            new Menu("alert",0,"Залишити оголошення"),
             new Menu("article",2,"Про нас"),
-			new Menu("article",3,"Контакти")
+			new Menu("article",3,"Контакти"),
+			new Menu("alert",0,"Залишити оголошення")
         );
         //if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
           //  $this->items[] = new Menu("admin","exit","Вихід");

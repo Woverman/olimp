@@ -47,10 +47,14 @@
 		hideMapDist()
 	}
 	function cityChanged(id){
-		if (id==1063)
-			{$('#map_e').show();$('#map_d').hide();}
-		else
-			{$('#map_e').hide();$('#map_d').show();}
+		if (id==1063){
+			$('#map_e').show();
+			$('#map_d').hide();
+			}
+		else {
+			$('#map_e').hide();
+			$('#map_d').show();
+			}
 		$('#distwrap').hide('slow');
 		$('#dist').val('');
 	}
