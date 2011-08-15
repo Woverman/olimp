@@ -24,7 +24,7 @@
                 </pre>
             </div>
         </div>
-        <div id="banner_block"><? $banner->showCurrentBanner(); ?></div>
+         <div id="banner_block"><? $target='Top1';include(DOCUMENT_ROOT.'/modules/bnr/adman.php');?></div>
     </div>
 </div>
 <? if ($page->hasleft){?>

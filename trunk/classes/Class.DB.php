@@ -28,7 +28,7 @@ class DB
 
         $this->dbh = mysql_connect($dbhost, $dbuser, $dbpassword, true);
         mysql_select_db($dbname);
-        mysql_query('set names "utf8"');
+        mysql_query('set names utf8');
     }
 
     function insert($sql)

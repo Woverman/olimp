@@ -11,6 +11,8 @@
 	This script is protected by New Zealand copyright law.
 
 ****************************************************************************************************/
+header("Content-type: text/html; charset=utf-8");
+session_start();
 
 $user = "olimpbiz_user";
 $pass = "gSDJgYJd";
@@ -26,11 +28,13 @@ $prefix = "adman_";
 $banners = $prefix . "banners";
 $stats = $prefix . "stats";
 
-
+ 
 function doquery($query) {
 	$result = mysql_query($query);
 	return $result;
 }
 
 $msg = "<table align='center' class='head' width='80%' border='1' cellspacing='0' cellpadding='2'>";
+
+
 ?>

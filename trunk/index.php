@@ -1,7 +1,7 @@
 <?
-header("Content-type: text/html; charset=utf-8");
-session_start();
-
+//header("Content-type: text/html; charset=utf-8");
+//session_start();
+include($_SERVER['DOCUMENT_ROOT']."/modules/bnr/config.php");
 if (isset($_REQUEST['lang'])){
     $_SESSION['lang']=$_REQUEST['lang'];
 }
@@ -13,7 +13,6 @@ $rpage = $_REQUEST['page'];
 $rpage = $rpage?$rpage:"main";
 $id =  $_REQUEST['id'];
 $page = new Page($rpage);
-$banner = new Banner($rpage);
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
