@@ -87,12 +87,12 @@ function updaterow(row,id){
 	$($(row).children().find("img").get(2)).click(function(){ToDel(id)});
 }
 function ShowModal(){
-	$('#formbox').show();
 	$('#overlay').show();
+	$('#formbox').show();
 	$('#dialogTitle').drag();
   }
 function HideModal(){
-	$('#overlay').hide();
+   	$('#overlay').hide();
 	$('#formbox').hide();
   }
 </script>
@@ -122,7 +122,7 @@ while ($row=mysql_fetch_row($res)) {
 <hr>
 <div id="StatusLine"></div>
 <div id="overlay"></div>
-<div id="formbox" class="moveable" style="display:none;">
+<div id="formbox" class="moveable" style="display:none;position:relative; margin:0 auto;top:100px;background-color: #DFDFDF;border:1px solid #FEFEFE; ">
 	<div id="dialogTitle"><span id="title">Новий користувач:</span>
 	    <img src="/i/window_close.png" width="24" onclick="HideModal();" style="float: right;cursor: pointer;position: relative;top:-4px;right:-2px"/>
 	</div>
