@@ -11,9 +11,9 @@
 <?
 function widjet($title,$href,$imgsrc){
 	?>
-<div class="widjet_outer">
+<div class="widjet_outer ui-corner-all">
 	<a href='/admin/<?=$href?>'>
-		<div class="widjet_inner">
+		<div class="widjet_inner ui-corner-all">
 			<img src='/i/admin/<?=$imgsrc?>.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/i/admin/<?=$imgsrc?>.png); width:expression(1); height:expression(1);}'>
 			<div><?=$title?></div>
 		</div>
@@ -23,13 +23,21 @@ function widjet($title,$href,$imgsrc){
 }
 $sql = "select * from s_widjets order by orderid";
 $res = $DB->request($sql,ARRAY_A);
+$i=0;
 foreach ($res as $item){
-	if ($item['enabled']==1)
-	widjet($item['title'],$item['href'],$item['img']);
+	if ($item['enabled']==1){
+		if ($item['newline']==1) echo('<br style="float:none;clear:both">');
+		widjet($item['title'],$item['href'],$item['img']);
+	}
+
+
 }
 //exit;
 ?>
-<div class="ui-corner-all" style="position: fixed;bottom:-10px;right: 10px; background-color:#CCCCFF;color:#9900FF;z-index:10000;cursor: pointer;padding: 4px 10px 10px 10px;border: 1px solid #903;" onclick="showConfigure()">
+<div id="overlay"></div>
+<div class="ui-corner-all" style="position: fixed;bottom:-10px;right: 10px;
+ background-color:#CCCCFF;color:#9900FF;z-index:10000;cursor: pointer;
+ padding: 4px 10px 10px 10px;border: 1px solid #903;" onclick="showConfigure()">
 	Налаштування
 </div>
 <div id="config_dialog" class="moveable" style="display:none;border: 2px outset #FC8;background-color:#FFCC66">
@@ -41,16 +49,24 @@ foreach ($res as $item){
       border: 3px groove #FFCC66;
       ">
 <table style="width: 100%" class="mytab">
-	<tr style="background-color: #C9C9C9; color: #343434"><th>Підпис</th><th>Посилання</th><th>Картинка</th><th>Видимість</th><th>Порядок</th></tr>
+	<tr style="background-color: #C9C9C9; color: #343434">
+		<th>Підпис</th>
+		<!--<th>Посилання</th>
+		<th>Картинка</th>-->
+		<th>Показувати</th>
+		<th>Порядок</th>
+		<th>Новий рядок</th>
+	</tr>
 	<?
 	$a=0;
 	foreach ($res as $item){
 		echo('<tr class="row'.$a=abs($a-1).'">');
 		echo("<td>".$item['title']."</td>");
-		echo("<td>".$item['href']."</td>");
-		echo("<td>".$item['img']."</td>");
+		//echo("<td>".$item['href']."</td>");
+		//echo("<td>".$item['img']."</td>");
 		echo("<td><img src='/i/".($item['enabled']?"on":"off").".png'></td>");
 		echo("<td><img src='/i/up.png'><img src='/i/down.png'></td>");
+		echo("<td><img src='/i/newline_".($item['newline']==1?'on':'off').".png'></td>");
 		echo("</tr>");
 	}?>
 </table>
@@ -59,14 +75,16 @@ foreach ($res as $item){
 </div>
 <script language="JavaScript" type="text/javascript">
    function showConfigure(){
-     $("#config_dialog").css({
+   	$('#overlay').toggle();
+    $("#config_dialog").css({
    		position:'fixed',
    		left: ($(window).width() - $('#config_dialog').outerWidth())/2,
    		top: ($(window).height() - $('#config_dialog').outerHeight())/2
-   	}).show();
+   	}).toggle();
+	$('#config_dialog_caption').drag();
    }
    function hideConfigure(){
      $("#config_dialog").hide();
+	 $('#overlay').hide();
    }
-   $('#config_dialog_caption').drag();
 </script>

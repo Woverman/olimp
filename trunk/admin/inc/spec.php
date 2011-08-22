@@ -76,16 +76,3 @@ if (isset($_GET['mode'])){
 ?>
 </table>
 <hr>
-<!--
-<Form method=post>
-<input type='hidden' value=0 name='uid' id='uid'>
-<input type='hidden' value='add' name='mode' id='mode'>
-<table border=0>
-<tr><th colspan=2><h4 id='title'>Нова область:</h4></th></tr>
-<tr><td align=right>Область:</td><td><input type='text' name='obl' id='obl'></td></tr>
-<tr><td colspan=2 align=right><input type='submit' value='Save'> <input type='reset' value='Reset' onclick="clearForm()"></td></tr>
-</table>
-</form>
-<script type='text/javascript'>
-clearForm();
-</script>-->
