@@ -236,6 +236,25 @@ function saveImgToFile($id) {
 	}
 }
 
+function saveImage($folder='banners',$control="upimage"){
+	debug($_FILES);
+	debug($_REQUEST);
+
+	if (count($_FILES)>0){
+		$upimage_name = $_FILES[$control]['name'];
+		$upimage_type = $_FILES[$control]['type'];
+		$upimage_tmpname = $_FILES[$control]['tmp_name'];
+		if ($upimage_type=='image/jpeg' || $upimage_type=='image/gif'  || $upimage_type=='image/png'  ){
+			$imgfile = $_SERVER['DOCUMENT_ROOT']."/i/".$folder."/".$upimage_name;
+			print_r($imgfile);
+			if(move_uploaded_file($upimage_tmpname, $imgfile)){
+				return "/i/".$folder."/".$upimage_name;
+			}
+		}
+	}
+	return "";
+};
+
 function findadr($id,$tbl) { // пошук областей, районів, міст тощо
     $sql = "Select name from $tbl where id=$id";
     $res = mysql_query($sql);

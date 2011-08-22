@@ -88,7 +88,11 @@ function updaterow(row,id){
 }
 function ShowModal(){
 	$('#overlay').show();
-	$('#formbox').show();
+	$('#formbox').css({
+   		position:'fixed',
+   		left: ($(window).width() - $('#formbox').outerWidth())/2,
+   		top: ($(window).height() - $('#formbox').outerHeight())/2
+   	}).show();
 	$('#dialogTitle').drag();
   }
 function HideModal(){
@@ -122,7 +126,7 @@ while ($row=mysql_fetch_row($res)) {
 <hr>
 <div id="StatusLine"></div>
 <div id="overlay"></div>
-<div id="formbox" class="moveable" style="display:none;position:relative; margin:0 auto;top:100px;background-color: #DFDFDF;border:1px solid #FEFEFE; ">
+<div id="formbox" class="moveable" style="display:none;background-color: #DFDFDF;border:1px solid #FEFEFE; ">
 	<div id="dialogTitle"><span id="title">Новий користувач:</span>
 	    <img src="/i/window_close.png" width="24" onclick="HideModal();" style="float: right;cursor: pointer;position: relative;top:-4px;right:-2px"/>
 	</div>
