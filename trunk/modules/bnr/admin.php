@@ -35,6 +35,7 @@ include("templates/header.htm");
  mysql_query('SET NAMES cp1251;');
 
 function saveImage(){
+	//print_r($imgfile);
 	if (count($_FILES)==1){
 		$upimage_name = $_FILES['upimage']['name'];
 		$upimage_type = $_FILES['upimage']['type'];
@@ -45,6 +46,11 @@ function saveImage(){
 			if(move_uploaded_file($upimage_tmpname, $imgfile)){
 				return "/i/banners/".$upimage_name;
 			}
+		} else {
+			/*echo("Недопустимий тип зображення: ".$upimage_type);
+			echo("<pre>");
+			print_r($_FILES);
+			echo("</pre>");*/
 		}
 	}
 	return "";
