@@ -66,7 +66,7 @@ foreach ($res as $item){
 		//echo("<td>".$item['img']."</td>");
 		echo("<td><img src='/i/".($item['enabled']?"on":"off").".png'></td>");
 		echo("<td><img src='/i/up.png'><img src='/i/down.png'></td>");
-		echo("<td><img src='/i/newline_".($item['newline']==1?'on':'off').".png'></td>");
+		echo("<td><img src='/i/admin/return_".($item['newline']==1?'yes':'no').".png'></td>");
 		echo("</tr>");
 	}?>
 </table>

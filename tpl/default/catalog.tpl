@@ -8,8 +8,13 @@
                   ."<div class='vidget ui-corner-all'>"." | "
                   ."<a href='/article/".$ff->proj."/'> Головна </a>"." | "
                   ."Список квартир"." | "
-                  ."<a href='/galery/".$ff->proj."/'> Етапи будівництва </a>"." | "
-                  ."</div>";
+                  ."<a href='/galery/".$ff->proj."/'> Етапи будівництва </a>"." | ";
+				$sql='Select isShowOLD from m_projects where main_page='.$ff->proj;
+				$res=mysql_query($sql);
+				$row=mysql_fetch_array($res);
+			   	if ($row['isShowOLD']=="1")
+      				$pn .= "<a href='/galery/".$ff->proj."/?type=old'> Завершені об'єкти </a>"." | ";
+                $pn .= "</div>";
                 echo($pn);
             }
 			if ($ff->showSubmenu==1){
