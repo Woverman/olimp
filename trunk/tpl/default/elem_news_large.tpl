@@ -6,7 +6,7 @@
     </div>
     <? } ?>
     <div class="news_item">
-        <h3><span class="news_date"><?=$item['dateadd']?></span><?=$item['title']?></h3>
+        <h3><span class="news_date"><?=$item['dt']?></span><?=$item['title']?></h3>
         <p class="news_intro"><?=$item['intro']?></p>
         <p class="news_text"><?=$item['text']?></p>
     </div>

@@ -13,22 +13,24 @@ class Menuset
     {
         $this->title = "main";
         $this->items = Array(
-            new Menu("main",0,"Головна"),
-            new Menu("newslist",0,"Новини"),
-            new Menu("articles",0,"Статті"),
-            new Menu("article",4,"Послуги"),
-            new Menu("catalog",1,"Каталог"),
-            new Menu("catalog",0,"Оренда"),
-            new Menu("kredit",0,"Кредит"),
-            new Menu("article",2,"Про нас"),
-			new Menu("article",3,"Контакти"),
-			new Menu("alert",0,"Залишити оголошення")
+            new Menu("main",0,"Головна")
+            ,new Menu("newslist",0,"Новини")
+            ,new Menu("articles",0,"Статті")
+            ,new Menu("article",4,"Послуги")
+            ,new Menu("catalog",1,"Каталог")
+            ,new Menu("catalog",0,"Оренда")
+            ,new Menu("kredit",0,"Кредит")
+            ,new Menu("article",2,"Про нас")
+			,new Menu("article",3,"Контакти")
+			//new Menu("alert",0,"Залишити оголошення")
         );
-        //if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
+        if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
           //  $this->items[] = new Menu("admin","exit","Вихід");
-        //} else {
+		  	$this->items[] = new Menu("admin","main","Адмінка");
+        } else {
         //$this->items[] = new Menu("admin","main","Адмінка");
-        //}
+			$this->items[] = new Menu("alert",0,"Залишити оголошення");
+        }
 		//if (isset($_SESSION['logged']) and $_SESSION['logged']>0)
             //$this->items[] = new Menu("admin","exit","Вихід");
     }

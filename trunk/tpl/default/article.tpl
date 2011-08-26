@@ -3,10 +3,14 @@
 		<!--  -->
 <?php
 
-if (!isset($otdel)){
-  $sql='Select * from m_pages where id = '.$id;
+//if (!isset($otdel)){
+  if(strstr($text,"{project navigation}"))
+    $sql='Select a.*,p.isShowOLD from m_pages a,m_projects p where a.id=p.main_page and a.id='.$id;
+  else
+  	$sql='Select * from m_pages where id='.$id;
   $res=mysql_query($sql);
   $row=mysql_fetch_array($res);
+  $title = $row['title'];
   $text=$row['text'];
 
   // Templates replacing
@@ -27,18 +31,21 @@ if (!isset($otdel)){
       $pn = "<div class='vidget ui-corner-all'>"." | "
       ."Головна"." | "
       ."<a href='/catalog/1/?proj=".$row['id']."'> Список квартир </a>"." | "
-      ."<a href='/galery/".$row['id']."/'> Етапи будівництва </a>"." | "
-      ."</div>";
-       $text=str_replace('{project navigation}',$pn,$text);
+      ."<a href='/galery/".$row['id']."/'> Етапи будівництва </a>"." | ";
+	  if ($row['isShowOLD']=="1")
+      	$pn .= "<a href='/galery/".$row['id']."/?type=old'> Завершені об'єкти </a>"." | ";
+      $pn .= "</div>";
+	  $text=str_replace('{project navigation}',$pn,$text);
   }
+
 ?>
 <div class=object_inner style="padding-top: 1px;">
-<div id="news_title" class="ui-corner-all"><?=$row['title']?></div>
+<div id="news_title" class="ui-corner-all"><?=$title?></div>
 
 <?=stripslashes($text)?>
 </div>
 
-<? } ?>
+<?// } ?>
 
 		<!--  -->
     </div>

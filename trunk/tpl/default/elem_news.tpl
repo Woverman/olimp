@@ -6,7 +6,7 @@
     </div>
     <? } ?>
     <div class="news_item">
-        <h3><span class="news_date"><?=$item['dateadd']?></span><?=$item['title']?></h3>
+        <h3><span class="news_date"><?=$item['dt']?></span><?=$item['title']?></h3>
         <p class="news_text"><?=$item['intro']?>
         <a class="news_more_link" href="/newsarticle/<?=$item['id']?>"> Подробнее...</a>
         </p>

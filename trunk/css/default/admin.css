@@ -174,7 +174,11 @@ div#loginat img {
 	display:inline-block;
 }
 
-
+.yesmsg{
+	color: #003300;
+	font-weight: bold;
+	}
+.nomsg{	color: #FF6666 }
 
 
 

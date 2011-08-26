@@ -37,16 +37,16 @@ function clearForm() {
 	document.getElementById('mode').value='add';
 }
 </script>
-<div style="border:1px solid #BFBFBF;padding:2px;margin:2px">
+<!--<div style="border:1px solid #BFBFBF;padding:2px;margin:2px">
 <?if (@$_REQUEST['mode']=="add" || @$_REQUEST['mode']=="edit"){?>
 <a href=/admin/spec/><button style="height: 40px"><img class=bimg src="/i/list.png">Повернутись до списку</button></a>
 <button style="height: 40px" onclick="validform(); return(false);"><img class=bimg src="/i/save.png">Створити проект</button>
 <?}else{?>
 <a href=/admin/spec/?mode=add><button style="height: 40px"><img class=bimg src="/i/add.png">Новий проект...</button></a>
 <?}?>
-</div>
+</div>-->
 <table width=100% class="mytab">
-<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Титулка</th><th>Об'єкти</th><th>Етапи</th><th>Операції</th></tr>
+<tr style="background-color: #BDCACC"><th>№</th><th>Назва</th><th>Титулка</th><th>Об'єкти</th><th>Етапи</th><th>Готові</th><!--<th>Операції</th>--></tr>
 <?php
 
 if (isset($_GET['mode'])){
@@ -60,16 +60,20 @@ if (isset($_GET['mode'])){
 	$sql="Select * from m_projects order by id";
 	$res=mysql_query($sql);
 	while ($row=mysql_fetch_array($res)){
+		debug($row,'ROW');
 		echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
 		echo '<td>'.$row[0].'</td><td>'.$row[1].'</td>';
 		echo '<td><a href=/admin/pageedit/?mode=edit&back=1&pid='.$row[2].'>Титулка</a></td>';
 		echo '<td><a href=/admin/prjitems/?pid='.$row[0].'>Об\'єкти</a></td>';
+		echo '<td><a href=/admin/photos/?folder='.$row[3].'>Етапи</a></td>';
+		$showOld=($row[6]=="1"?'<span class=yesmsg>Так</span>':'<span class=nomsg>Ні</span>');
+		echo "<td>$showOld</td>";
 		//echo '<td><a href=/admin/photos/?folder=proj'.$row[0].'>Банери</a></td>';
-		echo '<td>'.$row[3].'</td>';
-		echo '<td>';
+		//echo '<td>'.$row[3].'</td>';
+		/*echo '<td>';
 	    echo '<a href="javascript:ToEdit(\'row'.$row[0].'\')"><img class=aimg src="/i/edit.gif"></a>';
 		echo '<a href="javascript:ToDel(\'row'.$row[0].'\')"><img class=aimg src="/i/del.gif"></a>';
-	    echo '</td>';
+	    echo '</td>';*/
 		echo '</tr>';
 	}
   }
