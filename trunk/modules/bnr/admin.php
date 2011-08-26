@@ -34,7 +34,7 @@ include("templates/header.htm");
  }
  mysql_query('SET NAMES cp1251;');
 
-function saveImage(){
+function saveImage($alt){
 	//print_r($imgfile);
 	if (count($_FILES)==1){
 		$upimage_name = $_FILES['upimage']['name'];
@@ -42,9 +42,14 @@ function saveImage(){
 		$upimage_tmpname = $_FILES['upimage']['tmp_name'];
 		if ($upimage_type=='image/jpeg' || $upimage_type=='image/gif'  || $upimage_type=='image/png'  ){
 			$imgfile = $_SERVER['DOCUMENT_ROOT']."/i/banners/".$upimage_name;
-			print_r($imgfile);
+			//print_r($imgfile);
 			if(move_uploaded_file($upimage_tmpname, $imgfile)){
 				return "/i/banners/".$upimage_name;
+				$thumbnail=$_SERVER['DOCUMENT_ROOT']."/i/banners-p/".$upimage_name;
+				copy($imgfile,$thumbnail);
+				doquery("SET @i=0;");
+				doquery("INSERT INTO `img_info` (`file`,`folder`,`comment`,`orderid`) values ('$thumbnail','9','$alt','0')");
+				doquery("UPDATE `img_info` SET orderid = @i:=@i+1 WHERE file like '%/i/banners-p/%' ORDER BY orderid;");
 			}
 		} else {
 			/*echo("Недопустимий тип зображення: ".$upimage_type);
@@ -87,7 +92,7 @@ if($action == "add"){
 
 if($action == "insert"){ //after submit new item
 
- $newimage = saveImage();
+ $newimage = saveImage($alt);
  if($newimage != ""){
   $image = $newimage;
  }
