@@ -29,8 +29,8 @@ function fldID($fldName){
 if (isset($_POST['mode'])){
   $tmpfile=$_FILES['foto']['tmp_name'];
   $imgname=$_FILES['foto']['name'];
-  $newname=$config['SIGHT_ROOT'].$MAXDIR.$imgname;
-  $thumbnail=$config['SIGHT_ROOT'].$MINDIR.$imgname;
+  $newname=DOCUMENT_ROOT.'/'.$MAXDIR.$imgname;
+  $thumbnail=DOCUMENT_ROOT.'/'.$MINDIR.$imgname;
   // Get image dimensions
   $img1=ResizeImage($tmpfile,800,560,$imgname);
   $img2=ResizeImage($tmpfile,236,182,$imgname);
@@ -44,6 +44,7 @@ if (isset($_POST['mode'])){
   mysql_unbuffered_query("DELETE FROM `img_info` WHERE `file` = '".$thumbnail."'");
   debug(mysql_error(),"Error 1");
   $sql ="INSERT INTO `img_info` (`file`,`folder`,`comment`,`orderid`) values ('".$thumbnail."','".$dirid."','".$comment."','".$id."')";
+  debug($sql,"INSERT FILE");
   mysql_unbuffered_query($sql);
   debug(mysql_error(),"Error 2");
    mysql_unbuffered_query("SET @i=0;");
@@ -152,7 +153,7 @@ jQuery(".fotoframe .bright").click(function(){
 jQuery(".fotoframe .bdelete").click(function(){
   mydiv = jQuery(this).parent();
   file = jQuery(mydiv).find("[type='hidden']").val();
-  jQuery.get("/ajax/imgActions.php",{file:file,action:'imagedel',folder:"<?=$dirname?>"},function(d){alert(d);});
+  jQuery.get("/ajax/imgActions.php",{file:file,action:'imagedel',folder:"<?=$dirname?>"},function(d){if (d!='') alert(d);});
   jQuery(mydiv).remove();
   });
 

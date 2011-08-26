@@ -141,7 +141,7 @@ function ResizeImage( $image, $newWidth, $newHeight,$imagename){
 	debug($imagename,"Image in ResizeImage");
 	eregi("\..{3,4}$",$imagename,$regs);
 	debug($regs,'$regs');
-	switch($regs[0]){
+	switch(strtolower($regs[0])){
 		case ".gif": $srcImage = ImageCreateFromGIF( $image ); break;
 		case ".png": $srcImage = ImageCreateFromPNG( $image ); break;
 		case ".jpeg":
@@ -303,9 +303,9 @@ function delfoto($num,$id){
   mysql_unbuffered_query("update m_fotos set `orderval`=`orderval`-1 where `objid`='".$id."' and `orderval`>'".$num."'");
 
   //delete image from folder
-  $fname = '/home/hosting/windb/olimp/i/obj/tmb_'.$id.'_'.$num.'.jpg';
+  $fname = DOCUMENT_ROOT.'/i/obj/tmb_'.$id.'_'.$num.'.jpg';
   if(is_file($fname)) unlink($fname);
-  $fname = '/home/hosting/windb/olimp/i/obj/img_'.$id.'_'.$num.'.jpg';
+  $fname = DOCUMENT_ROOT.'/i/obj/img_'.$id.'_'.$num.'.jpg';
   if(is_file($fname)) unlink($fname);
 
 }
