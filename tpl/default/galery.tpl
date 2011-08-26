@@ -17,12 +17,10 @@
   <?
   $pn = "<div class='vidget ui-corner-all'> | <a href='/article/$id/'> Головна </a> | <a href='/catalog/1/?proj=$id'> Список квартир </a>"." | ";
   if ($old==1)  {
-  	$pn .= "<a href='/galery/".$id."/'> Етапи будівництва </a> | ";
-    $pn .= "Завершені об'єкти | ";
+  	$pn .= "<a href='/galery/".$id."/'> Етапи будівництва </a> | Завершені об'єкти | ";
   } else {
   	$pn .= "Етапи будівництва | ";
-   	if ($isShowOLD=="1")
-    	$pn .= "<a href='/galery/".$id."/?type=old'> Завершені об'єкти </a> | ";
+   	if ($isShowOLD=="1") $pn .= "<a href='/galery/".$id."/?type=old'> Завершені об'єкти </a> | ";
   }
   $pn .= "</div>";
   echo($pn);

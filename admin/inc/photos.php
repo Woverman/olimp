@@ -8,19 +8,19 @@ $MAXDIR = "i/".$dirname."/";
 $MINDIR = "i/".$dirname."-p/";
 
 function showDir($dir){
-	debug($dir);
+	debug($dir,"DIR");
     $sql = "SELECT file,orderid,comment FROM img_info WHERE file LIKE '%".$dir."%' ORDER BY orderid";
-	debug($sql);
+	debug($sql,"SQL");
     $res = mysql_query($sql);
     while ($row=mysql_fetch_assoc($res)) {
       $listFile[] = array(basename($row['file']),$row['file'],$row['orderid'],$row['comment']);
     }
-	debug($listFile);
+	debug($listFile,"LISTFILE");
     if (!empty($listFile)) return $listFile;
 }
 function fldID($fldName){
 	$sql = "select id from img_folders where folder='".$fldName."'";
-	debug($sql);
+	debug($sql,"SQL IN fldID");
 	$res = mysql_query($sql);
 	return(mysql_result($res,0,0));
 }
@@ -28,22 +28,27 @@ function fldID($fldName){
 
 if (isset($_POST['mode'])){
   $tmpfile=$_FILES['foto']['tmp_name'];
-  $newname=DOCUMENT_ROOT.'/'.$MAXDIR.$_FILES['foto']['name'];
-  $thumbnail=DOCUMENT_ROOT.'/'.$MINDIR.$_FILES['foto']['name'];
+  $imgname=$_FILES['foto']['name'];
+  $newname=$config['SIGHT_ROOT'].$MAXDIR.$imgname;
+  $thumbnail=$config['SIGHT_ROOT'].$MINDIR.$imgname;
   // Get image dimensions
-  $img1=ResizeImage($tmpfile,800,560);
-  $img2=ResizeImage($tmpfile,236,182);
+  $img1=ResizeImage($tmpfile,800,560,$imgname);
+  $img2=ResizeImage($tmpfile,236,182,$imgname);
+
   // Write to folders
-  if ($handle = fopen($newname, 'w')) { fwrite($handle, $img1); }
-  if ($handle = fopen($thumbnail, 'w')) { fwrite($handle, $img2); }
+  if ($handle = fopen($newname, 'w')) { fwrite($handle, $img1); } else {debug($newname,"Failed to open file for writing!"); }
+  if ($handle = fopen($thumbnail, 'w')) { fwrite($handle, $img2); } else {debug($thumbnail,"Failed to open file for writing!"); }
   // write comment to DB
   $comment = $_POST['info'];
   $id = mysql_result(mysql_query("SELECT max(orderid)+1 FROM img_info WHERE file like '%".$MINDIR."%'"),0,0);
   mysql_unbuffered_query("DELETE FROM `img_info` WHERE `file` = '".$thumbnail."'");
-  $sql ="INSERT INTO `img_info` (`file`,`folder`,`comment`,`orderid`) values ('".$_FILES['foto']['name']."','".$dirid."','".$comment."','".$id."')";
+  debug(mysql_error(),"Error 1");
+  $sql ="INSERT INTO `img_info` (`file`,`folder`,`comment`,`orderid`) values ('".$thumbnail."','".$dirid."','".$comment."','".$id."')";
   mysql_unbuffered_query($sql);
-  $sql = "SET @i=0; UPDATE `img_info` SET orderid = @i:=@i+1 WHERE folder=".$dirid." ORDER BY orderid;";
+  debug(mysql_error(),"Error 2");
+  $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE folder=".$dirid." ORDER BY orderid;";
   mysql_unbuffered_query($sql);
+  debug(mysql_error(),"Error 3");
 }
 $sql = "select * from img_folders";
 $ff = $DB->request($sql,ARRAY_A);
@@ -146,7 +151,7 @@ jQuery(".fotoframe .bright").click(function(){
 jQuery(".fotoframe .bdelete").click(function(){
   mydiv = jQuery(this).parent();
   file = jQuery(mydiv).find("[type='hidden']").val();
-  jQuery.get("/ajax/imgActions.php",{file:file,action:'imagedel',folder:"<?=$dirname?>"});
+  jQuery.get("/ajax/imgActions.php",{file:file,action:'imagedel',folder:"<?=$dirname?>"},function(d){alert(d);});
   jQuery(mydiv).remove();
   });
 

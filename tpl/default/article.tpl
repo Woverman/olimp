@@ -4,15 +4,18 @@
 <?php
 
 //if (!isset($otdel)){
-  if(strstr($text,"{project navigation}"))
-    $sql='Select a.*,p.isShowOLD from m_pages a,m_projects p where a.id=p.main_page and a.id='.$id;
-  else
-  	$sql='Select * from m_pages where id='.$id;
+  //if(strstr($text,"{project navigation}"))
+    //$sql='Select a.*,p.isShowOLD from m_pages a,m_projects p where a.id=p.main_page and a.id='.$id;
+  //else
+  $sql='Select * from m_pages where id='.$id;
   $res=mysql_query($sql);
   $row=mysql_fetch_array($res);
   $title = $row['title'];
   $text=$row['text'];
-
+  if(strstr($text,"{project navigation}")){
+  	$sql = "Select isShowOLD from m_projects where main_page=".$id;
+	$isShowOLD = mysql_result(mysql_query($sql),0,0);
+  }
   // Templates replacing
     // {otdel0}, {otdel1}, {otdel2}, {otdel3}
   if(strstr($text,"{otdel")){
@@ -32,7 +35,7 @@
       ."Головна"." | "
       ."<a href='/catalog/1/?proj=".$row['id']."'> Список квартир </a>"." | "
       ."<a href='/galery/".$row['id']."/'> Етапи будівництва </a>"." | ";
-	  if ($row['isShowOLD']=="1")
+	  if ($isShowOLD=="1")
       	$pn .= "<a href='/galery/".$row['id']."/?type=old'> Завершені об'єкти </a>"." | ";
       $pn .= "</div>";
 	  $text=str_replace('{project navigation}',$pn,$text);

@@ -58,11 +58,13 @@ if (isset($_REQUEST['ajax']))
 
 if (isset($_POST['mode'])){
   $tmpfile=$_FILES['foto']['tmp_name'];
-  $newname=$config['SIGHT_ROOT'].$MAXDIR.$_FILES['foto']['name'];
-  $thumbnail=$config['SIGHT_ROOT'].$MINDIR.$_FILES['foto']['name'];
+  $imgname=$_FILES['foto']['name'];
+  $newname=$config['SIGHT_ROOT'].$MAXDIR.$imgname;
+  $thumbnail=$config['SIGHT_ROOT'].$MINDIR.$imgname;
   // Get image dimensions
-  $img1=ResizeImage($tmpfile,800,560);
-  $img2=ResizeImage($tmpfile,236,182);
+  $img1=ResizeImage($tmpfile,800,560,$imgname);
+  $img2=ResizeImage($tmpfile,236,182,$imgname);
+
   // Write to folders
   if ($handle = fopen($newname, 'w')) { fwrite($handle, $img1); }
   if ($handle = fopen($thumbnail, 'w')) { fwrite($handle, $img2); }
