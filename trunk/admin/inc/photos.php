@@ -46,6 +46,7 @@ if (isset($_POST['mode'])){
   $sql ="INSERT INTO `img_info` (`file`,`folder`,`comment`,`orderid`) values ('".$thumbnail."','".$dirid."','".$comment."','".$id."')";
   mysql_unbuffered_query($sql);
   debug(mysql_error(),"Error 2");
+   mysql_unbuffered_query("SET @i=0;");
   $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE folder=".$dirid." ORDER BY orderid;";
   mysql_unbuffered_query($sql);
   debug(mysql_error(),"Error 3");

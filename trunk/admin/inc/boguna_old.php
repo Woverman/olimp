@@ -42,6 +42,7 @@ if (isset($_REQUEST['ajax']))
       @unlink ($fname);
       $sql = "DELETE FROM `img_info` WHERE `file` = '".$fname."'";
       mysql_unbuffered_query($sql);
+	  mysql_unbuffered_query("SET @i=0;");
       $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE file like '%".$MINDIR."%' ORDER BY orderid;";
       mysql_unbuffered_query($sql);
       break;
@@ -71,6 +72,7 @@ if (isset($_POST['mode'])){
   $comment = $_POST['info'];
   $id = mysql_result(mysql_query("SELECT max(orderid)+1 FROM img_info WHERE file like '%".$MINDIR."%'"),0,0);
   mysql_unbuffered_query("DELETE FROM `img_info` WHERE `file` = '".$thumbnail."'");
+  mysql_unbuffered_query("SET @i=0;");
   $sql ="INSERT INTO `img_info` (`file`,`comment`,`orderid`) values ('".$thumbnail."','".$comment."','".$id."')";
   mysql_unbuffered_query($sql);
   $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE file like '%".$MINDIR."%' ORDER BY orderid;";
