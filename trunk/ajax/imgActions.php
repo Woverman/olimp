@@ -1,8 +1,8 @@
 <?
 header("Content-type: text/html; charset=utf-8");
 $dirname = $_REQUEST['folder'];
-$MAXDIR = "i/".$dirname."/";
-$MINDIR = "i/".$dirname."-p/";
+$MAXDIR = "/i/".$dirname."/";
+$MINDIR = "/i/".$dirname."-p/";
 
 include ('../classes.php'); // classes, config and functions
 
@@ -26,13 +26,19 @@ switch($_REQUEST['action'])
     case 'imagedel':
       $f = basename($_REQUEST['file']);
       $fname=DOCUMENT_ROOT.$MAXDIR.$f;
-      @unlink ($fname);
+	  echo("fname=$fname\n");
+      unlink ($fname);
       $fname=DOCUMENT_ROOT.$MINDIR.$f;
-      @unlink ($fname);
-      $sql = "DELETE FROM `img_info` WHERE `file` = '".$fname."'";
+	  echo("fname=$fname\n");
+      unlink ($fname);
+      $sql = "DELETE FROM `img_info` WHERE `file` like '%".$fname."'";
+	  echo("sql=$sql\n");
       $DB->insert($sql);
+	  echo(mysql_error($DB->dbh));
       $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE file like '%".$MINDIR."%' ORDER BY orderid;";
+	  echo("sql=$sql\n");
       $DB->insert($sql);
+	  echo(mysql_error($DB->dbh));
       break;
     case 'edittitle':
       $text = urldecode($_REQUEST['text']);

@@ -24,12 +24,13 @@ if (isset($_POST['file_to_del'])){ //удаление фоток
 
 if (isset($_POST['mode'])){
   $tmpfile=$_FILES['foto']['tmp_name'];
-  $newname=$config['SIGHT_ROOT'].'/i/awards/'.$_FILES['foto']['name'];
-  $thumbnail=$config['SIGHT_ROOT'].'/i/awards-p/'.$_FILES['foto']['name'];
+  $fotoname = $_FILES['foto']['name'];
+  $newname=$config['SIGHT_ROOT'].'/i/awards/'.$fotoname;
+  $thumbnail=$config['SIGHT_ROOT'].'/i/awards-p/'.$fotoname;
   copy($tmpfile,$newname);
 
   // Get image dimensions
-  $img=ResizeImage($tmpfile,86,120);
+  $img=ResizeImage($tmpfile,86,120,$fotoname);
   if ($handle = fopen($thumbnail, 'w')) {
     if (fwrite($handle, $img) === FALSE) {
        echo "Не можу записати в файл ($thumbnail)";

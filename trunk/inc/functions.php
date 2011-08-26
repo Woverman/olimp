@@ -137,8 +137,10 @@ function MakePageLinks($page,$pages,$items,$ff) {
 }
 
  /* ResizeImage with (height % width) */
-function ResizeImage( $image, $newWidth, $newHeight){
-	eregi("\..{3,4}$",$image,$regs);
+function ResizeImage( $image, $newWidth, $newHeight,$imagename){
+	debug($imagename,"Image in ResizeImage");
+	eregi("\..{3,4}$",$imagename,$regs);
+	debug($regs,'$regs');
 	switch($regs[0]){
 		case ".gif": $srcImage = ImageCreateFromGIF( $image ); break;
 		case ".png": $srcImage = ImageCreateFromPNG( $image ); break;
@@ -199,8 +201,8 @@ function saveImgToBase($id) {
 		$num++;
 		if ($iname!='') {
 			//$img=addslashes(ResizeImage($iname,300,200));
-      $img=addslashes(ResizeImage($iname,800,600));
-			$thumb=addslashes(ResizeImage($iname,100,70));
+      $img=addslashes(ResizeImage($iname,800,600,$fname));
+	  $thumb=addslashes(ResizeImage($iname,100,70,$fname));
       $sql="select count(id) from m_fotos where objid=$id and orderval=$num";
       $res=mysql_query($sql);
       if (mysql_result($res,0)==0) $sql="insert into m_fotos (objid,foto,tumb,orderval,fname) values ('$id','$img','$thumb','$num','$fname')";
@@ -217,8 +219,8 @@ function saveImgToFile($id) {
     $fname=$a[1]['name'];
 		$num++;
 		if ($iname!='') {
-      $img=ResizeImage($iname,1024,768);
-			$thumb=ResizeImage($iname,100,70);
+      $img=ResizeImage($iname,1024,768,$fname);
+	  $thumb=ResizeImage($iname,100,70,$fname);
       $resultFileName = DOCUMENT_ROOT."/i/obj/img_".$id."_".$num.".jpg";
       $resultThumbName = DOCUMENT_ROOT."/i/obj/tmb_".$id."_".$num.".jpg";
       //imagejpeg($img,$resultFileName);
