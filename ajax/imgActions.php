@@ -35,6 +35,7 @@ switch($_REQUEST['action'])
 	  echo("sql=$sql\n");
       $DB->insert($sql);
 	  echo(mysql_error($DB->dbh));
+	  $DB->insert("SET @i=0;");
       $sql = "UPDATE `img_info` SET orderid = @i:=@i+1 WHERE file like '%".$MINDIR."%' ORDER BY orderid;";
 	  echo("sql=$sql\n");
       $DB->insert($sql);
