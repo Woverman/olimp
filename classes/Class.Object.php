@@ -52,7 +52,8 @@ abstract class Object
         return Object::parse($res[0]);
     }
 	function parse($data){
-		$o=null;
+		debug($data,"PARSE DATA:");
+		$o = new ObjectKva();
 		switch ($data['type']){
 			case "dom":
 				$o = new ObjectDom();

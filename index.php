@@ -52,7 +52,7 @@ $page = new Page($rpage);
     <LINK REL="SHORTCUT ICON" href="/favicon.ico">
 </head>
 
-<body>
+<body onload="createIFrame()">
 <div id="header_block">
   <div id="logo_wrap">
 	<div id="logo_block">

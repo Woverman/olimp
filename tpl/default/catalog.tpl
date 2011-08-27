@@ -3,17 +3,17 @@
         <div id="object_inner">
 <?
 			$ff = new FindParameters();
-            if ($ff->proj!=0){
-                $pn = "<div id='news_title' class='ui-corner-all'>".$ff->projTitle."</div>"
+            if ($ff->proj->id!=0){
+                $pn = "<div id='news_title' class='ui-corner-all'>".$ff->proj->title."</div>"
                   ."<div class='vidget ui-corner-all'>"." | "
-                  ."<a href='/article/".$ff->proj."/'> Головна </a>"." | "
+                  ."<a href='/article/".$ff->proj->mainpage."/'> Головна </a>"." | "
                   ."Список квартир"." | "
-                  ."<a href='/galery/".$ff->proj."/'> Етапи будівництва </a>"." | ";
-				$sql='Select isShowOLD from m_projects where main_page='.$ff->proj;
+                  ."<a href='/galery/".$ff->proj->mainpage."/'> Етапи будівництва </a>"." | ";
+				$sql='Select isShowOLD from m_projects where main_page='.$ff->proj->mainpage;
 				$res=mysql_query($sql);
 				$row=mysql_fetch_array($res);
 			   	if ($row['isShowOLD']=="1")
-      				$pn .= "<a href='/galery/".$ff->proj."/?type=old'> Завершені об'єкти </a>"." | ";
+      				$pn .= "<a href='/galery/".$ff->proj->mainpage."/?type=old'> Завершені об'єкти </a>"." | ";
                 $pn .= "</div>";
                 echo($pn);
             }
@@ -60,7 +60,7 @@
 				if ($ff->obl!='0') $usl[]='adr_obl='.$ff->obl;
 				if ($ff->price1!=0) $usl[]='cast>='.$ff->price1;
 				if ($ff->price2!=0) $usl[]='cast<='.$ff->price2;
-				$usl[]='proj='.$ff->proj;
+				$usl[]='proj='.$ff->proj->id;
 				if ($ff->tn==2) {if ($ff->kk!='0') $usl[]='kk='.$ff->kk;}
 				if ($ff->tn==1) {if ($ff->dom_domtype!='0') $usl[]='dom_domtype='.$ff->dom_domtype;}
 

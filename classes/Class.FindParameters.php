@@ -31,15 +31,16 @@ class FindParameters{
 		$this->dom_domtype = $_REQUEST['dom_domtype']?$_REQUEST['dom_domtype']:0;
 		$this->pg = $_REQUEST['pg']?$_REQUEST['pg']:1;
 		$this->dist = $_REQUEST['dist']?$_REQUEST['dist']:0;
-		$this->proj = $_REQUEST['proj']?$_REQUEST['proj']:0;
-		$this->projTitle = $this->getPageTitle($this->proj);
-        $this->showSubmenu = $this->getSubmenuFlag($this->proj);
+		$this->proj = new Project($_REQUEST['proj']);
+		$this->projTitle = $this->getPageTitle($this->proj->maipage);
+        $this->showSubmenu = $this->proj->showObjectTypes;
 		debug($this,"FindParameters");
 	}
 	function createURL($field,$new_value) {
 	   $ret = "?";
        foreach($this as $key => $value) {
        		if ($key==$field) $value=$new_value;
+			if ($key=='proj') $value=$value->id;
 			$ret .= "$key=$value&";
        }
 	   return $ret;

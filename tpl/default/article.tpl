@@ -15,6 +15,9 @@
   if(strstr($text,"{project navigation}")){
   	$sql = "Select isShowOLD from m_projects where main_page=".$id;
 	$isShowOLD = mysql_result(mysql_query($sql),0,0);
+	$sql = "Select id from m_projects where main_page=".$id;
+	$projID = mysql_result(mysql_query($sql),0,0);
+
   }
   // Templates replacing
     // {otdel0}, {otdel1}, {otdel2}, {otdel3}
@@ -33,7 +36,7 @@
   if(strstr($text,"{project navigation}")){
       $pn = "<div class='vidget ui-corner-all'>"." | "
       ."Головна"." | "
-      ."<a href='/catalog/1/?proj=".$row['id']."'> Список квартир </a>"." | "
+      ."<a href='/catalog/1/?proj=".$projID."'> Список квартир </a>"." | "
       ."<a href='/galery/".$row['id']."/'> Етапи будівництва </a>"." | ";
 	  if ($isShowOLD=="1")
       	$pn .= "<a href='/galery/".$row['id']."/?type=old'> Завершені об'єкти </a>"." | ";
