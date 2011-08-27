@@ -3,19 +3,21 @@
     <div class=object_inner>
 <?
   $old = ($_GET['type']=="old"?1:0);
-  $sql = "select images1,images2,isShowOLD from m_projects where main_page=".$id;
-  $dir = mysql_result(mysql_query($sql),0,$old);
-  $isShowOLD = mysql_result(mysql_query($sql),0,2);
+  $sql = "select images1,images2,isShowOLD,id from m_projects where main_page=".$id;
+  $res = mysql_query($sql);
+  $dir = mysql_result($res,0,$old);
+  $isShowOLD = mysql_result($res,0,2);
+  $projectID = mysql_result($res,0,3);
   $sql = "select title from m_pages where id=".$id;
   $title = mysql_result(mysql_query($sql),0,0);
-  $sql = "Select * from img_info where file like '%".$dir."%' order by orderid";
+  $sql = "Select * from img_info where file like '%/i/".$dir."%' order by orderid";
   $res = mysql_query($sql);
   $dir_min='/i/'.$dir.'-p/';
   $dir_max='/i/'.$dir.'/';
   ?>
   <div id="news_title" class="ui-corner-all"><?=$title?></div>
   <?
-  $pn = "<div class='vidget ui-corner-all'> | <a href='/article/$id/'> Головна </a> | <a href='/catalog/1/?proj=$id'> Список квартир </a>"." | ";
+  $pn = "<div class='vidget ui-corner-all'> | <a href='/article/$id/'> Головна </a> | <a href='/catalog/1/?proj=$projectID'> Список квартир </a>"." | ";
   if ($old==1)  {
   	$pn .= "<a href='/galery/".$id."/'> Етапи будівництва </a> | Завершені об'єкти | ";
   } else {

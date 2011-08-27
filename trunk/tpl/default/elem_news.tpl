@@ -8,7 +8,7 @@
     <div class="news_item">
         <h3><span class="news_date"><?=$item['dt']?></span><?=$item['title']?></h3>
         <p class="news_text"><?=$item['intro']?>
-        <a class="news_more_link" href="/newsarticle/<?=$item['id']?>"> Подробнее...</a>
+        <a class="news_more_link" href="/newsarticle/<?=$item['id']?>"> Докладніше...</a>
         </p>
         
     </div>

@@ -9,9 +9,9 @@
 </style>
 
 <?
-function widjet($title,$href,$imgsrc){
+function widjet($title,$href,$imgsrc,$id,$visible,$newline){
 	?>
-<div class="widjet_outer ui-corner-all">
+<div class="widjet_outer ui-corner-all" id='w<?=$id?>' style='display:<?=($visible?'block':'none')?>;clear:<?=($newline?'both':'none')?>'>
 	<a href='/admin/<?=$href?>'>
 		<div class="widjet_inner ui-corner-all">
 			<img src='/i/admin/<?=$imgsrc?>.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/i/admin/<?=$imgsrc?>.png); width:expression(1); height:expression(1);}'>
@@ -25,13 +25,8 @@ $sql = "select * from s_widjets order by orderid";
 $res = $DB->request($sql,ARRAY_A);
 $i=0;
 foreach ($res as $item){
-	if ($item['enabled']==1){
-		if ($item['newline']==1) echo('<br style="float:none;clear:both">');
-		widjet($item['title'],$item['href'],$item['img']);
-	}
-
-
-}
+		widjet($item['title'],$item['href'],$item['img'],$item['id'],$item['enabled']==1,$item['newline']==1);
+}//if ($item['newline']==1) echo('<br style="float:none;clear:both">');
 //exit;
 ?>
 <div id="overlay"></div>
@@ -60,13 +55,15 @@ foreach ($res as $item){
 	<?
 	$a=0;
 	foreach ($res as $item){
-		echo('<tr class="row'.$a=abs($a-1).'">');
+		$i = $item['id'];
+		echo('<tr class="row'.$a=abs($a-1).'" id="row'.$i.'">');
 		echo("<td>".$item['title']."</td>");
 		//echo("<td>".$item['href']."</td>");
 		//echo("<td>".$item['img']."</td>");
-		echo("<td><img src='/i/".($item['enabled']?"on":"off").".png'></td>");
-		echo("<td><img src='/i/up.png'><img src='/i/down.png'></td>");
-		echo("<td><img src='/i/admin/return_".($item['newline']==1?'yes':'no').".png'></td>");
+		echo("<td><img id='iOn".$i."' class=Hand src='/i/on.png' style='display:".($item['enabled']==1?'inline-block':'none')."' onclick='Hide(".$i.")'>");
+		echo("<img id='iOff".$i."' class=Hand src='/i/off.png' style='display:".($item['enabled']==0?'inline-block':'none')."' onclick='Show(".$item['id'].")'></td>");
+		echo("<td><img class=Hand src='/i/up.png' onclick='Up(".$item['id'].")'><img class=Hand src='/i/down.png' onclick='Down(".$item['id'].")'></td>");
+		echo("<td><img class=Hand src='/i/admin/return_".($item['newline']==1?'yes':'no').".png' onclick='".($item['newline']==1?'Unshift':'Shift')."(".$item['id'].")'></td>");
 		echo("</tr>");
 	}?>
 </table>
@@ -87,4 +84,42 @@ foreach ($res as $item){
      $("#config_dialog").hide();
 	 $('#overlay').hide();
    }
+   function Up(id){
+		$.get("/ajax/widgetsActions.php",{id:id,action:'up'},function(z){if (z=="ok"){
+			var pdiv = $('#w'+id);
+			pdiv.insertBefore(pdiv.prev());
+			var prow = $('#row'+id);
+			prow.toggleClass('row0 row1');
+			prow.insertBefore(prow.prev().toggleClass('row0 row1'));
+   			}else{if(z!='')alert(z);}})
+   }
+   function Down(id){
+		$.get("/ajax/widgetsActions.php",{id:id,action:'down'},function(z){if (z=="ok"){
+			var pdiv = $('#w'+id);
+			pdiv.insertAfter(pdiv.next());
+			var prow = $('#row'+id);
+			prow.insertAfter(prow.next().toggleClass('row0 row1')).toggleClass('row0 row1');
+   			}else{if(z!='')alert(z);}})
+   }
+   function Shift(id){
+		$.get("/ajax/widgetsActions.php",{id:id,action:'shift'},function(z){if (z=="ok"){
+		$('#w'+id).css('clear','both');
+		}else{if(z!='')alert(z);}})
+   }
+   function Unshift(id){
+		$.get("/ajax/widgetsActions.php",{id:id,action:'unshift'},function(z){if (z=="ok"){
+		$('#w'+id).css('clear','none');
+		}else{if(z!='')alert(z);}})
+   }
+   function Show(id){
+		$.get("/ajax/widgetsActions.php",{id:id,action:'show'},function(z){if (z=="ok"){
+			$('#w'+id).show();
+		}else{if(z!='')alert(z);}})
+   }
+   function Hide(id){
+		$.get("/ajax/widgetsActions.php",{id:id,action:'hide'},function(z){if (z=="ok"){
+			$('#w'+id).hide();
+		}else{if(z!='')alert(z);}})
+   }
+
 </script>

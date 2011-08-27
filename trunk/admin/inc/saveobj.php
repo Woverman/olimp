@@ -10,6 +10,7 @@ debug($_GET,"GET");
 
 // адреса -->
   if (isset($_POST['prodazh'])) mysql_unbuffered_query(sprintf($sql,'prodazh',$_POST['prodazh']));
+  if (isset($_POST['prodano'])) mysql_unbuffered_query(sprintf($sql,'prodazh',$_POST['prodano']));
   if (isset($_POST['num'])) mysql_unbuffered_query(sprintf($sql,'num',$_POST['num']));
   if (isset($_POST['obl'])) mysql_unbuffered_query(sprintf($sql,'adr_obl',$_POST['obl']));
   if (isset($_POST['rgn'])) mysql_unbuffered_query(sprintf($sql,'adr_rgn',$_POST['rgn']));
