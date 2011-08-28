@@ -57,13 +57,14 @@ foreach ($res as $item){
 	foreach ($res as $item){
 		$i = $item['id'];
 		echo('<tr class="row'.$a=abs($a-1).'" id="row'.$i.'">');
-		echo("<td>".$item['title']."</td>");
+		echo("<td><img src='/i/admin/".$item['img'].".png' width=20 height=20 style='float:left;padding-left: 10px;'>".$item['title']."</td>");
 		//echo("<td>".$item['href']."</td>");
 		//echo("<td>".$item['img']."</td>");
 		echo("<td><img id='iOn".$i."' class=Hand src='/i/on.png' style='display:".($item['enabled']==1?'inline-block':'none')."' onclick='Hide(".$i.")'>");
 		echo("<img id='iOff".$i."' class=Hand src='/i/off.png' style='display:".($item['enabled']==0?'inline-block':'none')."' onclick='Show(".$item['id'].")'></td>");
 		echo("<td><img class=Hand src='/i/up.png' onclick='Up(".$item['id'].")'><img class=Hand src='/i/down.png' onclick='Down(".$item['id'].")'></td>");
-		echo("<td><img class=Hand src='/i/admin/return_".($item['newline']==1?'yes':'no').".png' onclick='".($item['newline']==1?'Unshift':'Shift')."(".$item['id'].")'></td>");
+		echo("<td><img id='iSh".$i."' class=Hand src='/i/admin/return_yes.png' style='display:".($item['newline']==1?'inline-block':'none')."' onclick='Unshift(".$item['id'].")'>");
+		echo("<img id='iUsh".$i."'class=Hand src='/i/admin/return_no.png' style='display:".($item['newline']==0?'inline-block':'none')."' onclick='Shift(".$item['id'].")'></td>");
 		echo("</tr>");
 	}?>
 </table>
@@ -104,21 +105,30 @@ foreach ($res as $item){
    function Shift(id){
 		$.get("/ajax/widgetsActions.php",{id:id,action:'shift'},function(z){if (z=="ok"){
 		$('#w'+id).css('clear','both');
+		$('#iSh'+id).show();
+		$('#iUsh'+id).hide();
 		}else{if(z!='')alert(z);}})
    }
    function Unshift(id){
 		$.get("/ajax/widgetsActions.php",{id:id,action:'unshift'},function(z){if (z=="ok"){
 		$('#w'+id).css('clear','none');
+		$('#iUsh'+id).show();
+		$('#iSh'+id).hide();
 		}else{if(z!='')alert(z);}})
    }
    function Show(id){
 		$.get("/ajax/widgetsActions.php",{id:id,action:'show'},function(z){if (z=="ok"){
 			$('#w'+id).show();
+			$('#iOn'+id).show();
+			$('#iOff'+id).hide();
 		}else{if(z!='')alert(z);}})
    }
    function Hide(id){
 		$.get("/ajax/widgetsActions.php",{id:id,action:'hide'},function(z){if (z=="ok"){
 			$('#w'+id).hide();
+			$('#iOff'+id).show();
+			$('#iOn'+id).hide();
+
 		}else{if(z!='')alert(z);}})
    }
 

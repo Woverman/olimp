@@ -5,7 +5,7 @@ include ('../classes.php');
 if ($_GET['id']>0)
 {
   $id = $_GET['id'];
-  $sql = 'SELECT id, cast, pov, pzag, pzit, pkuh, num, kk, kont, comment, valuta, casttype, prodazh from m_bildings where id = '.$id;
+  $sql = 'SELECT id, cast, pov, pzag, pzit, pkuh, num, kk, kont, comment, valuta, casttype, prodano from m_bildings where id = '.$id;
   $res = $DB->request($sql,ARRAY_N);
   echo(implode("{",$res[0]));
   $dir=DOCUMENT_ROOT.'/i/obj/'.$res[0][0].'/min/';

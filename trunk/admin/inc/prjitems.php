@@ -3,7 +3,7 @@
 function ToEdit(id) {
   clearForm();
   $.get("/ajax/getObjectById.php?id=" + id,"",function(data){
-	txt=data.split("{");
+	txt=$.trim(data).split("{");
   	$('#id').val(txt[0]);
   	document.getElementsByName('num')[0].value=txt[6];
     document.getElementsByName('cast')[0].value=txt[1];
@@ -16,7 +16,7 @@ function ToEdit(id) {
   	document.getElementsByName('pkuh')[0].value=txt[5];
   	document.getElementsByName('kont')[0].value=txt[8];
   	document.getElementsByName('comment')[0].value=txt[9];
-    document.getElementsByName('prodazh')[0].checked=(txt[12]=="1");;
+    document.getElementsByName('prodano')[0].checked=(txt[12]=="1");;
     $('#max_folder').val('/i/obj/'+txt[0]+'/max/');
     $('#min_folder').val('/i/obj/'+txt[0]+'/min/');
     ClearImages();
@@ -114,9 +114,9 @@ function ClearImages()
     {row.deleteCell(0);}
 }
 
-function updaterow(row,num,kk,pov,s1,s2,s3,price,prodazh) {
+function updaterow(row,num,kk,pov,s1,s2,s3,price,prodano) {
 	var tr=document.getElementById('row' + row);
-	tr.style.textDecorationLineThrough = (prodazh!="");
+	tr.style.textDecorationLineThrough = (prodano=="1");
 	tr.cells[0].innerHTML = num;
   	tr.cells[1].innerHTML = kk;
   	tr.cells[2].innerHTML = pov;
@@ -189,7 +189,7 @@ function updaterow(row,num,kk,pov,s1,s2,s3,price,prodazh) {
 </tr>
 <tr>
   <td></td><td align=дуае>
-    <label><input type="checkbox" name="prodazh"><b> Продано</b></label>
+    <label><input type="checkbox" name="prodano"><b> Продано</b></label>
   </td>
 </tr>
 <tr>
@@ -262,12 +262,12 @@ $sql="Select count(id) from m_bildings $usl";
 $res=mysql_query($sql);
 $rowcount=mysql_result($res,0);
 
-$sql="Select id, cast, pov, pzag, pzit, pkuh, num, kk, prodazh from m_bildings $usl order by id;";
+$sql="Select id, cast, pov, pzag, pzit, pkuh, num, kk, prodano from m_bildings $usl order by id;";
 $res=mysql_query($sql);
 $a=1;
 while ($row=mysql_fetch_assoc($res)) {
 	echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'"';
-  if($row['prodazh']=="1") echo 'style="text-decoration:line-through"';
+  if($row['prodano']=="1") echo 'style="text-decoration:line-through"';
   echo '>';
 	echo '<td>'.$row['num'].'</td><td>'.$row['kk'].'</td><td>'.$row['pov'].'</td><td>'.$row[pzag].'/'.$row[pzit].'/'.$row[pkuh].'</td><td>'.$row['cast'].'</td>';
 	echo '<td><img src="/i/edit.gif" onclick="ToEdit('.$row['id'].')" style="cursor:pointer;margin-right:10px;"><img src="/i/del.gif" onclick="ToDel('.$row['id'].')" style="cursor:pointer"></td>';
