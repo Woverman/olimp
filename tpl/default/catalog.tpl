@@ -47,20 +47,15 @@
 				$ff = new FindParameters();
 				$ntypes=array('','dom','kva','dil','com');
 				$sql='Select count(id) from m_bildings';
-				if ($ff->tn!='0')
-				  $usl[]="type='".$ntypes[$ff->tn]."'";
-				else
-				  $usl[]="type<>'bog'";
-
-				if ($ff->proj==0)$usl[]='prodazh='.$ff->pr;
-
+				if ($ff->tn!='0')  $usl[]="type='".$ntypes[$ff->tn]."'";
+				$usl[]='prodazh='.$ff->pr;
 				if ($ff->gor!='0') $usl[]='adr_gor='.$ff->gor;
 				if ($ff->rgn!='0') $usl[]='adr_rgn='.$ff->rgn;
 				if ($ff->dist!='0') $usl[]='adr_dist='.$ff->dist;
 				if ($ff->obl!='0') $usl[]='adr_obl='.$ff->obl;
 				if ($ff->price1!=0) $usl[]='cast>='.$ff->price1;
 				if ($ff->price2!=0) $usl[]='cast<='.$ff->price2;
-				$usl[]='proj='.$ff->proj->id;
+				if ($ff->proj->id!=0) $usl[]='proj='.$ff->proj->id;
 				if ($ff->tn==2) {if ($ff->kk!='0') $usl[]='kk='.$ff->kk;}
 				if ($ff->tn==1) {if ($ff->dom_domtype!='0') $usl[]='dom_domtype='.$ff->dom_domtype;}
 
@@ -95,7 +90,7 @@
 				    	//$images = glob("./i/obj/tmb_".$id."_*.jpg", GLOB_NOSORT);
 					    //$imgsrc=(count($images) > 0) ? '/image.php?objid='.$id.'&mode=2' : $imgsrc='/i/no_smol.jpg';
 						?>
-<div class='object_outer ui-corner-all <?=($obj->proj!=0)?(($obj->prodazh==1)?"prodano":"neprodano"):""?>'><div class="content">
+<div class='object_outer ui-corner-all <?=($obj->proj!=0)?(($obj->prodano==1)?"prodano":"neprodano"):""?>'><div class="content">
 <a href=<?='/object/'.$obj->id?>><div class="news_shadow_img"><img src=<?=$obj->img(1)?> class='thumb'></div></a>
 <span class="action"><?=$sys['lists']['actions'][$obj->prodazh].$sys['lists']['typesner'][$obj->type]?></span>
 <span class="price"><?=$obj->price()?></span>

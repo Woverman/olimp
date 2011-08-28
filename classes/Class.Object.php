@@ -5,6 +5,7 @@ abstract class Object
     var $type;
     var $num;
   	var $prodazh;
+  	var $prodano;
   	var $adr_obl;
   	var $adr_rgn;
   	var $adr_gor;
@@ -27,6 +28,7 @@ abstract class Object
 		$this->type = $data["type"];
 		$this->num = $data["num"];
 		$this->prodazh = $data["prodazh"];
+		$this->prodano = $data["prodano"];
 		$this->adr_obl = $data["adr_obl"];
 		$this->adr_rgn = $data["adr_rgn"];
 		$this->adr_gor = $data["adr_gor"];

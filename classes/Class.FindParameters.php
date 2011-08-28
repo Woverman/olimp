@@ -19,7 +19,7 @@ class FindParameters{
 		$this->parse();
 	}
 	private function parse(){
-		//debug($_REQUEST,'ReQUEST = ');
+		debug($_REQUEST,'ReQUEST = ');
 		$this->pr = $_REQUEST['pr']?$_REQUEST['pr']:($_REQUEST['id']==0?0:1);
 		$this->obl = $_REQUEST['obl']?$_REQUEST['obl']:0;
 		$this->rgn = $_REQUEST['rgn']?$_REQUEST['rgn']:0;

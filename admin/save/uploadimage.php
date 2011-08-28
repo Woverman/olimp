@@ -1,15 +1,14 @@
 <?php
   session_start();
 
-  global $config;
   require_once('../../inc/functions.php');
-  include ('../../inc/config.php');
+  include ('../../classes.php');
 
   $tmpfile=$_FILES['foto']['tmp_name'];
   $tmpfilename = $_FILES['foto']['name'];
   // Build names for large and small images
-  $newname=$config['SIGHT_ROOT'].$_POST['max_folder'].$tmpfilename;
-  $thumbnail=$config['SIGHT_ROOT'].$_POST['min_folder'].$tmpfilename;
+  $newname=DOCUMENT_ROOT.$_POST['max_folder'].$tmpfilename;
+  $thumbnail=DOCUMENT_ROOT.$_POST['min_folder'].$tmpfilename;
   // Get image dimensions
   $img1=ResizeImage($tmpfile,$_POST['max_width'],$_POST['max_height'],$tmpfilename);
   $img2=ResizeImage($tmpfile,$_POST['min_width'],$_POST['min_height'],$tmpfilename);
