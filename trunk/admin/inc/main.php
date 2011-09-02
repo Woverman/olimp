@@ -14,7 +14,7 @@ function widjet($title,$href,$imgsrc,$id,$visible,$newline){
 <div class="widjet_outer ui-corner-all" id='w<?=$id?>' style='display:<?=($visible?'block':'none')?>;clear:<?=($newline?'both':'none')?>'>
 	<a href='/admin/<?=$href?>'>
 		<div class="widjet_inner ui-corner-all">
-			<img src='/i/admin/<?=$imgsrc?>.png' style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/i/admin/<?=$imgsrc?>.png); width:expression(1); height:expression(1);}'>
+			<img src='/i/admin/<?=$imgsrc?>.png' width="48" style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/i/admin/<?=$imgsrc?>.png); width:expression(1); height:expression(1);}'>
 			<div><?=$title?></div>
 		</div>
 	</a>
