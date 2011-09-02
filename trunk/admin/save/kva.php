@@ -129,6 +129,7 @@ if (isset($_POST['f_agent'])) $f_params.="&agent=".$_POST['f_agent'];
 if (isset($_POST['f_obl'])) $f_params.="&obl=".$_POST['f_obl'];
 if (isset($_POST['f_rgn'])) $f_params.="&rgn=".$_POST['f_rgn'];
 if (isset($_POST['f_mista'])) $f_params.="&mista=".$_POST['f_mista'];
+if (isset($_POST['f_dist'])) $f_params.="&dist=".$_POST['f_dist'];
 
 
 	header("Location:../admin.php?panel=kva&result=1".$f_params);
