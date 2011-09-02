@@ -73,7 +73,7 @@ function HideModal(){
 <div id="dialogTitle"><span id="title">Новий ексклюзив:</span>
 	    <img src="/i/window_close.png" width="24" onclick="HideModal();" style="float: right;cursor: pointer;position: relative;top:-4px;right:-2px"/>
 	</div>
-<Form method='post' action='/admin/editexl.php' name='mainform' target='ifrm' style="border:2px outset gray;display:block">
+<Form method='post' action='/admin/save/editexl.php' name='mainform' target='ifrm' style="border:2px outset gray;display:block">
 <div style="padding:10px;overflow:hidden;">
 <table border=0 width=400>
 <tr>
@@ -175,7 +175,7 @@ while ($row=mysql_fetch_array($res)) {
   $del=$row[8];
   if ($del) $color="<font color=#A7A7A7>";
   echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row['id'].'">';
-  echo '<td>'.$color.++$npp.$color.'</td>';
+  echo '<td>'.$color.++$npp.$col.'</td>';
   echo '<td>'.$color.$row[1].$col.'</td><td>'.$color.$row[2].$col.'</td>';
   echo '<td>'.$color.$b[$row[3]].$col.'</td><td>'.$color.$row[4].$col.'</td>';
   echo '<td>'.$color.$row[5].$col.'</td><td>'.$color.$row[6].$col.'</td>';

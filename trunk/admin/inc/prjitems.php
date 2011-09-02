@@ -189,12 +189,12 @@ function updaterow(row,num,kk,pov,s1,s2,s3,price,prodano) {
 </tr>
 <tr>
   <td></td><td align=дуае>
-    <label><input type="checkbox" name="prodano"><b> Продано</b></label>
+    <label><input type="checkbox" name="prodano"><b> Продано</b></label>&nbsp;&nbsp;&nbsp;<label><input type="checkbox" name="inmain"><b> На головній</b></label>
   </td>
 </tr>
 <tr>
   <td valign="top" colspan=2 align="center"><b>Короткий коментар:</b><br>
-		<textarea name="comment" cols="57" rows="5"></textarea>
+		<textarea name="comment" cols="57" rows="5" style="margin-left: -2px;margin-right: 0;width: 468px;"></textarea>
 </td>
 </tr>
 </table>

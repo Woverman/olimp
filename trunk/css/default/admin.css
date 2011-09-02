@@ -1,6 +1,11 @@
 body {font-size: 12px}
 a {text-decoration: none}
 form {margin:0}
+input:focus, select:focus  {
+	outline: #FFFF00 3px solid;
+}
+
+
 .aa, .sels{
 	display:block;
 	padding: 4px;
