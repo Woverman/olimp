@@ -35,7 +35,7 @@
 {/literal}
 <link href='css/admin.css' type='text/css' rel='stylesheet'>
 </HEAD>
-<BODY>
+<BODY  onload="createIFrame('ifrm')">
 <table align=center CELLPADDING=0 CELLSPACING=2px width='800px'>
 <tr><td colspan=2>
 <center><img src='../i/top.jpg' lovsrc='top_slow.gif' border=0 align=center></center>

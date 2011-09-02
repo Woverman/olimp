@@ -6,6 +6,13 @@ body{
   color: #696969;
   font: normal normal 500 12px/16px Arial;
 }
+
+sub{
+	font-size: x-small;
+	font-style: italic;
+}
+
+
 /* Logo */
 
 #logo_img {
@@ -472,6 +479,21 @@ select {
 	list-style-image: url(../../i/article.png);
 }
 
+.opimg {
+	margin: 5px;
+}
+.placeholder{
+	clear: both;
+	width: '75%';
+	/*border-top: 2px dotted #99FFFF;*/
+	padding-top:10px;
+	margin-top: 10px;
+}
+.placeholder p {
+	text-indent: 10px;
+}
+
+
 /* crop images in projects */
 .crop{
 	width: 242px;
@@ -489,7 +511,7 @@ select {
 	height: 236px;
 	border: 1px solid #036;
 	padding: 0 !important;
-	min-width: 242px; 
+	min-width: 242px;
 }
 .crop span {
     display: block;

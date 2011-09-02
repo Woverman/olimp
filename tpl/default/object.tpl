@@ -31,6 +31,7 @@
 			<ul style="margin:1px;list-style-position: inside;">
 	 <?
 	 $li="<li>%s: &nbsp;<b>%s</b></li>";
+	 debug($obj,"Object");
 	 switch ($obj->type) {
       case 'com':
       case 'dom':
@@ -40,9 +41,13 @@
       case 'kva':
       default:
         printf($li,($obj->prodazh==1 ? 'Продається':'Здається'),$sys['lists']['kkimn'][$obj->kk].' '.$sys['lists']['typesner'][$obj->type]);
+        printf($li,'Площа ','загальна - '.$obj->pzag.', житлова  - '.$obj->pzit.', кухня - '.$obj->pkuh);
+        printf($li,'Поверх ',$obj->pov);
+		if ($obj->povv != 0) printf($li,'Поверхів в будинку',$obj->povv);
         break;
     }
-	if (!empty($obj->comment)) echo(stripslashes($obj->comment));
+	if (!empty($obj->comment)) echo('<br><p>'.stripslashes($obj->comment).'</p>');
+	if ($obj->kont->name_long!='') echo($obj->formatKontakt());
 	?>
 			</ul>
 			</div>

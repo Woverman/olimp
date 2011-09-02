@@ -158,21 +158,23 @@ function SetStatus(statusString){
 
 function createIFrame(frameName){
 	if (frameName==undefined) {frameName="ifrm";}
-	var isIE = document.all && document.all.item && !window.opera;
-	var ifrstr = isIE ? '<iframe name="'+frameName+'">' : 'iframe';
-	var cframe = document.createElement(ifrstr);
-	with(cframe){
-		name = frameName; // это не для IE
-		setAttribute("name", frameName); // и это тоже, но вреда не будет
-		id = frameName; // а это везде ок
-		src = 'about:blank'
-		style.position = "absolute";
-		style.left = style.top = "1px";
-		style.height = "200px"
-		style.width = "200px";
-		style.display="none";
+	if (document.getElementById(frameName)==undefined) {
+		var isIE = document.all && document.all.item && !window.opera;
+		var ifrstr = isIE ? '<iframe name="'+frameName+'">' : 'iframe';
+		var cframe = document.createElement(ifrstr);
+		with(cframe){
+			name = frameName; // это не для IE
+			setAttribute("name", frameName); // и это тоже, но вреда не будет
+			id = frameName; // а это везде ок
+			src = 'about:blank'
+			style.position = "absolute";
+			style.left = style.top = "1px";
+			style.height = "200px"
+			style.width = "200px";
+			style.display="none";
+		}
+		document.body.appendChild(cframe);
 	}
-	document.body.appendChild(cframe);
 }
 
 function offradio(radioname){

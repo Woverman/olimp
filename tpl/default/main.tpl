@@ -17,8 +17,9 @@
 			<div id="notices_inner" class="ui-corner-all">
                 <?
 					$cnt = 10;
-                    $sql = "select * from m_bildings where in_main=1 order by rand() limit $cnt";
+                    $sql = "select * from m_bildings where in_main=1 and prodano=0 order by rand() limit $cnt";
                     $res = $DB->request($sql,ARRAY_A);
+					$cnt = count($res);
                 ?>
 				<div id="big_notices_wrapper">
 					<div id="big_notices_inner">

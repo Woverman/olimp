@@ -13,7 +13,7 @@ class Page
     function __construct($page)
     {
         $this->menuset = new Menuset('main');
-        $this->title = "Олимп. Агенство недвижимости. " . $page;
+        $this->title = "Олімп. Агентство нерухомості. "; // . $page;
         $this->m_tpl = $page;        
     }
     

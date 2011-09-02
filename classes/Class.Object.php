@@ -37,8 +37,9 @@ abstract class Object
 		$this->valuta = $data["valuta"];
 		$this->casttype = $data["casttype"];
 		$this->comment = $data["comment"];
+		if (empty($this->comment)) $this->comment=" ";
 		$this->add = $data["add"];
-		$this->kont = $data["kont"];
+		$this->kont = new Contact($data["kont"]);
 		$this->in_main = $data["in_main"];
 		$this->in_hot = $data["in_hot"];
 		$this->novobud = $data["novobud"];
@@ -55,7 +56,7 @@ abstract class Object
     }
 	function parse($data){
 		debug($data,"PARSE DATA:");
-		$o = new ObjectKva();
+
 		switch ($data['type']){
 			case "dom":
 				$o = new ObjectDom();
@@ -68,6 +69,9 @@ abstract class Object
 				break;
 			case "com":
 				$o = new ObjectCom();
+				break;
+			default:
+				$o = new ObjectKva();
 				break;
 		}
 		$o->loadLocalVars($data);
@@ -129,11 +133,32 @@ abstract class Object
   function added(){ return strftime("%d.%m.%Y %H:%M",time($this->dateadd)); }
 
   function commentCrop(){
+  	if (strlen($this->comment)==0) return " ";
     if (strlen($this->comment)<150)
       return $this->comment;
     else
       return substr($this->comment,0  ,150).'<span title="'.$this->comment.'">...</span>';
   }
+
+ function formatKontakt(){
+ 	$k = $this->kont;
+	debug($k,'контакт');
+ 	$ret = "<br /><br /><div class='placeholder'>";
+ 	$ret .= "<p><img src='/image.php?objid=-".$k->id."&num=1&mode=2' with='40' align='left' class='opimg'>";
+ 	$ret .= "Дізнатись більше про квартиру вам допоможе: ";
+ 	$ret .= '<b>'.$k->name_long.'</b><br>';
+	if ($k->role!='')
+ 	$ret .= '<sub>'.$k->role.'</sub><br><br>';
+	if ($k->phone1)$ret .= 'Дзвоніть: '.$k->phone1;
+	if ($k->phone2)$ret .= ', '.$k->phone2;
+	if ($k->phone3)$ret .= ', '.$k->phone3;
+	if ($k->phone4)$ret .= ', '.$k->phone4;
+ 	$ret .= "<br>";
+	if ($k->email)
+ 		$ret .= "Пишіть: <a href='mailto:$k->email'>".$k->email."</a><br>";
+ 	$ret .= "</p></div>";
+	return $ret;
+ }
 }
 
 class ObjectDom extends Object{
