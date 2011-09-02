@@ -64,6 +64,11 @@ echo "<option value='/admin/photos/?folder=".$f['folder']."' ".($dirname==$f['fo
 <button name='addnew' onclick="$('#dialog1').dialog({width:'500px',title:'Добавити папку.'})">Створити нову папку</button>
 <!--<button name='delete'>Видалити папку</button>-->
 <button name='addfoto' onclick="$('#dialog').dialog({width:'500px',title:'Добавити зображення.'})">Загрузити нове фото</button>
+<? $referer = $_SERVER['HTTP_REFERER'];
+   if (strpos($referer,'/photos/')>0) $referer = $_SESSION['HTTP_REFERER'];
+   $_SESSION['HTTP_REFERER'] = $referer;
+ ?>
+<a href="<?=$referer?>"><button>Повернутись</button></a>
 <hr>
 <div style="display:block;margin-bottom:10px;width:100%;float:top;border:1px solid white;">
 <?

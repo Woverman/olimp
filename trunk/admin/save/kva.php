@@ -26,17 +26,17 @@ if (isset($_POST['type']) && $_POST['type']=='kva')
 
   if (isset($_POST['num'])) mysql_unbuffered_query(sprintf($sql,'num',$_POST['num']));
 
-  if (isset($_POST['obl'])) mysql_unbuffered_query(sprintf($sql,'adr_obl',$_POST['obl']));
+  if (isset($_POST['adr_obl'])) mysql_unbuffered_query(sprintf($sql,'adr_obl',$_POST['adr_obl']));
 
-  if (isset($_POST['rgn'])) mysql_unbuffered_query(sprintf($sql,'adr_rgn',$_POST['rgn']));
+  if (isset($_POST['adr_rgn'])) mysql_unbuffered_query(sprintf($sql,'adr_rgn',$_POST['adr_rgn']));
 
-  if (isset($_POST['mista'])) mysql_unbuffered_query(sprintf($sql,'adr_gor',$_POST['mista']));
+  if (isset($_POST['adr_mista'])) mysql_unbuffered_query(sprintf($sql,'adr_gor',$_POST['adr_mista']));
 
-  if (isset($_POST['vul'])) {
+  if (isset($_POST['adr_vul'])) {
 
-    mysql_unbuffered_query(sprintf($sql,'adr_vul',$_POST['vul']));
+    mysql_unbuffered_query(sprintf($sql,'adr_vul',$_POST['adr_vul']));
 
-    check_vul($_POST['vul'],$_POST['mista']);
+    check_vul($_POST['adr_vul'],$_POST['adr_mista']);
 
     }
 
@@ -54,7 +54,7 @@ if (isset($_POST['type']) && $_POST['type']=='kva')
 
   if (isset($_POST['pzag'])) mysql_unbuffered_query(sprintf($sql,'pzag',$_POST['pzag']));
 
-  if (isset($_POST['pzhil'])) mysql_unbuffered_query(sprintf($sql,'pzit',$_POST['pzhil']));
+  if (isset($_POST['pzit'])) mysql_unbuffered_query(sprintf($sql,'pzit',$_POST['pzit']));
 
   if (isset($_POST['pkuh'])) mysql_unbuffered_query(sprintf($sql,'pkuh',$_POST['pkuh']));
 

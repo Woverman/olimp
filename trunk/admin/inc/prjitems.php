@@ -230,11 +230,27 @@ function updaterow(row,num,kk,pov,s1,s2,s3,price,prodano) {
 -->
 </div>
 <!-- end of div with forms -->
+<?php
 
+$pid = ($_GET['pid']?$_GET['pid']:"1"); //project id
+$prjtitle = getProjectTitleByID($pid);
+if (!isset($pov)) $pov=0;
+if (!isset($agent)) $agent=0;
+if (!isset($num)) $num=0;
+?>
 <table width="100%">
   <tr>
-    <td width="50%"><h4>Квартири</h4></td>
-    <td align="right"><input type="button" value="Добавити" onclick="ToAdd();"></td>
+    <td width="33%">
+<? $referer = $_SERVER['HTTP_REFERER'];
+   if (strpos($referer,'/prjitems/')>0) $referer = $_SESSION['HTTP_REFERER'];
+   $_SESSION['HTTP_REFERER'] = $referer;
+ ?>
+<a href="<?=$referer?>"><button style="height: 40px"><img class=bimg src="/i/back.png">Повернутись</button></a>
+	</td>
+	<td width="33%" align="center" valign="middle"><h4>Квартири по проекту "<?=$prjtitle?>"</h4></td>
+    <td align="right">
+		<button style="height: 40px" onclick="ToAdd(); return(false);"><img class=bimg src="/i/add.png">Добавити</button>
+	</td>
   </tr>
 </table>
 <table class="mytab" width=100%>
@@ -247,12 +263,6 @@ function updaterow(row,num,kk,pov,s1,s2,s3,price,prodano) {
     <th>Операції</th>
   </tr>
 <?php
-
-$pid = ($_GET['pid']?$_GET['pid']:"1"); //project id
-if (!isset($pov)) $pov=0;
-if (!isset($agent)) $agent=0;
-if (!isset($num)) $num=0;
-
 $usl='where proj=\''.$pid.'\' ';
 if ($pov != '0') $usl.=(' and pov='.$pov);
 if ($agent != '0') $usl.=(' and kont='.$agent);

@@ -401,6 +401,13 @@ function initials($str){
 	return($n1);
 }
 
+function getProjectTitleByID($id){
+	$sql="Select `title` from m_projects where id='".$id."'";
+	debug($sql, "in getProjectTitleByID");
+   	$ret = mysql_query($sql);
+	debug($ret, "in getProjectTitleByID");
+	return (mysql_result($ret,0,0));
+}
 ?>
 
 
