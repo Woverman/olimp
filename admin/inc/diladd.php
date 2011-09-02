@@ -136,7 +136,7 @@
 						<td>
 						<select name='agent' id='agent' style="width:300px">
 						  	<option value='0'>Оберіть</option>
-							<? getaslist('d_users',$obj->kont,'id<>110'); ?>
+							<? getaslist('d_users',$obj->kont->id,'id<>110'); ?>
 						</select>
 						</td>
 					</tr>

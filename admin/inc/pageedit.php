@@ -24,8 +24,15 @@ function addFolder(){
 </script>
 
 <div style="border:1px solid #BFBFBF;padding:2px;margin:2px">
-<a href=/admin/pages/><button style="height: 40px"><img class=bimg src="/i/list.png">Відмінити</button></a>
+<!--<a href="/admin/pages/"><button style="height: 40px"><img class=bimg src="/i/list.png">Відмінити</button></a>-->
+<? $referer = $_SERVER['HTTP_REFERER'];
+   if (strpos($referer,'/pageedit/')>0) $referer = $_SESSION['HTTP_REFERER'];
+   $_SESSION['HTTP_REFERER'] = $referer;
+ ?>
+<a href="<?=$referer?>"><button style="height: 40px"><img class=bimg src="/i/back.png">Повернутись</button></a>
 <button style="height: 40px" onclick="validform(form); return(false);"><img class=bimg src="/i/save.png">Записати</button>
+<!--<span style='width: 50px;'>&nbsp;</span>-->
+
 </div>
 <?
 debug($_SERVER,'$_SERVER');
