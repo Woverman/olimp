@@ -10,14 +10,15 @@ debug($_GET,"GET");
 
 // адреса -->
   if (isset($_POST['prodazh'])) mysql_unbuffered_query(sprintf($sql,'prodazh',$_POST['prodazh']));
-  if (isset($_POST['prodano'])) mysql_unbuffered_query(sprintf($sql,'prodazh',$_POST['prodano']));
+  if (isset($_POST['prodano'])) mysql_unbuffered_query(sprintf($sql,'prodano',$_POST['prodano']));
   if (isset($_POST['num'])) mysql_unbuffered_query(sprintf($sql,'num',$_POST['num']));
-  if (isset($_POST['obl'])) mysql_unbuffered_query(sprintf($sql,'adr_obl',$_POST['obl']));
-  if (isset($_POST['rgn'])) mysql_unbuffered_query(sprintf($sql,'adr_rgn',$_POST['rgn']));
-  if (isset($_POST['mista'])) mysql_unbuffered_query(sprintf($sql,'adr_gor',$_POST['mista']));
-  if (isset($_POST['vul'])){
-    mysql_unbuffered_query(sprintf($sql,'adr_vul',$_POST['vul']));
-    check_vul($_POST['vul'],$_POST['mista']);    }
+  if (isset($_POST['adr_obl'])) mysql_unbuffered_query(sprintf($sql,'adr_obl',$_POST['adr_obl']));
+  if (isset($_POST['adr_rgn'])) mysql_unbuffered_query(sprintf($sql,'adr_rgn',$_POST['adr_rgn']));
+  if (isset($_POST['adr_mista'])) mysql_unbuffered_query(sprintf($sql,'adr_gor',$_POST['adr_mista']));
+  if (isset($_POST['adr_dist'])) mysql_unbuffered_query(sprintf($sql,'adr_dist',$_POST['adr_dist']));
+  if (isset($_POST['adr_vul'])){
+    mysql_unbuffered_query(sprintf($sql,'adr_vul',$_POST['adr_vul']));
+    check_vul($_POST['adr_vul'],$_POST['adr_mista']);    }
 
 // квартира -->
   if (isset($_POST['typekva'])) mysql_unbuffered_query(sprintf($sql,'kva_type',$_POST['typekva']));
@@ -25,7 +26,7 @@ debug($_GET,"GET");
   if (isset($_POST['pov'])) mysql_unbuffered_query(sprintf($sql,'pov',$_POST['pov']));
   if (isset($_POST['povv'])) mysql_unbuffered_query(sprintf($sql,'povv',$_POST['povv']));
   if (isset($_POST['pzag'])) mysql_unbuffered_query(sprintf($sql,'pzag',$_POST['pzag']));
-  if (isset($_POST['pzhil'])) mysql_unbuffered_query(sprintf($sql,'pzit',$_POST['pzhil']));
+  if (isset($_POST['pzit'])) mysql_unbuffered_query(sprintf($sql,'pzit',$_POST['pzit']));
   if (isset($_POST['pkuh'])) mysql_unbuffered_query(sprintf($sql,'pkuh',$_POST['pkuh']));
   if (isset($_POST['cast'])) mysql_unbuffered_query(sprintf($sql,'cast',$_POST['cast']));
   if (isset($_POST['casttype'])) mysql_unbuffered_query(sprintf($sql,'casttype',$_POST['casttype']));
@@ -72,6 +73,7 @@ if (isset($_POST['f_agent'])) $f_params.="&agent=".$_POST['f_agent'];
 if (isset($_POST['f_obl'])) $f_params.="&obl=".$_POST['f_obl'];
 if (isset($_POST['f_rgn'])) $f_params.="&rgn=".$_POST['f_rgn'];
 if (isset($_POST['f_mista'])) $f_params.="&mista=".$_POST['f_mista'];
+if (isset($_POST['f_dist'])) $f_params.="&dist=".$_POST['f_dist'];
 
 
 	//header("Location:../admin.php?panel=".$_POST['panel']."&result=1".$f_params);
