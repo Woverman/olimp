@@ -151,9 +151,9 @@ function LoadNewImage(tag,oid,num,mode){ // load new src in img
 }
 
 function SetStatus(statusString){
-  var sl = document.getElementById("StatusLine")
-  sl.innerHTML=statusString;
-  sl.style.display="block";
+  var sl = $("#StatusLine")
+  sl.html(statusString);
+  sl.show().delay(5000).hide(1500);
 }
 
 function createIFrame(frameName){

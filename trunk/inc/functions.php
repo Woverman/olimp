@@ -408,6 +408,21 @@ function getProjectTitleByID($id){
 	debug($ret, "in getProjectTitleByID");
 	return (mysql_result($ret,0,0));
 }
+
+function formatod($od,$i){
+	//$od - одиниці
+	//$i - кількість
+	if (strtolower($od)=='соток'){
+		$last = substr($i,-1);
+ 		if ($last==1) return 'сотка';
+		if ($last>1 && $last<5) return 'сотки';
+		else return "соток";
+	}
+	else{
+		return $od;
+	}
+
+}
 ?>
 
 

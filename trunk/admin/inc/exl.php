@@ -1,22 +1,18 @@
 <script type='text/javascript'>
 function ToEdit(id){
-  //var rt=getHTTPRequestObject();
-  var txt;
-  //rt.open("POST", "/ajax/getById.php?tbl=m_exl&id=" + id,false);
-  //rt.send(null);
   $.get("/ajax/getById.php?tbl=m_exl&id=" + id,function(data){
-  	txt=data.split("{");
-  	document.getElementById('title').innerHTML="Редагуємо ексклюзив";
-  	document.getElementById('uid').value=txt[0];
-  	document.getElementById('rieltor').value=txt[1];
-  	document.getElementById('viddil').value=txt[2];
-  	document.getElementById('adresa').value=txt[3];
+  	var txt=data.split("{");
+  	$('#title').text("Редагуємо ексклюзив");
+  	$('#uid').val(txt[0]);
+  	$('#rieltor').val(txt[1]);
+  	$('#viddil').val(txt[2]);
+  	$('#adresa').val(txt[3]);
     t=txt[4].split('-');
-  	document.getElementById('dstart').value=t[2]+'.'+t[1]+'.'+t[0];
+  	$('#dstart').val(t[2]+'.'+t[1]+'.'+t[0]);
     t=txt[5].split('-');
-  	document.getElementById('dend').value=t[2]+'.'+t[1]+'.'+t[0];
-  	document.getElementById('comment').value=txt[6];
-  	document.getElementById('mode').value="edit";
+  	$('#dend').val(t[2]+'.'+t[1]+'.'+t[0]);
+  	$('#comment').val(txt[6]);
+  	$('#mode').val("edit");
     ShowModal();
     document.forms[0].focus();
   });
@@ -30,9 +26,9 @@ function ToDel(msg,id){
   var tr=document.getElementById('row'+id);
 	if (confirm(msg+"?"))	{
 	clearForm();
-	document.getElementById('uid').value=id;
-	document.getElementById('mode').value="del";
-	document.forms['mainform'].submit();
+	$('#uid').val(id);
+	$('#mode').val("del");
+	document.forms[0].submit();
   }
 }
 function updaterow(row,data) {
@@ -50,11 +46,11 @@ function clearForm() {
 	document.getElementById('title').innerHTML='Нова вулиця:';
 	document.getElementById('uid').value='0';
 	document.getElementById('adresa').value='';
-  document.getElementById('rieltor').value='';
-  document.getElementById('viddil').value='';
-  document.getElementById('dstart').value='';
-  document.getElementById('dend').value='';
-  document.getElementById('comment').value='';
+  	document.getElementById('rieltor').value='';
+	document.getElementById('viddil').value='';
+	document.getElementById('dstart').value='';
+	document.getElementById('dend').value='';
+	document.getElementById('comment').value='';
 	document.getElementById('mode').value='add';
 }
 function ShowModal(){
@@ -77,20 +73,20 @@ function HideModal(){
 <div style="padding:10px;overflow:hidden;">
 <table border=0 width=400>
 <tr>
-<td align=right width=100>Адреса:</td>
+<td align=right width=100>Адреса:&nbsp;</td>
 <td width=120><input type='text' name='adresa' id='adresa'></td>
-<td><font color="#909090">Фактична адреса</font></td>
+<td><font color="#909090">&nbsp;фактична адреса</font></td>
 </tr>
 <tr>
-<td align=right>Ріелтор:</td>
+<td align=right>Ріелтор:&nbsp;</td>
 <td><select name='rieltor' id='rieltor'>
 <option value=0>-</option>
 <?php @getaslist('d_users',$row['user'],'rights>-1'); ?>
 </select></td>
-<td><font color="#909090">Відповідальний</font></td>
+<td><font color="#909090">&nbsp;відповідальний</font></td>
 </tr>
 <tr>
-<td align=right>Відділення:</td>
+<td align=right>Відділення:&nbsp;</td>
 <td><select name='viddil' id='viddil'>
 <option value=1>Фрунзе</option>
 <option value=2>Київська</option>
@@ -105,17 +101,17 @@ function HideModal(){
 </td>
 </tr>
 <tr>
-<td align=right>Початок:</td>
+<td align=right>Початок:&nbsp;</td>
 <td><input type='text' name='dstart' id='dstart' onkeydown="sbm.disabled=false;"></td>
-<td><font color="#909090">dd.mm.yyyy</font></td>
+<td><font color="#909090"><i>&nbsp;наприклад 01.03.2010</i></font></td>
 </tr>
 <tr>
-<td align=right>Кінець:</td>
+<td align=right>Кінець:&nbsp;</td>
 <td><input type='text' name='dend' id='dend' onkeydown="sbm.disabled=false;"></td>
-<td><font color="#909090">dd.mm.yyyy</font></td>
+<td><font color="#909090"><i>&nbsp;наприклад 31.07.2010</i></font></td>
 </tr>
 <tr>
-<td align=right>Примітка:</td>
+<td align=right>Примітка:&nbsp;</td>
 <td><input type='text' name='comment' id='comment' onkeydown="sbm.disabled=false;"></td>
 <td><font color="#909090"></font></td>
 <td><font color="#909090"></font></td>

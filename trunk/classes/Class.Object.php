@@ -116,12 +116,14 @@ abstract class Object
 		$title = $noTitle?"":"Ціна: ";
 		if ($this->cast){
 			if ($this->valuta==2)
-				return $title."$".number_format($this->cast, 0, ',', ' ');
+				$ret = $title."$".number_format($this->cast, 0, ',', ' ');
 			else
-				return $title.number_format($this->cast, 0, ',', ' ')." грн.";
+				$ret = $title.number_format($this->cast, 0, ',', ' ')." грн.";
+			if ($this->casttype==2) $ret .= ' за м<sup>2</sup>';
 		} else {
-			return $title."договірна";
+			$ret = $title."договірна";
 		}
+		return $ret;
 	}
 
 	function ShortInfo(){
@@ -145,7 +147,7 @@ abstract class Object
 	debug($k,'контакт');
  	$ret = "<br /><br /><div class='placeholder'>";
  	$ret .= "<p><img src='/image.php?objid=-".$k->id."&num=1&mode=2' with='40' align='left' class='opimg'>";
- 	$ret .= "Дізнатись більше про квартиру вам допоможе: ";
+ 	$ret .= "Дізнатись більше вам допоможе: ";
  	$ret .= '<b>'.$k->name_long.'</b><br>';
 	if ($k->role!='')
  	$ret .= '<sub>'.$k->role.'</sub><br><br>';
@@ -179,7 +181,6 @@ class ObjectDom extends Object{
 		$this->pzit = $data["pzit"];
 		$this->pkuh = $data["pkuh"];
 		$this->dom_domtype = $data["dom_domtype"];
-		$this->gotov = $data["gotov"];
 		$this->pdil = $data["pdil"];
 		$this->plo_od = $data["plo_od"];
 	}

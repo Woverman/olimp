@@ -1,8 +1,14 @@
-.price{
-	font: 25px / 30px Arial, Helvetica, sans-serif bold;
-	color: #527B02;
-	font-weight: bold;
-	padding-left: 20px;
+.price {
+font: 19px / 30px Arial, Helvetica, sans-serif bold;
+color: #304901;
+font-weight: bold;
+padding-left: 0;
+float: right;
+background-image: url(../../i/price.png);
+width: 165px;
+height: 114px;
+line-height: 127px;
+text-align: center;
 }
 
 
