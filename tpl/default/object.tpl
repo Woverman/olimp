@@ -34,7 +34,16 @@
 	 debug($obj,"Object");
 	 switch ($obj->type) {
       case 'com':
+	  	printf($li,($obj->prodazh==1 ? 'Продається':'Здається'),$sys['lists']['typesner'][$obj->type]);
+        break;
       case 'dom':
+	  	printf($li,($obj->prodazh==1 ? 'Продається':'Здається'),$sys['lists']['dom_domtype'][$obj->dom_domtype]);
+		if ($obj->povv>0) printf($li,'Поверхів',$obj->povv);
+		if ($obj->kk>0) printf($li,'Кімнат',$obj->kk);
+		printf($li,'Площа ','загальна - '.$obj->pzag.', житлова  - '.$obj->pzit.', кухня - '.$obj->pkuh);
+		printf($li,'Ділянка',$obj->pdil.' '.formatod($sys['lists']['plo_od'][$obj->plo_od],$obj->pdil));
+		//printf($li,'',$obj->);
+        break;
       case 'dil':
         printf($li,($obj->prodazh==1 ? 'Продається':'Здається'),$sys['lists']['typesner'][$obj->type]);
         break;
