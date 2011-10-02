@@ -48,6 +48,7 @@ sub{
   padding: 10px;
   position: relative;
   text-align: center;
+  max-width: 240px;
 }
 
 .vidget span{
@@ -59,6 +60,55 @@ sub{
   padding: 5px;
   text-transform: uppercase;
 }
+
+/* find_vidget */
+.findtabs {
+	display: block;
+	position: relative;
+	margin: 5px 5px -5px 5px;
+	border-bottom: 1px solid silver;
+	min-height: 32px;
+}
+.findtabszone {
+	margin-bottom: -2px;
+}
+.findtabs .findtab{
+	float: left;
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 5px 0 -1px 0;
+	font-size: large;
+	font-family: Arial, Helvetica, sans-serif;
+	border: solid silver 1px;
+	-moz-border-radius-topleft: 8px;
+	-webkit-border-top-left-radius: 8px;
+	border-top-left-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	-webkit-border-top-right-radius: 8px;
+	border-top-right-radius: 8px;
+	background-color: white;
+}
+.findtabs .findtab.sel{
+	border-bottom: white;
+	color: #6633FF;
+	border-bottom: 2px solid white;
+}
+.findtab a, .findtab a:hover{
+	color: #00789D;
+}
+.find_vidget{
+  clear: both;
+  float: left;
+  position: relative;
+  border: 1px solid #CCC; /*#66CCFF*/
+  border-top: 0px;
+  margin: 5px;
+  overflow: hidden;
+  padding: 10px;
+  text-align: center;
+  background-color: #FFFFFF;
+}
+
 /* погодний інформер */
 
 .gmtdttl{
@@ -143,7 +193,7 @@ div#hiddentl{
 
 .news_item h3,#news_title{
   display: block;
-  font: normal normal 700 12px/16px Arial;
+  font: normal normal 700 15px/17px Arial;
   text-align: left;
 }
 
@@ -159,7 +209,7 @@ div#hiddentl{
 }
 
 .news_item p{
-  font: normal normal 500 12px/16px Arial;
+  font: normal normal 500 15px/22px Arial;
   padding: 0 10px;
   text-align: justify;
   text-indent: 2em;
@@ -179,6 +229,12 @@ div#hiddentl{
   font-weight: normal;
   margin-right: 1em;
   padding: 1px 3px;
+}
+.news_more_link{
+	font: normal normal 500 15px/17px Arial;
+	float: right;
+	padding-top: 22px;
+	padding-right: 15px;
 }
 
 a{
@@ -277,6 +333,47 @@ select {
   margin-top: 5px;
   padding: 0;
 }
+div.dist_title{
+	background-color: #FFFF66;
+	padding: 2px 4px;
+	opacity: .5;
+	border-radius: 5px;
+	color:#FFFF66;
+}
+ a.dist_title{
+	text-decoration: none;
+	color: #151515;
+	padding: 2px 4px;
+ }
+a.dist_title:hover{text-decoration: none;color: #0000CC;}
+
+#distwrap{
+	padding: 0px 12px 6px;
+	background-color: #CDD8D8;
+	display: none;
+}
+.distitem{
+	display: none;
+	text-align: left;
+	line-height: 1.5em;
+}
+.dist_name{
+	zoom:1;
+	min-width: 200px;
+	overflow: hidden;
+	display: inline;
+	max-width: 200px;
+	text-align: left;
+}
+.cleardist{
+	cursor: pointer;
+	opacity: 0.2;
+	margin-top: 5px;
+	float: right;
+}
+.cleardist:hover{
+	opacity: 0.7;
+}
 
 .maintabs{
   padding: 10px;
@@ -297,10 +394,8 @@ select {
 /* otdel list page */
 
 #otdel_tlb {
-  margin-top: 10px;
   padding: 10px;
 }
-
 /* objects */
 
 #object_wrapper{
@@ -313,17 +408,17 @@ select {
     border: 1px solid #CCC;
     margin: 2px;
     padding: 10px;
-    width: 350px;
+    width: 96%;
     float: left;
 }
 .prodano{
     background-image: url(../../i/prodano.png);
     background-repeat: no-repeat;
-    background-position: 110px 81px;
+    background-position: right center;
 }
 .object_outer .content{
-    height: 150px;
-    overflow: auto;
+    height: 110px;
+    overflow: hidden;
 }
 /*.prodano .content,.neprodano .content{
     height: 175px;
@@ -429,45 +524,31 @@ select {
   background-color: #FF9966;
 }
 
+#sub_menu .level0 a {
+	border-top-left-radius: 8px 8px;
+	border-top-right-radius: 8px 8px;
+}
+#sub_menu .level1 a {
+	border-bottom-left-radius: 8px 8px;
+	border-bottom-right-radius: 8px 8px;
+}
 #sub_menu a {
 	zoom: 1;
 	line-height: 2em;
-	border: 1px dotted #99CCCC;
-	padding: 2px 4px;
-	margin-right: 5px;
+	padding: 7px 21px;
+	margin-right: 0px;
+	font-size: 16px;
+	border: 1px solid #CCCCFF;
+	background-color: #EBE9ED;
 }
-#sub_menu a.sel {color:red;}
+#sub_menu a:hover {
+	background-color: #BFBFFF;
+}
+#sub_menu a.sel {
+	color:red;
+	background-color: #CCCCFF;
+}
 
-.dist-mark{
-	cursor: pointer;
-	position: absolute;
-	border-radius: 3px 3px;
-	background-color: #D6E9F3;
-	box-shadow: #CCCCFF 0px 0px 2px 2px;
-	/*, #FFFFFF 2px 2px 0px 2px, #CCCCFF 2px 2px 0px 3px;*/
-	color: #9966FF;
-	padding: 1px 2px;
-	/*text-decoration: underline;
-	text-decoration-line: underline;*/
-}
-.dist-mark1:active{
-	position: absolute;
-	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #CCCCFF 0px 0px 0px 3px;
-	margin-top: 2px;
-	margin-left: 2px;
-}
-.dist-mark:hover{
-	box-shadow: #A8A8FF 0px 0px 0px 1px, #E8E8FF 0px 0px 0px 2px, #CCE0FF 0px 0px 2px 4px;}
-#cleardist{
-	cursor: pointer;
-	opacity: 0.2;
-	margin-top: 7px;
-	margin-bottom: 7px;
-	float: right;
-}
-#cleardist:hover{
-	opacity: 0.7;
-}
 
 .art_del{
 	color:#6600FF;
@@ -492,6 +573,11 @@ select {
 }
 .placeholder p {
 	text-indent: 10px;
+}
+
+.text,.text a {
+	line-height: 22px;
+	text-indent: 3em;
 }
 
 

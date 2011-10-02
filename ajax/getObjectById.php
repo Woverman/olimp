@@ -23,7 +23,7 @@ if ($_GET['id']>0)
 }
 else
 {
-  // select previous inserted and not saved rows
+  // select and remove previous inserted and not saved rows
   $sql = "SELECT id FROM m_bildings WHERE `adr_vul` = 'insertforproject'";
   $res = mysql_query($sql);
   while ($row=mysql_fetch_row($res))
@@ -44,5 +44,10 @@ else
   mkdir($dir.'/max/');
   chmod($dir.'/max/',0777);
   echo $newid;
+  $proj = $_GET['proj'];
+  if ($proj){
+  	$res=$DB->request("select adr_obl,adr_rgn,adr_gor,adr_dist,adr_vul from m_projects where id=".$proj,ARRAY_N);
+  	mysql_unbuffered_query(("update m_bildings set adr_obl='".$res['0']."',adr_rgn='".$res['1']."',adr_gor='".$res['2']."',adr_dist='".$res['3']."', adr_vul='".$res['4']."' where id=$newid"));
+	}
 }
-?>
+?> 

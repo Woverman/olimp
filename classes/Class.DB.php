@@ -43,7 +43,7 @@ class DB
 
     function request($sql, $output = ARRAY_N)
     {
-        mysql_unbuffered_query("insert into as_log (request) values ('" . (addslashes($sql)) . "')", $this->dbh);
+        //mysql_unbuffered_query("insert into as_log (request) values ('" . (addslashes($sql)) . "')", $this->dbh);
         if ($sql != $this->last_query) {
             $this->last_query = $sql;
             $result = mysql_query($sql, $this->dbh);

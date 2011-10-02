@@ -23,14 +23,22 @@ class FindParameters{
 		$this->pr = $_REQUEST['pr']?$_REQUEST['pr']:($_REQUEST['id']==0?0:1);
 		$this->obl = $_REQUEST['obl']?$_REQUEST['obl']:0;
 		$this->rgn = $_REQUEST['rgn']?$_REQUEST['rgn']:0;
+		$this->dist = trim($_REQUEST['dist']?$_REQUEST['dist']:0,',');
 		$this->gor = $_REQUEST['gor']?$_REQUEST['gor']:0;
+		$dists = array('1064' => '16', '1073' => '20', '1076' => '18', '1084' => '22', '1107' => '19', '1114' => '17', '1068' => '21', '30000' => '7');
+		if (array_key_exists($this->gor,array_keys($dists))){
+			// if misto in dists array find misto=vinnitsa and dist=founded dist id
+			$dist = array_search($this->gor,$dists);
+			$this->gor = '1063';
+			$this->dist = $dist;
+			debug('array_key_exists');
+		}
 		$this->tn = $_REQUEST['tn']?$_REQUEST['tn']:0;
 		$this->kk = $_REQUEST['kk']?$_REQUEST['kk']:0;
 		$this->price1 = ($_REQUEST['prise1']!='')?$_REQUEST['prise1']:0;
 		$this->price2 = ($_REQUEST['prise2']!='')?$_REQUEST['prise2']:0;
 		$this->dom_domtype = $_REQUEST['dom_domtype']?$_REQUEST['dom_domtype']:0;
 		$this->pg = $_REQUEST['pg']?$_REQUEST['pg']:1;
-		$this->dist = $_REQUEST['dist']?$_REQUEST['dist']:0;
 		$this->proj = new Project($_REQUEST['proj']);
 		$this->projTitle = $this->getPageTitle($this->proj->maipage);
         $this->showSubmenu = $this->proj->showObjectTypes;

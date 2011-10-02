@@ -2,40 +2,57 @@ $(document).ready(function(){
     // дублюємо меню для скрола
 	var mm = $("#menu_panel .hmenu").clone();
     $("<div>").attr("id","menu_panel_double").append(mm).appendTo($("body"));
-    // рухаємо фон шапки
-    $('#header_block').parallax({
-        'object':'#header_block',
-      'useHTML':false,
-      'elements': [
-        {
-          'selector': '#logo_grace',
-          'properties': {'x': {'background-position-x': {'initial': 0,'multiplier': 0.05 }}}
-        },
-        {
-          'selector': '#header_block',
-          'properties': {'x': {'background-position-x': {'initial': 0,'multiplier': 0.1,'invert': true}}}
-        }
-      ]
-    });
-    // рухаємо оголошення
-	resizeNotices();
-	$(window).resize(resizeNotices);
-   	window.setTimeout(moveNotice,"10000");
-    // лайтбоксуємо фотки
-    $('#only_wrapper a.ilink').lightBox();
-    $('[rel=lightbox-rel]').lightBox();
-	updateFindForm();
-    $('#redactor_content_master').redactor();
-    $('#redactor_content_slave').redactor();
+
+	adr = location.href;
+	if (adr.search(new RegExp('admin','g'))>0){
+		//------------------------------------------------- admin
+		try{
+		$('#redactor_content_master').redactor();
+	    $('#redactor_content_slave').redactor();}
+		catch(e){}
+	} else {
+		//------------------------------------------------- site
+		// рухаємо оголошення
+		resizeNotices();
+		$(window).resize(resizeNotices);
+	   	window.setTimeout(moveNotice,"10000");
+		try{
+	    // лайтбоксуємо фотки
+	    $('#only_wrapper a.ilink').lightBox();
+	    $('[rel=lightbox-rel]').lightBox();}
+		catch(e){}
+		// відновимо форму пошуку
+		updateFindForm();
+		// виділення регіонів на карті
+		$('.map').maphilight({fade: true,fill:true, fillColor: '33CCFF', fillOpacity: 0.2, stroke: false, shadow:false, groupBy:'id' });
+		// рухаємо фон шапки
+	    $('#header_block').parallax({
+	        'object':'#header_block',
+	      	'useHTML':false,
+	      	'elements': [
+	        {
+	          'selector': '#logo_grace',
+	          'properties': {'x': {'background-position-x': {'initial': 0,'multiplier': 0.05 }}}
+	        },
+	        {
+	          'selector': '#header_block',
+	          'properties': {'x': {'background-position-x': {'initial': 0,'multiplier': 0.1,'invert': true}}}
+	        }
+	      ]
+	    });
+	}
 });
 
 function updateFindForm(){
 	var tmp = new Array();		// два вспомагательных
 	var tmp2 = new Array();		// массива
 	var param = new Array();
+	var dists = new Array();
 
 	var get = location.search;	// строка GET запроса
 	if(get != '') {
+		adr = location.href;
+		if (adr.search(new RegExp('admin','g'))>0) return 0;
 		tmp = (get.substr(1)).split('&');	// разделяем переменные
 		for(var i=0; i < tmp.length; i++) {
 			tmp2 = tmp[i].split('=');		// массив param будет содержать
@@ -60,6 +77,16 @@ function updateFindForm(){
 		if (param['gor']>0) $("#mista [value='"+param['gor']+"']").attr("selected", "selected");
 		if (param['prise1']!='') $("#prise1").val(param['prise1']);
 		if (param['prise2']!='') $("#prise2").val(param['prise2']);
+		if (param['dist']!='') {
+			var dists = param['dist'].split('%2C');
+			dists.every(function(dst){
+				if (dst!='' && dst!=0){
+					var txt = $("#dists [value="+dst+"]").text();
+					setDist(dst,txt);
+				}
+				return true;
+			});
+		}
 	}
 }
 function resizeNotices(){

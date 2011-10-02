@@ -34,13 +34,21 @@
   }
     // {project navigation}
   if(strstr($text,"{project navigation}")){
-      $pn = "<div class='vidget ui-corner-all'>"." | "
+
+  	$pn = "<div id=sub_menu style='text-align: center;'>";
+	$pn .= maketabs(array('Головна','Список квартир','Етапи будівництва',"Завершені об'єкти")
+		,array("/article/".$row['id']."/","/catalog/1/?proj=".$projID,"/galery/".$row['id']."/","/galery/".$row['id']."/?type=old")
+		,0,0);
+	$pn .= "</div>";
+
+
+     /* $pn = "<div class='tabs2 level0'>"." | "
       ."Головна"." | "
       ."<a href='/catalog/1/?proj=".$projID."'> Список квартир </a>"." | "
       ."<a href='/galery/".$row['id']."/'> Етапи будівництва </a>"." | ";
 	  if ($isShowOLD=="1")
       	$pn .= "<a href='/galery/".$row['id']."/?type=old'> Завершені об'єкти </a>"." | ";
-      $pn .= "</div>";
+      $pn .= "</div>";*/
 	  $text=str_replace('{project navigation}',$pn,$text);
   }
 

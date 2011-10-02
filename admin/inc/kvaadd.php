@@ -51,7 +51,7 @@
 				<tr>
 					<td>Насел. пункт</td>
 					<td>
-						<select name='adr_mista' id='adr_mista' onChange="if (this.value==1063){$('#row_dist').hide()} else {$('#row_dist').show()};HideZeroItem('adr_mista');">
+						<select name='adr_mista' id='adr_mista' onChange="if (this.value!=1063){$('#row_dist').hide()} else {$('#row_dist').show()};HideZeroItem('adr_mista');">
 						  <option value=0>Виберіть населений пункт</option>
 						  <?php
 							if ($obj->adr_rgn>0) {$usl="parent='$obj->adr_rgn'";} else {$usl="obl='$obj->adr_obl'";}

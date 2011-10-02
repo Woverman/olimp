@@ -48,7 +48,11 @@ $page = new Page($rpage);
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
 	<link href="/admin/editor/css/redactor.css" type="text/css" rel="stylesheet">
 	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
+	<? } else { ?>
+	<script type="text/javascript" src="/js/jquery.metadata.js"></script>
+	<script type="text/javascript" src="/js/jquery.maphilight.js"></script>
 	<? } ?>
+
     <LINK REL="SHORTCUT ICON" href="/favicon.ico">
 </head>
 
@@ -106,8 +110,6 @@ $page = new Page($rpage);
     $('#debug_dialog_caption').drag();
     </script>
 <?}?>
-<div id="footer" class="vidget ui-corner-all">
-  &copy; Olimp - 2011р.
-</div>
+
 </body>
 </html>

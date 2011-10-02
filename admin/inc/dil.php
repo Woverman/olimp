@@ -48,7 +48,7 @@ if ($rowcount>0) {
     $params = '&nomer='.$nomer.'&agent='.$agent.'&obl='.$obl.'&rgn='.$rgn.'&mista='.$mista;
 		echo '<td><a href="/admin/diladd/?oid='.$row['id'].$params.'">';
 		echo '<img class=aimg src="/i/edit.png" style="cursor:pointer;border:0">';
-		echo '<a href="/index.php?page=admin&panel=delobj&oid='.$row['id'].'" onclick="return confirm(\'Знищити квартиру?\')">';
+		echo '<a href="/index.php?page=admin&panel=delobj&oid='.$row['id'].'" onclick="return confirm(\'Знищити ділянку?\')">';
 		echo '<img class=aimg src="/i/delete.png"></a></td>';
 
 

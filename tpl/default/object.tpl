@@ -9,6 +9,8 @@
 		<span><a href='/catalog/<?=$obj->prodazh?>/?obl=<?= $obj->adr_obl ?>&rgn=<?= $obj->adr_rgn ?>'><?= findadr($obj->adr_rgn,'d_rgn') ?> р-н</a></span> /<?}?>
 		<? if ($obj->adr_gor) { ?>
 		<span><a href='/catalog/<?=$obj->prodazh?>/?obl=<?= $obj->adr_obl ?>&rgn=<?= $obj->adr_rgn ?>&gor=<?= $obj->adr_gor ?>'><?= findadr($obj->adr_gor,'d_mista') ?></a></span> /<?}?>
+		<? if ($obj->adr_dist) { ?>
+		<span><a href='/catalog/<?=$obj->prodazh?>/?obl=<?= $obj->adr_obl ?>&rgn=<?= $obj->adr_rgn ?>&gor=<?= $obj->adr_gor ?>&dist=<?= $obj->adr_dist ?>'><?= findadr($obj->adr_dist,'d_dist') ?></a></span> /<?}?>
 		<? if ($obj->adr_vul) { ?>
 		<span><? $obj->adr_vul ?></span><?}?>
 		<div style="clear: both"></div>
@@ -46,6 +48,7 @@
         break;
       case 'dil':
         printf($li,($obj->prodazh==1 ? 'Продається':'Здається'),$sys['lists']['typesner'][$obj->type]);
+		printf($li,'Ділянка',$obj->pdil.' '.formatod($sys['lists']['plo_od'][$obj->plo_od],$obj->pdil));
         break;
       case 'kva':
       default:

@@ -38,6 +38,7 @@ function ToDel(id) {
 	$('#mode').val("del");
 	saveUserData();
 }
+
 function saveUserData(){
 	var s = $('form').serialize();
 	$.post("/ajax/edituser.php",s,function(data){
@@ -86,6 +87,22 @@ function updaterow(row,id){
 	$($(row).children().find("img").get(1)).click(function(){ToEdit(id)});
 	$($(row).children().find("img").get(2)).click(function(){ToDel(id)});
 }
+function EditFoto(){
+	$('[name=userID]').val($('#uid').val());
+	$('#overlay2').css('z-index','10002').show();
+	$('#form2box').css({
+   		position:'fixed',
+   		left: ($(window).width() - $('#form2box').outerWidth())/2,
+   		top: ($(window).height() - $('#form2box').outerHeight())/2
+   	}).show();
+}
+function fotoloaded(img){
+	$('#form2box').hide();
+	$('#overlay2').hide();
+	$('#userfoto').attr('src','');
+	$('#userfoto').attr('src','/i/users-p/'+img);
+	//LoadNewImage('userfoto','-'+$('#uid').val(),1,2);
+}
 function ShowModal(){
 	$('#overlay').show();
 	$('#formbox').css({
@@ -109,7 +126,7 @@ function HideModal(){
 $sql="Select count(id) from d_users where login<>'serg'";
 $res=mysql_query($sql);
 $rowcount=mysql_result($res,0);
-$sql="Select * from d_users where login<>'serg' order by id desc";
+$sql="Select * from d_users where login<>'serg' order by id asc";
 $res=mysql_query($sql);
 $a=1;
 $role[0]="Адмін";
@@ -135,7 +152,7 @@ while ($row=mysql_fetch_row($res)) {
 		<input type='hidden' value='add' name='mode' id='mode'>
 		<table class="fields_tbl" style="border-width: 1px;border-collapse: separate;">
 		<tr><td width="120">Логін:</td><td><input type='text' name='login' id='login' class="txt"></td>
-		<td rowspan=13 style="vertical-align: top"><img id=userfoto name=userfoto src="/image.php?mode=2&objid=0&num=0"></td></tr>
+		<td rowspan=13 style="vertical-align: top; text-align: center"><img id=userfoto name=userfoto src="/image.php?mode=2&objid=0&num=0"><input type="button" value="Змінити" onclick="EditFoto()"></td></tr>
 		<tr><td>Пароль:</td><td><input type='text' name='pass' id='pass' class="txt"></td></tr>
 		<tr><td>ПІП:</td><td><input type='text' name='longname' id='longname' class="txt"></td></tr>
 		<tr><td>Доступ:</td><td>
@@ -159,11 +176,26 @@ while ($row=mysql_fetch_row($res)) {
 		<tr><td>Телефон 3:</td><td><input type='text' name='phone3' id='phone3' class="txt"></td></tr>
 		<tr><td>Телефон 4:</td><td><input type='text' name='phone4' id='phone4' class="txt"></td></tr>
 		<tr><td>Email:</td><td><input type='text' name='email' id='email' class="txt"></td></tr>
-		<tr><td>Фото:</td><td><input type='file' name='foto' id='foto' class="txt"></td></tr>
+		<!--<tr><td>Фото:</td><td><input type='file' name='foto' id='foto' class="txt"></td></tr>-->
 		<tr><td>&nbsp;</td><td style="text-align:left"><label><input type='checkbox' value=1 name='locked' id='locked'>Заблокований</label></td></tr>
 		</table>
 		<div style="text-align: right">
 			<input type='button' value='Записати' onclick="saveUserData();return false;"> <input type='reset' value='Вiдмiнити' onclick="clearForm()">
 		</div>
 	</form>
+	<div id="overlay2"></div>
+	<div id="form2box" style="display:none;background-color: #DFDFDF;border:3px double #FEFEFE; z-index: 10003;padding: 10px;">
+		<form name=fotoupload method=post action='/admin/save/uploadimage.php' target="ifrm" enctype='multipart/form-data'>
+		  <input type="hidden" name="max_folder" id="max_folder" value="/i/users/">
+		  <input type="hidden" name="min_folder" id="min_folder" value="/i/users-p/">
+		  <input type="hidden" name="max_width" value="250">
+		  <input type="hidden" name="max_height" value="170">
+		  <input type="hidden" name="min_width" value="100">
+		  <input type="hidden" name="min_height" value="70">
+		  <input type="hidden" name="userID" value="">
+		  <input type="hidden" name="callback" value="fotoloaded">
+		  <input type='file' name='foto' id='foto' size="35"><input type="Submit" value="Загрузити">
+		  <input type="button" value="Відмінити" onclick="$('#form2box').hide();$('#overlay2').hide();">
+		</form>
+	</div>
 </div>

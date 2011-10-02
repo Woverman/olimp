@@ -14,8 +14,20 @@ debug($_GET,"GET");
   if (isset($_POST['num'])) mysql_unbuffered_query(sprintf($sql,'num',$_POST['num']));
   if (isset($_POST['adr_obl'])) mysql_unbuffered_query(sprintf($sql,'adr_obl',$_POST['adr_obl']));
   if (isset($_POST['adr_rgn'])) mysql_unbuffered_query(sprintf($sql,'adr_rgn',$_POST['adr_rgn']));
-  if (isset($_POST['adr_mista'])) mysql_unbuffered_query(sprintf($sql,'adr_gor',$_POST['adr_mista']));
   if (isset($_POST['adr_dist'])) mysql_unbuffered_query(sprintf($sql,'adr_dist',$_POST['adr_dist']));
+  if (isset($_POST['adr_mista'])){
+  	// misto_id (from d_mista) => dist_id (from d_dist)
+  	$dists = array('1064' => '16', '1073' => '20', '1076' => '18', '1084' => '22', '1107' => '19', '1114' => '17', '1068' => '21', '30000' => '7');
+	if (array_key_exists($_POST['adr_mista'],$dists)){
+		// if misto in dists array write misto=vinnitsa and dist=founded dist id
+		$dist = array_search($_POST['adr_mista'],$dists);
+		mysql_unbuffered_query(sprintf($sql,'adr_gor','1063'));
+		mysql_unbuffered_query(sprintf($sql,'adr_dist',$dist));
+	} else {
+  		mysql_unbuffered_query(sprintf($sql,'adr_gor',$_POST['adr_mista']));
+	}
+  }
+
   if (isset($_POST['adr_vul'])){
     mysql_unbuffered_query(sprintf($sql,'adr_vul',$_POST['adr_vul']));
     check_vul($_POST['adr_vul'],$_POST['adr_mista']);    }

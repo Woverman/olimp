@@ -18,9 +18,9 @@ function my_extract($array) {
     return TRUE;
 }
 
-function getaslist ($tbl,&$selid,$usl='1=1') {
+function getaslist ($tbl,&$selid,$usl='1=1',$orderby='name') {
 	global $sys;
-	$sql = sprintf('SELECT * from %s where %s order by name',$tbl,$usl);
+	$sql = sprintf('SELECT * from %s where %s order by %s',$tbl,$usl,$orderby);
 	$res=mysql_query($sql);
 	while ($row=mysql_fetch_array($res)) {
         $T='';
@@ -95,8 +95,8 @@ function MakePageLinks($page,$pages,$items,$ff) {
             }
         }
     }
-	echo '<table class="pagesdiv"><tr><td class="founded">Всього знайдено: '.$items.'</td>';
-	echo '<td class="pagenums">';
+	echo '<table class="pagesdiv"><tr><td class="founded">Всього знайдено: '.$items.' об\'єкти.</td>';
+	echo '<td class="pagenums"> Cторінки: ';
 	if ($pages>1){
 	    if ($page>1) {
 	      echo '<a href="'.$ff->createURL("pg",$page-1).'">&lt; Назад</a>&nbsp;';
@@ -310,7 +310,7 @@ function delfoto($num,$id){
 
 }
 
-function maketabs($arrName,$arrLink,$sel){
+function maketabs($arrName,$arrLink,$sel,$level=0){
   // create a tabled links from arrays of names and links //
 
   $cntt=count($arrName);
@@ -318,7 +318,7 @@ function maketabs($arrName,$arrLink,$sel){
     if ($i==$sel) $class=' class="sel"'; else $class='';
     $backarr[$i]="<a href=".$arrLink[$i].$class."> ".$arrName[$i]." </a>";
   }
-  $ret = '<div class="tabs2">'.implode("\n",$backarr).'</div>';
+  $ret = '<div class="tabs2 level'.$level.'">'.implode("\n",$backarr).'</div>';
   return $ret;
 }
 

@@ -29,7 +29,7 @@ include("templates/header.htm");
  $result = doquery($query);
  if(mysql_num_rows($result) != 0){
   	while ($row = mysql_fetch_array($result)){
-		$news .= "<option value='/newsarticle/".$row['id']."'>".$row['title']."</option>";
+		$news .= "<option value='/newsarticle/".$row['id']."'>".stripslashes($row['title'])."</option>";
 	}
  }
  mysql_query('SET NAMES cp1251;');
