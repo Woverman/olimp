@@ -17,7 +17,15 @@
   ?>
   <div id="news_title" class="ui-corner-all"><?=$title?></div>
   <?
-  $pn = "<div class='vidget ui-corner-all'> | <a href='/article/$id/'> Головна </a> | <a href='/catalog/1/?proj=$projectID'> Список квартир </a>"." | ";
+
+	echo ("<div id=sub_menu style='text-align: center;'>");
+	echo maketabs(array('Головна','Список квартир','Етапи будівництва',"Завершені об'єкти")
+		,array("/article/".$id."/","/catalog/1/?proj=".$projectID,"/galery/".$id."/","/galery/".$id."/?type=old")
+		,2
+		,0);
+	echo("</div>");
+
+  /*$pn = "<div class='tabs2 level0'> | <a href='/article/$id/'> Головна </a> | <a href='/catalog/1/?proj=$projectID'> Список квартир </a>"." | ";
   if ($old==1)  {
   	$pn .= "<a href='/galery/".$id."/'> Етапи будівництва </a> | Завершені об'єкти | ";
   } else {
@@ -25,7 +33,10 @@
    	if ($isShowOLD=="1") $pn .= "<a href='/galery/".$id."/?type=old'> Завершені об'єкти </a> | ";
   }
   $pn .= "</div>";
-  echo($pn);
+  echo($pn);*/
+
+
+
   while ($row=mysql_fetch_assoc($res)){
     $fname = basename($row['file']);
     $comment = $row['comment'];

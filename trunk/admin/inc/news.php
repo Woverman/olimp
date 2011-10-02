@@ -57,6 +57,7 @@ switch (@$_REQUEST['mode']) {
   case 'edit':
     $sql='Select *,date_format(dateadd,"%d.%m.%Y %H:%i:%s")as dt from new_news where id='.$_GET['id'];
     if ($res=mysql_query($sql)) list($id,$title,$short,$long,$date,$enbl,$img,$dt)=mysql_fetch_array($res);
+	debug($title,'$title');
   case 'add':
     ?>
     <form name="newsedit" method="POST" action="/admin/news/" enctype="multipart/form-data">
@@ -65,7 +66,7 @@ switch (@$_REQUEST['mode']) {
     <input type="hidden" name="mode" value="save">
     <input type="hidden" name="panel" value="news">
 	<div style="padding: 8px;width: 960px;border: 1px solid silver;margin:4px 0;">
-		<span class="td_title" style="padding-left: 115px;">Заголовок:</span> <input id="news_name" name="news_name" type="text" size="75" value="<?=@stripslashes($title)?>"><br>
+		<span class="td_title" style="padding-left: 115px;">Заголовок:</span> <input id="news_name" name="news_name" type="text" size="75" value='<?=@stripslashes($title)?>'><br>
 		<span class="td_title" style="padding-left: 115px;">Дата і час публікації:</span> <input id="news_dt" name="news_dt" type="text" size="65" value="<?=@$dt?>"> <input type="button" value="Зараз" onclick="putNow()"><br>
 	</div>
     <div style="border: 1px solid silver; padding: 8px;min-height: 100px;width: 960px;">
@@ -137,7 +138,7 @@ switch (@$_REQUEST['mode']) {
     echo '<table cellspasing=2 width=100% class="mytab">';
     $a=1;
     while ($row=mysql_fetch_array($res)) {
-      echo '<tr class="row'.$a=abs($a-1).'"><td style="padding:2px 10px;text-align:left">'.$row['title'].'</a></td><td style="padding:2px 10px;">'.$row['dt'].'</td><td width="120">';
+      echo '<tr class="row'.$a=abs($a-1).'"><td style="padding:2px 10px;text-align:left">'.@stripcslashes($row['title']).'</a></td><td style="padding:2px 10px;">'.$row['dt'].'</td><td width="120">';
       echo '<a href=/admin/admin.php?panel=news&mode=edit&id='.$row['id'].'><img class=aimg src="/i/edit.png" title="Правка"></a>';
       echo '<a href=/admin/admin.php?panel=news&mode=delete&id='.$row['id'].'><img class=aimg src="/i/delete.png" title="Знищити"></a>';
       echo '<a href=/admin/admin.php?panel=news&mode=offon&id='.$row['id'].'><img class=aimg src="/i/'.($row['enable']==1?'on':'off').'.png" title="'.($row['enable']!=1?'Увімкнути':'Вимкнути').'"></a>';

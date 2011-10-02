@@ -26,14 +26,14 @@ if (isset($_POST['type']) && $_POST['type']=='kva')
   else { mysql_unbuffered_query(sprintf($sql,'prodano',0)); }
   echo "<script type=\"text/javascript\">";
   if ($_POST['mode']=='add')
-    {
+    { 
       echo("window.parent.location.reload();");
     }
   else
 	  {
 	    echo("window.parent.updaterow('".$_POST['id']."','".$_POST['num']."','".$_POST['kk']."','".$_POST['pov']."','".$_POST['pzag']."','".$_POST['pzit']."','".$_POST['pkuh']."','".$_POST['cast']."','".$_POST['prodano']."');");
     }
-  echo("window.parent.SetStatus('<font color=green>Квартиру збережено.</font>');");
+  echo("window.parent.SetStatus('<font color=green>РљРІР°СЂС‚РёСЂСѓ Р·Р±РµСЂРµР¶РµРЅРѕ.</font>');");
   echo "</script>";
 }
 

@@ -29,7 +29,9 @@ class Menuset
 		  	$this->items[] = new Menu("admin","main","Адмінка");
         } else {
         //$this->items[] = new Menu("admin","main","Адмінка");
-			$this->items[] = new Menu("alert",0,"Залишити оголошення");
+			$ogol = new Menu("alert",0,"Залишити оголошення");
+			$ogol->special = true;
+			$this->items[] = $ogol;
         }
 		//if (isset($_SESSION['logged']) and $_SESSION['logged']>0)
             //$this->items[] = new Menu("admin","exit","Вихід");
@@ -37,7 +39,8 @@ class Menuset
     
     function listitems(){
         foreach ($this->items as $item){
-        $ret .= "<li><a href='".$item->href()."'>".$item->text."</a></li>";
+        	$cls = $item->special?'menuitem_special':'menuitem';
+        $ret .= "<li class='$cls'><a href='".$item->href()."'>".$item->text."</a></li>";
         }
         return $ret; 
     }

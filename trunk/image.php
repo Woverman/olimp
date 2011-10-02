@@ -10,10 +10,14 @@ if (!isset($num)) $num=1;
 
 $obj = Object::load($objid);
 if ($obj->proj==0){
-	$realFileName = "./i/obj/".($mode==2?"tmb":"img")."_".$objid."_".$num.".jpg";
+	if ( ((int)$objid)<0){ // user
+		$realFileName = "./i/users".($mode==2?"-p":"")."/".substr($objid,1).".jpg";
+	} else {
+		$realFileName = "./i/obj/".($mode==2?"tmb":"img")."_".$objid."_".$num.".jpg";
+	}
 	if (is_file($realFileName)) // if image saved to file
 	{
-	  readfile($realFileName);
+	  	readfile($realFileName);
 	}
 	else // image saved to DB
 	{

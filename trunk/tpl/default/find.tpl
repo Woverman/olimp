@@ -1,71 +1,67 @@
+<div id="findform">
 <form name="find" action="/catalog/1/" method="get" enctype="multipart/form-data">
-   	<label><input type="radio" checked="checked" name="id" value="1" id="modeprod"/>Продаж</label>&nbsp;
-	<label><input type="radio" name="id" value="0" id="modeorenda"/>Оренда</label>
+   	<label><input type="radio" checked="checked" name="id" value="1" id="modeprod" />Продаж</label>&nbsp;
+	<label><input type="radio" <?if($id==0){?>checked="checked"<?}?> name="id" value="0" id="modeorenda"/>Оренда</label>
 <br/>
   <script type="text/javascript">
     function showdiv(id){
-      $("#finddiv1").hide();
-      $("#finddiv2").hide();
-      $("#finddiv3").hide();
-      $("#finddiv4").hide();
-      $("#finddiv"+id).show();
+    	$("#finddiv1").hide();
+      	$("#finddiv2").hide();
+      	$("#finddiv3").hide();
+      	$("#finddiv4").hide();
+      	$("#finddiv"+id).show();
     }
 	function showMapDist(){
-		var w = $(window);
-		var W = (w.width()<970?w.width()-100:970);
-		var H =	(w.height()<716?w.height()-100:716);
-		var L = (w.width()-W)/2;
-		var T = (w.height()-H)/2;
-		$("#map_large").animate(
-		{
-			height: H + "px",
-			width: W + "px",
-			top: T + "px",
-			left: L + "px"
-		},
-		500,
-		"linear",
-		function(){$("#map_large").css("box-shadow", "#4A4FAB 0px 0px 14px 2px")}
-		);
-
+		//$("#find_vidget").css({position:'absolute'});
+		$("#findform").hide();
+		$("#map_large").show();
+		$(".dist_title").show();
 	}
 	function hideMapDist(){
-		$("#map_large").css("box-shadow","").animate(
-		{
-			height: 0 + "px",
-			width: 0 + "px",
-			top: 0 + "px",
-			left: 0 + "px"
-		},
-		500
-		);
-	}
-	function setDist(dID,dName){
-		$("#dist").val(dID);
-		$("#dist_name").text(dName);
-		$("#distwrap").show();
-		hideMapDist()
+		//$("#find_vidget").css({position:'relative'});
+		$("#findform").show();
+		$("#map_large").hide();
+		$(".dist_title").hide();
+
 	}
 	function cityChanged(id){
+		$('#dist').val('');
 		if (id==1063){
-			$('#map_e').show();
-			$('#map_d').hide();
+			$('#distswrap').show('');
 			}
 		else {
-			$('#map_e').hide();
-			$('#map_d').show();
+			$('#distswrap').hide();
 			}
-		$('#distwrap').hide('slow');
-		$('#dist').val('');
+	 //	$('#distwrap').hide('slow');
+
+	}
+	function removeDist(dID){
+		$('#distitem'+dID).remove();
+		var what=','+dID;
+		$("#dist").val($("#dist").val().replace(new RegExp(what,'g'),','));
+		if ($("#dist").val()==','){$("#distwrap").hide();};
+		$('#dists [value='+dID+']').show();
+	}
+	function setDist(dID,dName){
+		var newid = 'distitem'+dID;
+		if (!$('#'+newid).is('div')) {
+			var temp=$('#distitem').clone().attr('id',newid);
+			temp.children('.dist_name').text(dName);
+			temp.children('.cleardist').click(function(){removeDist(dID)});
+			temp.insertAfter($('#distitem')).show();
+			$('#dists [value='+dID+']').hide();
+			$("#dist").val($("#dist").val()+','+dID);
+			$("#distwrap").show();
+		}
 	}
   </script>
   <p>Тип нерухомості:</p>
   <select onchange="showdiv(this.selectedIndex)" id="typener" name="tn">
 	<option value="0">--Не важливо--</option>
-  <option value="1">Будинки</option>
-  <option value="2">Квартири</option>
-  <option value="3">Ділянки</option>
-  <option value="4">Комерційна нерухомість</option>
+	<option value="1">Будинки</option>
+	<option value="2">Квартири</option>
+	<option value="3">Ділянки</option>
+	<option value="4">Комерційна нерухомість</option>
   </select>
   <div style="display: none;" id="finddiv1">
     <p>Тип будинку:</p>
@@ -102,68 +98,27 @@
 		<?php $rgn=19;getaslist('d_rgn',$rgn,"parent='2'");  ?>
 	  </select>
 	  <p>Населений пункт:</p>
-	  <select id="mista" name="gor" style="width: 75%" onchange="cityChanged(this.value)">
+	  <select id="mista" name="gor" onchange="cityChanged(this.value)">
 		<option value="0">--Не важливо--</option>
-		<option value="1070">Гавришівка</option>
-		<option value="1064">Агрономічне</option>
-		<option value="1071">Горбанівка</option>
-		<option value="1069">Вороновиця</option>
-		<option value="1066">Бохоники</option>
-		<option value="1072">Гумене</option>
-		<option value="1065">Березина</option>
-		<option value="1067">Великі Крушлинці</option>
-		<option value="1068">Вінницькі Хутори</option>
-		<option selected="selected" value="1063">Вінниця</option>
-		<option value="1076">Зарванці</option>
-		<option value="1100">Рівець</option>
-		<option value="1082">Лаврівка</option>
-		<option value="1083">Лисогора</option>
-		<option value="1080">Кордишівка</option>
-		<option value="1079">Комарів</option>
-		<option value="1081">Ксаверівка</option>
-		<option value="1084">Лука-Мелешківска</option>
-		<option value="1095">Парпурівці</option>
-		<option value="1085">Майдан</option>
-		<option value="1086">Майдан-Чапельський</option>
-		<option value="1087">Малі Крушлинці</option>
-		<option value="1099">Прибужське</option>
-		<option value="1097">Писарівка</option>
-		<option value="1090">Михайлівка</option>
-		<option value="1093">Олександрівка</option>
-		<option value="1094">Оленівка</option>
-		<option value="1098">Побережне</option>
-		<option value="1096">Переорки</option>
-		<option value="1092">Некрасово</option>
-		<option value="1088">Медвеже Вушко</option>
-		<option value="1089">Медвідка</option>
-		<option value="1091">Мізяківські Хутори</option>
-		<option value="30000">Сабарів</option>
-		<option value="1101">Славне</option>
-		<option value="1102">Слобода-Дашківецькая</option>
-		<option value="1103">Сокиринці</option>
-		<option value="1104">Сосонка</option>
-		<option value="1105">Стадниця</option>
-		<option value="1107">Стрижавка</option>
-		<option value="1106">Степанівка</option>
-		<option value="1110">Хижинці</option>
-		<option value="1109">Тютьки</option>
-		<option value="1108">Тютюники</option>
-		<option value="1113">Щітки</option>
-		<option value="1075">Жабелівка</option>
-		<option value="1074">Дорожне</option>
-		<option value="1073">Десна</option>
-		<option value="1111">Цвіжин</option>
-		<option value="1077">Іванівка</option>
-		<option value="1078">Ільківка</option>
-		<option value="1112">Широка Гребля</option>
-		<option value="29999">Шкуринці</option>
-		<option value="1114">Якушинці</option>
+		<?php $misto=1063;getaslist('d_mista',$misto,'parent=19');  ?>
 	  </select>
-&nbsp;
-<img id="map_e" src="/i/map.gif" width="28" height="21" alt="vinnitsa map small enable" style="cursor: pointer;" title="Райони міста та околиці" onclick="showMapDist()"/>
-<img id="map_d" src="/i/map_dis.gif" width="28" height="21" alt="vinnitsa map small disable" style="display:none;cursor: not-allowed;"/>
-<div id="distwrap" style="display: none;padding: 0 12px;"><div id="dist_name" style="padding-top: 6px;display: block;margin-top: 0;float: left;"></div>
-<img id="cleardist" src="/i/clear.png" width="16" height="16" alt="" onclick="$('#distwrap').hide('slow');$('#dist').val('');"/></div>
+	  <!--&nbsp;<img id="map_e" src="/i/map.gif" width="28" height="21" alt="vinnitsa map small enable" style="cursor: pointer;" title="Райони міста та околиці" onclick="showMapDist()"/>
+	  <img id="map_d" src="/i/map_dis.gif" width="28" height="21" alt="vinnitsa map small disable" style="display:none;cursor: not-allowed;"/>-->
+	  <div id='distswrap'>
+	  <p>Район міста:</p>
+	  <select id="dists" name="dists" onchange="setDist(this.value,this[this.selectedIndex].text);this.selectedIndex=0;">
+		<option value="0">Добавте в список...</option>
+		<?php $dst=0;getaslist('d_dist',$dst,'1=1','orderid');  ?>
+	  </select>
+	  </div>
+
+<div id="distwrap" class="ui-corner-all">
+	<div class="distitem" id="distitem">
+		<div class="dist_name"></div>
+		<img class="cleardist" src="/i/clear.png" width="16" height="16"/>
+	</div>
+</div>
+
 <input type="hidden" name="dist" id="dist" />
 <input type="hidden" name="proj" id="proj" value="0" />
   </div><br style="clear: both;">
@@ -171,14 +126,33 @@
   до <input type="text" value="" name="prise2" id="prise2" size="5"><br>
   <br><button onclick="document.form_find.submit();">Знайти</button>
 </form>
-<div id="map_large" style="display:block;position:fixed;width:0;height:0;top:0;left:0;overflow:hidden;z-index:10;text-align: center;vertical-align: middle;background-color: #c6e2ff">
-	<img src="/i/window_close.png" width="24" height="24" style="float: right; position: relative;" onclick="hideMapDist()">
-	<img src="/i/map.png" style="margin-top: -24px;" />
-	<?
-		$dists = $DB->request("select * from d_dist",ARRAY_A);
-		foreach($dists as $dist){
-			echo('<div class="dist-mark" onclick="setDist('.$dist['id'].',\''.$dist['name'].'\')" style="left: '.$dist['left'].'px;top:'.$dist['top'].'px;">'.$dist['name'].'</div>');
-		}
-	?>
 </div>
-
+<div id="map_large" style="display:none;z-index:1000;">
+	<img class=map src="/i/map.jpg" USEMAP="#MAP1" />
+</div>
+<MAP NAME="MAP1">
+<?
+$dists = $DB->request("select `id`,`name`,`left`,`top`,`coord` from `d_dist` order by `orderid`",ARRAY_A);
+foreach($dists as $dist){
+	$d_title = $dist['name'];
+	$d_id = $dist['id'];
+	$d_href = '/catalog/1/?id=1&tn=0&dom_domtype=0&kk=0&obl=0&rgn=0&gor=1063&dists=0&dist=%2C'.$d_id.'&proj=0&prise1=&prise2=';
+	echo("<AREA HREF='$d_href' SHAPE=POLYGON TITLE=\"$d_title\" id='$d_id' COORDS='".$dist['coord']."'>");
+	echo("<DIV CLASS='dist_title' STYLE='display:none;position: absolute;left: ".$dist['left']."px;top:".$dist['top']."px;'>$d_title</div>");
+	echo("<A CLASS='dist_title' STYLE='display:none;position: absolute;left:".$dist['left']."px;top:".$dist['top']."px;' HREF='$d_href' onmouseover=\"function()($('AREA #$d_id').mouseover());\">$d_title</A>");
+}
+?>
+</MAP>
+<script language="JavaScript" type="text/javascript">
+/*<![CDATA[*/
+$('.dist_title').mouseover(function(){
+	var txt = ($(this).text());
+	$('[title="'+txt+'"]').mouseover();
+	});
+$('.dist_title').mouseout(function(){
+	var txt = ($(this).text());
+	$('[title="'+txt+'"]').mouseout();
+	});
+/*]]>*/
+// onmouseout="setTimeout(hideMapDist,1000);"
+</script>

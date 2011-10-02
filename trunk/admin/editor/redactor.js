@@ -45,7 +45,7 @@ var twidth;
 		this.opts = $.extend({	
 			toolbar: 'original',
 			lang: 'ua',
-			pageview: false,
+			pageview: true,
 			fullscreen: false,
 			autosave: false,
 			saveInterval: 60, // seconds
@@ -57,8 +57,8 @@ var twidth;
 			uploadFunction: false,
 			width: false,
 			height: false,
-			autoclear: true,
-			autoformat: true,
+			autoclear: false,
+			autoformat: false,
 			overlay: true,
 			colors: Array(
 				'#ffffff', '#000000', '#eeece1', '#1f497d', '#4f81bd', '#c0504d', '#9bbb59', '#8064a2', '#4bacc6', '#f79646',
@@ -150,8 +150,8 @@ var twidth;
 
 			$(this.doc).bind('paste', function(e)
 			{ 
-				if (this.opts.autoclear) setTimeout(function () { this.clearWord(); }.bind(this), 1000);
-				else this.syncCode();
+				//if (this.opts.autoclear) setTimeout(function () { this.clearWord(); }.bind(this), 1000);
+				//else this.syncCode();
 					
 			}.bind(this));
 
@@ -163,7 +163,7 @@ var twidth;
 		        
 		        if (this.opts.autoclear) 
 		        {
-		        	if (e.keyCode == 86 && isCtrl) { setTimeout(function () { this.clearWord(); }.bind(this), 1000); }	
+		        	//if (e.keyCode == 86 && isCtrl) { setTimeout(function () { this.clearWord(); }.bind(this), 1000); }
 		        }
 		        	        
 		        if (e.keyCode == 9) { this.execCommand('indent', false); return false; }
@@ -496,6 +496,7 @@ var twidth;
 		*/
 		paragraphise: function()
 		{
+			return true;
 			if (this.opts.autoformat === false) return true;
 			if (this.opts.visual)
 			{

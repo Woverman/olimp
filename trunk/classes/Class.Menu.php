@@ -4,7 +4,8 @@ class Menu
     var $id;
     var $type; 
     var $text;
-            
+    var $special;
+
     function Menu($type,$id,$text)
     {
         return $this->__construct($type,$id,$text);

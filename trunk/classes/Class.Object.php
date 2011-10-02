@@ -10,6 +10,7 @@ abstract class Object
   	var $adr_rgn;
   	var $adr_gor;
   	var $adr_vul;
+  	var $adr_dist;
   	var $cast;
   	var $valuta;
   	var $casttype;
@@ -33,6 +34,7 @@ abstract class Object
 		$this->adr_rgn = $data["adr_rgn"];
 		$this->adr_gor = $data["adr_gor"];
 		$this->adr_vul = $data["adr_vul"];
+		$this->adr_dist = $data["adr_dist"];
 		$this->cast = $data["cast"];
 		$this->valuta = $data["valuta"];
 		$this->casttype = $data["casttype"];

@@ -139,7 +139,7 @@ div#loginat img {
 	text-align: right;
 	padding: 2px 5px;
 }
-#overlay {
+#overlay,#overlay2 {
 	z-index:1000;
 	position:fixed;
 	top:0;
