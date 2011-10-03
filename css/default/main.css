@@ -96,6 +96,15 @@ sub{
 .findtab a, .findtab a:hover{
 	color: #00789D;
 }
+#findtabmap{
+	background-image: url(../../i/maps-48x48.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	margin-right: 30px;
+	background-size: contain;
+}
+
+
 .find_vidget{
   clear: both;
   float: left;
@@ -191,13 +200,13 @@ div#hiddentl{
   margin-left: 140px;
 }
 
-.news_item h3,#news_title{
+.news_item h3, #news_title, #article_title{
   display: block;
   font: normal normal 700 15px/17px Arial;
   text-align: left;
 }
 
-#news_title{
+#news_title, #article_title{
   background: #E7F1FF;
   border: 1px solid #CCFDCC;
   color: #509693;
@@ -503,7 +512,7 @@ a.dist_title:hover{text-decoration: none;color: #0000CC;}
 
 
 .pagenums{
-  text-align: center;
+  text-align: right;
   padding-right: 20px;
 }
 
@@ -557,6 +566,16 @@ a.dist_title:hover{text-decoration: none;color: #0000CC;}
 	padding: 24px 10px 25px 80px;
 }
 
+#article_content{
+	padding: 4px;
+	line-height: 20px;
+}
+#article_content p{
+	line-height: 20px;
+}
+#article_content h3{
+	padding-top: 20px;
+}
 #articles_inner li{
 	list-style-image: url(../../i/article.png);
 }

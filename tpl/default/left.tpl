@@ -16,7 +16,7 @@ function activatetab(tabnum){
 	<div class="findtabs">
 		<div class="findtabszone">
 			<div class="findtab sel"><a href="#" onclick="activatetab('1');">Пошук</a></div>
-			<div class="findtab"><a href="#" onclick="activatetab('2');">Пошук на карті</a></div>
+			<div class="findtab" id="findtabmap"><a href="#" onclick="activatetab('2');">Пошук на карті &nbsp;&nbsp;&nbsp;&nbsp;</a></div>
 		</div>
 	</div>
     <div class="find_vidget ui-corner-bottom" id='find_panel'>

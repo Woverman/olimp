@@ -54,9 +54,10 @@
 
 ?>
 <div class=object_inner style="padding-top: 1px;">
-<div id="news_title" class="ui-corner-all"><?=$title?></div>
-
-<?=stripslashes($text)?>
+	<div id="article_title" class="ui-corner-all"><?=$title?></div>
+		<div id="article_content">
+			<?=stripslashes($text)?>
+	</div>
 </div>
 
 <?// } ?>

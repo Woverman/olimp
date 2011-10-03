@@ -32,6 +32,11 @@ if ($obj->proj==0){
 	}
 } else {
 	$images = glob("./i/obj/".$obj->id."/".(($mode==2?"min":"max"))."/*.jpg", GLOB_NOSORT);
-	readfile($images[$num-1]);
+	if (file_exists($images[$num-1])){
+		readfile($images[$num-1]);
+	} else {
+		$href = './i/no_'.($mode==2 ? 'smol' : 'big').'.jpg';
+		readfile($href);
+	}
 }
 ?>
