@@ -158,21 +158,21 @@
 	<!-- ----------------------------------------------------------------------------------------------------------------------- -->
 	<fieldset class="step">
 
-          <center>Фото квартири (максимальний розмір картинки - 1024х768/2Mb)</center><BR />
+          <center>Фото ділянки (максимальний розмір картинки - 1024х768/2Mb)</center><BR />
 		  <input type="hidden" name="MAX_FILE_SIZE" value="2048000" />
-<p style="border-bottom: 1px dotted gray;height: 69px;"><img src="/image.php?objid=<?=$obj->id?>&mode=2&num=1" align=left style="margin-right: 10px;">Фото 1:<br />
+<p class=objimgp><img class=objimg src="/image.php?objid=<?=$obj->id?>&mode=2&num=1" align=left>Фото 1:<br />
 <input type=file name=Img1 size=30 maxlength=128><br>
 <label><input type="checkbox" name="fdel_1"> Знищити </label></p>
-<p style="border-bottom: 1px  dotted gray;height: 69px;"><img src="/image.php?objid=<?=$obj->id?>&mode=2&num=2" align=left style="margin-right: 10px;">Фото 2:<br />
+<p class=objimgp><img class=objimg src="/image.php?objid=<?=$obj->id?>&mode=2&num=2" align=left>Фото 2:<br />
 <input type=file name=Img2 size=30 maxlength=128><br>
 <label><input type="checkbox" name="fdel_2"> Знищити </label></p>
-<p style="border-bottom: 1px  dotted gray;height: 69px;"><img src="/image.php?objid=<?=$obj->id?>&mode=2&num=3" align=left style="margin-right: 10px;">Фото 3:<br />
+<p class=objimgp><img class=objimg src="/image.php?objid=<?=$obj->id?>&mode=2&num=3" align=left>Фото 3:<br />
 <input type=file name=Img3 size=30 maxlength=128><br>
 <label><input type="checkbox" name="fdel_3"> Знищити </label></p>
-<p style="border-bottom: 1px  dotted gray;height: 69px;"><img src="/image.php?objid=<?=$obj->id?>&mode=2&num=4" align=left style="margin-right: 10px;">Фото 4:<br />
+<p class=objimgp><img class=objimg src="/image.php?objid=<?=$obj->id?>&mode=2&num=4" align=left>Фото 4:<br />
 <input type=file name=Img4 size=30 maxlength=128><br>
 <label><input type="checkbox" name="fdel_4"> Знищити </label></p>
-<p style="height: 67px;"><img src="/image.php?objid=<?=$obj->id?>&mode=2&num=5" align=left style="margin-right: 10px;">Фото 5:<br />
+<p class=objimgp><img class=objimg src="/image.php?objid=<?=$obj->id?>&mode=2&num=5" align=left>Фото 5:<br />
 <input type=file name=Img5 size=30 maxlength=128><br>
 <label><input type="checkbox" name="fdel_5"> Знищити </label></p>
 					<BR><BR>

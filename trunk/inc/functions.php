@@ -80,7 +80,23 @@ function GetFieldByID($tbl,$fld,$id,$notfound='Не знайдено'){
     return $notfound;
   }
 }
-
+function createNewsPages($pagescount,$page){
+	//$pagescount,$page
+	if ($page<1) $page=1;
+	$ret = "<div class='pagesdiv'><table><tr><td>Сторінки: </td>";
+	for ($i=1;$i<=$pagescount;$i++){
+		$ret .= "<td class='pagenums'>";
+		if ($page!=$i) $ret .= "<a href='?p=$i'>";
+		else $ret .= "<span class='selpage'>";
+		$ret .= $i;
+		if ($page!=$i) $ret .= "</a>";
+		else $ret .= "</span>";
+		$ret .= "</td>";
+	}
+	$ret .= "</tr></table>";
+	$ret .= "</div>";
+	return $ret;
+}
 function MakePageLinks($page,$pages,$items,$ff) {
 	$p1=1;$p2=$pages;
     if (($p2-$p1)>10){
