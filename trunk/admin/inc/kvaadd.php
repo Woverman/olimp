@@ -218,3 +218,8 @@
 	</div>
 </div>
 </form>
+<script language="JavaScript" type="text/javascript">
+$(window).unload(function(){
+  $.get("/ajax/delEmptyObjects.php?id="+<?=$obj->id?>);
+});
+</script>
