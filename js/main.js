@@ -246,6 +246,7 @@ function validateForm(){
   if (val=='0') ok=false;
   if (val=='110') ok=false;
   if (!ok) alert("Не вибрана відповідальна особа!");
+  else $(window).unload($.noop);
   return(ok);
 }
 /* запрос районов и городов */
