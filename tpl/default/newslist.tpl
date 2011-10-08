@@ -1,5 +1,5 @@
 <?
-$page = $_REQUEST['p'];
+$page = $_REQUEST['p']?$_REQUEST['p']:1;
 $sql = "SELECT COUNT(*) FROM new_news WHERE published=1";
 $res = $DB->request($sql,ARRAY_N);
 debug($res,'$res');

@@ -8,7 +8,8 @@ $(document).ready(function(){
 		//------------------------------------------------- admin
 		try{
 		$('#redactor_content_master').redactor();
-	    $('#redactor_content_slave').redactor();}
+	    $('#redactor_content_slave').redactor();
+		}
 		catch(e){}
 	} else {
 		//------------------------------------------------- site

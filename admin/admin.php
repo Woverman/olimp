@@ -43,20 +43,23 @@
 		<a class=<?=$cls?> href="/admin/spec">Проекти</a>
 		<? if ($panel=='exl') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/exl"><? echo(findexl())?>Ексклюзиви</a>
-		 <!-- <div class=spacer></div>-->
-    <? if ($panel=='news') $cls='sels'; else $cls='aa'; ?>
+    	<? if ($panel=='mail') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/mail"><? echo(findmsg())?>Заявки</a>
+		<? if ($panel=='cards') $cls='sels'; else $cls='aa'; ?>
+		<a class=<?=$cls?> href="/admin/cards">Дисконтні карти</a>
+		<div class=spacer></div>
+    	<? if ($panel=='news') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/news">Новини</a>
 <!--    <? if ($panel=='rss') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/rss">Імпорт новин</a>-->
-	<? if ($panel=='pages') $cls='sels'; else $cls='aa'; ?>
+		<? if ($panel=='pages') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/pages">Статті</a>
-	<? if ($panel=='baners') $cls='sels'; else $cls='aa'; ?>
+		<div class=spacer></div>
+		<? if ($panel=='baners') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/baners">Банери</a>
     <!--<div class=spacer></div>-->
 
-    	<? if ($panel=='mail') $cls='sels'; else $cls='aa'; ?>
-		<a class=<?=$cls?> href="/admin/mail"><? echo(findmsg())?>Заявки</a>
-    	<? if ($panel=='photos') $cls='sels'; else $cls='aa'; ?>
+		<? if ($panel=='photos') $cls='sels'; else $cls='aa'; ?>
 		<a class=<?=$cls?> href="/admin/photos/?folder=site">Зображення</a>
 		<div class=spacer></div>
 		<?if (IsAdmin()):?>
