@@ -214,12 +214,21 @@
 			<li>
 				<a href="#" onclick="if (validateForm()) forms[0].submit()">Зберегти</a>
 			</li>
+			<li>
+				<a href="#" id="testa">test</a>
+			</li>
 		</ul>
 	</div>
 </div>
 </form>
 <script language="JavaScript" type="text/javascript">
-$(window).unload(function(){
-  $.get("/ajax/delEmptyObjects.php?id="+<?=$obj->id?>);
-});
+var unloadhandler = function(){
+  $.ajaxSetup({async:true});
+  $.get("/ajax/delEmptyObjects.php?id="+<?=$obj->id?>,function(d){
+	alert(d);
+  });
+}
+$("body").unload(unloadhandler);
+$(window).unload(unloadhandler);
+$("#testa").click(unloadhandler);
 </script>

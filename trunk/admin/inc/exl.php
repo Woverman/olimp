@@ -143,7 +143,7 @@ echo '<input type="submit" value="Заховати знищені" onclick="show
     <option value=-4 <? if ($_GET['filter']==-4) echo 'SELECTED' ?>>Центральне</option>
     </optgroup>
     <optgroup label="Ріелтори">
-    <?php @getaslist('d_users',$_GET['filter'],'rights>-1'); ?>
+    <?php @getaslist('d_users',$_GET['filter'],'rights>-1 and id<>110'); ?>
     </optgroup>
 </select>
 </form>

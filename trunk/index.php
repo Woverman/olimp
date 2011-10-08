@@ -45,6 +45,7 @@ $page = new Page($rpage);
     <script language="JavaScript" src="/js/jquery.parallax-0.2-min.js" type="text/javascript"></script>
 	<? if ($rpage=='admin') { ?>
 	<script type="text/javascript" src="/js/sliding.form.js"></script>
+	<script type="text/javascript" src="/js/jquery.columnfilters.js"></script>
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
 	<link href="/admin/editor/css/redactor.css" type="text/css" rel="stylesheet">
 	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
