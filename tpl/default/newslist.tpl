@@ -22,7 +22,7 @@ if ($icnt>$perpage){
             <div id="news_title" class="ui-corner-all"><? if ($page<2) { ?>Останні новини<?} else {?>Архів новин<?}?></div>
 			<?
 				if ($pagecount>1) echo($pagesdiv);
-				$from=($page-1)*$perpage+1;
+				$from=($page-1)*$perpage;
                 $sql = "Select *,date_format(dateadd,'%d.%m.%Y')as dt from new_news where published=1 order by dateadd desc limit $from,$perpage";
                 $res = $DB->request($sql,ARRAY_A);
                 foreach($res as $item){
