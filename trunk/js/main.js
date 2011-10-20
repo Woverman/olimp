@@ -6,9 +6,47 @@ $(document).ready(function(){
 	adr = location.href;
 	if (adr.search(new RegExp('admin','g'))>0){
 		//------------------------------------------------- admin
+		$.datepicker.regional['ua'] = {
+		closeText: 'Закрити',
+		prevText: '<Назад',
+		nextText: 'Вперед>',
+		currentText: 'Сьогодні',
+		monthNames: ['Січень','Лютий','Березень','Квітень','Травень','Червень',
+		'Липень','Серпень','Вересень','Жовтень','Листопад','Грудень'],
+		monthNamesShort: ['Січ','Лют','Бер','Кві','Тра','Чер',
+		'Лип','Сер','Вер','Жов','Лис','Гру'],
+		dayNames: ['неділя','понеділок','віторок','середа','четвер','п\'ятниця','субота'],
+		dayNamesShort: ['ндл','пнд','втр','срд','чтв','птн','сбт'],
+		dayNamesMin: ['Нд','Пн','Вт','Ср','Чт','Пт','Сб'],
+		weekHeader: 'тж',
+		dateFormat: 'dd.mm.yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+		};
+		$.datepicker.setDefaults($.datepicker.regional['ua']);
+
+		$.timepicker.regional['ua'] = {
+			timeOnlyTitle: 'Виберіть час',
+			timeText: 'Час',
+			hourText: 'Години',
+			minuteText: 'Хвилини',
+			secondText: 'Секунди',
+			millisecText: 'мілісек.',
+			currentText: 'Зараз',
+			closeText: 'Закрити',
+			ampm: false
+		};
+		$.timepicker.setDefaults($.timepicker.regional['ua'])
 		try{
-		$('#redactor_content_master').redactor();
-	    $('#redactor_content_slave').redactor();
+		$('#news_dt').datetimepicker({
+			numberOfMonths: 2,
+			showSecond: true,
+			timeFormat: 'hh:mm:ss'
+		});
+		redactor_master = $('#redactor_content_master').redactor();
+	    redactor_slave = $('#redactor_content_slave').redactor();
 		}
 		catch(e){}
 	} else {

@@ -67,17 +67,20 @@ img.award_smoll{
   border: 3px double silver;
 }
 div#loginat {
-    background-color: #5354B0;
-    border: 1px solid;
+	position:absolute;
+	top:100px;
+	width:250px;
+	left:50%;
+	right: 30px;
+	float: right;
     color: PowderBlue;
-    height: 110px;
+    height: 130px;
     min-width: 200px;
     padding: 10px;
-    position: fixed;
-    right: 30px;
-    top: -110px;
-    float: right;
     text-align: center;
+	margin-left:-100px;
+	border: 1px solid silver;
+	background-color: #CCCCFF;
 }
 div#loginat form {
     display: block;

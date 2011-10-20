@@ -48,7 +48,7 @@ var twidth;
 			pageview: true,
 			fullscreen: false,
 			autosave: false,
-			saveInterval: 60, // seconds
+			saveInterval: 1, // seconds
 			resize: true,
 			visual: true,
 			focus: false,
@@ -57,7 +57,7 @@ var twidth;
 			uploadFunction: false,
 			width: false,
 			height: false,
-			autoclear: false,
+			autoclear: true,
 			autoformat: false,
 			overlay: true,
 			colors: Array(
@@ -67,7 +67,7 @@ var twidth;
 				'#bfbfbf', '#3f3f3f', '#938953', '#548dd4', '#95b3d7', '#d99694', '#c3d69b', '#b2a2c7', '#b7dde8', '#fac08f',
 				'#a5a5a5', '#262626', '#494429', '#17365d', '#366092', '#953734', '#76923c', '#5f497a', '#92cddc', '#e36c09',
 				'#7f7f7f', '#0c0c0c', '#1d1b10', '#0f243e', '#244061', '#632423', '#4f6128', '#3f3151', '#31859b', '#974806'),
-			path: '',
+			path: '/admin/editor/',
 			pathCss: 'css/',
 			css: ['blank.css']
 		}, options);
@@ -127,7 +127,7 @@ var twidth;
 			$(this.box).insertAfter(this.$el).append(this.frame).append(this.$el);
 
  			// toolbar
-			$('head').append($('<script type="text/javascript" src="' + this.opts.path + 'toolbars/' + this.opts.toolbar + '.js"></script>')); 						
+			$('head').append($('<script type="text/javascript" src="' + this.opts.path + 'toolbars/' + this.opts.toolbar + '.js"></script>'));
 	   		this.toolbar = $('<ul id="imp_redactor_toolbar_' + this.frameID + '" class="imp_redactor_toolbar"></ul>');
 			$(this.box).prepend(this.toolbar);
 			this.buildToolbar();

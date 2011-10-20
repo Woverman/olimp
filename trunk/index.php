@@ -46,9 +46,11 @@ $page = new Page($rpage);
 	<? if ($rpage=='admin') { ?>
 	<script type="text/javascript" src="/js/sliding.form.js"></script>
 	<script type="text/javascript" src="/js/jquery.columnfilters.js"></script>
+	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
 	<script type="text/javascript" src="/admin/editor/redactor.js"></script>
 	<link href="/admin/editor/css/redactor.css" type="text/css" rel="stylesheet">
 	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
+	<link href="/css/jquery.timepicker.css" type="text/css" rel="stylesheet">
 	<? } else { ?>
 	<script type="text/javascript" src="/js/jquery.metadata.js"></script>
 	<script type="text/javascript" src="/js/jquery.maphilight.js"></script>

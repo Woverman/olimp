@@ -4,7 +4,7 @@ include_once(DOCUMENT_ROOT."/inc/functions.php");
 
 function loginForm(){
 ?>
-<div id="loginat" style="position:absolute;width:250px;left:50%;margin-left:-100px;top:100px;padding:10px;border: 1px solid silver;background-color: #CCCCFF">
+<div id="loginat">
     <form action='/admin/main/' method='post' class='login_form'>
         <table>
             <tr><td colspan="2" align="center"><h3>Адміністратор</h3></td></tr>

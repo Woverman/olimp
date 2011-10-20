@@ -3,7 +3,7 @@
     var txt=document.getElementById('news_dt');
     var today=new Date();
     var y=today.getFullYear();
-    var n=checkTime(today.getMonth());
+    var n=checkTime(today.getMonth()+1);
     var d=checkTime(today.getDate());
     var h=checkTime(today.getHours());
     var m=checkTime(today.getMinutes());
@@ -20,29 +20,30 @@
   }
   function validform()
   {
-    if ($('#news_dt').val()==''){
-      alert("Вкажіть дату публікації!");
-      return
-      }
+
     if ($('#news_name').val()==''){
       alert("Вкажіть заголовок публікації!");
-      return
+      return;
       }
-    if ($('#redactor_content_master').val()==''){
+	if ($('#news_dt').val()==''){
+      alert("Вкажіть дату публікації!");
+      return;
+      }
+    if ($.trim($('#redactor_content_master').val())==''){
       alert("Вкажіть короткий текст публікації!");
-      return
+      return;
       }
-    if ($('#redactor_content_slave').val()==''){
+    if ($.trim($('#redactor_content_slave').val())==''){
       alert("Вкажіть основний текст публікації!");
-      return
+      return;
       }
-
     document.forms[0].submit();
   }
 
   function selectImageDialog(){
 
   }
+
 </script>
 <div style="border:1px solid #BFBFBF;padding:2px;margin:2px">
 <?if (@$_REQUEST['mode']=="add" || @$_REQUEST['mode']=="edit"){?>
@@ -133,7 +134,7 @@ switch (@$_REQUEST['mode']) {
       //echo '<font color=red>Дані збережено.</font><br>';
       }
   default:
-    $sql='Select *,date_format(dateadd,"%d.%m.%Y %H:%e")as dt from new_news';
+    $sql='Select *,date_format(dateadd,"%d.%m.%Y %H:%e")as dt from new_news order by dateadd desc ';
     $res=mysql_query($sql);
     echo '<table cellspasing=2 width=100% class="mytab">';
     $a=1;
@@ -146,6 +147,7 @@ switch (@$_REQUEST['mode']) {
     }
     echo '<tr><td colspan="3" align="right"><img src="/i/edit.png"> Правка  <img src="/i/delete.png"> Знищити  <img src="/i/on.png"> Активно  <img src="/i/off.png"> Неактивно </td></tr>';
     echo '</table>';
+	break;
 }
 ?>
 
