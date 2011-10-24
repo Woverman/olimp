@@ -3,6 +3,8 @@ class Page
 {
     var $menuset;
     var $title;
+	var $keywords;
+	var $isadmin;
     var $m_tpl; 
 
     function Page($page)
@@ -12,7 +14,8 @@ class Page
 
     function __construct($page)
     {
-        $this->menuset = new Menuset('main');
+        $this->menuset = new Menuset($page);
+		$this->isadmin = ($page=='admin');
         $this->title = "Олімп. Агентство нерухомості. "; // . $page;
         $this->m_tpl = $page;        
     }

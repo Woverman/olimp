@@ -22,19 +22,15 @@ class Menuset
             ,new Menu("kredit",0,"Кредит")
             ,new Menu("article",2,"Про нас")
 			,new Menu("article",3,"Контакти")
-			//new Menu("alert",0,"Залишити оголошення")
         );
         if (isset($_SESSION['logged']) and $_SESSION['logged']>0){
-          //  $this->items[] = new Menu("admin","exit","Вихід");
+
 		  	$this->items[] = new Menu("admin","main","Адмінка");
         } else {
-        //$this->items[] = new Menu("admin","main","Адмінка");
 			$ogol = new Menu("alert",0,"Залишити оголошення");
 			$ogol->special = true;
 			$this->items[] = $ogol;
         }
-		//if (isset($_SESSION['logged']) and $_SESSION['logged']>0)
-            //$this->items[] = new Menu("admin","exit","Вихід");
     }
     
     function listitems(){
