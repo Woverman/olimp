@@ -27,7 +27,6 @@ $page = new Page($rpage);
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/struct.css">
     <link rel="stylesheet" type="text/css" href="/css/<?=SKIN?>/main.css">
     <link rel="stylesheet" type="text/css" href="/css/sunny/jquery-ui-1.8.7.custom.css">
-    <!--<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.8.11.custom.css">-->
     <link rel="stylesheet" type="text/css" href="/css/jquery.lightbox-0.5.css">
 	<?
 		$pageCss = DOCUMENT_ROOT.'/css/'.SKIN.'/'.addslashes($rpage).'.css';
@@ -35,15 +34,12 @@ $page = new Page($rpage);
 			echo('<link rel="stylesheet" type="text/css" href="/css/'.SKIN.'/'.$rpage.'.css">');
 	?>
     <script language="JavaScript" src="/js/jquery-1.4.4.min.js" type="text/javascript"></script>
-    <!--<script language="JavaScript" src="/js/jquery-1.5.1.min.js" type="text/javascript"></script>-->
     <script language="JavaScript" src="/js/jquery-ui-1.8.7.custom.min.js" type="text/javascript"></script>
-    <!--<script language="JavaScript" src="/js/jquery-ui-1.8.11.custom.min.js" type="text/javascript"></script>-->
     <script language="JavaScript" src="/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
     <script language="JavaScript" src="/js/main.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/jquery.boxshadow.js"></script>
 	<script language="JavaScript" src="/js/jquery.drag.js" type="text/javascript"></script>
-    <script language="JavaScript" src="/js/jquery.parallax-0.2-min.js" type="text/javascript"></script>
-	<? if ($rpage=='admin') { ?>
+	<? if ($page->isadmin) { ?>
 	<script type="text/javascript" src="/js/sliding.form.js"></script>
 	<script type="text/javascript" src="/js/jquery.columnfilters.js"></script>
 	<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
@@ -52,6 +48,7 @@ $page = new Page($rpage);
 	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
 	<link href="/css/jquery.timepicker.css" type="text/css" rel="stylesheet">
 	<? } else { ?>
+	<script language="JavaScript" src="/js/jquery.parallax-0.2-min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="/js/jquery.metadata.js"></script>
 	<script type="text/javascript" src="/js/jquery.maphilight.js"></script>
 	<? } ?>

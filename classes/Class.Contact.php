@@ -35,9 +35,5 @@ class Contact
 		}		//return $this;
     }
 
-    function tpl(){
-        return ('tpl/'.SKIN.'/'.$this->m_tpl.".tpl");
-    }
-
 }
 ?>
