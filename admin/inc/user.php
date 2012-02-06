@@ -22,6 +22,7 @@ function ToEdit(id) {
     $('#otdel').val(txt[14]);
   	$('#rights').val(txt[3]);
     LoadNewImage('userfoto','-'+txt[0],1,2);
+	//document.images['userfoto'].src='/i/users-p/'+txt[0]+'.jpg';
     ShowModal();
   });
 }
@@ -43,10 +44,13 @@ function saveUserData(){
 	var s = $('form').serialize();
 	$.post("/ajax/edituser.php",s,function(data){
 		var r=data.split(":");
-		id = r[1];
-		if (id=='error') alert(id);
+		id = $.trim(r[1]);
+		if (id=='error') alert(r[0],id);
 		else{
-			switch(r[0]){
+			switch($.trim(r[0])){
+				case "error":
+					alert(id);
+					break
 				case "add":
 					var row = $("#tblMain tbody tr:nth-child(2)").clone(true).attr("id","row"+id).prependTo( $("#tblMain tbody"));
 					updaterow(row,id);

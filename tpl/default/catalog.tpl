@@ -64,7 +64,7 @@ if ($ff->proj->id!=0){
 
 				if (!empty($usl))
 					$sql .= ' where '.implode(" and ", $usl);
-
+					$sql .= ' order by cast asc';
 					debug($usl,"usl=");
   					debug($sql,"sql=");
 				$res=mysql_query($sql);
@@ -81,7 +81,7 @@ if ($ff->proj->id!=0){
 					$sql='Select * from m_bildings';
 					if (!empty($usl))
 						$sql .= ' where '.implode(" and ", $usl);
-
+					$sql .= ' order by cast asc';
 					if (($ff->pg != 'all') && ($ff->proj->id==0))
 						$sql.=' limit '.(($ff->pg-1)*$perpage).','.$perpage;
 					$res=mysql_query($sql);

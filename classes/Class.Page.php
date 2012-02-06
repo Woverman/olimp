@@ -7,14 +7,14 @@ class Page
 	var $isadmin;
     var $m_tpl; 
 
-    function Page($page)
+    function Page($page,$id)
     {
-        return $this->__construct($page);
+        return $this->__construct($page,$id);
     }
 
-    function __construct($page)
+    function __construct($page,$id)
     {
-        $this->menuset = new Menuset($page);
+        $this->menuset = new Menuset($page,$id);
 		$this->isadmin = ($page=='admin');
         $this->title = "Олімп. Агентство нерухомості. "; // . $page;
         $this->m_tpl = $page;        
