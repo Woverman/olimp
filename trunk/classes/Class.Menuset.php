@@ -1,17 +1,19 @@
 <?
 class Menuset
 {
-    var $title; 
+    var $title;
+	var $id;
     var $items;
         
-    function Menuset($page)
+    function Menuset($page,$id)
     {
-        return $this->__construct($page);
+        return $this->__construct($page,$id);
     }
 
-    function __construct($page)
+    function __construct($page,$id)
     {
-        $this->title = "main";
+        $this->title = $page;
+		$this->id = $id;
         $this->items = Array(
             new Menu("main",0,"Головна")
             ,new Menu("newslist",0,"Новини")
@@ -36,7 +38,11 @@ class Menuset
     function listitems(){
         foreach ($this->items as $item){
         	$cls = $item->special?'menuitem_special':'menuitem';
-        $ret .= "<li class='$cls'><a href='".$item->href()."'>".$item->text."</a></li>";
+			$nohref = (($item->type == $this->title) && ($item->id == $this->id));
+			if ($nohref)
+        		$ret .= "<li class='$cls'><span>".$item->text."</span></li>";
+			else
+				$ret .= "<li class='$cls'><a href='".$item->href()."'>".$item->text."</a></li>";
         }
         return $ret; 
     }

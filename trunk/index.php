@@ -12,7 +12,7 @@ include ($_SERVER['DOCUMENT_ROOT'].'/inc/functions.php'); // classes, config and
 $rpage = $_REQUEST['page'];
 $rpage = $rpage?$rpage:"main";
 $id =  $_REQUEST['id'];
-$page = new Page($rpage);
+$page = new Page($rpage,$id);
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

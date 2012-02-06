@@ -213,7 +213,7 @@ function stripslashes( str ) {    // Un-quote string quoted with addslashes()
 }
 
 function LoadNewImage(tag,oid,num,mode){ // load new src in img
-  document.images[tag].src='/image.php?objid='+oid+'&num='+num+'&mode='+mode;
+	document.images[tag].src='/image.php?objid='+oid+'&num='+num+'&mode='+mode;
 }
 
 function SetStatus(statusString){

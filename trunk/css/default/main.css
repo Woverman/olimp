@@ -23,7 +23,7 @@ sub{
 
 /* Menu */
 
-.hmenu a{
+.hmenu a, .hmenu span{
   color: #00769D;
   font: bold 14px Verdana, Arial, Helvetica, sans-serif;
   padding: 8px 15px 5px;
@@ -31,7 +31,7 @@ sub{
   zoom: 1;
 }
 
-.hmenu a:hover,.hmenu a.cur{
+.hmenu a:hover,.hmenu a.cur,.hmenu span{
   color: #47B8E5 ;
 }
 /* banners block */
@@ -116,6 +116,7 @@ sub{
   padding: 10px;
   text-align: center;
   background-color: #FFFFFF;
+  min-width: 230px;
 }
 
 /* погодний інформер */
