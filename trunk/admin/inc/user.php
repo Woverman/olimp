@@ -133,12 +133,13 @@ $rowcount=mysql_result($res,0);
 $sql="Select * from d_users where login<>'serg' order by id asc";
 $res=mysql_query($sql);
 $a=1;
-$role[0]="Адмін";
-$role[1]="Оператор";
-$role[2]="Ріелтор";
+$roleres = $DB->request('select id,title,description from s_usergroups',ARRAY_N);
+foreach ($roleres as $item){
+	$roles[$item[0]]=$item[1];
+}
 while ($row=mysql_fetch_row($res)) {
 	echo '<tr class="row'.$a=abs($a-1).'" id="row'.$row[0].'">';
-	echo '<td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[5].'</td><td>'.$role[$row[3]].'</td><td title='.$row[4].'><img src=/i/lock'.$row[4].'.png id="lock'.$row[0].'" title="'.($row[4]==1?'Заблокований':'Активний').'"></td>';
+	echo '<td>'.$row[0].'</td><td>'.$row[1].'</td><td>'.$row[5].'</td><td>'.$roles[$row[3]].'</td><td title='.$row[4].'><img src=/i/lock'.$row[4].'.png id="lock'.$row[0].'" title="'.($row[4]==1?'Заблокований':'Активний').'"></td>';
 	echo '<td><img src="/i/edit.png" onclick="ToEdit('.$row[0].')" style="cursor:pointer" title="Редагувати">&nbsp;&nbsp;<img src="/i/delete.png" onclick="ToDel('.$row[0].')" style="cursor:pointer" title="Видалити"></td>';
 	echo '</tr>';
 }
@@ -161,9 +162,12 @@ while ($row=mysql_fetch_row($res)) {
 		<tr><td>ПІП:</td><td><input type='text' name='longname' id='longname' class="txt"></td></tr>
 		<tr><td>Доступ:</td><td>
 			<select name='rights' id='rights'>
-				<option value="0" title="Повний доступ">Адмін (повний доступ)</option>
-				<option value="1" title="Обмеженеий доступ">Оператор (обмежений)</option>
-				<option value="2" title="Нема доступу" selected="selected">Ріелтор (нема доступу)</option>
+				<? foreach ($roleres as $item) {
+					echo('<option value="'.$item[0].'" title="'.$item[2].'">'.$item[1].' ('.$item[2].')</option>');
+				}?>
+				<!--option value="2" title="Обмеженеий доступ">Оператор (обмежений)</option>
+				<option value="3" title="Нема доступу" selected="selected">Ріелтор (нема доступу)</option>
+				<option value="4" title="SEO">SEO (розкрутка)</option-->
 			</select>
 		</td></tr>
 		<tr><td width="100">Відділення:</td><td>

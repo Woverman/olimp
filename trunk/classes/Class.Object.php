@@ -134,7 +134,9 @@ abstract class Object
     return implode('<br>',$ret);
 	}
 
-  function added(){ return strftime("%d.%m.%Y %H:%M",time($this->dateadd)); }
+  function added(){
+  		return @ strftime("%d.%m.%Y %H:%M",time($this->dateadd));
+	}
 
   function commentCrop(){
   	if (strlen($this->comment)==0) return " ";
@@ -146,9 +148,7 @@ abstract class Object
 
  function formatKontakt(){
  	$k = $this->kont;
-	debug($k,'контакт');
- 	$ret = "<br /><br /><div class='placeholder'>";
- 	$ret .= "<p><img src='/image.php?objid=-".$k->id."&num=1&mode=2' with='40' align='left' class='opimg'>";
+ 	$ret = "<p><img src='/image.php?objid=-".$k->id."&num=1&mode=2' with='40' align='left' class='opimg'>";
  	$ret .= "Дізнатись більше вам допоможе: ";
  	$ret .= '<b>'.$k->name_long.'</b><br>';
 	if ($k->role!='')
@@ -160,7 +160,7 @@ abstract class Object
  	$ret .= "<br>";
 	if ($k->email)
  		$ret .= "Пишіть: <a href='mailto:$k->email'>".$k->email."</a><br>";
- 	$ret .= "</p></div>";
+ 	$ret .= "</p>";
 	return $ret;
  }
 }

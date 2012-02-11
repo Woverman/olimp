@@ -36,7 +36,7 @@ class DB
         mysql_unbuffered_query($sql, $this->dbh);
         $insert_id = mysql_insert_id($this->dbh);
         $rows = mysql_affected_rows($this->dbh);
-        //mysql_unbuffered_query("insert into as_log (request) values ('" . (addslashes($sql)) . "')", $this->dbh);
+        mysql_unbuffered_query("insert into as_log (request) values ('" . (addslashes($sql)) . "')", $this->dbh);
         return $insert_id;
 
     }

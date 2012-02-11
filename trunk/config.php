@@ -1,6 +1,6 @@
 <?
 // Debug
-$debug = False;
+$debug = ($_GET['debug']==1 ? true : false);
 
 // MySQL connect
 $sqlserver = 1; // current db connection

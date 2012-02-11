@@ -31,7 +31,7 @@ if (isset($_POST['mode'])) {
 		$resmsg = $id;
     	break;
 	case 'del': 		// delete exist user
-	    if ($_POST['uid']!=CurrentUserID()) {
+	    if ($_POST['uid']!=$user->id) {
 	        $sql="Delete from d_users where id=".$_POST['uid'];
 		    mysql_unbuffered_query($sql);
 	        $sql="Delete from d_foto where objid=-".$_POST['uid'];

@@ -68,9 +68,11 @@ sub{
 	margin: 5px 5px -5px 5px;
 	border-bottom: 1px solid silver;
 	min-height: 32px;
+	overflow: hidden;
 }
 .findtabszone {
 	margin-bottom: -2px;
+	min-width: 237px;
 }
 .findtabs .findtab{
 	float: left;
@@ -105,11 +107,11 @@ sub{
 }
 
 
-.find_vidget{
+/*.find_vidget{
   clear: both;
   float: left;
   position: relative;
-  border: 1px solid #CCC; /*#66CCFF*/
+  border: 1px solid #CCC;
   border-top: 0px;
   margin: 5px;
   overflow: hidden;
@@ -118,7 +120,22 @@ sub{
   background-color: #FFFFFF;
   min-width: 230px;
 }
+*/
+.find_vidget{
+  clear: both;
+ /* float: left;*/
+  border-top: 0px;
+  max-width:none;
+  background-color: #FFFFFF;
+  /*min-width: 230px;*/
+}
 
+.only_wrapper {
+	border: 1px solid #99CCFF;
+	padding:5px;
+	margin-top: 4px;
+	/*min-height: 295px;*/
+}
 /* погодний інформер */
 
 .gmtdttl{

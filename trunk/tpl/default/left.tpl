@@ -19,7 +19,7 @@ function activatetab(tabnum){
 			<div class="findtab" id="findtabmap"><a href="#" onclick="activatetab('2');">Пошук на карті &nbsp;&nbsp;&nbsp;&nbsp;</a></div>
 		</div>
 	</div>
-    <div class="find_vidget ui-corner-bottom" id='find_panel'>
+    <div class="vidget find_vidget ui-corner-bottom" id='find_panel'>
 		<?  include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/find.tpl'); ?>
     </div>
 	<br style="clear: both">

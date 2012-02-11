@@ -95,7 +95,7 @@ function HideModal(){
 	<td align=right>Ріелтор:&nbsp;</td>
 	<td><select name='rieltor' id='rieltor'>
 	<option value=0>-</option>
-	<?php @getaslist('d_users',$row['user'],'rights>-1 and id<>110'); ?>
+	<?php @getaslist('d_users',$row['user'],'rights>0 and id<>110'); ?>
 	</select></td>
 	<td><font color="#909090">&nbsp;відповідальний</font></td>
 </tr>
@@ -144,7 +144,7 @@ echo '<input type="submit" value="Заховати знищені" onclick="show
     <option value=-4 <? if ($_GET['rieltor']==-4) echo 'SELECTED' ?>>Центральне</option>
     </optgroup>
     <optgroup label="Ріелтори">
-    <?php @getaslist('d_users',$_GET['rieltor'],'rights>-1 and id<>110'); ?>
+    <?php @getaslist('d_users',$_GET['rieltor'],'rights>0 and id<>110'); ?>
     </optgroup>
 </select>
 </form>
