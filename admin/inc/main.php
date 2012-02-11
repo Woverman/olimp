@@ -9,10 +9,10 @@
 </style>
 
 <?
-function widjet($title,$href,$imgsrc,$id,$visible,$newline){
+function widjet($title,$href,$imgsrc,$id,$visible,$newline,$title){
 	?>
 <div class="widjet_outer ui-corner-all" id='w<?=$id?>' style='display:<?=($visible?'block':'none')?>;clear:<?=($newline?'both':'none')?>'>
-	<a href='/admin/<?=$href?>'>
+	<a href='/admin/<?=$href?>' title="<?=$title?>">
 		<div class="widjet_inner ui-corner-all">
 			<img src='/i/admin/<?=$imgsrc?>.png' width="48" style='{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/i/admin/<?=$imgsrc?>.png); width:expression(1); height:expression(1);}'>
 			<div><?=$title?></div>
@@ -21,11 +21,12 @@ function widjet($title,$href,$imgsrc,$id,$visible,$newline){
 </div>
 	<?
 }
-$sql = "select * from s_widjets order by orderid";
+$sql = "select * from s_adminpages where visible_main=1 order by orderid_main";
 $res = $DB->request($sql,ARRAY_A);
 $i=0;
 foreach ($res as $item){
-		widjet($item['title'],$item['href'],$item['img'],$item['id'],$item['enabled']==1,$item['newline']==1);
+		if ($user->Permitted($item['id']))
+		widjet($item['title_main'],$item['href'],$item['img'],$item['id'],$item['enabled_main']==1,$item['newline']==1,$item['comment_main']);
 }//if ($item['newline']==1) echo('<br style="float:none;clear:both">');
 //exit;
 ?>
@@ -57,11 +58,11 @@ foreach ($res as $item){
 	foreach ($res as $item){
 		$i = $item['id'];
 		echo('<tr class="row'.$a=abs($a-1).'" id="row'.$i.'">');
-		echo("<td><img src='/i/admin/".$item['img'].".png' width=20 height=20 style='float:left;padding-left: 10px;'>".$item['title']."</td>");
+		echo("<td><img src='/i/admin/".$item['img'].".png' width=20 height=20 style='float:left;padding-left: 10px;'>".$item['title_main']."</td>");
 		//echo("<td>".$item['href']."</td>");
 		//echo("<td>".$item['img']."</td>");
-		echo("<td><img id='iOn".$i."' class=Hand src='/i/on.png' style='display:".($item['enabled']==1?'inline-block':'none')."' onclick='Hide(".$i.")'>");
-		echo("<img id='iOff".$i."' class=Hand src='/i/off.png' style='display:".($item['enabled']==0?'inline-block':'none')."' onclick='Show(".$item['id'].")'></td>");
+		echo("<td><img id='iOn".$i."' class=Hand src='/i/on.png' style='display:".($item['enabled_main']==1?'inline-block':'none')."' onclick='Hide(".$i.")'>");
+		echo("<img id='iOff".$i."' class=Hand src='/i/off.png' style='display:".($item['enabled_main']==0?'inline-block':'none')."' onclick='Show(".$item['id'].")'></td>");
 		echo("<td><img class=Hand src='/i/up.png' onclick='Up(".$item['id'].")'><img class=Hand src='/i/down.png' onclick='Down(".$item['id'].")'></td>");
 		echo("<td><img id='iSh".$i."' class=Hand src='/i/admin/return_yes.png' style='display:".($item['newline']==1?'inline-block':'none')."' onclick='Unshift(".$item['id'].")'>");
 		echo("<img id='iUsh".$i."'class=Hand src='/i/admin/return_no.png' style='display:".($item['newline']==0?'inline-block':'none')."' onclick='Shift(".$item['id'].")'></td>");

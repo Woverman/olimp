@@ -55,5 +55,6 @@
 		</div>
     </div>
 </div>
-<? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>
+
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/right.tpl'); ?>
+<? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>

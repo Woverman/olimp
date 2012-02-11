@@ -41,6 +41,7 @@ switch (@$_REQUEST['mode']) {
   case 'delete':
     if (isset($_GET['id']) and $_GET['mode']=='delete') {
       $DB->insert('Delete from m_pages where id='.$_GET['id']);
+      $DB->insert('delete from m_seo where page="article" and pageid='.$_GET['id']);
       }
   case 'offon':
     if (isset($_GET['id']) and $_GET['mode']=='offon') {

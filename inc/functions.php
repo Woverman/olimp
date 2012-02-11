@@ -1,6 +1,6 @@
 <?php
 // розпаковка змінних при register_globals=Off
-function my_extract($array) {
+/*function my_extract($array) {
     if (!is_array($array)) {
         return FALSE;
     }
@@ -16,7 +16,7 @@ function my_extract($array) {
         }
     }
     return TRUE;
-}
+}*/
 
 function getaslist ($tbl,&$selid,$usl='1=1',$orderby='name') {
 	global $sys;
@@ -33,7 +33,7 @@ function getaslist ($tbl,&$selid,$usl='1=1',$orderby='name') {
 		echo '<option value='.$row['id'].$T.'>'.$row['name']."</option>\n";
 	}
 }
-
+/*
 function GetNews($limit,$pattern,$add=0) {
   $sql="select id,title,short,date_format(date,\"%d.%m.%Y %H:%e\")as dt from news where enable=1 order by date limit ".$limit;
   $res = mysql_query ($sql) or die("Query failed : " . mysql_error());
@@ -61,17 +61,26 @@ function GetNews($limit,$pattern,$add=0) {
     }
   }}
   return $ret;
-}
+}*/
 
-function IsAdmin() {
+/*function IsAdmin() {
+	if (isset($_SESSION['user'])) {
+		$sql="Select rights from d_users where login='".$_SESSION['user']."'";
+		$res = mysql_query($sql);
+		$row=mysql_fetch_array($res);
+		return($row[0]=='1');
+	}
+	return(false);
+}*/
+/*function IsSEO() {
 	if (isset($_SESSION['user'])) {
 	$sql="Select rights from d_users where login='".$_SESSION['user']."'";
 	$res = mysql_query($sql);
 	$row=mysql_fetch_array($res);
-	return($row[0]=='0');
+	return($row[0]=='4');
 	}
-}
-
+	return(false);
+}*/
 function GetFieldByID($tbl,$fld,$id,$notfound='Не знайдено'){
   $res=mysql_query("Select $fld from $tbl where id=$id;");
   if (mysql_num_rows($res)>0) {
@@ -143,12 +152,6 @@ function MakePageLinks($page,$pages,$items,$ff) {
 	        echo '<span>Вперед &gt;</span>&nbsp;';
 	    }
 	}
-//
-//    if ($page=='all')
-//      echo "<span class='selpage'>Всі</span>";
-//    else
-//      echo '<a href="'.$ff->createURL("pg",'all').'">Всі</a>';
-//
   	echo '</td></tr></table>';
 }
 
@@ -213,16 +216,15 @@ function saveImgToBase($id) {
 	$num=0;
 	while($a = each($_FILES)) {
 		$iname=$a[1]['tmp_name'];
-    $fname=$a[1]['name'];
+    	$fname=$a[1]['name'];
 		$num++;
 		if ($iname!='') {
-			//$img=addslashes(ResizeImage($iname,300,200));
-      $img=addslashes(ResizeImage($iname,800,600,$fname));
-	  $thumb=addslashes(ResizeImage($iname,100,70,$fname));
-      $sql="select count(id) from m_fotos where objid=$id and orderval=$num";
-      $res=mysql_query($sql);
-      if (mysql_result($res,0)==0) $sql="insert into m_fotos (objid,foto,tumb,orderval,fname) values ('$id','$img','$thumb','$num','$fname')";
-      else $sql="update m_fotos set foto='$img',tumb='$thumb',fname='$fname' where objid='$id' and orderval='$num'";
+			$img=addslashes(ResizeImage($iname,800,600,$fname));
+			$thumb=addslashes(ResizeImage($iname,100,70,$fname));
+			$sql="select count(id) from m_fotos where objid=$id and orderval=$num";
+			$res=mysql_query($sql);
+			if (mysql_result($res,0)==0) $sql="insert into m_fotos (objid,foto,tumb,orderval,fname) values ('$id','$img','$thumb','$num','$fname')";
+			else $sql="update m_fotos set foto='$img',tumb='$thumb',fname='$fname' where objid='$id' and orderval='$num'";
 			mysql_query($sql);
 		}
 	}
@@ -239,8 +241,6 @@ function saveImgToFile($id) {
 	  $thumb=ResizeImage($iname,100,70,$fname);
       $resultFileName = DOCUMENT_ROOT."/i/obj/img_".$id."_".$num.".jpg";
       $resultThumbName = DOCUMENT_ROOT."/i/obj/tmb_".$id."_".$num.".jpg";
-      //imagejpeg($img,$resultFileName);
-      //imagejpeg($thumb,$resultThumbName);
       // Save file
       $fp = fopen ($resultFileName,'w');
       fwrite ($fp, $img);
@@ -279,7 +279,7 @@ function findadr($id,$tbl) { // пошук областей, районів, м�
     return @mysql_result($res,0);
 }
 
-function MakeList($arr,$str) { //будуємо список параметрів по стрічці одиниць і нулів
+/*function MakeList($arr,$str) { //будуємо список параметрів по стрічці одиниць і нулів
   if (intval($str)==0) {return 'нема даних';}
   else {
   $ret='';
@@ -288,18 +288,18 @@ function MakeList($arr,$str) { //будуємо список параметрі�
     if ($tmp[$i]==1) $ret[]=$arr[$i];
   }
   return implode(', ',$ret);
-}}
+}}*/
 
-function get_table_info($tbl, $where="1=1"){
+/*function get_table_info($tbl, $where="1=1"){
 	$sql = sprintf('SELECT * from %s where %s order by name',$tbl,$where);
 	$res=mysql_query($sql);
   if (mysql_num_rows($res)>0){
 	  while ($row=mysql_fetch_row($res)) $info[$row[0]] = $row[1];
     return $info; }
   else return '';
-}
+}*/
 
-function get_bild($id){
+/*function get_bild($id){
 	global $sys;
 	$sql="Select * from m_bildings where id=$id;";
 	$res=mysql_query($sql);
@@ -310,7 +310,7 @@ function get_bild($id){
   } else {
     return array('');
   }
-}
+}*/
 
 function delfoto($num,$id){
   //delete image from datebase
@@ -379,13 +379,13 @@ function check_vul($vulname,$parrent){
   }
 }
 
-function infodiv($text){
+/*function infodiv($text){
   echo "<div id='infodiv' style='color:#707070;border:1px solid silver;padding:2px 2px 2px 10px;margin-bottom:4px'>";
   echo "<img align=right border=0 onClick=\"document.getElementById('infodiv').style.display='none';document.getElementById('noinfo').value=1;\" src='/i/del.gif'>";
   echo "&nbsp;&nbsp;&nbsp;&nbsp;".$text;
   echo "</div>";
-  }
-
+  }*/
+/*
 function CurrentUserID(){
    $ret=-1;
    $sql="Select id from d_users where login='".$_SESSION['user'];
@@ -394,7 +394,7 @@ function CurrentUserID(){
      $ret=mysql_result($res,0);
    }
    return $ret;
-}
+}*/
 
 // ensure $dir ends with a slash
 function delTree($dir,$pattern) {

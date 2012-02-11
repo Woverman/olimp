@@ -1,6 +1,6 @@
 <?
 //header("Content-type: text/html; charset=utf-8");
-//session_start();
+session_start();
 include($_SERVER['DOCUMENT_ROOT']."/modules/bnr/config.php");
 if (isset($_REQUEST['lang'])){
     $_SESSION['lang']=$_REQUEST['lang'];
@@ -13,6 +13,10 @@ $rpage = $_REQUEST['page'];
 $rpage = $rpage?$rpage:"main";
 $id =  $_REQUEST['id'];
 $page = new Page($rpage,$id);
+$user = New User($_SESSION['userid']);
+function Meta($name,$content){
+	echo "<meta name='$name' content='$content'/>\n";
+}
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -21,6 +25,11 @@ $page = new Page($rpage,$id);
 
 <head>
     <title><?=$page->title;?></title>
+<?
+	if (isset($page->keywords))	Meta("keywords",$page->keywords);
+	if (isset($page->description))	Meta("description",$page->description);
+	Meta("author","Sergii Obodynskyi");
+?>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=7" />
     <link rel="stylesheet" type="text/css" href="/css/null.css">
@@ -48,10 +57,18 @@ $page = new Page($rpage,$id);
 	<link href="/css/FancySlidingForm.css" type="text/css" rel="stylesheet">
 	<link href="/css/jquery.timepicker.css" type="text/css" rel="stylesheet">
 	<? } else { ?>
-	<script language="JavaScript" src="/js/jquery.parallax-0.2-min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="/js/jquery.metadata.js"></script>
-	<script type="text/javascript" src="/js/jquery.maphilight.js"></script>
+<script language="JavaScript" src="/js/jquery.parallax-0.2-min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/jquery.metadata.js"></script>
+<script type="text/javascript" src="/js/jquery.maphilight.js"></script>
+		<? if ($page->m_tpl=='object' | $page->m_tpl=='newsarticle') {?>
+<script type="text/javascript" src="http://userapi.com/js/api/openapi.js?47"></script>
+<script type="text/javascript">
+  VK.init({apiId: 2796213, onlyWidgets: true});
+</script>
+		<? } ?>
 	<? } ?>
+
+
 
     <LINK REL="SHORTCUT ICON" href="/favicon.ico">
 </head>
@@ -60,8 +77,6 @@ $page = new Page($rpage,$id);
 <div id="header_block">
   <div id="logo_wrap">
 	<div id="logo_block">
-
-	   <!--	<img src="/i/logo.png" alt="" id="logo_img" />-->
 	</div>
     <div id="logo_grace">
     </div>

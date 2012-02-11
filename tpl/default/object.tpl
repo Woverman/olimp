@@ -2,7 +2,7 @@
 <div id="center_panel" style="padding-top: 1px;">
     <div id="wrapper">
 		<div class="vidget ui-corner-all"><a href="<?=$_SERVER["HTTP_REFERER"]?>">Повернутись до списку</a></div>
-        <div id="only_wrapper" class="ui-corner-all" style="border: 1px solid #99CCFF;padding:5px;margin-top: 4px;min-height: 295px;">
+        <div class="only_wrapper ui-corner-all" style="min-height: 344px;">
 		<? if ($obj->adr_obl) { ?>
 		<span><a href='/catalog/<?=$obj->prodazh?>/?obl=<?= $obj->adr_obl ?>'><?= findadr($obj->adr_obl,'d_oblasti') ?> обл.</a></span> / <?}?>
 		<? if ($obj->adr_rgn) { ?>
@@ -59,14 +59,29 @@
         break;
     }
 	if (!empty($obj->comment)) echo('<br><p>'.stripslashes($obj->comment).'</p>');
-	if ($obj->kont->name_long!='') echo($obj->formatKontakt());
+	if ($obj->kont->name_long!='') $kontactInfo = ($obj->formatKontakt());
 	?>
 			</ul>
 			</div>
-	<div style="clear: both"></div>
-			</div>
-        </div>
-    </div>
+		</div>
+
+	<div class="only_wrapper ui-corner-all">
+		<?=$kontactInfo?>
+	</div>
+	<div class="only_wrapper ui-corner-all">
+		<div id="vk_comments"></div>
+		<script type="text/javascript">
+			VK.Widgets.Comments("vk_comments");
+			if (window.addEventListener) {
+		        window.addEventListener("load",VKInit,false);
+		     } else if (window.attachEvent) {
+		         window.attachEvent("onload",VKInit);
+		     } else {
+		     	window.onload = function() {VKInit();}
+    			 }
+		</script>
+	</div>
+</div>
 </div>
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/left.tpl'); ?>
 <? include(DOCUMENT_ROOT.'/tpl/'.SKIN.'/right.tpl'); ?>

@@ -40,13 +40,21 @@ $pid = $_GET['pid'];
 switch (@$_GET['mode']) {
   case 'edit':
     $sql='Select * from m_pages where id='.$pid;
-    if ($res=mysql_query($sql)) list($id,$title,$text,$folder,$enbl,$template)=mysql_fetch_array($res);
+    if ($res=mysql_query($sql)) {
+    	list($id,$title,$text,$folder,$enbl,$template)=mysql_fetch_array($res);
+		$sql='Select keywords,description from m_seo where page="article" and pageid='.$id;
+		if ($res=mysql_query($sql)) {
+			list($keywords,$description)=mysql_fetch_array($res);
+		}
+	}
   case 'add':
     ?>
     <form name="newsedit" method="post" action="/index.php?page=admin&panel=pagesave">
     <input type="hidden" name="id" value="<?=@$pid?>">
     <input type="hidden" name="mode" value="save">
-    <span class="field_title">Назва:</span><input id="page_name" name="page_name" type="text" size="75" value="<?=@stripslashes($title)?>"><br>
+    <span class="field_title">Назва:</span><input id="page_name" name="page_name" type="text"  value="<?=@stripslashes($title)?>" style="width:600px;"><br>
+	<span class="field_title">Ключові слова:</span><input id="page_keywords" name="page_keywords" type="text" value="<?=@stripslashes($keywords)?>" style="width:600px;"><br>
+	<span class="field_title">Опис:</span><input id="page_description" name="page_description" type="text" value="<?=@stripslashes($description)?>" style="width:600px;"><br>
     <span class="field_title">Розділ:</span>
 	<span id="addnewa">
 	<?
@@ -74,7 +82,9 @@ switch (@$_GET['mode']) {
 		echo("</select>");
 	?>
 	<br>
-    <textarea name="page_text" rows="30" cols="120" id="redactor_content_master"><?=@stripslashes($text)?></textarea>
+
+    <textarea name="page_text" rows="30" cols="120" id="redactor_content_master"><?=@stripslashes($text)?> </textarea>
+
     </form>
     <?
 }

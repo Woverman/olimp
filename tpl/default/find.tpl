@@ -16,13 +16,14 @@
 		$("#findform").hide();
 		$("#map_large").show();
 		$(".dist_title").show();
+		$("#left_panel").css("width","auto");
 	}
 	function hideMapDist(){
 		//$("#find_vidget").css({position:'relative'});
 		$("#findform").show();
 		$("#map_large").hide();
 		$(".dist_title").hide();
-
+		$("#left_panel").css("width","20%");
 	}
 	function cityChanged(id){
 		$('#dist').val('');

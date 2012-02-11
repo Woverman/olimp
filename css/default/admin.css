@@ -1,7 +1,7 @@
 body {font-size: 12px}
 a {text-decoration: none}
 form {margin:0}
-input:focus, select:focus  {
+input:focus, select:focus, textarea:focus  {
 	outline: #FFFF00 3px solid;
 }
 
@@ -35,6 +35,12 @@ a.sels,a.sels:hover,a.aa:hover {
 }
 h4 {margin:0;}
 input.txt {width:250px;}
+input.txt430 {width:430px;}
+textarea.txt{
+	width: 430px;
+	height: 90px;
+	font-size: 14px;
+}
 select {width:150px;}
 .mytab {empty-cells: show; font-size: 14px;}
 .pagesdiv {text-align:right;padding:2px;}
@@ -172,7 +178,7 @@ div#loginat img {
 .field_title{
 	display: block;
 	float: left;
-	width: 50px;
+	width: 150px;
 	text-align: right;
 	padding-right: 4px;
 	vertical-align: middle;

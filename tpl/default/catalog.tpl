@@ -98,7 +98,8 @@ if ($ff->proj->id!=0){
 <span class="address"><?=$obj->address()?></span>
 <span class="shortinfo"><?=$obj->ShortInfo()?></span>
 <p class="comment"><?=$obj->commentCrop()?></p></div>
-<div class="datemore ui-corner-all"><div><?=$obj->added()?></div><div class="more"><a href=<?='/object/'.$obj->id;?>>Детальніше...</a></div></div>
+<div class="datemore ui-corner-all"><div><?=$obj->added()?></div><div class="more">
+<a href=<?='/object/'.$obj->id;?>>Детальніше...</a></div></div>
 
 </div>
 <?

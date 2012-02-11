@@ -57,7 +57,7 @@ $(document).ready(function(){
 	   	window.setTimeout(moveNotice,"10000");
 		try{
 	    // лайтбоксуємо фотки
-	    $('#only_wrapper a.ilink').lightBox();
+	    $('.only_wrapper a.ilink').lightBox();
 	    $('[rel=lightbox-rel]').lightBox();}
 		catch(e){}
 		// відновимо форму пошуку
